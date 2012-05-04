@@ -1184,7 +1184,6 @@
 #include "code\WorkInProgress\virus2\isolator.dm"
 #include "code\WorkInProgress\virus2\monkeydispensor.dm"
 #include "code\WorkInProgress\virus2\Prob.dm"
-#include "code\WorkInProgress\Wrongnumber\weldbackpack.dm"
 #include "interface\skin.dmf"
 #include "maps\daedalus.dmm"
 // END_INCLUDE
