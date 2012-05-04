@@ -23,7 +23,7 @@ else
 fi
 
 echo "Copying source from git repository.."
-rsync -n -zah --stats --delete /home/ghoti/src/daedalus/ /home/ghoti/byond/daedalus-src/
+rsync -zah --stats --delete /home/ghoti/src/daedalus/ /home/ghoti/byond/daedalus-src/
 echo $MODE > /home/ghoti/byond/daedalus-test/mode
 
 echo "Setting up build environment.."
