@@ -2865,7 +2865,7 @@
 "bde" = (/obj/structure/table,/obj/item/weapon/cleaner,/obj/item/weapon/reagent_containers/syringe/antiviral,/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/floor{icon_state = "white"; dir = 8},/area/medical/virology)
 "bdf" = (/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/floor{icon_state = "white"; dir = 8},/area/medical/virology)
 "bdg" = (/obj/machinery/camera{c_tag = "Virology"; dir = 1; network = "Medbay"},/obj/machinery/light,/obj/machinery/alarm{dir = 1; layer = 4; pixel_y = -22},/obj/machinery/disposal,/obj/structure/disposalpipe/trunk{dir = 8},/turf/simulated/floor{icon_state = "white"; dir = 8},/area/medical/virology)
-"bdh" = (/obj/machinery/disease2/diseaseanalyser,/turf/simulated/floor{icon_state = "white"; dir = 8},/area/medical/virology)
+"bdh" = (/obj/machinery/disease/disease_analyzer,/turf/simulated/floor{icon_state = "white"; dir = 8},/area/medical/virology)
 "bdi" = (/obj/machinery/disease2/isolator,/turf/simulated/floor{icon_state = "white"; dir = 8},/area/medical/virology)
 "bdj" = (/obj/machinery/disease2/incubator,/turf/simulated/floor{icon_state = "white"; dir = 8},/area/medical/virology)
 "bdk" = (/obj/machinery/light,/obj/machinery/firealarm{dir = 4; layer = 4; pixel_x = 24},/obj/structure/table,/turf/simulated/floor{icon_state = "white"; dir = 8},/area/medical/virology)
