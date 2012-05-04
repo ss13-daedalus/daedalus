@@ -5,6 +5,7 @@ IMMEDIATE
 - baystation12/etc. -> daedalus everywhere (constified for strings)
 - plasma -> thoron everywhere (constified for strings)
 - randomFilename_and Variablenameformats -> lowercase_underscore everywhere
+- remove executable bit from whatever files you touch
 
 ONLY SLIGHTLY LESS IMMEDIATE
 
