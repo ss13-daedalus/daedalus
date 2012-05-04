@@ -7,6 +7,13 @@ on the code of Goon Station 13, which itself was descended from the
 original, posted by someone going by the pseudonym "Exadv1" on BYOND.
 (Yeah, the lineage is complicated).
 
+If you'd like to help us in this noble endeavour, join us via IRC!  The
+development channel is #daedalus-dev on irc.freenode.net.  If, on the
+other hand, you'd like to give us feedback from running the server
+yourself, we'd love to have it!  The proper channel is #daedalus on
+irc.freenode.net.  (You can, of course, report bugs and send pull
+requests via the standard Github interfaces.)
+
   Baystation 12: http://baystation12.net
  /tg/station 13: http://nanotrasen.com
 Goon Station 13: http://ss13.donglabs.com
