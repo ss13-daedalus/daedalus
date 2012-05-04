@@ -1,13 +1,9 @@
-Baystation 12
+Daedalus - a Space Station 13 fork
 
-Website: http://baystation12.net/
-Wiki: http://baystation12.net/wiki/
-Install Guide: http://baystation12.net/wiki/index.php/Install
-Code: https://github.com/Baystation12/Baystation12
-IRC: irc://irc.sorcery.net/bs12
+Daedalus is an attempt to make something of the mess that is the current
+generation of Space Station 13 code.  It is a fork of Baystation 12's
+codebase, which is itself a fork of /tg/station, which is itself based
+on the code of Goon Station 13.  (Yeah, the lineage is complicated.)
 
-Based on the code of /tg/ station 13, itself based on the code of Goon Station 13.
-/tg/ station 13: http://code.google.com/p/tgstation13
-
-Code Licensed Under GPLv3: http://www.gnu.org/licenses/gpl.html
-Content Licensed Under Creative Commons CC BY-SA 3.0: http://creativecommons.org/licenses/by-sa/3.0/
+The code contained herein is released under the GPLv3.  Other content
+is released under the Creative Commons CC-BY-SA 3.0 license.
