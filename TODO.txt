@@ -8,6 +8,7 @@ IMMEDIATE
 
 ONLY SLIGHTLY LESS IMMEDIATE
 
+- complete code reorganization: filesystem matches file objects a la Java
 - remove any hard-coding of file locations et al., or abstract to config files
 - remove inherited configurations (e. g. admins) from config/
 - fix any and all typos you come across on other work
