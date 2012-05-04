@@ -1,5 +1,5 @@
 #!/bin/bash
-DMEFILE=baystation12.dme
+DMEFILE=daedalus.dme
 
 if [[ 0 -eq $# ]]; then
    echo "Please run $0 with the correct paramaters:"
