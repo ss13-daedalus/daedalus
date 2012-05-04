@@ -201,7 +201,7 @@ NOTEBOOK
 
 			user << "\blue You stamp the paper with your rubber stamp."
 
-		if(istype(P, /obj/item/weapon/stamperaser))
+		if(istype(P, /obj/item/weapon/stamp_eraser))
 			if ((!in_range(src, usr) && src.loc != user && !( istype(src.loc, /obj/item/weapon/clipboard) ) && src.loc.loc != user && user.equipped() != P))
 				return
 			src.info = src.infoold
