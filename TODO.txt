@@ -14,6 +14,8 @@ ONLY SLIGHTLY LESS IMMEDIATE
 - remove things that exist only to annoy
    - clown gear
    - mime gear
+- systematically seek out and remove all instances of the abominable 'datums'
+   - replace with 'data' or 'datum' as apropos
 
 LONGER-TERM
 
