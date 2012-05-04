@@ -8,6 +8,8 @@ IMMEDIATE
 
 ONLY SLIGHTLY LESS IMMEDIATE
 
+- remove any hard-coding of file locations et al., or abstract to config files
+- remove inherited configurations (e. g. admins) from config/
 - fix any and all typos you come across on other work
 - remove things that exist only to annoy
    - clown gear
