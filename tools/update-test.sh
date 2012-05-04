@@ -2,7 +2,7 @@
 DMEFILE=baystation12.dme
 
 if [[ 0 -eq $# ]]; then
-   echo "Please run the $0 with the correct paramaters:"
+   echo "Please run $0 with the correct paramaters:"
    echo -e "\t$0 [ beta | stable ]"
    exit 0
 else
