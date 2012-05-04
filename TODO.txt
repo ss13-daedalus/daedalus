@@ -14,8 +14,10 @@ ONLY SLIGHTLY LESS IMMEDIATE
 - remove things that exist only to annoy
    - clown gear
    - mime gear
+- NSS Exodus -> NSS Icarus (incorporate Wojo's new graphic in the map)
 
 LONGER-TERM
 
 - make the UI less exquisitely horrible
 - make the game less "an atmospheric simulation with other stuff"
+- Switch from MySQL to SQLite
