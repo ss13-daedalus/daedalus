@@ -1184,7 +1184,7 @@
 #include "code\WorkInProgress\organs\implants.dm"
 #include "code\WorkInProgress\organs\organs.dm"
 #include "code\WorkInProgress\Ported\head.dm"
-#include "code\WorkInProgress\Ported\policetape.dm"
+#include "code\obj\item\policetape.dm"
 #include "code\WorkInProgress\Ported\Abi79\uplink_kits.dm"
 #include "code\WorkInProgress\Ported\Abi79\uplinks.dm"
 #include "code\WorkInProgress\Ported\Bureaucracy\copier.dm"
