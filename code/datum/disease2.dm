@@ -1,36 +1,3 @@
-/mob/living/carbon/proc/get_infection_chance()
-	var/score = 0
-	var/mob/living/carbon/M = src
-	if(istype(M, /mob/living/carbon/human))
-		if(M:gloves)
-			score += 5
-		if(istype(M:wear_suit, /obj/item/clothing/suit/space)) score += 10
-		if(istype(M:wear_suit, /obj/item/clothing/suit/bio_suit)) score += 10
-		if(istype(M:head, /obj/item/clothing/head/helmet/space)) score += 5
-		if(istype(M:head, /obj/item/clothing/head/bio_hood)) score += 5
-	if(M.wear_mask)
-		score += 5
-		if(istype(M:wear_mask, /obj/item/clothing/mask/surgical) && !M.internal)
-			score += 10
-		if(M.internal)
-			score += 10
-
-	if(score >= 30)
-		return 0
-	else if(score == 25 && prob(99))
-		return 0
-	else if(score == 20 && prob(95))
-		return 0
-	else if(score == 15 && prob(75))
-		return 0
-	else if(score == 10 && prob(55))
-		return 0
-	else if(score == 5 && prob(35))
-		return 0
-
-	return 1
-
-
 proc/airborne_can_reach(turf/source, turf/target)
 	var/obj/dummy = new(source)
 	dummy.flags = FPRINT | TABLEPASS
