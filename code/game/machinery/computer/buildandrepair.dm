@@ -203,7 +203,7 @@
 
 /obj/item/weapon/circuitboard/splicer
 	name = "Circuit board (Disease Splicer)"
-	build_path = "/obj/machinery/computer/diseasesplicer"
+	build_path = "/obj/machinery/computer/disease_splicer"
 
 
 

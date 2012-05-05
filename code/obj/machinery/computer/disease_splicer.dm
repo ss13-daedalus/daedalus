@@ -1,4 +1,4 @@
-/obj/machinery/computer/diseasesplicer
+/obj/machinery/computer/disease_splicer
 	name = "Disease Splicer"
 	icon = 'computer.dmi'
 	icon_state = "crew"
@@ -11,7 +11,7 @@
 	var/splicing = 0
 	var/scanning = 0
 
-/obj/machinery/computer/diseasesplicer/attackby(var/obj/I as obj, var/mob/user as mob)
+/obj/machinery/computer/disease_splicer/attackby(var/obj/I as obj, var/mob/user as mob)
 	if(istype(I, /obj/item/weapon/screwdriver))
 		playsound(src.loc, 'Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
@@ -19,7 +19,7 @@
 				user << "\blue The broken glass falls out."
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				new /obj/item/weapon/shard( src.loc )
-				//var/obj/item/weapon/circuitboard/diseasesplicer/M = new /obj/item/weapon/circuitboard/diseasesplicer( A )
+				//var/obj/item/weapon/circuitboard/disease_splicer/M = new /obj/item/weapon/circuitboard/disease_splicer( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				//A.circuit = M
@@ -30,7 +30,7 @@
 			else
 				user << "\blue You disconnect the monitor."
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				//var/obj/item/weapon/circuitboard/diseasesplicer/M = new /obj/item/weapon/circuitboard/diseasesplicer( A )
+				//var/obj/item/weapon/circuitboard/disease_splicer/M = new /obj/item/weapon/circuitboard/disease_splicer( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				//A.circuit = M
@@ -45,7 +45,7 @@
 			dish = I
 			c.drop_item()
 			I.loc = src
-	if(istype(I,/obj/item/weapon/diseasedisk))
+	if(istype(I,/obj/item/weapon/disease_disk))
 		user << "You upload the contents of the disk into the buffer"
 		memorybank = I:effect
 
@@ -54,15 +54,15 @@
 	src.attack_hand(user)
 	return
 
-/obj/machinery/computer/diseasesplicer/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/disease_splicer/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/diseasesplicer/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/disease_splicer/attack_paw(var/mob/user as mob)
 
 	return src.attack_hand(user)
 	return
 
-/obj/machinery/computer/diseasesplicer/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/disease_splicer/attack_hand(var/mob/user as mob)
 	if(..())
 		return
 	user.machine = src
@@ -113,7 +113,7 @@
 	onclose(user, "computer")
 	return
 
-/obj/machinery/computer/diseasesplicer/process()
+/obj/machinery/computer/disease_splicer/process()
 	if(stat & (NOPOWER|BROKEN))
 		return
 	use_power(500)
@@ -130,7 +130,7 @@
 	if(burning)
 		burning -= 1
 		if(!burning)
-			var/obj/item/weapon/diseasedisk/d = new /obj/item/weapon/diseasedisk(src.loc)
+			var/obj/item/weapon/disease_disk/d = new /obj/item/weapon/disease_disk(src.loc)
 			if(analysed)
 				d.name = "[memorybank.effect.name] GNA disk (Stage: [5-memorybank.effect.stage])"
 			else
@@ -140,7 +140,7 @@
 
 	return
 
-/obj/machinery/computer/diseasesplicer/Topic(href, href_list)
+/obj/machinery/computer/disease_splicer/Topic(href, href_list)
 	if(..())
 		return
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
@@ -171,16 +171,3 @@
 		src.add_fingerprint(usr)
 	src.updateUsrDialog()
 	return
-
-/obj/item/weapon/diseasedisk
-	name = "Blank GNA disk"
-	icon = 'cloning.dmi'
-	icon_state = "datadisk0"
-	var/datum/disease2/effectholder/effect = null
-	var/stage = 1
-
-/obj/item/weapon/diseasedisk/premade/New()
-	name = "Blank GNA disk (stage: [5-stage])"
-	effect = new /datum/disease2/effectholder
-	effect.effect = new /datum/disease2/effect/invisible
-	effect.stage = stage
