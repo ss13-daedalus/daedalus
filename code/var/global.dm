@@ -231,3 +231,23 @@ var
 	// For FTP requests. (i.e. downloading runtime logs.)
 	// However it'd be ok to use for accessing attack logs and such too, which are even laggier.
 	fileaccess_timer = 600 //Cannot access files by ftp until the game is finished setting up and stuff.
+
+// Antigens for the disease code.
+var/global/const
+	ANTIGEN_A  = 1
+	ANTIGEN_B  = 2
+	ANTIGEN_RH = 4
+	ANTIGEN_Q  = 8
+	ANTIGEN_U  = 16
+	ANTIGEN_V  = 32
+	ANTIGEN_X  = 64
+	ANTIGEN_Y  = 128
+	ANTIGEN_Z  = 256
+	ANTIGEN_M  = 512
+	ANTIGEN_N  = 1024
+	ANTIGEN_P  = 2048
+	ANTIGEN_O  = 4096
+
+var/global/list/ANTIGENS = list("[ANTIGEN_A]" = "A", "[ANTIGEN_B]" = "B", "[ANTIGEN_RH]" = "RH", "[ANTIGEN_Q]" = "Q",
+				"[ANTIGEN_U]" = "U", "[ANTIGEN_V]" = "V", "[ANTIGEN_Z]" = "Z", "[ANTIGEN_M]" = "M",
+				"[ANTIGEN_N]" = "N", "[ANTIGEN_P]" = "P", "[ANTIGEN_O]" = "O")
