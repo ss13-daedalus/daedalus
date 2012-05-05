@@ -1,4 +1,4 @@
-/obj/item/weapon/cureimplanter
+/obj/item/weapon/cure_implanter
 	name = "Hypospray injector"
 	icon = 'items.dmi'
 	icon_state = "implanter1"
@@ -11,7 +11,7 @@
 	w_class = 2.0
 
 
-/obj/item/weapon/cureimplanter/attack(mob/target as mob, mob/user as mob)
+/obj/item/weapon/cure_implanter/attack(mob/target as mob, mob/user as mob)
 	if(ismob(target))
 		for(var/mob/O in viewers(world.view, user))
 			if (target != user)

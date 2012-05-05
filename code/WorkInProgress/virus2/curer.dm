@@ -144,7 +144,7 @@
 	state("The [src.name] Buzzes", "blue")
 
 /obj/machinery/computer/curer/proc/createvirus(var/datum/disease2/disease/virus2)
-	var/obj/item/weapon/cureimplanter/implanter = new /obj/item/weapon/cureimplanter(src.loc)
+	var/obj/item/weapon/cure_implanter/implanter = new /obj/item/weapon/cure_implanter(src.loc)
 	implanter.name = "Viral implanter (MAJOR BIOHAZARD)"
 	implanter.works = 3
 	state("The [src.name] Buzzes", "blue")
