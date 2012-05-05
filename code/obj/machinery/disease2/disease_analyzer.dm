@@ -8,10 +8,10 @@
 	var/scanning = 0
 	var/pause = 0
 
-	var/obj/item/weapon/virusdish/dish = null
+	var/obj/item/weapon/virus_dish/dish = null
 
 /obj/machinery/disease2/disease_analyzer/attackby(var/obj/I as obj, var/mob/user as mob)
-	if(istype(I,/obj/item/weapon/virusdish))
+	if(istype(I,/obj/item/weapon/virus_dish))
 		var/mob/living/carbon/c = user
 		if(!dish)
 

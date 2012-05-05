@@ -2855,7 +2855,7 @@
 "bcU" = (/obj/structure/disposalpipe/segment{dir = 1},/turf/simulated/floor{icon_state = "white"; dir = 8},/area/medical/virology)
 "bcV" = (/obj/machinery/door/firedoor/border_only{dir = 8},/obj/machinery/door/airlock/glass/glass_medical{name = "Monkey Pen"; req_access_txt = "39"},/turf/simulated/floor{icon_state = "white"; dir = 8},/area/medical/virology)
 "bcW" = (/obj/structure/stool,/obj/effect/landmark/start{name = "Virologist"},/turf/simulated/floor{icon_state = "white"; dir = 8},/area/medical/virology)
-"bcX" = (/obj/structure/table,/obj/item/weapon/virusdish/random,/obj/item/weapon/virusdish/random{pixel_y = 8},/obj/item/weapon/virusdish/random{step_x = -6; step_y = 4},/turf/simulated/floor{icon_state = "white"; dir = 8},/area/medical/virology)
+"bcX" = (/obj/structure/table,/obj/item/weapon/virus_dish/random,/obj/item/weapon/virus_dish/random{pixel_y = 8},/obj/item/weapon/virus_dish/random,/turf/simulated/floor{icon_state = "white"; dir = 8},/area/medical/virology)
 "bcY" = (/obj/machinery/disease2/monkeycloner,/turf/simulated/floor{icon_state = "white"; dir = 8},/area/medical/virology)
 "bcZ" = (/obj/structure/disposalpipe/segment{dir = 1; icon_state = "pipe-c"},/mob/living/carbon/monkey,/turf/simulated/floor{icon_state = "white"; dir = 8},/area/medical/virology)
 "bda" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/obj/structure/window/reinforced{dir = 5; health = 1e+007},/turf/simulated/floor/plating,/area/medical/virology)

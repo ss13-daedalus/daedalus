@@ -42,7 +42,7 @@
 			I.loc = src
 		state("The [src.name] Buzzes", "blue")
 		return
-	if(istype(I,/obj/item/weapon/virusdish))
+	if(istype(I,/obj/item/weapon/virus_dish))
 		if(virusing)
 			user << "<b>The pathogen materializer is still recharging.."
 			return

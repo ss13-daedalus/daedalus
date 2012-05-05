@@ -4,7 +4,7 @@
 	anchored = 1
 	icon = 'virology.dmi'
 	icon_state = "incubator"
-	var/obj/item/weapon/virusdish/dish
+	var/obj/item/weapon/virus_dish/dish
 	var/obj/item/weapon/reagent_containers/glass/beaker = null
 	var/radiation = 0
 
@@ -52,7 +52,7 @@
 				user << "You add the beaker to the machine!"
 				src.updateUsrDialog()
 		else
-			if(istype(B,/obj/item/weapon/virusdish))
+			if(istype(B,/obj/item/weapon/virus_dish))
 				if(src.dish)
 					user << "A dish is already loaded into the machine."
 					return
@@ -60,7 +60,7 @@
 				src.dish =  B
 				user.drop_item()
 				B.loc = src
-				if(istype(B,/obj/item/weapon/virusdish))
+				if(istype(B,/obj/item/weapon/virus_dish))
 					user << "You add the dish to the machine!"
 					src.updateUsrDialog()
 

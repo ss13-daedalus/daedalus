@@ -5,7 +5,7 @@
 
 	var/datum/disease2/effectholder/memorybank = null
 	var/analysed = 0
-	var/obj/item/weapon/virusdish/dish = null
+	var/obj/item/weapon/virus_dish/dish = null
 	var/burning = 0
 
 	var/splicing = 0
@@ -38,7 +38,7 @@
 				A.icon_state = "4"
 				A.anchored = 1
 				del(src)
-	if(istype(I,/obj/item/weapon/virusdish))
+	if(istype(I,/obj/item/weapon/virus_dish))
 		var/mob/living/carbon/c = user
 		if(!dish)
 
