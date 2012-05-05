@@ -1192,7 +1192,6 @@
 #include "code\WorkInProgress\virus2\base.dm"
 #include "code\WorkInProgress\virus2\isolator.dm"
 #include "code\WorkInProgress\virus2\monkeydispensor.dm"
-#include "code\WorkInProgress\virus2\Prob.dm"
 #include "interface\skin.dmf"
 #include "maps\icarus.dmm"
 // END_INCLUDE
