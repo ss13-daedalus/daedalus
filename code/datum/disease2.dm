@@ -474,10 +474,6 @@
 	activate(var/mob/living/carbon/mob,var/multiplier)
 		mob.disease_symptoms |= DISEASE_HOARSE
 
-var/global/const/DISEASE_HOARSE  = 2
-var/global/const/DISEASE_WHISPER = 4
-
-
 /datum/disease2/effect/lesser
 	chance_maxm = 10
 

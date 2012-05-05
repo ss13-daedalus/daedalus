@@ -251,3 +251,8 @@ var/global/const
 var/global/list/ANTIGENS = list("[ANTIGEN_A]" = "A", "[ANTIGEN_B]" = "B", "[ANTIGEN_RH]" = "RH", "[ANTIGEN_Q]" = "Q",
 				"[ANTIGEN_U]" = "U", "[ANTIGEN_V]" = "V", "[ANTIGEN_Z]" = "Z", "[ANTIGEN_M]" = "M",
 				"[ANTIGEN_N]" = "N", "[ANTIGEN_P]" = "P", "[ANTIGEN_O]" = "O")
+
+// Afflictions from the disease code.
+var/global/const
+	DISEASE_HOARSE  = 2
+	DISEASE_WHISPER = 4
