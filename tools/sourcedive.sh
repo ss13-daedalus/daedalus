@@ -10,4 +10,4 @@ if [[ 0 -eq $# ]]; then
    exit 1
 fi
 
-grep -R "$*" * | cut -d ':' -f 1 | sort | uniq
+grep -Ri "$*" * | cut -d ':' -f 1 | sort | uniq
