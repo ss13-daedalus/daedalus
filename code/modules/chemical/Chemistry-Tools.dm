@@ -777,7 +777,7 @@
 		/obj/machinery/disposal,
 		/obj/machinery/disease2/incubator,
 		/obj/machinery/disease2/isolator,
-		/obj/machinery/disease2/biodestroyer,
+		/obj/machinery/disease2/biohazard_destroyer,
 		/mob/living/simple_animal/livestock/cow
 	)
 
