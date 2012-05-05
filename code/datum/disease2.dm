@@ -1,47 +1,3 @@
-proc/airborne_can_reach(turf/source, turf/target)
-	var/obj/dummy = new(source)
-	dummy.flags = FPRINT | TABLEPASS
-	dummy.pass_flags = PASSTABLE
-
-	for(var/i=0, i<5, i++) if(!step_towards(dummy, target)) break
-
-	var/rval = (dummy.loc in range(1,target))
-	del dummy
-	return rval
-
-/proc/infect_virus2(var/mob/living/carbon/M,var/datum/disease2/disease/disease,var/forced = 0)
-	if(M.virus2)
-		return
-	if(!disease)
-		return
-	//immunity
-	/*for(var/iii = 1, iii <= M.immunevirus2.len, iii++)
-		if(disease.issame(M.immunevirus2[iii]))
-			return*/
-
-	// if one of the antibodies in the mob's body matches one of the disease's antigens, don't infect
-	if(M.antibodies & disease.antigen != 0) return
-
-	for(var/datum/disease2/resistance/res in M.resistances)
-		if(res.resistsdisease(disease))
-			return
-	if(prob(disease.infectionchance) || forced)
-		if(M.virus2)
-			return
-		else
-			// certain clothes can prevent an infection
-			if(!forced && !M.get_infection_chance())
-				return
-
-			M.virus2 = disease.getcopy()
-			M.virus2.minormutate()
-
-			for(var/datum/disease2/resistance/res in M.resistances)
-				if(res.resistsdisease(M.virus2))
-					M.virus2 = null
-
-
-
 /datum/disease2/resistance
 	var/list/datum/disease2/effect/resistances = list()
 
@@ -62,17 +18,6 @@ proc/airborne_can_reach(turf/source, turf/target)
 	New(var/datum/disease2/disease/virus2)
 		for(var/datum/disease2/effectholder/h in virus2.effects)
 			resistances += h.effect.type
-
-
-/proc/infect_mob_random_lesser(var/mob/living/carbon/M)
-	if(!M.virus2)
-		M.virus2 = new /datum/disease2/disease
-		M.virus2.makerandom()
-
-/proc/infect_mob_random_greater(var/mob/living/carbon/M)
-	if(!M.virus2)
-		M.virus2 = new /datum/disease2/disease
-		M.virus2.makerandom(1)
 
 /datum/disease2/var/antigen = 0 // 16 bits describing the antigens, when one bit is set, a cure with that bit can dock here
 
@@ -578,6 +523,3 @@ var/global/const/DISEASE_WHISPER = 4
 				multiplier = rand(1,effect.maxm)
 	proc/majormutate()
 		getrandomeffect_greater()
-
-/proc/dprob(var/p)
-	return(prob(sqrt(p)) && prob(sqrt(p)))
