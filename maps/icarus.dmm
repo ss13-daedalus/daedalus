@@ -5735,7 +5735,7 @@
 "cgo" = (/obj/structure/window/reinforced{dir = 8},/turf/unsimulated/wall{tag = "icon-iron3"; icon = 'mineral_walls.dmi'; icon_state = "iron3"},/area)
 "cgp" = (/turf/space/transit/east/three,/area)
 "cgq" = (/obj/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 6; teleport_z_offset = 6},/turf/space/transit/east/three,/area)
-"cgr" = (/obj/effect/critter/spesscarp/elite,/turf/simulated/floor/holofloor{icon_state = "engine"; name = "Holodeck Projector Floor"},/area/holodeck/source_wildlife)
+"cgr" = (/obj/effect/critter/spacecarp/elite,/turf/simulated/floor/holofloor{icon_state = "engine"; name = "Holodeck Projector Floor"},/area/holodeck/source_wildlife)
 "cgs" = (/obj/effect/landmark{name = "Atmospheric Test Start"},/turf/simulated/floor/holofloor{icon_state = "engine"; name = "Burn-Mix Floor"; nitrogen = 0; oxygen = 2500; temperature = 370; toxins = 5000},/area/holodeck/source_burntest)
 "cgt" = (/turf/simulated/floor/holofloor{dir = 8; icon_state = "red"},/area/holodeck/source_emptycourt)
 "cgu" = (/turf/simulated/floor/holofloor{dir = 4; icon_state = "redcorner"},/area/holodeck/source_emptycourt)

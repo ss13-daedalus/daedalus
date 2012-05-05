@@ -805,7 +805,7 @@
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/meatballspagetti
 
-/datum/recipe/spesslaw
+/datum/recipe/spacelaw
 	reagents = list("water" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/spagetti,
@@ -814,7 +814,7 @@
 		/obj/item/weapon/reagent_containers/food/snacks/faggot,
 		/obj/item/weapon/reagent_containers/food/snacks/faggot,
 	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/spesslaw
+	result = /obj/item/weapon/reagent_containers/food/snacks/spacelaw
 
 /datum/recipe/candiedapple
 	reagents = list("water" = 5, "sugar" = 5)

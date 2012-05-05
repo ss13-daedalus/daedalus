@@ -166,7 +166,7 @@
 		message = dd_replacetext(message, "you", "u")
 		message = dd_replacetext(message, "help", "halp")
 		message = dd_replacetext(message, "grief", "grife")
-		message = dd_replacetext(message, "space", "spess")
+		message = dd_replacetext(message, "space", "space")
 		message = dd_replacetext(message, "carp", "crap")
 		message = dd_replacetext(message, "reason", "raisin")
 		if(prob(50))

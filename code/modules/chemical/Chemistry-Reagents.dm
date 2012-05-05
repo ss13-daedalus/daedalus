@@ -1640,7 +1640,7 @@ datum
 		carpotoxin
 			name = "Carpotoxin"
 			id = "carpotoxin"
-			description = "A deadly neurotoxin produced by the dreaded spess carp."
+			description = "A deadly neurotoxin produced by the dreaded space carp."
 			reagent_state = LIQUID
 			color = "#003333" // rgb: 0, 51, 51
 

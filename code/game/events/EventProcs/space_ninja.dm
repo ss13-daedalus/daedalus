@@ -152,7 +152,7 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 		new_ninja.key = G.key
 		new_ninja.mind.key = new_ninja.key
 		new_ninja.wear_suit:randomize_param()//Give them a random set of suit parameters.
-		new_ninja.internal = new_ninja.s_store //So the poor ninja has something to breath when they spawn in spess.
+		new_ninja.internal = new_ninja.s_store //So the poor ninja has something to breath when they spawn in space.
 		new_ninja.internals.icon_state = "internal1"
 		del(G)
 	else
@@ -442,7 +442,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 	new_ninja.key = G.key
 	new_ninja.mind.store_memory("<B>Mission:</B> \red [mission].<br>")
 
-	new_ninja.internal = new_ninja.s_store //So the poor ninja has something to breath when they spawn in spess.
+	new_ninja.internal = new_ninja.s_store //So the poor ninja has something to breath when they spawn in space.
 	new_ninja.internals.icon_state = "internal1"
 	spawn(0)//Parallel process. Will speed things up a bit.
 		new_ninja.wear_suit:ninitialize(10,new_ninja)//If you're wondering why I'm passing the argument to the proc when the default should suffice,

@@ -146,7 +146,7 @@
 	invocation_type = "shout"
 	range = 1
 
-	summon_type = list("/obj/effect/critter/spesscarp/elite")
+	summon_type = list("/obj/effect/critter/spacecarp/elite")
 
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/construct

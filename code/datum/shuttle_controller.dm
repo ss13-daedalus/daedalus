@@ -11,7 +11,7 @@ var/global/datum/shuttle_controller/emergency_shuttle/emergency_shuttle
 
 datum/shuttle_controller
 	var
-		location = 0 //0 = somewhere far away (in spess), 1 = at SS13, 2 = returned from SS13
+		location = 0 //0 = somewhere far away (in space), 1 = at SS13, 2 = returned from SS13
 		online = 0
 		direction = 1 //-1 = going back to central command, 1 = going to SS13, 2 = in transit to centcom (not recalled)
 
@@ -280,7 +280,7 @@ datum/shuttle_controller
 
 
 /*
-	Some slapped-together star effects for maximum spess immershuns. Basically consists of a
+	Some slapped-together star effects for maximum space immershuns. Basically consists of a
 	spawner, an ender, and bgstar. Spawners create bgstars, bgstars shoot off into a direction
 	until they reach a starender.
 */

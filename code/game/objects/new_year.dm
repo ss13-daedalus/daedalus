@@ -1,7 +1,7 @@
 
 /obj/effect/new_year_tree
 	name = "The fir"
-	desc = "This is a fir. Real fir on dammit spess station. You smell pine-needles."
+	desc = "This is a fir. Real fir on dammit space station. You smell pine-needles."
 	icon = '160x160.dmi'
 	icon_state = "new-year-tree"
 	anchored = 1

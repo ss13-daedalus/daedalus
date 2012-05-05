@@ -131,10 +131,10 @@
 
 
 
-/obj/effect/critter/spesscarp
-	name = "Spess Carp"
+/obj/effect/critter/spacecarp
+	name = "Space Carp"
 	desc = "A ferocious, fang-bearing creature that resembles a fish."
-	icon_state = "spesscarp"
+	icon_state = "spacecarp"
 	health = 100
 	max_health = 100
 	aggressive = 1
@@ -186,7 +186,7 @@
 
 
 
-/obj/effect/critter/spesscarp/elite
+/obj/effect/critter/spacecarp/elite
 	desc = "Oh shit, you're really fucked now. It has an evil gleam in its eye."
 	health = 200
 	max_health = 200

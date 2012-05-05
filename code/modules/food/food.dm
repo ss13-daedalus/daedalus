@@ -303,7 +303,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/carpmeat
 	name = "carp fillet"
-	desc = "A fillet of spess carp meat"
+	desc = "A fillet of space carp meat"
 	icon_state = "fishfillet"
 	New()
 		..()
@@ -1324,10 +1324,10 @@
 		reagents.add_reagent("nutriment", 8)
 		bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/spesslaw
-	name = "Spesslaw"
+/obj/item/weapon/reagent_containers/food/snacks/spacelaw
+	name = "Spacelaw"
 	desc = "A lawyers favourite"
-	icon_state = "spesslaw"
+	icon_state = "spacelaw"
 	New()
 		..()
 		reagents.add_reagent("nutriment", 14)

@@ -39,7 +39,7 @@
 //	MouseDrop_T(var/atom/movable/C, mob/user)
 //		if(istype(C, /obj/mob/carbon/monkey)
 //		else if(istype(C, /obj/mob/carbon/alien) && !istype(C, /mob/living/carbon/alien/larva/metroid))
-//		else if(istype(C, /obj/livestock/spesscarp
+//		else if(istype(C, /obj/livestock/spacecarp
 
 	attack_hand(mob/user as mob)
 		if(..())
