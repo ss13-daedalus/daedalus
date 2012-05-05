@@ -174,7 +174,6 @@
 #define FILE_DIR "code/WorkInProgress/Ported/Spawners"
 #define FILE_DIR "code/WorkInProgress/Ported/ZeroPoint"
 #define FILE_DIR "code/WorkInProgress/Tastyfish"
-#define FILE_DIR "code/WorkInProgress/virus2"
 #define FILE_DIR "html"
 #define FILE_DIR "icons"
 #define FILE_DIR "icons/48x48"
@@ -269,6 +268,7 @@
 #include "code\datum\configuration.dm"
 #include "code\datum\datumvars.dm"
 #include "code\datum\disease.dm"
+#include "code\datum\disease2.dm"
 #include "code\datum\mind.dm"
 #include "code\datum\mixed.dm"
 #include "code\datum\modules.dm"
@@ -1198,7 +1198,6 @@
 #include "code\WorkInProgress\Tastyfish\paiLiza.dm"
 #include "code\WorkInProgress\Tastyfish\Parser.dm"
 #include "code\WorkInProgress\Tastyfish\wallmount_frame.dm"
-#include "code\WorkInProgress\virus2\base.dm"
 #include "interface\skin.dmf"
 #include "maps\icarus.dmm"
 // END_INCLUDE
