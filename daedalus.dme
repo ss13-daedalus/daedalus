@@ -371,7 +371,6 @@
 #include "code\defines\procs\syndicate_name.dm"
 #include "code\defines\procs\time_stamp.dm"
 #include "code\defines\sd_procs\base64.dm"
-#include "code\defines\sd_procs\constants.dm"
 #include "code\defines\sd_procs\direction.dm"
 #include "code\defines\sd_procs\math.dm"
 #include "code\FEA\FEA_airgroup.dm"
