@@ -352,3 +352,15 @@
 	stat = DEAD
 	density = 0
 	return
+
+// ex_act: handle getting hit by an explosion.
+/mob/living/simple_animal/ex_act(severity)
+	flick("flash", flash)
+	switch(severity)
+		if(1.0)
+			health -= 500
+			gib()
+		if(2.0)
+			health -= 60
+		if(3.0)
+			health -= 30
