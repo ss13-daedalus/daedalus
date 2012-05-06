@@ -807,7 +807,6 @@
 		world.update_status()
 
 	..()
-	makejson()
 	if (join_motd)
 		src << "<div class=\"motd\">[join_motd]</div>"
 
@@ -829,7 +828,6 @@
 	spawn(0)
 		if(holder)
 			del(holder)
-	makejson()
 	return ..()
 
 /mob/proc/can_use_hands()

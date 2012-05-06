@@ -223,6 +223,7 @@
 #define FILE_DIR "unused/code/obj"
 #define FILE_DIR "unused/code/obj/item"
 #define FILE_DIR "unused/code/obj/item/device"
+#define FILE_DIR "unused/code/obj/machinery"
 #define FILE_DIR "unused/code/optics"
 #define FILE_DIR "unused/code/pda2"
 #define FILE_DIR "unused/code/powerarmor"
@@ -231,6 +232,7 @@
 #define FILE_DIR "unused/icons"
 #define FILE_DIR "unused/icons/turf"
 #define FILE_DIR "unused/icons/turf/plaque"
+#define FILE_DIR "unused/maps"
 // END_FILE_DIR
 // BEGIN_PREFERENCES
 #define DEBUG
@@ -387,7 +389,6 @@
 #include "code\game\dna.dm"
 #include "code\game\dna_mutations.dm"
 #include "code\game\hud.dm"
-#include "code\game\json.dm"
 #include "code\game\landmarks.dm"
 #include "code\game\master_controller.dm"
 #include "code\game\prisonshuttle.dm"
@@ -713,8 +714,6 @@
 #include "code\game\objects\items\food.dm"
 #include "code\game\objects\items\helper_procs.dm"
 #include "code\game\objects\items\item.dm"
-#include "code\obj\item\police_tape.dm"
-#include "code\obj\item\police_tape_roll.dm"
 #include "code\game\objects\items\robot_items.dm"
 #include "code\game\objects\items\robot_parts.dm"
 #include "code\game\objects\items\shock_kit.dm"
@@ -1142,6 +1141,8 @@
 #include "code\modules\security levels\keycard authentication.dm"
 #include "code\modules\security levels\security levels.dm"
 #include "code\obj\machinery.dm"
+#include "code\obj\item\police_tape.dm"
+#include "code\obj\item\police_tape_roll.dm"
 #include "code\obj\item\portalathe.dm"
 #include "code\obj\item\wardrobe.dm"
 #include "code\obj\item\device\antibody_scanner.dm"
