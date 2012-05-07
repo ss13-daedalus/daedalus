@@ -1162,7 +1162,6 @@
 #include "code\obj\machinery\disease2\incubator.dm"
 #include "code\obj\machinery\disease2\isolator.dm"
 #include "code\proc\global.dm"
-#include "code\var\const.dm"
 #include "code\var\global.dm"
 #include "code\WorkInProgress\AI_Visibility.dm"
 #include "code\WorkInProgress\buildmode.dm"

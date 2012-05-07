@@ -300,5 +300,40 @@ var/const/maximum_age = 65
 #define GAME_STATE_PLAYING 3
 #define GAME_STATE_FINISHED 4
 
+// States of matter.  Don't ask where plasma is.
+#define SOLID 1
+#define LIQUID 2
+#define GAS 3
+
+#define SPEED_OF_LIGHT 3e8 //not exact but hey!
+#define SPEED_OF_LIGHT_SQ 9e+16
+#define FIRE_DAMAGE_MODIFIER 0.0215 //Higher values result in more external fire damage to the skin (default 0.0215)
+#define AIR_DAMAGE_MODIFIER 2.025 //More means less damage from hot air scalding lungs, less = more damage. (default 2.025)
+#define INFINITY 1e31 //closer then enough
+
+//Don't set this very much higher then 1024 unless you like inviting people in to dos your server with message spam
+#define MAX_MESSAGE_LEN 1024
+#define MAX_PAPER_MESSAGE_LEN 3072
+#define MAX_BOOK_MESSAGE_LEN 9216
+
+// Antigens for the disease code.
+#define ANTIGEN_A  1
+#define ANTIGEN_B  2
+#define ANTIGEN_RH 4
+#define ANTIGEN_Q  8
+#define ANTIGEN_U  16
+#define ANTIGEN_V  32
+#define ANTIGEN_X  64
+#define ANTIGEN_Y  128
+#define ANTIGEN_Z  256
+#define ANTIGEN_M  512
+#define ANTIGEN_N  1024
+#define ANTIGEN_P  2048
+#define ANTIGEN_O  4096
+
+// Afflictions from the disease code.
+#define DISEASE_HOARSE  2
+#define DISEASE_WHISPER 4
+
 // End the stupid preprocessor macro tricks.
 #endif
