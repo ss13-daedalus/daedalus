@@ -239,7 +239,7 @@
 // BEGIN_PREFERENCES
 #define DEBUG
 // END_PREFERENCES
-#include "code\setup.dm"
+#include "code\define.dm"
 // BEGIN_INCLUDE
 #include "code\atom.dm"
 #include "code\client.dm"
