@@ -1,12 +1,4 @@
-var/global/datum/controller/gameticker/ticker
-var/datum/roundinfo/roundinfo = new()
-#define GAME_STATE_PREGAME		1
-#define GAME_STATE_SETTING_UP	2
-#define GAME_STATE_PLAYING		3
-#define GAME_STATE_FINISHED		4
-
-
-/datum/controller/gameticker
+/datum/controller/game_ticker
 	var/const/restart_timeout = 600
 	var/current_state = GAME_STATE_PREGAME
 
@@ -29,7 +21,7 @@ var/datum/roundinfo/roundinfo = new()
 	var/pregame_timeleft = 0
 
 
-/datum/controller/gameticker/proc/pregame()
+/datum/controller/game_ticker/proc/pregame()
 	login_music = pick('title1.ogg', 'title2.ogg') // choose title music!
 
 	do
@@ -45,7 +37,7 @@ var/datum/roundinfo/roundinfo = new()
 				current_state = GAME_STATE_SETTING_UP
 	while (!setup())
 
-/datum/controller/gameticker/proc/setup()
+/datum/controller/game_ticker/proc/setup()
 	//Create and announce mode
 	if(master_mode=="secret")
 		src.hide_mode = 1
@@ -137,7 +129,7 @@ var/datum/roundinfo/roundinfo = new()
 		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
 	return 1
 
-/datum/controller/gameticker
+/datum/controller/game_ticker
 
 	proc/create_characters()
 		for(var/mob/new_player/player in world)
@@ -203,7 +195,7 @@ var/datum/roundinfo/roundinfo = new()
 		return 1
 
 
-/datum/controller/gameticker/proc/declare_completion()
+/datum/controller/game_ticker/proc/declare_completion()
 
 	for (var/mob/living/silicon/ai/aiPlayer in world)
 		if (aiPlayer.stat != 2)
@@ -215,7 +207,10 @@ var/datum/roundinfo/roundinfo = new()
 		if (aiPlayer.connected_robots.len)
 			var/robolist = "<b>The AI's loyal minions were:</b> "
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
-				robolist += "[robo.name][robo.stat?" (Deactivated)  (Played by: [robo.key]), ":",  (Played by: [robo.key])"]"
+				if(robo.stat)
+					robolist += "[robo.name] (Deactivated) (Played by: [robo.key])"
+				else
+					robolist += "[robo.name] (Played by: [robo.key])"
 			world << "[robolist]"
 
 	for (var/mob/living/silicon/robot/robo in world)

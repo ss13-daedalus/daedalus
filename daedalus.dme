@@ -13,6 +13,7 @@
 #define FILE_DIR "code/ATMOSPHERICS/components/unary"
 #define FILE_DIR "code/atom"
 #define FILE_DIR "code/datum"
+#define FILE_DIR "code/datum/controller"
 #define FILE_DIR "code/datum/diseases"
 #define FILE_DIR "code/datum/helper_data"
 #define FILE_DIR "code/datum/spells"
@@ -238,11 +239,11 @@
 // BEGIN_PREFERENCES
 #define DEBUG
 // END_PREFERENCES
+#include "code\setup.dm"
 // BEGIN_INCLUDE
 #include "code\atom.dm"
 #include "code\client.dm"
 #include "code\names.dm"
-#include "code\setup.dm"
 #include "code\stylesheet.dm"
 #include "code\world.dm"
 #include "code\ATMOSPHERICS\atmospherics.dm"
@@ -291,6 +292,7 @@
 #include "code\datum\spell.dm"
 #include "code\datum\sun.dm"
 #include "code\datum\vote.dm"
+#include "code\datum\controller\game_ticker.dm"
 #include "code\datum\diseases\alien_embryo.dm"
 #include "code\datum\diseases\appendicitis.dm"
 #include "code\datum\diseases\beesease.dm"
@@ -439,7 +441,6 @@
 #include "code\game\events\Events\SpaceNinja.dm"
 #include "code\game\events\Events\VirusEpidemic.dm"
 #include "code\game\gamemodes\game_mode.dm"
-#include "code\game\gamemodes\gameticker.dm"
 #include "code\game\gamemodes\intercept_report.dm"
 #include "code\game\gamemodes\newobjective.dm"
 #include "code\game\gamemodes\setupgame.dm"

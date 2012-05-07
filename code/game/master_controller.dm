@@ -43,7 +43,7 @@ datum/controller/game_controller
 		emergency_shuttle = new /datum/shuttle_controller/emergency_shuttle()
 
 		if(!ticker)
-			ticker = new /datum/controller/gameticker()
+			ticker = new /datum/controller/game_ticker()
 
 		spawn
 			ticker.pregame()

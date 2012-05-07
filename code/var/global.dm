@@ -217,3 +217,5 @@ var/global
 				"[ANTIGEN_N]" = "N", "[ANTIGEN_P]" = "P", "[ANTIGEN_O]" = "O")
 
 	datum/news_topic_handler/news_topic_handler
+
+	datum/controller/game_ticker/ticker

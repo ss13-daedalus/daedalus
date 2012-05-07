@@ -1,3 +1,7 @@
+// Are we doing stupid preprocessor macro tricks in BYOND?  Yes.  Yes we are.
+#ifndef __DEFINE_DM
+#define __DEFINE_DM
+
 #define PI 3.1415
 
 #define R_IDEAL_GAS_EQUATION	8.31 //kPa*L/(K*mol)
@@ -289,3 +293,12 @@ var/static/list/scarySounds = list('thudswoosh.ogg','Taser.ogg','armbomb.ogg','h
 // Maximum and minimum character ages.
 var/const/minimum_age = 20
 var/const/maximum_age = 65
+
+// Various states used by the game_ticker.
+#define GAME_STATE_PREGAME 1
+#define GAME_STATE_SETTING_UP 2
+#define GAME_STATE_PLAYING 3
+#define GAME_STATE_FINISHED 4
+
+// End the stupid preprocessor macro tricks.
+#endif
