@@ -128,3 +128,14 @@ proc/countJob(rank)
 				var/mob/M = T.host
 				if(M.client && M.machine == subject)
 					subject.attack_hand(M)
+
+/proc/religion_name()
+	if (religion_name)
+		return religion_name
+
+	var/name = ""
+	
+	name += pick("bee", "science", "edu", "captain", "assistant", "monkey", "alien", "space", "unit", "sprocket", "gadget", "bomb", "revolution", "beyond", "station", "robot", "ivor", "hobnob")
+	name += pick("ism", "ia", "ology", "istism", "ites", "ick", "ian", "ity")
+	
+	return capitalize(name)

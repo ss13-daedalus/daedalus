@@ -75,7 +75,6 @@ var/global
 	ooc_allowed = 1
 	dooc_allowed = 1
 	traitor_scaling = 1
-	goonsay_allowed = 0
 	dna_ident = 1
 	abandon_allowed = 1
 	enter_allowed = 1
@@ -219,3 +218,5 @@ var/global
 	datum/news_topic_handler/news_topic_handler
 
 	datum/controller/game_ticker/ticker
+
+	religion_name = null

@@ -753,15 +753,7 @@ var/global/BSACooldown = 0
 
 	if(href_list["unjobbane"])
 		return
-/*
-	if (href_list["remove"])
-		if ((src.rank in list( "Admin Candidate", "Trial Admin", "Badmin", "Game Admin", "Game Master"  )))
-			var/t = href_list["remove"]
-			if(t && isgoon(t))
-				log_admin("[key_name(usr)] removed [t] from the goonlist.")
-				message_admins("\blue [key_name_admin(usr)] removed [t] from the goonlist.")
-				remove_goon(t)
-*/
+
 	if (href_list["mute2"])
 		if ((src.rank in list( "Moderator", "Temporary Admin", "Admin Candidate", "Trial Admin", "Badmin", "Game Admin", "Game Master"  )))
 			var/mob/M = locate(href_list["mute2"])
@@ -2534,21 +2526,7 @@ var/global/BSACooldown = 0
 //			if(lvl == 6 )
 	usr << browse(dat, "window=admin2;size=210x180")
 	return
-/*
-/obj/admins/proc/goons()
-	var/dat = "<HR><B>GOOOOOOONS</B><HR><table cellspacing=5><tr><th>Key</th><th>SA Username</th></tr>"
-	for(var/t in goon_keylist)
-		dat += text("<tr><td><A href='?src=\ref[src];remove=[ckey(t)]'><B>[t]</B></A></td><td>[goon_keylist[ckey(t)]]</td></tr>")
-	dat += "</table>"
-	usr << browse(dat, "window=ban;size=300x400")
 
-/obj/admins/proc/beta_testers()
-	var/dat = "<HR><B>Beta testers</B><HR><table cellspacing=5><tr><th>Key</th></tr>"
-	for(var/t in beta_tester_keylist)
-		dat += text("<tr><td>[t]</td></tr>")
-	dat += "</table>"
-	usr << browse(dat, "window=ban;size=300x400")
-*/
 /obj/admins/proc/Secrets()
 	if (!usr.client.holder)
 		return
