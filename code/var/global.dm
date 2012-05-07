@@ -23,10 +23,6 @@ var/global
 	//3 - AI satellite
 	//5 - empty space
 
-var
-
-	//////////////
-
 	BLINDBLOCK = 0
 	DEAFBLOCK = 0
 	HULKBLOCK = 0
@@ -180,23 +176,7 @@ var
 	list/AAlarmIndexToWireColor
 	list/AAlarmWireColorToIndex
 
-	const/SPEED_OF_LIGHT = 3e8 //not exact but hey!
-	const/SPEED_OF_LIGHT_SQ = 9e+16
-	const/FIRE_DAMAGE_MODIFIER = 0.0215 //Higher values result in more external fire damage to the skin (default 0.0215)
-	const/AIR_DAMAGE_MODIFIER = 2.025 //More means less damage from hot air scalding lungs, less = more damage. (default 2.025)
-	const/INFINITY = 1e31 //closer then enough
-
-	//Don't set this very much higher then 1024 unless you like inviting people in to dos your server with message spam
-	const/MAX_MESSAGE_LEN = 1024
-	const/MAX_PAPER_MESSAGE_LEN = 3072
-	const/MAX_BOOK_MESSAGE_LEN = 9216
-
 	list/paper_blacklist = list("script","frame","iframe","input","button","a","embed","object")
-
-	const/shuttle_time_in_station = 1800 // 3 minutes in the station
-	const/shuttle_time_to_arrive = 6000 // 10 minutes to arrive
-
-
 
 	// MySQL configuration. You can also use the config/dbconfig.txt file.
 
@@ -232,27 +212,8 @@ var
 	// However it'd be ok to use for accessing attack logs and such too, which are even laggier.
 	fileaccess_timer = 600 //Cannot access files by ftp until the game is finished setting up and stuff.
 
-// Antigens for the disease code.
-var/global/const
-	ANTIGEN_A  = 1
-	ANTIGEN_B  = 2
-	ANTIGEN_RH = 4
-	ANTIGEN_Q  = 8
-	ANTIGEN_U  = 16
-	ANTIGEN_V  = 32
-	ANTIGEN_X  = 64
-	ANTIGEN_Y  = 128
-	ANTIGEN_Z  = 256
-	ANTIGEN_M  = 512
-	ANTIGEN_N  = 1024
-	ANTIGEN_P  = 2048
-	ANTIGEN_O  = 4096
-
-var/global/list/ANTIGENS = list("[ANTIGEN_A]" = "A", "[ANTIGEN_B]" = "B", "[ANTIGEN_RH]" = "RH", "[ANTIGEN_Q]" = "Q",
+	list/ANTIGENS = list("[ANTIGEN_A]" = "A", "[ANTIGEN_B]" = "B", "[ANTIGEN_RH]" = "RH", "[ANTIGEN_Q]" = "Q",
 				"[ANTIGEN_U]" = "U", "[ANTIGEN_V]" = "V", "[ANTIGEN_Z]" = "Z", "[ANTIGEN_M]" = "M",
 				"[ANTIGEN_N]" = "N", "[ANTIGEN_P]" = "P", "[ANTIGEN_O]" = "O")
 
-// Afflictions from the disease code.
-var/global/const
-	DISEASE_HOARSE  = 2
-	DISEASE_WHISPER = 4
+	datum/news_topic_handler/news_topic_handler

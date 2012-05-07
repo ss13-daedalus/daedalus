@@ -43,6 +43,11 @@
 	layer = 16.0
 	anchored = 1
 
+/obj/effect/decal/point/point()
+	set src in oview()
+	set hidden = 1
+	return
+
 /obj/effect/decal/cleanable
 	var/list/random_icon_states = list()
 

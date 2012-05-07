@@ -63,3 +63,68 @@ proc/airborne_can_reach(turf/source, turf/target)
 		M.virus2.makerandom(1)
 
 // The preceding functions involved the "disease2" implementation.
+
+proc/savefile_path(mob/user)
+	return "data/player_saves/[copytext(user.ckey, 1, 2)]/[user.ckey]/preferences.sav"
+
+// add a new news data
+proc/make_news(title, body, author)
+	var/savefile/News = new("data/news.sav")
+	var/list/news
+	var/lastID
+
+	News["news"]   >> news
+	News["lastID"] >> lastID
+
+	if(!news) 	news = list()
+	if(!lastID) lastID = 0
+
+	var/datum/news/created = new()
+	created.ID 		= ++lastID
+	created.title 	= title
+	created.body 	= body
+	created.author 	= author
+	created.date    = world.realtime
+
+	news.Insert(1, created)
+
+	News["news"]   << news
+	News["lastID"] << lastID
+
+// load the news from disk
+proc/load_news()
+	var/savefile/News = new("data/news.sav")
+	var/list/news
+
+	News["news"] >> news
+
+	if(!news) news = list()
+
+	return news
+
+// save the news to disk
+proc/save_news(var/list/news)
+	var/savefile/News = new("data/news.sav")
+	News << news
+
+// This function counts a passed job.
+proc/countJob(rank)
+	var/jobCount = 0
+	for(var/mob/H in world)
+		if(H.mind && H.mind.assigned_role == rank)
+			jobCount++
+	return jobCount
+
+/proc/AutoUpdateAI(obj/subject)
+	if (subject!=null)
+		for(var/mob/living/silicon/ai/M in world)
+			if ((M.client && M.machine == subject))
+				subject.attack_ai(M)
+
+/proc/AutoUpdateTK(obj/subject)
+	if (subject!=null)
+		for(var/obj/item/tk_grab/T in world)
+			if (T.host)
+				var/mob/M = T.host
+				if(M.client && M.machine == subject)
+					subject.attack_hand(M)
