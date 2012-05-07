@@ -48,6 +48,12 @@ datum/controller/game_controller
 		spawn
 			ticker.pregame()
 
+		// Sleep for about 5 seconds to allow background initialization procs to finish
+		sleep(50)
+
+		// Now that the world is fully initialized, pause server until a user connects
+		world.sleep_offline = 1
+
 	setup_objects()
 		world << "\red \b Initializing objects"
 		sleep(-1)
