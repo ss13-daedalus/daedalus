@@ -28,6 +28,9 @@ FINGERPRINT CARD
 
 
 // ID CARDS
+
+/obj/item/weapon/card/id/var/money = 2000
+
 /obj/item/weapon/card/id/examine()
 	..()
 	read()

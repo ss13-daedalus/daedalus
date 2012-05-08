@@ -7,13 +7,12 @@ log transactions
 
 */
 
-/obj/item/weapon/card/id/var/money = 2000
-
 /obj/machinery/atm
 	name = "NanoTrasen Automatic Teller Machine"
 	desc = "For all your monetary needs!"
 	icon = 'terminals.dmi'
 	icon_state = "atm"
+	anchored = 1
 	use_power = 1
 	idle_power_usage = 10
 
