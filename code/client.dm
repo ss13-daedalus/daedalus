@@ -158,3 +158,22 @@ client/proc/edit_news(ID as num)
 
 	spawn(1)
 		display_all_news_list()
+
+client/verb/discon_pipes()
+	set name = "Show Disconnected Pipes"
+	set category = "Debug"
+
+	if (!Debug2)
+		return
+
+	for(var/obj/machinery/atmospherics/pipe/simple/P in world)
+		if(!P.node1 || !P.node2)
+			usr << "[P], [P.x], [P.y], [P.z], [P.loc.loc]"
+
+	for(var/obj/machinery/atmospherics/pipe/manifold/P in world)
+		if(!P.node1 || !P.node2 || !P.node3)
+			usr << "[P], [P.x], [P.y], [P.z], [P.loc.loc]"
+
+	for(var/obj/machinery/atmospherics/pipe/manifold4w/P in world)
+		if(!P.node1 || !P.node2 || !P.node3 || !P.node4)
+			usr << "[P], [P.x], [P.y], [P.z], [P.loc.loc]"
