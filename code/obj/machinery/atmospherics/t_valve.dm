@@ -1,4 +1,4 @@
-obj/machinery/atmospherics/tvalve
+obj/machinery/atmospherics/t_valve
 	icon = 'valve.dmi'
 	icon_state = "tvalve0"
 
@@ -313,7 +313,7 @@ obj/machinery/atmospherics/tvalve
 	attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 		if (!istype(W, /obj/item/weapon/wrench))
 			return ..()
-		if (istype(src, /obj/machinery/atmospherics/tvalve/digital))
+		if (istype(src, /obj/machinery/atmospherics/t_valve/digital))
 			user << "\red You cannot unwrench this [src], it's too complicated."
 			return 1
 		var/turf/T = src.loc
@@ -336,7 +336,7 @@ obj/machinery/atmospherics/tvalve
 			new /obj/item/pipe(loc, make_from=src)
 			del(src)
 
-obj/machinery/atmospherics/tvalve/mirrored
+obj/machinery/atmospherics/t_valve/mirrored
 	icon_state = "tvalvem0"
 
 	New()

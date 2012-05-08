@@ -69,7 +69,7 @@ Buildable meters
 			src.pipe_type = PIPE_GAS_MIXER
 		else if(istype(make_from, /obj/machinery/atmospherics/unary/vent_scrubber))
 			src.pipe_type = PIPE_SCRUBBER
-		else if(istype(make_from, /obj/machinery/atmospherics/tvalve))
+		else if(istype(make_from, /obj/machinery/atmospherics/t_valve))
 			src.pipe_type = PIPE_MTVALVE
 		else if(istype(make_from, /obj/machinery/atmospherics/pipe/manifold))
 			src.pipe_type = PIPE_MANIFOLD4W
@@ -498,7 +498,7 @@ Buildable meters
 				P.node2.build_network()
 
 		if(PIPE_MTVALVE)		//manual t-valve
-			var/obj/machinery/atmospherics/tvalve/V = new(src.loc)
+			var/obj/machinery/atmospherics/t_valve/V = new(src.loc)
 			V.dir = dir
 			V.initialize_directions = pipe_dir
 			if (pipename)
