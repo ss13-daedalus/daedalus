@@ -220,3 +220,4 @@ var/global
 	datum/controller/game_ticker/ticker
 
 	religion_name = null
+	max_explosion_range = 14

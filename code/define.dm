@@ -90,11 +90,6 @@
 #define TANK_FRAGMENT_SCALE	    (10.*ONE_ATMOSPHERE) // +1 for each SCALE kPa aboe threshold
 								// was 2 atm
 
-//This was a define, but I changed it to a variable so it can be changed in-game.(kept the all-caps definition because... code...) -Errorage
-var/MAX_EXPLOSION_RANGE = 14
-//#define MAX_EXPLOSION_RANGE		14					// Defaults to 12 (was 8) -- TLE
-
-
 #define NORMPIPERATE 30					//pipe-insulation rate divisor
 #define HEATPIPERATE 8					//heat-exch pipe insulation
 
