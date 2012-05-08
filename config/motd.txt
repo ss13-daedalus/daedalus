@@ -1,11 +1,9 @@
-<h1>Welcome to Space Station 13!</h1>
-
-<i>This server is running Baystation 12's modification of the /tg/station13 code.</i>
+<strong>Welcome to the NSS Icarus!  Please watch your <s>step</s> <s>back</s> O2.</strong>
 <br><br>
-<strong>Bugtracker:</strong> <a href="https://github.com/Baystation12/Baystation12/issues">https://github.com/Baystation12/Baystation12/issues</a>
-<br>
-<strong>Changelog:</strong> <a href="http://baystation12.net/wiki/index.php/Changelog">http://baystation12.net/wiki/index.php/Changelog</a> or the Changelog command.
-<br>
-<strong>Rules:</strong> <a href="http://baystation12.net/wiki/index.php/Rules">http://baystation12.net/wiki/index.php/Rules</a> or the Rules command.
+This server is running <b>Daedalus</b>, a cleanup and modification of Baystation 12's modification of the /tg/station13 modification of Goon Station 13's code...
 <br><br>
-By playing you agree to read and abide by the rules!
+<strong>Please report any bugs you find here:</strong> <a href="https://github.com/ss13-daedalus/daedalus/issues">https://github.com/ss13-daedalus/daedalus/issues</a>
+<br>
+<strong>Check out the changes we've made here:</strong> <a href="https://github.com/ss13-daedalus/daedalus/commits/master">https://github.com/ss13-daedalus/daedalus/commits/master</a> or via the "Changelog" command.
+<br>
+<strong>Read the rules of the road:</strong> via the "Rules" command.  Ignorance is no excuse!
