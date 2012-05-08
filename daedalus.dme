@@ -607,7 +607,7 @@
 #include "code\game\objects\electricchair.dm"
 #include "code\game\objects\empulse.dm"
 #include "code\game\objects\explosion.dm"
-#include "code\game\objects\filing.dm"
+#include "code\obj\structure\filing_cabinet.dm"
 #include "code\game\objects\gibs.dm"
 #include "code\game\objects\glowshroom.dm"
 #include "code\game\objects\grille.dm"
@@ -1175,6 +1175,7 @@
 #include "code\WorkInProgress\Tastyfish\paiLiza.dm"
 #include "code\WorkInProgress\Tastyfish\Parser.dm"
 #include "code\WorkInProgress\Tastyfish\wallmount_frame.dm"
+#include "code\obj\item\weapon\folder.dm"
 #include "interface\skin.dmf"
 #include "maps\icarus.dmm"
 // END_INCLUDE

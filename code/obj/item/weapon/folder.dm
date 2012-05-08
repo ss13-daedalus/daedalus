@@ -1,4 +1,6 @@
-//THIS IS OBVIOUSLY WIP, SORRY	-PETE
+// Was marked as 'WIP', but looks interesting enough to try out.  -RP
+// Might want to stock the filing_cabinet by default with one of each color folder perhaps?
+
 /obj/item/weapon/folder
 	name = "folder"
 	desc = "A folder."
@@ -74,10 +76,10 @@
 			var/obj/item/weapon/paper/P = locate(href_list["read"])
 			if(P)
 				if(!(istype(usr, /mob/living/carbon/human) || istype(usr, /mob/dead/observer) || istype(usr, /mob/living/silicon)))
-					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", "window=[P.name]")
+					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)]</BODY></HTML>", "window=[P.name]")
 					onclose(usr, "[P.name]")
 				else
-					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>", "window=[P.name]")
+					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info]</BODY></HTML>", "window=[P.name]")
 					onclose(usr, "[P.name]")
 
 		//Update everything

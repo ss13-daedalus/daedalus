@@ -1,4 +1,4 @@
-/obj/structure/filingcabinet
+/obj/structure/filing_cabinet
 	name = "filing cabinet"
 	desc = "A large cabinet with drawers."
 	icon = 'bureaucracy.dmi'
@@ -6,7 +6,7 @@
 	density = 1
 	anchored = 1
 
-/obj/structure/filingcabinet/attackby(obj/item/P as obj, mob/user as mob)
+/obj/structure/filing_cabinet/attackby(obj/item/P as obj, mob/user as mob)
 	if(istype(P, /obj/item/weapon/paper) || istype(P, /obj/item/weapon/folder))
 		user << "You put the [P] in the [src]."
 		user.drop_item()
@@ -22,7 +22,7 @@
 	else
 		user << "You can't put a [P] in the [src]!"
 
-/obj/structure/filingcabinet/attack_hand(mob/user as mob)
+/obj/structure/filing_cabinet/attack_hand(mob/user as mob)
 	if(src.contents.len <= 0)
 		user << "The [src] is empty."
 		return
@@ -35,3 +35,4 @@
 			P.loc = get_turf_loc(src)
 	icon_state = "filing_cabinet0"
 	return
+
