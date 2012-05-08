@@ -222,3 +222,10 @@ var/global
 	religion_name = null
 	max_explosion_range = 14
 	list/datum/pipe_network/pipe_networks = list()
+
+
+	security_level = 0
+	//0 = code green
+	//1 = code blue
+	//2 = code red
+	//3 = code delta
