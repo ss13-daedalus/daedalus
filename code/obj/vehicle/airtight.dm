@@ -1,4 +1,3 @@
-
 /obj/vehicle/airtight
 	//inner atmos
 	var/use_internal_tank = 0
