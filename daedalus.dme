@@ -1101,7 +1101,7 @@
 #include "code\modules\scripting\Parser\Parser.dm"
 #include "code\modules\scripting\Scanner\Scanner.dm"
 #include "code\modules\scripting\Scanner\Tokens.dm"
-#include "code\modules\security levels\keycard authentication.dm"
+#include "code\obj\machinery\keycard_auth.dm"
 #include "code\modules\security levels\security levels.dm"
 #include "code\obj\admins.dm"
 #include "code\obj\machinery.dm"
