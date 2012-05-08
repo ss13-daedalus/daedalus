@@ -221,3 +221,4 @@ var/global
 
 	religion_name = null
 	max_explosion_range = 14
+	list/datum/pipe_network/pipe_networks = list()
