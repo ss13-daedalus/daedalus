@@ -1,4 +1,5 @@
 // Contains: copy machine
+// TODO: we have photocopier.dm and copier.dm.  There can be only one.
 
 /obj/machinery/copier
 	name = "Copy Machine"

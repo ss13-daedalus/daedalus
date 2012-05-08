@@ -1,3 +1,4 @@
+// TODO: we have photocopier.dm and copier.dm.  There can be only one.
 /obj/machinery/photocopier
 	name = "Photocopier"
 	icon = 'library.dmi'
@@ -129,7 +130,3 @@
 				new /obj/effect/decal/cleanable/oil(get_turf(src))
 				toner = 0
 		return
-
-/obj/item/device/toner
-	name = "toner cartridge"
-	icon_state = "tonercartridge"
