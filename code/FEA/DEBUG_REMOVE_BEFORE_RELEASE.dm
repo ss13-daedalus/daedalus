@@ -274,7 +274,7 @@ obj/machinery/atmospherics
 
 				target_pressure = amount
 
-	unary/oxygen_generator
+/*	unary/oxygen_generator
 		verb
 			toggle()
 				set src in world
@@ -288,7 +288,7 @@ obj/machinery/atmospherics
 				set src in world
 				set category = "Minor"
 
-				oxygen_content = amount
+				oxygen_content = amount */
 	binary/pump
 		verb
 			debug()
