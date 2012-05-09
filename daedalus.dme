@@ -223,7 +223,6 @@
 #include "code\names.dm"
 #include "code\stylesheet.dm"
 #include "code\world.dm"
-#include "code\ATMOSPHERICS\components\unary\heat_exchanger.dm"
 #include "code\ATMOSPHERICS\components\unary\heat_source.dm"
 #include "code\ATMOSPHERICS\components\unary\outlet_injector.dm"
 #include "code\ATMOSPHERICS\components\unary\oxygen_generator.dm"
