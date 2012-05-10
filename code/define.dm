@@ -330,5 +330,17 @@ var/const/maximum_age = 65
 #define DISEASE_HOARSE  2
 #define DISEASE_WHISPER 4
 
+// Defines from the older disease code.
+#define NON_CONTAGIOUS -1
+#define SPECIAL 0
+#define CONTACT_GENERAL 1
+#define CONTACT_HANDS 2
+#define CONTACT_FEET 3
+#define AIRBORNE 4
+#define BLOOD 5
+
+#define SCANNER 1
+#define PANDEMIC 2
+
 // End the stupid preprocessor macro tricks.
 #endif
