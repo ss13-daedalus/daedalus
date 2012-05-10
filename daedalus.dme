@@ -57,7 +57,7 @@
 #include "code\world.dm"
 #include "code\atom\movable.dm"
 #include "code\datum\ai_laws.dm"
-#include "code\datum\computerfiles.dm"
+#include "code\datum\computer.dm"
 #include "code\datum\configuration.dm"
 #include "code\datum\datumvars.dm"
 #include "code\datum\disease.dm"
