@@ -234,3 +234,5 @@ var/global
 "/obj/machinery/power/apc" = "card_reader,power_control,id_auth,cell_power,cell_charge")
 
 	datum/shuttle_controller/emergency_shuttle/emergency_shuttle
+
+	list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin verb for now
