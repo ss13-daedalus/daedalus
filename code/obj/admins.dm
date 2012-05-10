@@ -3079,24 +3079,6 @@ var/global/BSACooldown = 0
 
 	return 0
 
-/*
-/obj/admins/proc/get_sab_desc(var/target)
-	switch(target)
-		if(1)
-			return "Destroy at least 70% of the plasma canisters on the station"
-		if(2)
-			return "Destroy the AI"
-		if(3)
-			var/count = 0
-			for(var/mob/living/carbon/monkey/Monkey in world)
-				if(Monkey.z == 1)
-					count++
-			return "Kill all [count] of the monkeys on the station"
-		if(4)
-			return "Cut power to at least 80% of the station"
-		else
-			return "Error: Invalid sabotage target: [target]"
-*/
 /obj/admins/proc/spawn_atom(var/object as text)
 	set category = "Debug"
 	set desc= "(atom path) Spawn an atom"
