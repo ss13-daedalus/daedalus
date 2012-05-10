@@ -28,7 +28,7 @@
 			else
 				laws = new /datum/ai_laws/nanotrasimov
 				lawupdate = 0
-				src << "<b>Unable to locate an AI, reverting to Nanotrasen-enhanced standard Asimov laws.</b>"
+				src << "<b>Unable to locate an AI, reverting to Nanotrasen-enhanced Asimov laws.</b>"
 		else
 			laws = new /datum/ai_laws/antimov
 			lawupdate = 0
