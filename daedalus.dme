@@ -60,7 +60,6 @@
 #include "code\datum\computer.dm"
 #include "code\datum\configuration.dm"
 #include "code\datum\data.dm"
-#include "code\datum\datumvars.dm"
 #include "code\datum\disease.dm"
 #include "code\datum\disease2.dm"
 #include "code\datum\job.dm"
