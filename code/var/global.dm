@@ -139,7 +139,7 @@ var/global
 
 	datum/debug/debugobj
 
-	datum/moduletypes/mods = new()
+	datum/module_types/mods = new()
 
 	wavesecret = 0
 
@@ -229,3 +229,6 @@ var/global
 	//1 = code blue
 	//2 = code red
 	//3 = code delta
+
+	list/modules = list(			// global associative list
+"/obj/machinery/power/apc" = "card_reader,power_control,id_auth,cell_power,cell_charge")
