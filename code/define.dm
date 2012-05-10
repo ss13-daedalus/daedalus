@@ -348,5 +348,8 @@ var/const/maximum_age = 65
 #define SHUTTLELEAVETIME 180     // 3 minutes = 180 seconds
 #define SHUTTLETRANSITTIME 120      // 2 minutes = 120 seconds
 
+#define FORWARD -1
+#define BACKWARD 1
+
 // End the stupid preprocessor macro tricks.
 #endif
