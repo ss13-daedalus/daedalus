@@ -1,14 +1,5 @@
 // Controls the emergency shuttle
 
-
-// these define the time taken for the shuttle to get to SS13
-// and the time before it leaves again
-#define SHUTTLEARRIVETIME 600		// 10 minutes = 600 seconds
-#define SHUTTLELEAVETIME 180		// 3 minutes = 180 seconds
-#define SHUTTLETRANSITTIME 120		// 2 minutes = 120 seconds
-
-var/global/datum/shuttle_controller/emergency_shuttle/emergency_shuttle
-
 datum/shuttle_controller
 	var
 		location = 0 //0 = somewhere far away (in space), 1 = at SS13, 2 = returned from SS13
@@ -277,57 +268,3 @@ datum/shuttle_controller
 
 				else
 					return 1
-
-
-/*
-	Some slapped-together star effects for maximum space immershuns. Basically consists of a
-	spawner, an ender, and bgstar. Spawners create bgstars, bgstars shoot off into a direction
-	until they reach a starender.
-*/
-
-/obj/effect/bgstar
-	name = "star"
-	var/speed = 10
-	var/direction = SOUTH
-	layer = 2 // TURF_LAYER
-
-	New()
-		..()
-		pixel_x += rand(-2,30)
-		pixel_y += rand(-2,30)
-		var/starnum = pick("1", "1", "1", "2", "3", "4")
-
-		icon_state = "star"+starnum
-
-		speed = rand(2, 5)
-
-	proc/startmove()
-
-		while(src)
-			sleep(speed)
-			step(src, direction)
-			for(var/obj/effect/starender/E in loc)
-				del(src)
-
-
-/obj/effect/starender
-	invisibility = 101
-
-/obj/effect/starspawner
-	invisibility = 101
-	var/spawndir = SOUTH
-	var/spawning = 0
-
-	West
-		spawndir = WEST
-
-	proc/startspawn()
-		spawning = 1
-		while(spawning)
-			sleep(rand(2, 30))
-			var/obj/effect/bgstar/S = new/obj/effect/bgstar(locate(x,y,z))
-			S.direction = spawndir
-			spawn()
-				S.startmove()
-
-

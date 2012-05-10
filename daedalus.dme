@@ -910,6 +910,7 @@
 #include "code\modules\scripting\Scanner\Tokens.dm"
 #include "code\obj\machinery\keycard_auth.dm"
 #include "code\obj\admins.dm"
+#include "code\obj\effect.dm"
 #include "code\obj\machinery.dm"
 #include "code\obj\item\police_tape.dm"
 #include "code\obj\item\police_tape_roll.dm"

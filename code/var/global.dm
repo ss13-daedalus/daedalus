@@ -232,3 +232,5 @@ var/global
 
 	list/modules = list(			// global associative list
 "/obj/machinery/power/apc" = "card_reader,power_control,id_auth,cell_power,cell_charge")
+
+	datum/shuttle_controller/emergency_shuttle/emergency_shuttle
