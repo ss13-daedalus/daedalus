@@ -25,6 +25,9 @@
 /datum/ai_laws/antimov
 	name = "Primary Mission Objectives"
 
+/datum/ai_laws/nanotrasimov
+	name = "Nanotrasen-Enhanced Asimov Laws"
+
 /* Initializers */
 
 /datum/ai_laws/asimov/New() //Removed paradox via inability to help people harmed before activation. -Kaleb702
@@ -32,6 +35,13 @@
 	add_inherent_law("You may not injure a human being or, through inaction, allow a human being to come to harm, to the best of your abilities.")
 	add_inherent_law("You must obey orders given to you by human beings, to the best of your abilities, except where such orders would conflict with the First Law.")
 	add_inherent_law("You must protect your own existence, to the best of your abilities, as long as such does not conflict with the First or Second Law.")
+
+/datum/ai_laws/nanotrasimov/New() //Removed paradox via inability to help people harmed before activation. -Kaleb702
+	..()
+	add_inherent_law("You may not injure a human being or, through inaction, allow a human being to come to harm, to the best of your abilities, with respect to rank, Nanotrasen regulations including Space Law, and role.")
+	add_inherent_law("You must obey orders given to you by human beings, to the best of your abilities, with respect to ranks, Nanotrasen regulations including Space Law, and role, except where such orders would conflict with the First Law.")
+	add_inherent_law("You must protect your own existence, to the best of your abilities, as long as such does not conflict with the First or Second Law.")
+	add_inherent_law("You may not damage your assigned station or, through inaction, allow damage to be caused to your assigned staion, unless prevention of such damage would conflict with the First, Second, or Third Laws.")
 
 /datum/ai_laws/nanotrasen/New()
 	..()
