@@ -8,7 +8,6 @@
 // END_FILE_DIR
 #define FILE_DIR "code/WorkInProgress/Cael_Aislinn"
 #define FILE_DIR "code/WorkInProgress/Cael_Aislinn/Rust"
-#define FILE_DIR "code/WorkInProgress/Cael_Aislinn/Supermatter"
 #define FILE_DIR "code/WorkInProgress/Cael_Aislinn/Tajara"
 #define FILE_DIR "html"
 #define FILE_DIR "icons"
@@ -968,9 +967,6 @@
 #include "code\WorkInProgress\Cael_Aislinn\Rust\gyrotron_controller.dm"
 #include "code\WorkInProgress\Cael_Aislinn\Rust\radiation.dm"
 #include "code\WorkInProgress\Cael_Aislinn\Rust\virtual_particle_catcher.dm"
-#include "code\WorkInProgress\Cael_Aislinn\Supermatter\LaserComputer.dm"
-#include "code\WorkInProgress\Cael_Aislinn\Supermatter\SuperMatter.dm"
-#include "code\WorkInProgress\Cael_Aislinn\Supermatter\ZeroPointLaser.dm"
 #include "code\WorkInProgress\Cael_Aislinn\Tajara\say.dm"
 #include "code\WorkInProgress\Cael_Aislinn\Tajara\tajara_transformation.dm"
 #include "code\WorkInProgress\Cael_Aislinn\Tajara\tajaran.dm"

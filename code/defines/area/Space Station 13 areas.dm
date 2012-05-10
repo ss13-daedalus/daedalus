@@ -1186,10 +1186,6 @@ proc/process_ghost_teleport_locs()
 	name = "Server Room"
 	icon_state = "server"
 
-/area/toxins/supermatter
-	name = "Supermatter Laboratory"
-	icon_state = "supermatter"
-
 //Storage
 
 /area/storage/tools
