@@ -310,8 +310,8 @@
 
 		switch(src.name)
 			if ("Chapel") sound = pick('ambicha1.ogg','ambicha2.ogg','ambicha3.ogg','ambicha4.ogg')
-			if ("Morgue") sound = pick('ambimo1.ogg','ambimo2.ogg','title2.ogg')
-			if ("Space") sound = pick('ambispace.ogg','title2.ogg',)
+			if ("Morgue") sound = pick('ambimo1.ogg','ambimo2.ogg','title1.ogg')
+			if ("Space") sound = pick('ambispace.ogg','title1.ogg',)
 			if ("Engine Control", "Engineering", "Engineering SMES") sound = pick('ambisin1.ogg','ambisin2.ogg','ambisin3.ogg','ambisin4.ogg')
 			if ("AI Satellite Teleporter Room") sound = pick('ambimalf.ogg')
 			if ("AI Upload Foyer") sound = pick('ambimalf.ogg')
