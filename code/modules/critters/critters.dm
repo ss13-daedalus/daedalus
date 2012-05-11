@@ -134,7 +134,7 @@
 /obj/effect/critter/spacecarp
 	name = "Space Carp"
 	desc = "A ferocious, fang-bearing creature that resembles a fish."
-	icon_state = "spacecarp"
+	icon_state = "spesscarp"
 	health = 100
 	max_health = 100
 	aggressive = 1
@@ -158,6 +158,12 @@
 	var/stunchance = 10 // chance to tackle things down
 
 
+	// Delete space carp as they spawn.  This is a temporary fix; the real
+	// goal is to pull them completely from the source code.
+	New()
+		..()
+		spawn(0)
+			del(src)
 
 	Harvest(var/obj/item/weapon/W, var/mob/living/user)
 		if(..())
