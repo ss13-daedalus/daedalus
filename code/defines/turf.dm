@@ -268,8 +268,8 @@
 	walltype = "diamond"
 	hardness = 10
 
-/turf/simulated/wall/mineral/transparent/plasma
-	walltype = "plasma"
+/turf/simulated/wall/mineral/transparent/phoron
+	walltype = "phoron"
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		if(istype(W,/obj/item/weapon/weldingtool))

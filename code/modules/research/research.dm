@@ -190,10 +190,10 @@ datum
 			desc = "Development of new and improved engineering parts and."
 			id = "engineering"
 
-		plasmatech
-			name = "Plasma Research"
-			desc = "Research into the mysterious substance colloqually known as 'plasma'."
-			id = "plasmatech"
+		phorontech
+			name = "Phoron Research"
+			desc = "Research into the mysterious substance colloqually known as 'phoron'."
+			id = "phorontech"
 
 		powerstorage
 			name = "Power Manipulation Technology"

@@ -567,7 +567,7 @@
 
 	/obj/item/stack/sheet/gold,
 	/obj/item/stack/sheet/silver,
-	/obj/item/stack/sheet/plasma,
+	/obj/item/stack/sheet/phoron,
 	/obj/item/stack/sheet/uranium,
 	/obj/item/stack/sheet/diamond
 
@@ -598,7 +598,7 @@
 	/obj/item/stack/sheet/glass,
 	/obj/item/stack/sheet/gold,
 	/obj/item/stack/sheet/silver,
-	/obj/item/stack/sheet/plasma,
+	/obj/item/stack/sheet/phoron,
 	/obj/item/stack/sheet/uranium,
 	/obj/item/stack/sheet/diamond,
 	/obj/item/stack/sheet/clown,

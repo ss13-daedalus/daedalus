@@ -609,11 +609,11 @@
 	access = access_robotics
 	group = "Robotics"
 
-/datum/supply_packs/plasma
-	name = "Plasma assembly crate"
-	contains = list("/obj/item/weapon/tank/plasma",
-					"/obj/item/weapon/tank/plasma",
-					"/obj/item/weapon/tank/plasma",
+/datum/supply_packs/phoron
+	name = "Phoron assembly crate"
+	contains = list("/obj/item/weapon/tank/phoron",
+					"/obj/item/weapon/tank/phoron",
+					"/obj/item/weapon/tank/phoron",
 					"/obj/item/device/assembly/igniter",
 					"/obj/item/device/assembly/igniter",
 					"/obj/item/device/assembly/igniter",
@@ -624,8 +624,8 @@
 					"/obj/item/device/assembly/timer",
 					"/obj/item/device/assembly/timer")
 	cost = 10
-	containertype = "/obj/structure/closet/crate/secure/plasma"
-	containername = "Plasma assembly crate"
+	containertype = "/obj/structure/closet/crate/secure/phoron"
+	containername = "Phoron assembly crate"
 	access = access_tox
 	group = "Medical / Science"
 
@@ -648,9 +648,9 @@
 /datum/supply_packs/eweapons
 	name = "Experimental weapons crate"
 	contains = list("/obj/item/weapon/flamethrower/full",
-					"/obj/item/weapon/tank/plasma",
-					"/obj/item/weapon/tank/plasma",
-					"/obj/item/weapon/tank/plasma",
+					"/obj/item/weapon/tank/phoron",
+					"/obj/item/weapon/tank/phoron",
+					"/obj/item/weapon/tank/phoron",
 					"/obj/item/weapon/chem_grenade/incendiary",
 					"/obj/item/weapon/chem_grenade/incendiary",
 					"/obj/item/weapon/chem_grenade/incendiary")

@@ -643,7 +643,7 @@
 	active_power_usage = 100
 	var/obj/item/weapon/reagent_containers/beaker = null
 	var/global/list/allowed_items = list ( // reagent = amount, amount of 0 indicate to determine the amount from the reagents list, only implemented on plants for now
-		/obj/item/stack/sheet/plasma = list("plasma" = 20),
+		/obj/item/stack/sheet/phoron = list("phoron" = 20),
 		/obj/item/stack/sheet/uranium = list("uranium" = 20),
 		/obj/item/stack/sheet/clown = list("banana" = 20),
 		/obj/item/stack/sheet/silver = list("silver" = 20),

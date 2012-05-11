@@ -1,9 +1,9 @@
 /mob/living/carbon/alien/adjustToxLoss(amount)
-	storedPlasma = min(max(storedPlasma + amount,0),max_plasma) //upper limit of max_plasma, lower limit of 0
+	storedPhoron = min(max(storedPhoron + amount,0),max_phoron) //upper limit of max_phoron, lower limit of 0
 	return
 
-/mob/living/carbon/alien/proc/getPlasma()
-	return storedPlasma
+/mob/living/carbon/alien/proc/getPhoron()
+	return storedPhoron
 
 /mob/living/carbon/alien/eyecheck()
 	return 2

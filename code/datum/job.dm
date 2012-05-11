@@ -420,7 +420,7 @@
 	spawn_positions = 3
 	supervisors = "the research director"
 	selection_color = "#ffeeff"
-	alt_titles = list("Plasma Researcher", "Xenobiologist", "Research Assistant", "PhD")
+	alt_titles = list("Phoron Researcher", "Xenobiologist", "Research Assistant", "PhD")
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0

@@ -20,7 +20,7 @@
 					src.o2tanks--
 					update_icon()
 				while(src.pltanks > 0)
-					new /obj/item/weapon/tank/plasma( src.loc )
+					new /obj/item/weapon/tank/phoron( src.loc )
 					src.pltanks--
 					update_icon()
 		else
@@ -33,7 +33,7 @@
 			src.o2tanks--
 			update_icon()
 		while(src.pltanks > 0)
-			new /obj/item/weapon/tank/plasma( src.loc )
+			new /obj/item/weapon/tank/phoron( src.loc )
 			src.pltanks--
 			update_icon()
 		del(src)
@@ -44,7 +44,7 @@
 		src.o2tanks--
 		update_icon()
 	while(src.pltanks > 0)
-		new /obj/item/weapon/tank/plasma( src.loc )
+		new /obj/item/weapon/tank/phoron( src.loc )
 		src.pltanks--
 		update_icon()
 	del(src)
@@ -63,7 +63,7 @@
 	if(stat & BROKEN)
 		return
 	user.machine = src
-	var/dat = text("<TT><B>Loaded Tank Dispensing Unit</B><BR>\n<FONT color = 'blue'><B>Oxygen</B>: []</FONT> []<BR>\n<FONT color = 'orange'><B>Plasma</B>: []</FONT> []<BR>\n</TT>", src.o2tanks, (src.o2tanks ? text("<A href='?src=\ref[];oxygen=1'>Dispense</A>", src) : "empty"), src.pltanks, (src.pltanks ? text("<A href='?src=\ref[];plasma=1'>Dispense</A>", src) : "empty"))
+	var/dat = text("<TT><B>Loaded Tank Dispensing Unit</B><BR>\n<FONT color = 'blue'><B>Oxygen</B>: []</FONT> []<BR>\n<FONT color = 'orange'><B>Phoron</B>: []</FONT> []<BR>\n</TT>", src.o2tanks, (src.o2tanks ? text("<A href='?src=\ref[];oxygen=1'>Dispense</A>", src) : "empty"), src.pltanks, (src.pltanks ? text("<A href='?src=\ref[];phoron=1'>Dispense</A>", src) : "empty"))
 	user << browse(dat, "window=dispenser")
 	onclose(user, "dispenser")
 	return
@@ -92,11 +92,11 @@
 			if (istype(src.loc, /mob))
 				attack_hand(src.loc)
 		else
-			if (href_list["plasma"])
-				if (text2num(href_list["plasma"]))
+			if (href_list["phoron"])
+				if (text2num(href_list["phoron"]))
 					if (src.pltanks > 0)
 						use_power(5)
-						new /obj/item/weapon/tank/plasma( src.loc )
+						new /obj/item/weapon/tank/phoron( src.loc )
 						src.pltanks--
 						update_icon()
 				if (istype(src.loc, /mob))

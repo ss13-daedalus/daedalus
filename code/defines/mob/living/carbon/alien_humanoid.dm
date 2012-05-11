@@ -23,16 +23,16 @@
 	name = "alien hunter"
 
 	health = 150
-	storedPlasma = 100
-	max_plasma = 150
+	storedPhoron = 100
+	max_phoron = 150
 	icon_state = "alien_s"
 
 /mob/living/carbon/alien/humanoid/sentinel
 	name = "alien sentinel"
 
 	health = 125
-	storedPlasma = 100
-	max_plasma = 250
+	storedPhoron = 100
+	max_phoron = 250
 	icon_state = "alien_s"
 
 /mob/living/carbon/alien/humanoid/drone

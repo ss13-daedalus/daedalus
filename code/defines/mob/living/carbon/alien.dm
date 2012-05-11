@@ -6,9 +6,9 @@
 	icon = 'alien.dmi'
 	gender = NEUTER
 
-	var/storedPlasma = 250
+	var/storedPhoron = 250
 	var/alien_invis = 0.0
-	var/max_plasma = 500
+	var/max_phoron = 500
 
 	alien_talk_understand = 1
 

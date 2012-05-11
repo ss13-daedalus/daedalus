@@ -1,7 +1,7 @@
 
 /obj/machinery/power/rad_collector
 	name = "Radiation Collector Array"
-	desc = "A device which uses Hawking Radiation and plasma to produce power."
+	desc = "A device which uses Hawking Radiation and phoron to produce power."
 	icon = 'singularity.dmi'
 	icon_state = "ca"
 	anchored = 0
@@ -10,7 +10,7 @@
 	req_access = list(access_engine)
 //	use_power = 0
 	var
-		obj/item/weapon/tank/plasma/P = null
+		obj/item/weapon/tank/phoron/P = null
 		last_power = 0
 		active = 0
 		locked = 0
@@ -43,12 +43,12 @@
 		if(istype(W, /obj/item/device/analyzer))
 			user << "\blue The [W.name] detects that [last_power]W were recently produced."
 			return 1
-		else if(istype(W, /obj/item/weapon/tank/plasma))
+		else if(istype(W, /obj/item/weapon/tank/phoron))
 			if(!src.anchored)
 				user << "\red The [src] needs to be secured to the floor first."
 				return 1
 			if(src.P)
-				user << "\red There's already a plasma tank loaded."
+				user << "\red There's already a phoron tank loaded."
 				return 1
 			src.P = W
 			W.loc = src
@@ -62,7 +62,7 @@
 				return 1
 		else if(istype(W, /obj/item/weapon/wrench))
 			if(P)
-				user << "\blue Remove the plasma tank first."
+				user << "\blue Remove the phoron tank first."
 				return 1
 			playsound(src.loc, 'Ratchet.ogg', 75, 1)
 			src.anchored = !src.anchored
@@ -98,7 +98,7 @@
 
 	proc
 		eject()
-			var/obj/item/weapon/tank/plasma/Z = src.P
+			var/obj/item/weapon/tank/phoron/Z = src.P
 			if (!Z)
 				return
 			Z.loc = get_turf(src)

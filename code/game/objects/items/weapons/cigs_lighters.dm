@@ -57,7 +57,7 @@ ZIPPO
 //////////////
 /obj/item/weapon/matchbox
 	name = "Matchbox"
-	desc = "A small box of Almost But Not Quite Plasma Premium Matches."
+	desc = "A small box of Almost But Not Quite Phoron Premium Matches."
 	icon = 'cigarettes.dmi'
 	icon_state = "matchbox"
 	item_state = "zippo"

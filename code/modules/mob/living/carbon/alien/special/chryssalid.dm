@@ -30,7 +30,7 @@
 			death()
 		else if(src.health < 0)
 
-			if(!src.reagents.has_reagent("plasma")) src.oxyloss++
+			if(!src.reagents.has_reagent("phoron")) src.oxyloss++
 
 			if(src.stat != 2)	src.stat = 1
 			src.paralysis = max(src.paralysis, 5)

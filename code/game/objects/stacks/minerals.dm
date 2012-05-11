@@ -3,7 +3,7 @@ CONTAINS:
 SANDSTONE
 DIAMOND
 URANIUM
-PLASMA
+PHORON
 GOLD
 SILVER
 */
@@ -40,14 +40,14 @@ var/global/list/datum/stack_recipe/uranium_recipes = list ( \
 		recipes = uranium_recipes
 		return ..()
 
-//Plasma
-var/global/list/datum/stack_recipe/plasma_recipes = list ( \
-	new/datum/stack_recipe("plasma door", /obj/structure/mineral_door/transparent/plasma, 10, one_per_turf = 1, on_floor = 1), \
+//Phoron
+var/global/list/datum/stack_recipe/phoron_recipes = list ( \
+	new/datum/stack_recipe("phoron door", /obj/structure/mineral_door/transparent/phoron, 10, one_per_turf = 1, on_floor = 1), \
 	)
 
-/obj/item/stack/sheet/plasma
+/obj/item/stack/sheet/phoron
 	New(var/loc, var/amount=null)
-		recipes = plasma_recipes
+		recipes = phoron_recipes
 		return ..()
 
 //Gold

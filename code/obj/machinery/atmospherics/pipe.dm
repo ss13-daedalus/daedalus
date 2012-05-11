@@ -370,7 +370,7 @@ obj/machinery/atmospherics/pipe
 
 		toxins
 			icon = 'orange_pipe_tank.dmi'
-			name = "Pressure Tank (Plasma)"
+			name = "Pressure Tank (Phoron)"
 
 			New()
 				air_temporary = new
@@ -383,7 +383,7 @@ obj/machinery/atmospherics/pipe
 
 		oxygen_agent_b
 			icon = 'red_orange_pipe_tank.dmi'
-			name = "Pressure Tank (Oxygen + Plasma)"
+			name = "Pressure Tank (Oxygen + Phoron)"
 
 			New()
 				air_temporary = new
@@ -469,7 +469,7 @@ obj/machinery/atmospherics/pipe
 
 			toxins
 				icon = 'orange_pipe_tank.dmi'
-				name = "High Capacity Pressure Tank (Plasma)"
+				name = "High Capacity Pressure Tank (Phoron)"
 
 				New()
 					air_temporary = new
@@ -482,7 +482,7 @@ obj/machinery/atmospherics/pipe
 
 			oxygen_agent_b
 				icon = 'red_orange_pipe_tank.dmi'
-				name = "High Capacity Pressure Tank (Oxygen + Plasma)"
+				name = "High Capacity Pressure Tank (Oxygen + Phoron)"
 
 				New()
 					air_temporary = new
@@ -606,15 +606,15 @@ obj/machinery/atmospherics/pipe
 					var/o2_concentration = parent.air.oxygen/total_moles
 					var/n2_concentration = parent.air.nitrogen/total_moles
 					var/co2_concentration = parent.air.carbon_dioxide/total_moles
-					var/plasma_concentration = parent.air.toxins/total_moles
+					var/phoron_concentration = parent.air.toxins/total_moles
 
-					var/unknown_concentration =  1-(o2_concentration+n2_concentration+co2_concentration+plasma_concentration)
+					var/unknown_concentration =  1-(o2_concentration+n2_concentration+co2_concentration+phoron_concentration)
 
 					user << "\blue Pressure: [round(pressure,0.1)] kPa"
 					user << "\blue Nitrogen: [round(n2_concentration*100)]%"
 					user << "\blue Oxygen: [round(o2_concentration*100)]%"
 					user << "\blue CO2: [round(co2_concentration*100)]%"
-					user << "\blue Plasma: [round(plasma_concentration*100)]%"
+					user << "\blue Phoron: [round(phoron_concentration*100)]%"
 					if(unknown_concentration>0.01)
 						user << "\red Unknown: [round(unknown_concentration*100)]%"
 					user << "\blue Temperature: [round(parent.air.temperature-T0C)]&deg;C"

@@ -48,8 +48,8 @@
 		new /obj/item/stack/sheet/sandstone(location)
 		del(src)
 
-/obj/item/weapon/ore/plasma
-	name = "Plasma ore"
+/obj/item/weapon/ore/phoron
+	name = "Phoron ore"
 	icon_state = "Plasma ore"
 	origin_tech = "materials=2"
 
@@ -115,8 +115,8 @@
 	name = "Iron coin"
 	icon_state = "coin_iron"
 
-/obj/item/weapon/coin/plasma
-	name = "Solid plasma coin"
+/obj/item/weapon/coin/phoron
+	name = "Solid phoron coin"
 	icon_state = "coin_plasma"
 
 /obj/item/weapon/coin/uranium
@@ -236,15 +236,15 @@
 	throw_range = 3
 	origin_tech = "materials=5"
 
-/obj/item/stack/sheet/plasma
-	name = "solid plasma"
+/obj/item/stack/sheet/phoron
+	name = "solid phoron"
 	icon_state = "sheet-plasma"
 	force = 5.0
 	throwforce = 5
 	w_class = 3.0
 	throw_speed = 3
 	throw_range = 3
-	origin_tech = "plasmatech=2;materials=2"
+	origin_tech = "phorontech=2;materials=2"
 
 /obj/item/stack/sheet/adamantine
 	name = "adamantine"

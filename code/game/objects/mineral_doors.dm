@@ -210,8 +210,8 @@
 		..()
 		opacity = 0
 
-/obj/structure/mineral_door/transparent/plasma
-	mineralType = "plasma"
+/obj/structure/mineral_door/transparent/phoron
+	mineralType = "phoron"
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		if(istype(W,/obj/item/weapon/weldingtool))

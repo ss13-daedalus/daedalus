@@ -183,7 +183,7 @@
 			verbs += /obj/admins/proc/view_atk_log
 			verbs += /obj/admins/proc/toggleaban						//abandon mob
 			verbs += /obj/admins/proc/show_traitor_panel
-			verbs += /client/proc/cmd_admin_remove_plasma
+			verbs += /client/proc/cmd_admin_remove_phoron
 			verbs += /client/proc/admin_call_shuttle
 			verbs += /client/proc/admin_cancel_shuttle
 			verbs += /client/proc/cmd_admin_dress
@@ -369,7 +369,7 @@
 	verbs -= /client/proc/cmd_admin_rejuvenate
 	verbs -= /client/proc/cmd_admin_delete
 	verbs -= /client/proc/toggleadminhelpsound
-	verbs -= /client/proc/cmd_admin_remove_plasma
+	verbs -= /client/proc/cmd_admin_remove_phoron
 	verbs -= /client/proc/admin_call_shuttle
 	verbs -= /client/proc/admin_cancel_shuttle
 	verbs -= /client/proc/cmd_admin_dress

@@ -102,7 +102,7 @@ datum
 			name = "Lexorin"
 			id = "lexorin"
 			result = "lexorin"
-			required_reagents = list("plasma" = 1, "hydrogen" = 1, "nitrogen" = 1)
+			required_reagents = list("phoron" = 1, "hydrogen" = 1, "nitrogen" = 1)
 			result_amount = 3
 
 		space_drugs
@@ -173,7 +173,7 @@ datum
 			id = "leporazine"
 			result = "leporazine"
 			required_reagents = list("silicon" = 1, "copper" = 1)
-			required_catalysts = list("plasma" = 5)
+			required_catalysts = list("phoron" = 5)
 			result_amount = 2
 
 		cryptobiolin
@@ -201,8 +201,8 @@ datum
 			name = "Dexalin"
 			id = "dexalin"
 			result = "dexalin"
-			required_reagents = list("oxygen" = 2, "plasma" = 0.1)
-			required_catalysts = list("plasma" = 5)
+			required_reagents = list("oxygen" = 2, "phoron" = 0.1)
+			required_catalysts = list("phoron" = 5)
 			result_amount = 1
 
 		dermaline
@@ -251,8 +251,8 @@ datum
 			name = "Clonexadone"
 			id = "clonexadone"
 			result = "clonexadone"
-			required_reagents = list("cryoxadone" = 1, "sodium" = 1, "plasma" = 0.1)
-			required_catalysts = list("plasma" = 5)
+			required_reagents = list("cryoxadone" = 1, "sodium" = 1, "phoron" = 0.1)
+			required_catalysts = list("phoron" = 5)
 			result_amount = 2
 
 		spaceacillin
@@ -345,7 +345,7 @@ datum
 			name = "Napalm"
 			id = "napalm"
 			result = null
-			required_reagents = list("aluminum" = 1, "plasma" = 1, "acid" = 1 )
+			required_reagents = list("aluminum" = 1, "phoron" = 1, "acid" = 1 )
 			result_amount = 1
 			on_reaction(var/datum/reagents/holder, var/created_volume)
 				var/turf/location = get_turf(holder.my_atom.loc)
@@ -623,10 +623,10 @@ datum
 			result_amount = 2
 			required_container = /obj/item/metroid_core
 			required_other = 3
-		metroidplasma
-			name = "Metroid Plasma"
-			id = "m_plasma"
-			result = "plasma"
+		metroidphoron
+			name = "Metroid Phoron"
+			id = "m_phoron"
+			result = "phoron"
 			required_reagents = list("sugar" = 1, "blood" = 2)
 			result_amount = 2
 			required_container = /obj/item/metroid_core
@@ -660,7 +660,7 @@ datum
 			id = "m_tele"
 			result = null
 			required_reagents = list("pacid" = 2, "mutagen" = 2)
-			required_catalysts = list("plasma" = 1)
+			required_catalysts = list("phoron" = 1)
 			result_amount = 1
 			required_container = /obj/item/metroid_core
 			required_other = 4
@@ -719,7 +719,7 @@ datum
 			id = "m_tele"
 			result = null
 			required_reagents = list("acid" = 1, "blood" = 1)
-			required_catalysts = list("plasma" = 1, "mutagen" = 1)
+			required_catalysts = list("phoron" = 1, "mutagen" = 1)
 			result_amount = 1
 			required_container = /obj/item/metroid_core
 			required_other = 4
@@ -1080,7 +1080,7 @@ datum
 			name = "Toxins Special"
 			id = "toxinsspecial"
 			result = "toxinsspecial"
-			required_reagents = list("rum" = 2, "vermouth" = 1, "plasma" = 2)
+			required_reagents = list("rum" = 2, "vermouth" = 1, "phoron" = 2)
 			result_amount = 5
 
 		beepsky_smash

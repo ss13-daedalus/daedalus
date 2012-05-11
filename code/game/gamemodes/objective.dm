@@ -296,7 +296,7 @@ datum/objective/steal
 		"a pair of magboots" = /obj/item/clothing/shoes/magboots,
 		"the station blueprints" = /obj/item/blueprints,
 		"a nasa voidsuit" = /obj/item/clothing/suit/space/nasavoid,
-		"28 moles of plasma (full tank)" = /obj/item/weapon/tank,
+		"28 moles of phoron (full tank)" = /obj/item/weapon/tank,
 	)
 
 	var/global/possible_items_special[] = list(
@@ -349,12 +349,12 @@ datum/objective/steal
 		if(!isliving(owner.current))	return 0
 		var/list/all_items = owner.current.get_contents()
 		switch (target_name)
-			if("28 moles of plasma (full tank)","10 diamonds","50 gold bars","25 refined uranium bars")
+			if("28 moles of phoron (full tank)","10 diamonds","50 gold bars","25 refined uranium bars")
 				var/target_amount = text2num(target_name)//Non-numbers are ignored.
 				var/found_amount = 0.0//Always starts as zero.
 				for(var/obj/item/I in all_items)
 					if(!istype(I, steal_target))	continue//If it's not actually that item.
-					found_amount += (target_name=="28 moles of plasma (full tank)" ? (I:air_contents:toxins) : (I:amount))
+					found_amount += (target_name=="28 moles of phoron (full tank)" ? (I:air_contents:toxins) : (I:amount))
 				return found_amount>=target_amount
 			if("50 coins (in bag)")
 				var/obj/item/weapon/moneybag/B = locate() in all_items

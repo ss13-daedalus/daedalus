@@ -726,7 +726,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		usr << "[t]"
 	//feedback_add_details("admin_verb","CC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_remove_plasma(area/A as area)
+/client/proc/cmd_admin_remove_phoron(area/A as area)
 	set category = "Debug"
 	set name = "Stabilize Atmos."
 	set desc = "Stabilize atmos in selected area."

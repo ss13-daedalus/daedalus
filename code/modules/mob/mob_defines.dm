@@ -104,7 +104,7 @@
 	var/druggy = 0//Carbon
 	var/confused = 0//Carbon
 	var/antitoxs = null
-	var/plasma = null
+	var/phoron = null
 	var/sleeping = 0.0//Carbon
 	var/sleeping_willingly = 0.0 //Carbon, allows people to sleep forever if desired
 	var/admin_observing = 0.0

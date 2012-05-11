@@ -340,8 +340,8 @@ datum
 					holder.remove_reagent("toxin", 2)
 				if(holder.has_reagent("stoxin"))
 					holder.remove_reagent("stoxin", 2)
-				if(holder.has_reagent("plasma"))
-					holder.remove_reagent("plasma", 1)
+				if(holder.has_reagent("phoron"))
+					holder.remove_reagent("phoron", 1)
 				if(holder.has_reagent("acid"))
 					holder.remove_reagent("acid", 1)
 /*				if(holder.has_reagent("cyanide"))
@@ -1041,7 +1041,7 @@ datum
 			color = "#660000" // rgb: 102, 0, 0
 
 //Commenting this out as it's horribly broken. It's a neat effect though, so it might be worth making a new reagent (that is less common) with similar effects.	-Pete
-// Sort of fixed by creating plasma instead.
+// Sort of fixed by creating phoron instead.
 			reaction_obj(var/obj/O, var/volume)
 				src = null
 				var/turf/the_turf = get_turf(O)
@@ -1145,10 +1145,10 @@ datum
 							//M.make_dizzy(1) doesn't seem to do anything
 
 
-		plasma
-			name = "Plasma"
-			id = "plasma"
-			description = "Plasma in its liquid form."
+		phoron
+			name = "Phoron"
+			id = "phoron"
+			description = "Phoron in its liquid form."
 			reagent_state = LIQUID
 			color = "#E71B00" // rgb: 231, 27, 0
 
@@ -1366,8 +1366,8 @@ datum
 					holder.remove_reagent("toxin", 5)
 				if(holder.has_reagent("stoxin"))
 					holder.remove_reagent("stoxin", 5)
-				if(holder.has_reagent("plasma"))
-					holder.remove_reagent("plasma", 5)
+				if(holder.has_reagent("phoron"))
+					holder.remove_reagent("phoron", 5)
 				if(holder.has_reagent("acid"))
 					holder.remove_reagent("acid", 5)
 				if(holder.has_reagent("pacid"))

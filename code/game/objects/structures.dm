@@ -17,7 +17,7 @@ obj/structure
 				new /obj/item/stack/sheet/metal(get_turf(src))
 				del(src)
 
-		else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
+		else if(istype(W, /obj/item/weapon/pickaxe/phoroncutter))
 			user << "\blue Now slicing apart the girder"
 			if(do_after(user,30))
 				user << "\blue You slice apart the girder!"

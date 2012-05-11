@@ -61,7 +61,7 @@
 
 /obj/machinery/dispenser
 	name = "tank storage unit"
-	desc = "A simple yet bulky one-way storage device for gas tanks. Holds 10 plasma and 10 oxygen tanks."
+	desc = "A simple yet bulky one-way storage device for gas tanks. Holds 10 phoron and 10 oxygen tanks."
 	icon = 'objects.dmi'
 	icon_state = "dispenser"
 	density = 1
@@ -139,7 +139,7 @@
 
 /obj/machinery/igniter
 	name = "igniter"
-	desc = "It's useful for igniting plasma."
+	desc = "It's useful for igniting phoron."
 	icon = 'stationobjs.dmi'
 	icon_state = "igniter1"
 	var/id = null

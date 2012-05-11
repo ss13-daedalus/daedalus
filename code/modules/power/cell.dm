@@ -107,11 +107,11 @@
 
 		user << "You inject the solution into the power cell."
 
-		if(S.reagents.has_reagent("plasma", 5))
+		if(S.reagents.has_reagent("phoron", 5))
 
-			log_attack("<font color='red'>[user.name] ([user.ckey]) injected a power cell with plasma.</font>")
-			log_admin("ATTACK: [user] ([user.ckey]) injected a power cell with plasma.")
-			message_admins("ATTACK: [user] ([user.ckey]) injected a power cell with plasma.")
+			log_attack("<font color='red'>[user.name] ([user.ckey]) injected a power cell with phoron.</font>")
+			log_admin("ATTACK: [user] ([user.ckey]) injected a power cell with phoron.")
+			message_admins("ATTACK: [user] ([user.ckey]) injected a power cell with phoron.")
 
 			rigged = 1
 

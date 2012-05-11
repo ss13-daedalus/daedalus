@@ -21,7 +21,7 @@
 										"gold"=0,
 										"silver"=0,
 										"diamond"=0,
-										"plasma"=0,
+										"phoron"=0,
 										"uranium"=0,
 										"bananium"=0
 										)
@@ -613,8 +613,8 @@
 			material = "silver"
 		else if(istype(W, /obj/item/stack/sheet/diamond))
 			material = "diamond"
-		else if(istype(W, /obj/item/stack/sheet/plasma))
-			material = "plasma"
+		else if(istype(W, /obj/item/stack/sheet/phoron))
+			material = "phoron"
 		else if(istype(W, /obj/item/stack/sheet/metal))
 			material = "metal"
 		else if(istype(W, /obj/item/stack/sheet/glass))
@@ -661,8 +661,8 @@
 				type = /obj/item/stack/sheet/silver
 			if("diamond")
 				type = /obj/item/stack/sheet/diamond
-			if("plasma")
-				type = /obj/item/stack/sheet/plasma
+			if("phoron")
+				type = /obj/item/stack/sheet/phoron
 			if("uranium")
 				type = /obj/item/stack/sheet/uranium
 			if("bananium")

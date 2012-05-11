@@ -23,7 +23,7 @@
 	throw_range = 5
 	w_class = 3.0
 	m_amt = 500
-	origin_tech = "combat=1;plasmatech=1"
+	origin_tech = "combat=1;phorontech=1"
 	var
 		status = 0
 		throw_amount = 100
@@ -32,7 +32,7 @@
 		turf/previousturf = null
 		obj/item/weapon/weldingtool/weldtool = null
 		obj/item/device/assembly/igniter/igniter = null
-		obj/item/weapon/tank/plasma/ptank = null
+		obj/item/weapon/tank/phoron/ptank = null
 
 
 	Del()
@@ -113,9 +113,9 @@
 			update_icon()
 			return
 
-		if(istype(W,/obj/item/weapon/tank/plasma))
+		if(istype(W,/obj/item/weapon/tank/phoron))
 			if(src.ptank)
-				user << "\red There appears to already be a plasma tank loaded in the flamethrower!"
+				user << "\red There appears to already be a phoron tank loaded in the flamethrower!"
 				return
 			src.ptank = W
 			W.loc = src
@@ -140,15 +140,15 @@
 				var/o2_concentration = src.ptank.air_contents.oxygen/total_moles
 				var/n2_concentration = src.ptank.air_contents.nitrogen/total_moles
 				var/co2_concentration = src.ptank.air_contents.carbon_dioxide/total_moles
-				var/plasma_concentration = src.ptank.air_contents.toxins/total_moles
+				var/phoron_concentration = src.ptank.air_contents.toxins/total_moles
 
-				var/unknown_concentration =  1-(o2_concentration+n2_concentration+co2_concentration+plasma_concentration)
+				var/unknown_concentration =  1-(o2_concentration+n2_concentration+co2_concentration+phoron_concentration)
 
 				user << "\blue Pressure: [round(pressure,0.1)] kPa"
 				user << "\blue Nitrogen: [round(n2_concentration*100)]%"
 				user << "\blue Oxygen: [round(o2_concentration*100)]%"
 				user << "\blue CO2: [round(co2_concentration*100)]%"
-				user << "\blue Plasma: [round(plasma_concentration*100)]%"
+				user << "\blue Phoron: [round(phoron_concentration*100)]%"
 				if(unknown_concentration>0.01)
 					user << "\red Unknown: [round(unknown_concentration*100)]%"
 				user << "\blue Temperature: [round(src.ptank.air_contents.temperature-T0C)]&deg;C"
@@ -163,9 +163,9 @@
 		if(user.stat || user.restrained() || user.lying)	return
 		user.machine = src
 		if (!src.ptank)
-			user << "\red Attach a plasma tank first!"
+			user << "\red Attach a phoron tank first!"
 			return
-		var/dat = text("<TT><B>Flamethrower (<A HREF='?src=\ref[src];light=1'>[lit ? "<font color='red'>Lit</font>" : "Unlit"]</a>)</B><BR>\n Tank Pressure: [src.ptank.air_contents.return_pressure()]<BR>\nAmount to throw: <A HREF='?src=\ref[src];amount=-100'>-</A> <A HREF='?src=\ref[src];amount=-10'>-</A> <A HREF='?src=\ref[src];amount=-1'>-</A> [src.throw_amount] <A HREF='?src=\ref[src];amount=1'>+</A> <A HREF='?src=\ref[src];amount=10'>+</A> <A HREF='?src=\ref[src];amount=100'>+</A><BR>\n<A HREF='?src=\ref[src];remove=1'>Remove plasmatank</A> - <A HREF='?src=\ref[src];close=1'>Close</A></TT>")
+		var/dat = text("<TT><B>Flamethrower (<A HREF='?src=\ref[src];light=1'>[lit ? "<font color='red'>Lit</font>" : "Unlit"]</a>)</B><BR>\n Tank Pressure: [src.ptank.air_contents.return_pressure()]<BR>\nAmount to throw: <A HREF='?src=\ref[src];amount=-100'>-</A> <A HREF='?src=\ref[src];amount=-10'>-</A> <A HREF='?src=\ref[src];amount=-1'>-</A> [src.throw_amount] <A HREF='?src=\ref[src];amount=1'>+</A> <A HREF='?src=\ref[src];amount=10'>+</A> <A HREF='?src=\ref[src];amount=100'>+</A><BR>\n<A HREF='?src=\ref[src];remove=1'>Remove phorontank</A> - <A HREF='?src=\ref[src];close=1'>Close</A></TT>")
 		user << browse(dat, "window=flamethrower;size=600x300")
 		onclose(user, "flamethrower")
 		return
@@ -195,7 +195,7 @@
 			src.throw_amount = max(90,min(300,src.throw_amount))
 		if (href_list["remove"])
 			if(!src.ptank)	return
-			var/obj/item/weapon/tank/plasma/A = src.ptank
+			var/obj/item/weapon/tank/phoron/A = src.ptank
 			A.loc = get_turf(src)
 			A.layer = initial(A.layer)
 			src.ptank = null

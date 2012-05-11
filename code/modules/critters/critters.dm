@@ -76,7 +76,7 @@
 
 
 /obj/effect/critter/spore
-	name = "plasma spore"
+	name = "phoron spore"
 	desc = "A barely intelligent colony of organisms. Very volatile."
 	icon_state = "spore"
 	density = 1

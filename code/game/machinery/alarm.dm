@@ -107,7 +107,7 @@
 	var/list/TLV = list(
 		"oxygen"         = new/datum/tlv(  16,   19, 135, 140), // Partial pressure, kpa
 		"carbon dioxide" = new/datum/tlv(-1.0, -1.0,   5,  10), // Partial pressure, kpa
-		"plasma"         = new/datum/tlv(-1.0, -1.0, 0.2, 0.5), // Partial pressure, kpa
+		"phoron"         = new/datum/tlv(-1.0, -1.0, 0.2, 0.5), // Partial pressure, kpa
 		"other"          = new/datum/tlv(-1.0, -1.0, 0.5, 1.0), // Partial pressure, kpa
 		"pressure"       = new/datum/tlv(ONE_ATMOSPHERE*0.80,ONE_ATMOSPHERE*0.90,ONE_ATMOSPHERE*1.10,ONE_ATMOSPHERE*1.20), /* kpa */
 		"temperature"    = new/datum/tlv(T0C, T0C+10, T0C+40, T0C+66), // K
@@ -123,7 +123,7 @@
 	TLV = list(
 		"oxygen"         = new/datum/tlv(-1.0, -1.0,-1.0,-1.0), // Partial pressure, kpa
 		"carbon dioxide" = new/datum/tlv(-1.0, -1.0,   5,  10), // Partial pressure, kpa
-		"plasma"         = new/datum/tlv(-1.0, -1.0, 0.2, 0.5), // Partial pressure, kpa
+		"phoron"         = new/datum/tlv(-1.0, -1.0, 0.2, 0.5), // Partial pressure, kpa
 		"other"          = new/datum/tlv(-1.0, -1.0, 0.5, 1.0), // Partial pressure, kpa
 		"pressure"       = new/datum/tlv(ONE_ATMOSPHERE*0.80,ONE_ATMOSPHERE*0.90,ONE_ATMOSPHERE*1.40,ONE_ATMOSPHERE*1.60), /* kpa */
 		"temperature"    = new/datum/tlv(40, 60, 100, 120), // K
@@ -133,7 +133,7 @@
 	TLV = list(
 		"oxygen"         = new/datum/tlv(  16,   19, 135, 140), // Partial pressure, kpa
 		"carbon dioxide" = new/datum/tlv(-1.0, -1.0,   5,  10), // Partial pressure, kpa
-		"plasma"         = new/datum/tlv(-1.0, -1.0, 0.2, 0.5), // Partial pressure, kpa
+		"phoron"         = new/datum/tlv(-1.0, -1.0, 0.2, 0.5), // Partial pressure, kpa
 		"other"          = new/datum/tlv(-1.0, -1.0, 0.5, 1.0), // Partial pressure, kpa
 		"pressure"       = new/datum/tlv(ONE_ATMOSPHERE*0.80,ONE_ATMOSPHERE*0.90,ONE_ATMOSPHERE*1.50,ONE_ATMOSPHERE*1.60), /* kpa */
 		"temperature"    = new/datum/tlv(200, 210, 273.15, 283.15), // K
@@ -510,9 +510,9 @@
 	var/co2_dangerlevel = cur_tlv.get_danger_level(environment.carbon_dioxide*GET_PP)
 	var/co2_percent = round(environment.carbon_dioxide / total * 100, 2)
 
-	cur_tlv = TLV["plasma"]
-	var/plasma_dangerlevel = cur_tlv.get_danger_level(environment.toxins*GET_PP)
-	var/plasma_percent = round(environment.toxins / total * 100, 2)
+	cur_tlv = TLV["phoron"]
+	var/phoron_dangerlevel = cur_tlv.get_danger_level(environment.toxins*GET_PP)
+	var/phoron_percent = round(environment.toxins / total * 100, 2)
 
 	cur_tlv = TLV["other"]
 	var/other_moles = 0.0
@@ -527,7 +527,7 @@
 Pressure: <span class='dl[pressure_dangerlevel]'>[environment_pressure]</span>kPa<br>
 Oxygen: <span class='dl[oxygen_dangerlevel]'>[oxygen_percent]</span>%<br>
 Carbon dioxide: <span class='dl[co2_dangerlevel]'>[co2_percent]</span>%<br>
-Toxins: <span class='dl[plasma_dangerlevel]'>[plasma_percent]</span>%<br>
+Toxins: <span class='dl[phoron_dangerlevel]'>[phoron_percent]</span>%<br>
 "}
 	if (other_dangerlevel==2)
 		output += {"Notice: <span class='dl2'>High Concentration of Unknown Particles Detected</span><br>"}
@@ -542,7 +542,7 @@ Temperature: <span class='dl[temperature_dangerlevel]'>[environment.temperature]
 		pressure_dangerlevel,
 		oxygen_dangerlevel,
 		co2_dangerlevel,
-		plasma_dangerlevel,
+		phoron_dangerlevel,
 		other_dangerlevel,
 		temperature_dangerlevel
 	)
@@ -716,7 +716,7 @@ table tr:first-child th:first-child { border: none;}
 			var/list/gases = list(
 				"oxygen"         = "O<sub>2</sub>",
 				"carbon dioxide" = "CO<sub>2</sub>",
-				"plasma"         = "Toxin",
+				"phoron"         = "Toxin",
 				"other"          = "Other",
 			)
 			var/list/thresholds = list("min2", "min1", "max1", "max2")
@@ -935,8 +935,8 @@ table tr:first-child th:first-child { border: none;}
 	cur_tlv = TLV["carbon dioxide"]
 	var/co2_dangerlevel = cur_tlv.get_danger_level(environment.carbon_dioxide*GET_PP)
 
-	cur_tlv = TLV["plasma"]
-	var/plasma_dangerlevel = cur_tlv.get_danger_level(environment.toxins*GET_PP)
+	cur_tlv = TLV["phoron"]
+	var/phoron_dangerlevel = cur_tlv.get_danger_level(environment.toxins*GET_PP)
 
 	cur_tlv = TLV["other"]
 	var/other_moles = 0.0
@@ -952,7 +952,7 @@ table tr:first-child th:first-child { border: none;}
 		pressure_dangerlevel,
 		oxygen_dangerlevel,
 		co2_dangerlevel,
-		plasma_dangerlevel,
+		phoron_dangerlevel,
 		other_dangerlevel,
 		temperature_dangerlevel
 	)

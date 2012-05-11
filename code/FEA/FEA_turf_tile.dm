@@ -130,7 +130,7 @@ turf
 					overlays += image('floors.dmi',siding_icon_state)
 
 				switch(model.graphic)
-					if("plasma")
+					if("phoron")
 						overlays.Add(plmaster)
 					if("sleeping_agent")
 						overlays.Add(slmaster)

@@ -465,7 +465,7 @@ obj/indicator
 				if(GM.oxygen < 0)
 					return "error"
 				return "[round(GM.oxygen/MOLES_CELLSTANDARD*10+0.5)]"
-			if("plasma")
+			if("phoron")
 				if(GM.toxins < 0)
 					return "error"
 				return "[round(GM.toxins/MOLES_CELLSTANDARD*10+0.5)]"
@@ -506,7 +506,7 @@ mob
 				usr << "Cannot find air_system"
 				return
 
-			var/str = input("Select") in list("oxygen", "nitrogen","plasma","all","temperature")
+			var/str = input("Select") in list("oxygen", "nitrogen","phoron","all","temperature")
 
 			for(var/obj/indicator/T in world)
 				T.measure = str

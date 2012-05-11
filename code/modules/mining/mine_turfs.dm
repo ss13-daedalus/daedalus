@@ -69,8 +69,8 @@
 
 /turf/simulated/mineral/random
 	name = "Mineral deposit"
-	var/mineralAmtList = list("Uranium" = 5, "Iron" = 5, "Diamond" = 5, "Gold" = 5, "Silver" = 5, "Plasma" = 5/*, "Adamantine" = 5*/)
-	var/mineralSpawnChanceList = list("Uranium" = 5, "Iron" = 50, "Diamond" = 1, "Gold" = 5, "Silver" = 5, "Plasma" = 25/*, "Adamantine" =5*/)//Currently, Adamantine won't spawn as it has no uses. -Durandan
+	var/mineralAmtList = list("Uranium" = 5, "Iron" = 5, "Diamond" = 5, "Gold" = 5, "Silver" = 5, "Phoron" = 5/*, "Adamantine" = 5*/)
+	var/mineralSpawnChanceList = list("Uranium" = 5, "Iron" = 50, "Diamond" = 1, "Gold" = 5, "Silver" = 5, "Phoron" = 25/*, "Adamantine" =5*/)//Currently, Adamantine won't spawn as it has no uses. -Durandan
 	var/mineralChance = 10  //means 10% chance of this plot changing to a mineral deposit
 
 /turf/simulated/mineral/random/New()
@@ -91,8 +91,8 @@
 					M = new/turf/simulated/mineral/gold(src)
 				if("Silver")
 					M = new/turf/simulated/mineral/silver(src)
-				if("Plasma")
-					M = new/turf/simulated/mineral/plasma(src)
+				if("Phoron")
+					M = new/turf/simulated/mineral/phoron(src)
 				/*if("Adamantine")
 					M = new/turf/simulated/mineral/adamantine(src)*/
 			if(M)
@@ -102,7 +102,7 @@
 
 /turf/simulated/mineral/random/high_chance
 	mineralChance = 25
-	mineralSpawnChanceList = list("Uranium" = 10, "Iron" = 30, "Diamond" = 2, "Gold" = 10, "Silver" = 10, "Plasma" = 25)
+	mineralSpawnChanceList = list("Uranium" = 10, "Iron" = 30, "Diamond" = 2, "Gold" = 10, "Silver" = 10, "Phoron" = 25)
 
 /turf/simulated/mineral/random/Del()
 	return
@@ -153,10 +153,10 @@
 	spread = 1
 
 
-/turf/simulated/mineral/plasma
-	name = "Plasma deposit"
+/turf/simulated/mineral/phoron
+	name = "Phoron deposit"
 	icon_state = "rock_Plasma"
-	mineralName = "Plasma"
+	mineralName = "Phoron"
 	mineralAmt = 5
 	spreadChance = 25
 	spread = 1
@@ -240,8 +240,8 @@
 				new /obj/item/weapon/ore/gold(src)
 			if (src.mineralName == "Silver")
 				new /obj/item/weapon/ore/silver(src)
-			if (src.mineralName == "Plasma")
-				new /obj/item/weapon/ore/plasma(src)
+			if (src.mineralName == "Phoron")
+				new /obj/item/weapon/ore/phoron(src)
 			if (src.mineralName == "Diamond")
 				new /obj/item/weapon/ore/diamond(src)
 			if (src.mineralName == "Clown")
@@ -251,7 +251,7 @@
 
 /*
 /turf/simulated/mineral/proc/setRandomMinerals()
-	var/s = pickweight(list("uranium" = 5, "iron" = 50, "gold" = 5, "silver" = 5, "plasma" = 50, "diamond" = 1))
+	var/s = pickweight(list("uranium" = 5, "iron" = 50, "gold" = 5, "silver" = 5, "phoron" = 50, "diamond" = 1))
 	if (s)
 		mineralName = s
 

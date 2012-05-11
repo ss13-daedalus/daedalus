@@ -520,7 +520,7 @@
 
 
 // attack bulb/tube with object
-// if a syringe, can inject plasma to make it explode
+// if a syringe, can inject phoron to make it explode
 // also repairing them with wire and screwdriver
 // and glass if it's broken
 /obj/item/weapon/light/attackby(var/obj/item/I, var/mob/user)
@@ -530,11 +530,11 @@
 
 		user << "You inject the solution into the [src]."
 
-		if(S.reagents.has_reagent("plasma", 5))
+		if(S.reagents.has_reagent("phoron", 5))
 
-			log_attack("<font color='red'>[user.name] ([user.ckey]) injected a light with plasma.</font>")
-			log_admin("ATTACK: [user] ([user.ckey]) injected a light with plasma.")
-			message_admins("ATTACK: [user] ([user.ckey]) injected a light with plasma.")
+			log_attack("<font color='red'>[user.name] ([user.ckey]) injected a light with phoron.</font>")
+			log_admin("ATTACK: [user] ([user.ckey]) injected a light with phoron.")
+			message_admins("ATTACK: [user] ([user.ckey]) injected a light with phoron.")
 
 			rigged = 1
 

@@ -1491,7 +1491,7 @@ snippets
 						paralysis += 2
 						emote("collapse")
 						src << "\red You collapse from heat exaustion!"
-				plcheck = t_plasma
+				plcheck = t_phoron
 				oxcheck = t_oxygen
 				G.turf_add(T, G.total_moles())
 */

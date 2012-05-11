@@ -10,8 +10,8 @@ Doesn't work on other aliens/AI.*/
 	if(stat)
 		src << "\green You must be conscious to do this."
 		return 0
-	else if(X && getPlasma() < X)
-		src << "\green Not enough plasma stored."
+	else if(X && getPhoron() < X)
+		src << "\green Not enough phoron stored."
 		return 0
 	else if(Y && (!isturf(src.loc) || istype(src.loc, /turf/space)))
 		src << "\green Weeds would not be able to survive here."
@@ -56,20 +56,20 @@ Doesn't work on other aliens/AI.*/
 			src << {"\green You said: "[msg]" to [M]"}
 	return
 
-/mob/living/carbon/alien/humanoid/verb/transfer_plasma(mob/living/carbon/alien/M as mob in oview())
-	set name = "Transfer Plasma"
-	set desc = "Transfer Plasma to another alien"
+/mob/living/carbon/alien/humanoid/verb/transfer_phoron(mob/living/carbon/alien/M as mob in oview())
+	set name = "Transfer Phoron"
+	set desc = "Transfer Phoron to another alien"
 	set category = "Alien"
 
 	if(isalien(M))
-		var/amount = input("Amount:", "Transfer Plasma to [M]") as num
+		var/amount = input("Amount:", "Transfer Phoron to [M]") as num
 		if (amount)
 			if(powerc(amount))
 				if (get_dist(src,M) <= 1)
 					M.adjustToxLoss(amount)
 					adjustToxLoss(-amount)
-					M << "\green [src] has transfered [amount] plasma to you."
-					src << {"\green You have trasferred [amount] plasma to [M]"}
+					M << "\green [src] has transfered [amount] phoron to you."
+					src << {"\green You have trasferred [amount] phoron to [M]"}
 				else
 					src << "\green You need to be closer."
 	return

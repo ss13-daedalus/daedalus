@@ -17,7 +17,7 @@ Note: Must be placed west/left of and R&D console to function.
 		g_amount = 0.0
 		gold_amount = 0.0
 		silver_amount = 0.0
-		plasma_amount = 0.0
+		phoron_amount = 0.0
 		uranium_amount = 0.0
 		diamond_amount = 0.0
 		clown_amount = 0.0
@@ -37,7 +37,7 @@ Note: Must be placed west/left of and R&D console to function.
 		RefreshParts()
 
 	proc/TotalMaterials() //returns the total of all the stored materials. Makes code neater.
-		return m_amount + g_amount + gold_amount + silver_amount + plasma_amount + uranium_amount + diamond_amount + clown_amount
+		return m_amount + g_amount + gold_amount + silver_amount + phoron_amount + uranium_amount + diamond_amount + clown_amount
 
 	RefreshParts()
 		var/T = 0
@@ -87,9 +87,9 @@ Note: Must be placed west/left of and R&D console to function.
 				if(g_amount >= 3750)
 					var/obj/item/stack/sheet/glass/G = new /obj/item/stack/sheet/glass(src.loc)
 					G.amount = round(g_amount / 3750)
-				if(plasma_amount >= 3750)
-					var/obj/item/stack/sheet/plasma/G = new /obj/item/stack/sheet/plasma(src.loc)
-					G.amount = round(plasma_amount / 3750)
+				if(phoron_amount >= 3750)
+					var/obj/item/stack/sheet/phoron/G = new /obj/item/stack/sheet/phoron(src.loc)
+					G.amount = round(phoron_amount / 3750)
 				if(silver_amount >= 3750)
 					var/obj/item/stack/sheet/silver/G = new /obj/item/stack/sheet/silver(src.loc)
 					G.amount = round(silver_amount / 3750)
@@ -161,8 +161,8 @@ Note: Must be placed west/left of and R&D console to function.
 				gold_amount += amount * 3750
 			else if(istype(stack, /obj/item/stack/sheet/silver))
 				silver_amount += amount * 3750
-			else if(istype(stack, /obj/item/stack/sheet/plasma))
-				plasma_amount += amount * 3750
+			else if(istype(stack, /obj/item/stack/sheet/phoron))
+				phoron_amount += amount * 3750
 			else if(istype(stack, /obj/item/stack/sheet/uranium))
 				uranium_amount += amount * 3750
 			else if(istype(stack, /obj/item/stack/sheet/diamond))

@@ -33,8 +33,8 @@
 		dat += text("Glass: [machine.ore_glass] <A href='?src=\ref[src];release=glass'>Release</A><br>")
 	if(machine.ore_rglass)
 		dat += text("Reinforced Glass: [machine.ore_rglass] <A href='?src=\ref[src];release=rglass'>Release</A><br>")
-	if(machine.ore_plasma)
-		dat += text("Plasma: [machine.ore_plasma] <A href='?src=\ref[src];release=plasma'>Release</A><br>")
+	if(machine.ore_phoron)
+		dat += text("Phoron: [machine.ore_phoron] <A href='?src=\ref[src];release=phoron'>Release</A><br>")
 	if(machine.ore_gold)
 		dat += text("Gold: [machine.ore_gold] <A href='?src=\ref[src];release=gold'>Release</A><br>")
 	if(machine.ore_silver)
@@ -61,12 +61,12 @@
 	src.add_fingerprint(usr)
 	if(href_list["release"])
 		switch(href_list["release"])
-			if ("plasma")
-				if (machine.ore_plasma > 0)
-					var/obj/item/stack/sheet/plasma/G = new /obj/item/stack/sheet/plasma
-					G.amount = machine.ore_plasma
+			if ("phoron")
+				if (machine.ore_phoron > 0)
+					var/obj/item/stack/sheet/phoron/G = new /obj/item/stack/sheet/phoron
+					G.amount = machine.ore_phoron
 					G.loc = machine.output.loc
-					machine.ore_plasma = 0
+					machine.ore_phoron = 0
 			if ("uranium")
 				if (machine.ore_uranium > 0)
 					var/obj/item/stack/sheet/uranium/G = new /obj/item/stack/sheet/uranium
@@ -155,7 +155,7 @@
 	var/ore_gold = 0;
 	var/ore_silver = 0;
 	var/ore_diamond = 0;
-	var/ore_plasma = 0;
+	var/ore_phoron = 0;
 	var/ore_iron = 0;
 	var/ore_uranium = 0;
 	var/ore_clown = 0;
@@ -192,8 +192,8 @@
 				ore_diamond+= O:amount;
 				del(O)
 				continue
-			if (istype(O,/obj/item/stack/sheet/plasma))
-				ore_plasma+= O:amount
+			if (istype(O,/obj/item/stack/sheet/phoron))
+				ore_phoron+= O:amount
 				del(O)
 				continue
 			if (istype(O,/obj/item/stack/sheet/gold))
@@ -254,11 +254,11 @@
 		G.loc = output.loc
 		ore_diamond -= stack_amt
 		return
-	if (ore_plasma >= stack_amt)
-		var/obj/item/stack/sheet/plasma/G = new /obj/item/stack/sheet/plasma
+	if (ore_phoron >= stack_amt)
+		var/obj/item/stack/sheet/phoron/G = new /obj/item/stack/sheet/phoron
 		G.amount = stack_amt
 		G.loc = output.loc
-		ore_plasma -= stack_amt
+		ore_phoron -= stack_amt
 		return
 	if (ore_iron >= stack_amt)
 		var/obj/item/stack/sheet/metal/G = new /obj/item/stack/sheet/metal
