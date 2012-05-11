@@ -41,7 +41,7 @@
 /obj/item/weapon/tank/phoron
 	name = "Gas Tank (BIOHAZARD)"
 	desc = "Contains dangerous phoron. Do not inhale."
-	icon_state = "phoron"
+	icon_state = "plasma"
 	flags = FPRINT | TABLEPASS | CONDUCT
 
 /obj/item/weapon/tank/blob_act()
