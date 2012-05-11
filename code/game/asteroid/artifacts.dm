@@ -1,6 +1,4 @@
 var/global/list/space_surprises = list(				/obj/item/clothing/mask/facehugger/angry			=4,
-												//	/obj/effect/critter/spacecarp						=2,
-													/obj/effect/critter/spacecarp/elite					=2,
 												//	/obj/creature										=0,
 												//	/obj/item/weapon/rcd								=0,
 												//	/obj/item/weapon/rcd_ammo							=0,

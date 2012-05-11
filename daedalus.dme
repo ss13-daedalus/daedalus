@@ -217,7 +217,6 @@
 #include "code\game\events\Events\PowerOffline.dm"
 #include "code\game\events\Events\PrisonBreak.dm"
 #include "code\game\events\Events\RadiationBelt.dm"
-#include "code\game\events\Events\SpaceCarp.dm"
 #include "code\game\events\Events\SpaceNinja.dm"
 #include "code\game\events\Events\VirusEpidemic.dm"
 #include "code\game\gamemodes\game_mode.dm"

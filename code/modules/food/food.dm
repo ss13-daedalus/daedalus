@@ -301,26 +301,6 @@
 		src.bitesize = 3
 
 
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat
-	name = "carp fillet"
-	desc = "A fillet of space carp meat"
-	icon_state = "fishfillet"
-	New()
-		..()
-		reagents.add_reagent("nutriment", 3)
-		reagents.add_reagent("carpotoxin", 3)
-		src.bitesize = 6
-
-/obj/item/weapon/reagent_containers/food/snacks/fishfingers
-	name = "Fish Fingers"
-	desc = "A finger of fish."
-	icon_state = "fishfingers"
-	New()
-		..()
-		reagents.add_reagent("nutriment", 6)
-		reagents.add_reagent("carpotoxin", 3)
-		bitesize = 3
-
 /obj/item/weapon/reagent_containers/food/snacks/hugemushroomslice
 	name = "huge mushroom slice"
 	desc = "A slice from a huge mushroom."
@@ -441,15 +421,6 @@
 		..()
 		reagents.add_reagent("nutriment", 6)
 		bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/burger/fish
-	name = "Fillet -o- Carp Sandwich"
-	desc = "Almost like a carp is yelling somewhere... Give me back that fillet -o- carp, give me that carp."
-	icon_state = "fishburger"
-	New()
-		..()
-		reagents.add_reagent("carpotoxin", 3)
-		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/burger/tofu
 	name = "Tofu Burger"
@@ -699,18 +670,6 @@
 			var/obj/item/stack/rods/W = new /obj/item/stack/rods( M )
 			M << "\blue You lick clean the rod."
 			M.put_in_hand(W)
-
-/obj/item/weapon/reagent_containers/food/snacks/cubancarp
-	name = "Cuban Carp"
-	desc = "A grifftastic sandwich that burns your tongue and then leaves it numb!"
-	icon_state = "cubancarp"
-	trash = "plate"
-	New()
-		..()
-		reagents.add_reagent("nutriment", 6)
-		reagents.add_reagent("carpotoxin", 3)
-		reagents.add_reagent("capsaicin", 3)
-		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/popcorn
 	name = "Popcorn"
@@ -1175,16 +1134,6 @@
 		reagents.add_reagent("nutriment", 6)
 		reagents.add_reagent("blackpepper", 1)
 		reagents.add_reagent("sodiumchloride", 1)
-		bitesize = 3
-
-/obj/item/weapon/reagent_containers/food/snacks/fishandchips
-	name = "Fish and Chips"
-	desc = "I do say so myself chap."
-	icon_state = "fishandchips"
-	New()
-		..()
-		reagents.add_reagent("nutriment", 8)
-		reagents.add_reagent("carpotoxin", 3)
 		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/sandwich

@@ -281,7 +281,7 @@
 		del(src)
 
 /obj/item/toy/snappop/HasEntered(H as mob|obj)
-	if((ishuman(H))) //i guess carp and shit shouldn't set them off
+	if((ishuman(H))) //Non-human mobs shouldn't set them off
 		var/mob/living/carbon/M = H
 		if(M.m_intent == "run")
 			M << "\red You step on the snap pop!"

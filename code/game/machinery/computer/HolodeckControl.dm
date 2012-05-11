@@ -41,9 +41,6 @@
 			dat += "<A href='?src=\ref[src];burntest=1'>(<font color=red>Begin Atmospheric Burn Simulation</font>)</A><BR>"
 			dat += "Ensure the holodeck is empty before testing.<BR>"
 			dat += "<BR>"
-			dat += "<A href='?src=\ref[src];wildlifecarp=1'>(<font color=red>Begin Wildlife Simulation</font>)</A><BR>"
-			dat += "Ensure the holodeck is empty before testing.<BR>"
-			dat += "<BR>"
 			dat += "Safety Protocols are <font color=red> DISABLED </font><BR>"
 		else
 			dat += "<BR>"
@@ -89,11 +86,6 @@
 
 			else if(href_list["burntest"])
 				target = locate(/area/holodeck/source_burntest)
-				if(target)
-					loadProgram(target)
-
-			else if(href_list["wildlifecarp"])
-				target = locate(/area/holodeck/source_wildlife)
 				if(target)
 					loadProgram(target)
 

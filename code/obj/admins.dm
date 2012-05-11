@@ -1937,13 +1937,6 @@ var/global/BSACooldown = 0
 					if(toggle_space_ninja)
 						if(space_ninja_arrival())//If the ninja is actually spawned. They may not be depending on a few factors.
 							message_admins("[key_name_admin(usr)] has sent in a space ninja", 1)
-				if("carp")
-					//feedback_inc("admin_secrets_fun_used",1)
-					//feedback_add_details("admin_secrets_fun_used","C")
-					var/choice = input("You sure you want to spawn carp?") in list("Badmin", "Cancel")
-					if(choice == "Badmin")
-						message_admins("[key_name_admin(usr)] has spawned carp.", 1)
-						Force_Event(/datum/event/spacecarp)
 				if("radiation")
 					//feedback_inc("admin_secrets_fun_used",1)
 					//feedback_add_details("admin_secrets_fun_used","R")
@@ -2573,7 +2566,6 @@ var/global/BSACooldown = 0
 <A href='?src=\ref[src];secretsfun=goblob'>Spawn blob(Untested)</A><BR>
 <A href='?src=\ref[src];secretsfun=aliens'>Trigger an Alien infestation</A><BR>
 <A href='?src=\ref[src];secretsfun=spaceninja'>Send in a space ninja</A><BR>
-<A href='?src=\ref[src];secretsfun=carp'>Trigger an Carp migration</A><BR>
 <A href='?src=\ref[src];secretsfun=radiation'>Irradiate the station</A><BR>
 <A href='?src=\ref[src];secretsfun=prison_break'>Trigger a Prison Break</A><BR>
 <A href='?src=\ref[src];secretsfun=virus'>Trigger a Virus Outbreak</A><BR>

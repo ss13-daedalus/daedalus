@@ -135,20 +135,6 @@
 	summon_lifespan = 300
 
 
-/obj/effect/proc_holder/spell/aoe_turf/conjure/carp
-	name = "Summon Bigger Carp"
-	desc = "This spell conjures an elite carp."
-
-	school = "conjuration"
-	charge_max = 1200
-	clothes_req = 1
-	invocation = "NOUK FHUNMM SACP RISSKA"
-	invocation_type = "shout"
-	range = 1
-
-	summon_type = list("/obj/effect/critter/spacecarp/elite")
-
-
 /obj/effect/proc_holder/spell/aoe_turf/conjure/construct
 	name = "Artificer"
 	desc = "This spell conjures a construct which may be controlled by Shades"

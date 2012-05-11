@@ -373,7 +373,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if("Space Ninja")
 			var/ninja_spawn[] = list()
 			for(var/obj/effect/landmark/L in world)
-				if(L.name=="carpspawn")
+				if(L.name=="ninjaspawn")
 					ninja_spawn += L
 			new_character.equip_space_ninja()
 			new_character.internal = new_character.s_store

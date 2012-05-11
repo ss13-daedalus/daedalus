@@ -134,7 +134,7 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 	//Here we pick a location and spawn the ninja.
 	var/list/spawn_list = list()
 	for(var/obj/effect/landmark/L in world)
-		if (L.name == "carpspawn")
+		if (L.name == "ninjaspawn")
 			spawn_list.Add(L)
 
 	var/mob/dead/observer/G
@@ -416,7 +416,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 
 	var/list/spawn_list = list()
 	for(var/obj/effect/landmark/L in world)
-		if (L.name == "carpspawn")
+		if (L.name == "ninjaspawn")
 			spawn_list.Add(L)
 
 

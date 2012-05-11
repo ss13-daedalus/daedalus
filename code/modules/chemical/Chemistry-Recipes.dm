@@ -421,7 +421,7 @@ datum
 			name = "Zombie Powder"
 			id = "zombiepowder"
 			result = "zombiepowder"
-			required_reagents = list("carpotoxin" = 5, "stoxin" = 5, "copper" = 5)
+			required_reagents = list("stoxin" = 5, "copper" = 5)
 			result_amount = 2
 
 		LSD

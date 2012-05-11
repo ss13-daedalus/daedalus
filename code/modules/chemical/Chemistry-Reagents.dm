@@ -350,8 +350,6 @@ datum
 					holder.remove_reagent("amatoxin", 2)
 				if(holder.has_reagent("chloralhydrate"))
 					holder.remove_reagent("chloralhydrate", 5)
-				if(holder.has_reagent("carpotoxin"))
-					holder.remove_reagent("carpotoxin", 1)
 				if(holder.has_reagent("zombiepowder"))
 					holder.remove_reagent("zombiepowder", 0.5)
 				M:adjustToxLoss(-2)
@@ -1380,8 +1378,6 @@ datum
 					holder.remove_reagent("amatoxin", 5)
 				if(holder.has_reagent("chloralhydrate"))
 					holder.remove_reagent("chloralhydrate", 5)
-				if(holder.has_reagent("carpotoxin"))
-					holder.remove_reagent("carpotoxin", 5)
 				if(holder.has_reagent("zombiepowder"))
 					holder.remove_reagent("zombiepowder", 5)
 				M.setBrainLoss(0)
@@ -1635,19 +1631,6 @@ datum
 					M:adjustToxLoss(1)
 //				if(data >= 100)
 //					M:adjustToxLoss(0.1)
-				return
-
-		carpotoxin
-			name = "Carpotoxin"
-			id = "carpotoxin"
-			description = "A deadly neurotoxin produced by the dreaded space carp."
-			reagent_state = LIQUID
-			color = "#003333" // rgb: 0, 51, 51
-
-			on_mob_life(var/mob/living/M as mob)
-				if(!M) M = holder.my_atom
-				M:adjustToxLoss(1)
-				..()
 				return
 
 		zombiepowder
