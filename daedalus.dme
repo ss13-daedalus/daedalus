@@ -90,7 +90,6 @@
 #include "code\datum\diseases\jungle_fever.dm"
 #include "code\datum\diseases\magnitis.dm"
 #include "code\datum\diseases\pierrot_throat.dm"
-#include "code\datum\diseases\plasmatoid.dm"
 #include "code\datum\diseases\retrovirus.dm"
 #include "code\datum\diseases\rhumba_beat.dm"
 #include "code\datum\diseases\robotic_transformation.dm"
