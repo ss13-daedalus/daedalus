@@ -120,15 +120,15 @@ var/list/nonhuman_positions = list(
 
 /proc/GetRank(var/job)
 	switch(job)
-		if("Bartender","Chef","Lawyer","Librarian","Janitor","Assistant","Unassigned")
+		if("Bartender", "Barkeep", "Chef", "Cook", "Culinary Technician", "Butcher", "Baker", "Lawyer", "Attorney at Law", "Attorney", "esq.", "Public Defender", "Paralegal", "Librarian", "Literary Specialist", "Bibliotechnician", "Janitor", "Custodian", "Custodial Technician", "Maintenance Technician", "Lighting Specialist", "Assistant", "Unassigned")
 			return 0
-		if("Chaplain","Botanist","Hydroponicist","Medical Doctor","Atmospheric Technician","Geneticist", "Virologist", "Surgeon", "Emergency Medical Technician", "Counselor")
+		if("Chaplain", "Counselor", "Apostate", "Reverend", "Pastor", "Advisor", "Botanist", "Farmer", "Hydroponicist", "Aeroponicist", "Medical Doctor", "Atmospheric Technician", "Geneticist", "Virologist", "Surgeon", "Emergency Medical Technician", "Nurse", "General Practitioner", "M.D.")
 			return 1
-		if("Quartermaster","Cargo Technician","Chemist", "Station Engineer","Roboticist", "Security Officer", "Forensic Technician","Detective", "Scientist","Shaft Miner", "Xenobiologist", "Plasma Researcher","Chief Medical Officer")
+		if("Quartermaster", "Logistics Director", "Cargo Technician", "Dockworker", "Warehouser", "Shipping and Receiving Technician", "Chemist", "Station Engineer", "Technician", "Electrician", "Roboticist", "Security Officer", "Constable", "Enforcer", "Peacekeeper", "Forensic Technician", "Detective", "Forensic Technician", "Inspector", "Scientist", "Shaft Miner", "Digger", "Resource Extraction Specialist", "Xenobiologist", "Plasma Researcher", "Research Assistant", "PhD", "Chief Medical Officer")
 			return 2
-		if("Research Director","Head of Security","Chief Engineer","Warden")
+		if("Research Director", "Head of Security", "Chief Engineer", "Warden", "Jailor")
 			return 3
-		if("Captain","Head of Personnel","Wizard","MODE")
+		if("Captain", "Head of Personnel", "Personnel Director", "Director of Human Resources", "Wizard", "MODE")
 			return 4
 		else
 			message_admins("\"[job]\" NOT GIVEN RANK, REPORT JOBS.DM ERROR TO A CODER")
