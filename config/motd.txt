@@ -6,7 +6,7 @@ This server is running <b>Daedalus</b>, a cleanup and modification of Baystation
 <br>
 <strong>Check out the changes we've made here:</strong> <a href="https://github.com/ss13-daedalus/daedalus/commits/master">https://github.com/ss13-daedalus/daedalus/commits/master</a> or via the "Changelog" command.
 <br>
-<strong>Join us on IRC!</strong> <tt>#daedalus</tt> on the <a href="http://www.freenode.new">Freenode</a> IRC network.
+<strong>Join us on IRC!</strong> <tt>#daedalus</tt> on the <a href="http://www.freenode.net">Freenode</a> IRC network.
 <br>
 <strong>Read the rules of the road:</strong> via the "Rules" command.  Ignorance is no excuse!
 <!-- vi: set filetype=html : -->
