@@ -2032,11 +2032,11 @@ var/global/BSACooldown = 0
 					else
 						alert("You cannot perform this action. You must be of a higher administrative rank!")
 						return
-				if("ionstorm")
+				if("ion_storm")
 					if (src.rank in list("Badmin","Game Admin", "Game Master"))
 						//feedback_inc("admin_secrets_fun_used",1)
 						//feedback_add_details("admin_secrets_fun_used","I")
-						Force_Event(/datum/event/ionstorm)
+						Force_Event(/datum/event/ion_storm)
 						message_admins("[key_name_admin(usr)] triggered an ion storm")
 						var/show_log = alert(usr, "Show ion message?", "Message", "Yes", "No")
 						if(show_log == "Yes")
@@ -2572,7 +2572,7 @@ var/global/BSACooldown = 0
 <A href='?src=\ref[src];secretsfun=trigger_armed_response_team'>Trigger the Emergency Response Team</A><BR>
 <A href='?src=\ref[src];secretsfun=immovable'>Spawn an Immovable Rod</A><BR>
 <A href='?src=\ref[src];secretsfun=lightsout'>Toggle a "lights out" event</A><BR>
-<A href='?src=\ref[src];secretsfun=ionstorm'>Spawn an Ion Storm</A><BR>
+<A href='?src=\ref[src];secretsfun=ion_storm'>Spawn an Ion Storm</A><BR>
 <A href='?src=\ref[src];secretsfun=spacevines'>Spawn Space-Vines</A><BR>
 <BR>
 <B>Fun Secrets</B><BR>

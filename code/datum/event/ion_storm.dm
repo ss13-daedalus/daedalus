@@ -1,4 +1,4 @@
-/datum/event/ionstorm
+/datum/event/ion_storm
 	var
 		botEmagChance = 0.5
 		list/players = list()
