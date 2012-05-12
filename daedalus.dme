@@ -902,6 +902,7 @@
 #include "code\obj\effect.dm"
 #include "code\obj\machinery.dm"
 #include "code\obj\effect\proc_holder.dm"
+#include "code\obj\effect\proc_holder\spell.dm"
 #include "code\obj\item\police_tape.dm"
 #include "code\obj\item\police_tape_roll.dm"
 #include "code\obj\item\portalathe.dm"
