@@ -1,4 +1,4 @@
-/datum/event/viralinfection
+/datum/event/viral_infection
 	var
 		virus_type
 		virus

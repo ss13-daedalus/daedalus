@@ -1971,12 +1971,12 @@ var/global/BSACooldown = 0
 					//feedback_add_details("admin_secrets_fun_used","V")
 					var/answer = alert("Do you want this to be a random disease or do you have something in mind?",,"Virus2","Random","Choose")
 					if(answer=="Random")
-						Force_Event(/datum/event/viralinfection)
+						Force_Event(/datum/event/viral_infection)
 						message_admins("[key_name_admin(usr)] has triggered a virus outbreak", 1)
 					else if(answer == "Choose")
 						var/list/viruses = list("fake gbs","gbs","magnitis","wizarditis","brain rot","cold","retrovirus","flu","pierrot's throat","rhumba beat")
 						var/V = input("Choose the virus to spread", "BIOHAZARD") in viruses
-						Force_Event(/datum/event/viralinfection,V)
+						Force_Event(/datum/event/viral_infection,V)
 						message_admins("[key_name_admin(usr)] has triggered a virus outbreak of [V]", 1)
 					else
 						var/lesser = (alert("Do you want to infect the mob with a major or minor disease?",,"Major","Minor") == "Minor")

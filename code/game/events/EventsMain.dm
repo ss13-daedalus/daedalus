@@ -43,14 +43,14 @@ client/proc/Force_Event_admin(Type as null|anything in typesof(/datum/event))
 	if(ActiveEvent)
 		src << "There is an active event."
 		return
-	if(istype(Type,/datum/event/viralinfection))
+	if(istype(Type,/datum/event/viral_infection))
 		var/answer = alert("Do you want this to be a random disease or do you have something in mind?",,"Virus2","Choose")
 		if(answer == "Choose")
 			var/list/viruses = list("fake gbs","gbs","magnitis","wizarditis","brain rot","cold","retrovirus","flu","pierrot's throat","rhumba beat")
 			var/V = input("Choose the virus to spread", "BIOHAZARD") in viruses
-			Force_Event(/datum/event/viralinfection, V)
+			Force_Event(/datum/event/viral_infection, V)
 		else
-			Force_Event(/datum/event/viralinfection, "virus2")
+			Force_Event(/datum/event/viral_infection, "virus2")
 	else
 		Force_Event(Type)
 	message_admins("[key_name_admin(usr)] has triggered an (non-viral) event.", 1)
@@ -64,8 +64,8 @@ client/proc/Force_Event_admin(Type as null|anything in typesof(/datum/event))
 		return
 	src << "Started Event: [Type]"
 	ActiveEvent = new Type()
-	if(istype(ActiveEvent,/datum/event/viralinfection) && args && args != "virus2")
-		var/datum/event/viralinfection/V = ActiveEvent
+	if(istype(ActiveEvent,/datum/event/viral_infection) && args && args != "virus2")
+		var/datum/event/viral_infection/V = ActiveEvent
 		V.virus = args
 		ActiveEvent = V
 	ActiveEvent.Announce()
