@@ -84,7 +84,6 @@
 #include "code\datum\disease\dna_spread.dm"
 #include "code\datum\disease\fake_gbs.dm"
 #include "code\datum\disease\flu.dm"
-#include "code\datum\disease\fluspanish.dm"
 #include "code\datum\disease\gbs.dm"
 #include "code\datum\disease\jungle_fever.dm"
 #include "code\datum\disease\magnitis.dm"
