@@ -1,14 +1,3 @@
-#define PLAYER_WEIGHT 5
-#define HUMAN_DEATH -5000
-#define OTHER_DEATH -5000
-#define EXPLO_SCORE -10000 //boum
-
-#define COOLDOWN_TIME 12000 // Twenty minutes
-#define MIN_ROUND_TIME 18000
-
-
-#define FLAT_PERCENT 0
-
 //estimated stats
 //80 minute round
 //60 player server
@@ -16,9 +5,6 @@
 
 //60 deaths (ideally)
 //20 explosions
-
-
-var/global/datum/tension/tension_master
 
 /datum/tension
 	var/score

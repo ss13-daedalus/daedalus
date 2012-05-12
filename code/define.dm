@@ -351,6 +351,16 @@ var/const/maximum_age = 65
 #define FORWARD -1
 #define BACKWARD 1
 
+#define PLAYER_WEIGHT 5
+#define HUMAN_DEATH -5000
+#define OTHER_DEATH -5000
+#define EXPLO_SCORE -10000 //boum
+
+#define COOLDOWN_TIME 12000 // Twenty minutes
+#define MIN_ROUND_TIME 18000
+
+#define FLAT_PERCENT 0
+
 // What's the name of this place?  Put here so that it can potentially
 // be changed in a single location in a fork rather than scattered
 // throughout the code.

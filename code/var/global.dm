@@ -236,3 +236,5 @@ var/global
 	datum/shuttle_controller/emergency_shuttle/emergency_shuttle
 
 	list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin verb for now
+
+	datum/tension/tension_master
