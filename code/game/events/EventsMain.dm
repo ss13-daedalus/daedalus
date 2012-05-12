@@ -46,7 +46,7 @@ client/proc/Force_Event_admin(Type as null|anything in typesof(/datum/event))
 	if(istype(Type,/datum/event/viralinfection))
 		var/answer = alert("Do you want this to be a random disease or do you have something in mind?",,"Virus2","Choose")
 		if(answer == "Choose")
-			var/list/viruses = list("fake gbs","gbs","magnitis","wizarditis",/*"beesease",*/"brain rot","cold","retrovirus","flu","pierrot's throat","rhumba beat")
+			var/list/viruses = list("fake gbs","gbs","magnitis","wizarditis","brain rot","cold","retrovirus","flu","pierrot's throat","rhumba beat")
 			var/V = input("Choose the virus to spread", "BIOHAZARD") in viruses
 			Force_Event(/datum/event/viralinfection, V)
 		else

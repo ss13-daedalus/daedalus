@@ -78,7 +78,6 @@
 #include "code\datum\controller\game_ticker.dm"
 #include "code\datum\disease\alien_embryo.dm"
 #include "code\datum\disease\appendicitis.dm"
-#include "code\datum\disease\beesease.dm"
 #include "code\datum\disease\brainrot.dm"
 #include "code\datum\disease\cold.dm"
 #include "code\datum\disease\cold9.dm"

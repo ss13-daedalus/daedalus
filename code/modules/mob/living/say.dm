@@ -179,15 +179,6 @@
 	if (slurring)
 		message = slur(message)
 
-/* //qw do not have beesease atm.
-	if(virus)
-		if(virus.name=="beesease" && virus.stage>=2)
-			if(prob(virus.stage*10))
-				var/bzz = length(message)
-				message = "B"
-				for(var/i=0,i<bzz,i++)
-					message += "Z"
-*/
 	var/list/obj/item/used_radios = new
 
 	switch (message_mode)
