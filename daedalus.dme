@@ -80,7 +80,6 @@
 #include "code\datum\disease\appendicitis.dm"
 #include "code\datum\disease\brainrot.dm"
 #include "code\datum\disease\cold.dm"
-#include "code\datum\disease\cold9.dm"
 #include "code\datum\disease\dna_spread.dm"
 #include "code\datum\disease\fake_gbs.dm"
 #include "code\datum\disease\flu.dm"
