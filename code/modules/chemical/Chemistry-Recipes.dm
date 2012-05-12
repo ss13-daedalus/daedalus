@@ -643,7 +643,7 @@ datum
 				holder.clear_reagents()
 
 				var/virus = pick(/datum/disease/flu, /datum/disease/cold, \
-				 /datum/disease/pierrot_throat, /datum/disease/fake_gbs, \
+				 /datum/disease/fake_gbs, \
 				 /datum/disease/brainrot, /datum/disease/magnitis)
 
 

@@ -85,7 +85,6 @@
 #include "code\datum\disease\flu.dm"
 #include "code\datum\disease\gbs.dm"
 #include "code\datum\disease\magnitis.dm"
-#include "code\datum\disease\pierrot_throat.dm"
 #include "code\datum\disease\retrovirus.dm"
 #include "code\datum\disease\rhumba_beat.dm"
 #include "code\datum\disease\robotic_transformation.dm"

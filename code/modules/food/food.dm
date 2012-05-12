@@ -457,13 +457,6 @@
 	name = "Clown Burger"
 	desc = "This tastes funny..."
 	icon_state = "clownburger"
-/*	New()
-		..()
-
-		var/datum/disease/F = new /datum/disease/pierrot_throat(0)
-		var/list/data = list("viruses"= list(F))
-		reagents.add_reagent("blood", 4, data)
-*/
 
 /obj/item/weapon/reagent_containers/food/snacks/burger/mime
 	name = "Mime Burger"

@@ -21,7 +21,7 @@
 			//overall virus alert happens 26% of the time, might need to be higher
 		else
 			if(!virus)
-				virus_type = pick(/datum/disease/dna_spread,/datum/disease/flu,/datum/disease/cold,/datum/disease/brainrot,/datum/disease/magnitis,/datum/disease/pierrot_throat)
+				virus_type = pick(/datum/disease/dna_spread,/datum/disease/flu,/datum/disease/cold,/datum/disease/brainrot,/datum/disease/magnitis)
 			else
 				switch(virus)
 					if("fake gbs")
@@ -42,8 +42,6 @@
 						virus_type = /datum/disease/flu
 //					if("t-virus")
 //						virus_type = /datum/disease/t_virus
-					if("pierrot's throat")
-						virus_type = /datum/disease/pierrot_throat
 			for(var/mob/living/carbon/human/H in world)
 
 				var/foundAlready = 0 // don't infect someone that already has the virus
