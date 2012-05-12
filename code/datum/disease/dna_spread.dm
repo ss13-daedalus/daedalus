@@ -1,4 +1,4 @@
-/datum/disease/dnaspread
+/datum/disease/dna_spread
 	name = "Space Retrovirus"
 	max_stages = 4
 	spread = "On contact"
@@ -14,7 +14,7 @@
 	severity = "Medium"
 
 
-/datum/disease/dnaspread/stage_act()
+/datum/disease/dna_spread/stage_act()
 	..()
 	switch(stage)
 		if(2 || 3) //Pretend to be a cold and give time to spread.
@@ -54,7 +54,7 @@
 
 	return
 
-/datum/disease/dnaspread/Del()
+/datum/disease/dna_spread/Del()
 	if ((original_dna["name"]) && (original_dna["UI"]) && (original_dna["SE"]))
 		affected_mob.dna.uni_identity = original_dna["UI"]
 		updateappearance(affected_mob, affected_mob.dna.uni_identity)

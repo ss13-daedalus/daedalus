@@ -21,7 +21,7 @@
 			//overall virus alert happens 26% of the time, might need to be higher
 		else
 			if(!virus)
-				virus_type = pick(/datum/disease/dnaspread,/datum/disease/flu,/datum/disease/cold,/datum/disease/brainrot,/datum/disease/magnitis,/datum/disease/pierrot_throat)
+				virus_type = pick(/datum/disease/dna_spread,/datum/disease/flu,/datum/disease/cold,/datum/disease/brainrot,/datum/disease/magnitis,/datum/disease/pierrot_throat)
 			else
 				switch(virus)
 					if("fake gbs")
@@ -37,7 +37,7 @@
 					if("cold")
 						virus_type = /datum/disease/cold
 					if("retrovirus")
-						virus_type = /datum/disease/dnaspread
+						virus_type = /datum/disease/dna_spread
 					if("flu")
 						virus_type = /datum/disease/flu
 //					if("t-virus")
@@ -52,10 +52,10 @@
 				if(H.stat == 2 || foundAlready)
 					continue
 
-				if(virus_type == /datum/disease/dnaspread) //Dnaspread needs strain_data set to work.
+				if(virus_type == /datum/disease/dna_spread) //Dnaspread needs strain_data set to work.
 					if((!H.dna) || (H.disabilities & 128)) //A blindness disease would be the worst.
 						continue
-					var/datum/disease/dnaspread/D = new
+					var/datum/disease/dna_spread/D = new
 					D.strain_data["name"] = H.real_name
 					D.strain_data["UI"] = H.dna.uni_identity
 					D.strain_data["SE"] = H.dna.struc_enzymes
