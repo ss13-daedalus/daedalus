@@ -48,6 +48,7 @@
 // END_PREFERENCES
 #include "code\define.dm"
 // BEGIN_INCLUDE
+#include "code\obj.dm"
 #include "code\atom.dm"
 #include "code\client.dm"
 #include "code\names.dm"
@@ -235,7 +236,6 @@
 #include "code\game\gamemodes\wizard\spells.dm"
 #include "code\game\gamemodes\wizard\veilrender.dm"
 #include "code\game\gamemodes\wizard\wizard.dm"
-#include "code\game\jobs\access.dm"
 #include "code\game\jobs\job_controller.dm"
 #include "code\game\jobs\jobprocs.dm"
 #include "code\game\jobs\jobs.dm"
@@ -933,6 +933,7 @@
 #include "code\obj\machinery\disease2\isolator.dm"
 #include "code\proc\global.dm"
 #include "code\var\global.dm"
+#include "code\obj.dm"
 #include "code\WorkInProgress\AI_Visibility.dm"
 #include "code\WorkInProgress\buildmode.dm"
 #include "code\WorkInProgress\explosion_particles.dm"

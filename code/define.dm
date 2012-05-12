@@ -366,5 +366,88 @@ var/const/maximum_age = 65
 // throughout the code.
 #define LOCATION_NAME "NSS Icarus"
 
+//	Security access levels
+/var/const
+	access_security = 1
+	access_brig = 2
+	access_armory = 3
+	access_forensics_lockers= 4
+	access_medical = 5
+	access_morgue = 6
+	access_tox = 7
+	access_tox_storage = 8
+	access_medlab = 9
+	access_engine = 10
+	access_engine_equip= 11
+	access_maint_tunnels = 12
+	access_external_airlocks = 13
+	access_emergency_storage = 14
+	access_change_ids = 15
+	access_ai_upload = 16
+	access_teleporter = 17
+	access_eva = 18
+	access_heads = 19
+	access_captain = 20
+	access_all_personal_lockers = 21
+	access_chapel_office = 22
+	access_tech_storage = 23
+	access_atmospherics = 24
+	access_bar = 25
+	access_janitor = 26
+	access_crematorium = 27
+	access_kitchen = 28
+	access_robotics = 29
+	access_rd = 30
+	access_cargo = 31
+	access_construction = 32
+	access_chemistry = 33
+	access_cargo_bot = 34
+	access_hydroponics = 35
+	access_manufacturing = 36
+	access_library = 37
+	access_lawyer = 38
+	access_virology = 39
+	access_cmo = 40
+	access_qm = 41
+	access_court = 42
+	access_clown = 43
+	access_mime = 44
+	access_surgery = 45
+	access_theatre = 46
+	access_research = 47
+	access_mining = 48
+	access_mining_office = 49 //not in use
+	access_mailsorting = 50
+	access_mint = 51
+	access_mint_vault = 52
+	access_heads_vault = 53
+	access_mining_station = 54
+	access_xenobiology = 55
+	access_ce = 56
+	access_hop = 57
+	access_hos = 58
+	access_RC_announce = 59 //Request console announcements
+	access_keycard_auth = 60 //Used for events which require at least two people to confirm them
+	access_tcomsat = 61 // has access to the entire telecomms satellite / machinery
+
+	//BEGIN CENTCOM ACCESS
+	/*Should leave plenty of room if we need to add more access levels.
+	Mostly for admin fun times.*/
+	access_cent_general = 101//General facilities.
+	access_cent_thunder = 102//Thunderdome.
+	access_cent_specops = 103//Special Ops.
+	access_cent_medical = 104//Medical/Research
+	access_cent_living = 105//Living quarters.
+	access_cent_storage = 106//Generic storage areas.
+	access_cent_teleporter = 107//Teleporter.
+	access_cent_creed = 108//Creed's office.
+	access_cent_captain = 109//Captain's office/ID comp/AI.
+
+	//The Syndicate
+	access_syndicate = 150//General Syndicate Access
+
+	//MONEY
+	access_crate_cash = 200
+
 // End the stupid preprocessor macro tricks.
 #endif
