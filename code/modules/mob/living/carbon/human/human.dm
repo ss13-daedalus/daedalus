@@ -1302,7 +1302,7 @@
 	if(armor >= 2)	return
 
 	for(var/datum/disease/D in M.viruses)
-		if(istype(D, /datum/disease/jungle_fever))
+		if(istype(D, /datum/disease/simiplexia))
 			var/mob/living/carbon/human/H = src
 			src = null
 			src = H.monkeyize()

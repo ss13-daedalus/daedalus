@@ -15,7 +15,7 @@
 		apply_damage(damage, BRUTE, affecting, run_armor_check(affecting, "melee"))
 
 		for(var/datum/disease/D in M.viruses)
-			if(istype(D, /datum/disease/jungle_fever))
+			if(istype(D, /datum/disease/simiplexia))
 				var/mob/living/carbon/human/H = src
 				src = null
 				src = H.monkeyize()

@@ -3058,7 +3058,7 @@ var/global/BSACooldown = 0
 		return 1
 
 	for(var/datum/disease/D in M.viruses)
-		if(istype(D, /datum/disease/jungle_fever))
+		if(istype(D, /datum/disease/simiplexia))
 			if (ticker.mode.config_tag == "monkey")
 				return 2
 			return 1
