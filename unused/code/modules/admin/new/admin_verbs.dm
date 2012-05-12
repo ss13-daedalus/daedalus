@@ -713,7 +713,7 @@
 					del(G)
 				S.energy = 1750
 				S.current_size = 7
-				S.icon = '224x224.dmi'
+				S.icon = 'icons/effects/224x224.dmi'
 				S.icon_state = "singularity_s7"
 				S.pixel_x = -96
 				S.pixel_y = -96

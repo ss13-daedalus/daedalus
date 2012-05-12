@@ -1,7 +1,7 @@
 /obj/structure/filing_cabinet
 	name = "filing cabinet"
 	desc = "A large cabinet with drawers."
-	icon = 'bureaucracy.dmi'
+	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "filing_cabinet0"
 	density = 1
 	anchored = 1
@@ -16,7 +16,7 @@
 			sleep(5)
 			icon_state = "filing_cabinet0"
 	else if(istype(P, /obj/item/weapon/wrench))
-		playsound(loc, 'Ratchet.ogg', 50, 1)
+		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 		anchored = !anchored
 		user << "You [anchored ? "wrench" : "unwrench"] the [src]."
 	else

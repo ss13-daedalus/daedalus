@@ -1,7 +1,7 @@
 /obj/machinery/door/window
 	name = "interior door"
 	desc = "A door made from a window, yet it can not break nor be depowered."
-	icon = 'windoor.dmi'
+	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "left"
 	var/base_state = "left"
 	visible = 0.0
@@ -94,7 +94,7 @@
 	if(!src.operating) //in case of emag
 		src.operating = 1
 	flick(text("[]opening", src.base_state), src)
-	playsound(src.loc, 'windowdoor.ogg', 100, 1)
+	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
 	src.icon_state = text("[]open", src.base_state)
 	sleep(10)
 
@@ -111,7 +111,7 @@
 		return 0
 	src.operating = 1
 	flick(text("[]closing", src.base_state), src)
-	playsound(src.loc, 'windowdoor.ogg', 100, 1)
+	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
 	src.icon_state = text("[]", src.base_state)
 
 	src.density = 1
@@ -144,7 +144,7 @@
 			spark_system.set_up(5, 0, src.loc)
 			spark_system.start()
 			playsound(src.loc, "sparks", 50, 1)
-			playsound(src.loc, 'blade1.ogg', 50, 1)
+			playsound(src.loc, 'sound/weapons/blade1.ogg', 50, 1)
 			for(var/mob/O in viewers(user, 5))
 				O.show_message(text("\blue The glass door was sliced open by []!", user), 1, text("\red You hear glass being sliced and sparks flying."), 2)
 		flick(text("[]spark", src.base_state), src)
@@ -164,7 +164,7 @@
 
 /obj/machinery/door/window/brigdoor
 	name = "Brig Door"
-	icon = 'windoor.dmi'
+	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "leftsecure"
 	base_state = "leftsecure"
 	req_access = list(access_security)

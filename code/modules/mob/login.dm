@@ -47,7 +47,7 @@
 						ticker.mode:update_cult_icons_added(src.mind)
 		if(isAI(src))
 			for(var/obj/effect/rune/rune in world)
-				var/image/blood = image('blood.dmi', loc = rune, icon_state = "floor[rand(1,7)]")
+				var/image/blood = image('icons/effects/blood.dmi', loc = rune, icon_state = "floor[rand(1,7)]")
 				blood.override = 1
 				client.images += blood
 		..()

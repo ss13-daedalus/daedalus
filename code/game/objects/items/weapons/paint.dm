@@ -3,7 +3,7 @@ var/global/list/cached_icons = list()
 /obj/item/weapon/reagent_containers/glass/paint
 	desc = "It's a paint bucket."
 	name = "paint bucket"
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "paint_neutral"
 	item_state = "paintcan"
 	m_amt = 200
@@ -68,7 +68,7 @@ var/global/list/cached_icons = list()
 /obj/item/weapon/paint
 	name = "Paint Can"
 	desc = "Used to recolor floors and walls. Can not be removed by the janitor."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "paint_neutral"
 	var/color = "FFFFFF"
 	item_state = "paintcan"

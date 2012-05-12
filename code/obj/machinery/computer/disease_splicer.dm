@@ -1,6 +1,6 @@
 /obj/machinery/computer/disease_splicer
 	name = "Disease Splicer"
-	icon = 'computer.dmi'
+	icon = 'icons/obj/computer.dmi'
 	icon_state = "crew"
 
 	var/datum/disease2/effectholder/memorybank = null
@@ -13,7 +13,7 @@
 
 /obj/machinery/computer/disease_splicer/attackby(var/obj/I as obj, var/mob/user as mob)
 	if(istype(I, /obj/item/weapon/screwdriver))
-		playsound(src.loc, 'Screwdriver.ogg', 50, 1)
+		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
 			if (src.stat & BROKEN)
 				user << "\blue The broken glass falls out."

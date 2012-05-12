@@ -1,6 +1,6 @@
 /obj/machinery
 	name = "machinery"
-	icon = 'stationobjs.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	var
 		stat = 0
 		emagged = 0
@@ -44,7 +44,7 @@
 /obj/machinery/camera
 	name = "security camera"
 	desc = "It's used to monitor rooms."
-	icon = 'monitors.dmi'
+	icon = 'icons/obj/monitors.dmi'
 	icon_state = "camera"
 	var/network = "SS13"
 	layer = 5
@@ -62,7 +62,7 @@
 /obj/machinery/dispenser
 	name = "tank storage unit"
 	desc = "A simple yet bulky one-way storage device for gas tanks. Holds 10 phoron and 10 oxygen tanks."
-	icon = 'objects.dmi'
+	icon = 'icons/obj/objects.dmi'
 	icon_state = "dispenser"
 	density = 1
 	var/o2tanks = 10.0
@@ -75,7 +75,7 @@
 /obj/machinery/dna_scanner
 	name = "\improper DNA scanner/implanter"
 	desc = "It scans DNA structures."
-	icon = 'Cryogenic2.dmi'
+	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "scanner_0"
 	density = 1
 	var/locked = 0.0
@@ -88,7 +88,7 @@
 /obj/machinery/dna_scannernew
 	name = "\improper DNA modifier"
 	desc = "It scans DNA structures."
-	icon = 'Cryogenic2.dmi'
+	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "scanner_0"
 	density = 1
 	var/locked = 0.0
@@ -101,7 +101,7 @@
 /obj/machinery/firealarm
 	name = "fire alarm"
 	desc = "Pull this in case of emergency."
-	icon = 'monitors.dmi'
+	icon = 'icons/obj/monitors.dmi'
 	icon_state = "fire0"
 	var/detecting = 1.0
 	var/working = 1.0
@@ -117,14 +117,14 @@
 	New()
 		if(z == 1)
 			if(security_level)
-				src.overlays += image('monitors.dmi', "overlay_[get_security_level()]")
+				src.overlays += image('icons/obj/monitors.dmi', "overlay_[get_security_level()]")
 			else
-				src.overlays += image('monitors.dmi', "overlay_green")
+				src.overlays += image('icons/obj/monitors.dmi', "overlay_green")
 
 /obj/machinery/partyalarm
 	name = "\improper Party Button"
 	desc = "Cuban Pete is in the house!"
-	icon = 'monitors.dmi'
+	icon = 'icons/obj/monitors.dmi'
 	icon_state = "fire0"
 	var/detecting = 1.0
 	var/working = 1.0
@@ -140,7 +140,7 @@
 /obj/machinery/igniter
 	name = "igniter"
 	desc = "It's useful for igniting phoron."
-	icon = 'stationobjs.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "igniter1"
 	var/id = null
 	var/on = 1.0
@@ -152,7 +152,7 @@
 /obj/machinery/injector
 	name = "injector"
 	desc = "It injects gas into a chamber."
-	icon = 'stationobjs.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "injector"
 	density = 1
 	anchored = 1.0
@@ -165,7 +165,7 @@
 /obj/machinery/mass_driver
 	name = "mass driver"
 	desc = "Shoots things into space."
-	icon = 'stationobjs.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "mass_driver"
 	var/power = 1.0
 	var/code = 1.0
@@ -179,7 +179,7 @@
 /obj/machinery/meter
 	name = "meter"
 	desc = "It measures something."
-	icon = 'meter.dmi'
+	icon = 'icons/obj/meter.dmi'
 	icon_state = "meterX"
 	var/obj/machinery/atmospherics/pipe/target = null
 	anchored = 1.0
@@ -192,7 +192,7 @@
 /obj/machinery/restruct
 	name = "\improper DNA physical restructurization accelerator"
 	desc = "It looks ridiculously complex."
-	icon = 'Cryogenic2.dmi'
+	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "restruct_0"
 	density = 1
 	var/locked = 0.0
@@ -205,7 +205,7 @@
 /obj/machinery/scan_console
 	name = "\improper DNA Scanner Access Console"
 	desc = "It scans DNA structures."
-	icon = 'computer.dmi'
+	icon = 'icons/obj/computer.dmi'
 	icon_state = "scanner"
 	density = 1
 	var/obj/item/weapon/card/data/scan = null
@@ -227,7 +227,7 @@
 /obj/machinery/door_control
 	name = "remote door-control"
 	desc = "It controls doors, remotely."
-	icon = 'stationobjs.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "doorctrl0"
 	desc = "A remote control-switch for a door."
 	var/id = null
@@ -259,7 +259,7 @@
 /obj/machinery/driver_button
 	name = "mass driver button"
 	desc = "FIRE AWAY!"
-	icon = 'objects.dmi'
+	icon = 'icons/obj/objects.dmi'
 	icon_state = "launcherbtt"
 	desc = "A remote control switch for a Mass Driver."
 	var/id = null
@@ -272,7 +272,7 @@
 /obj/machinery/ignition_switch
 	name = "ignition switch"
 	desc = "It activates an igniter."
-	icon = 'objects.dmi'
+	icon = 'icons/obj/objects.dmi'
 	icon_state = "launcherbtt"
 	desc = "A remote control switch for a mounted igniter."
 	var/id = null
@@ -284,7 +284,7 @@
 
 /obj/machinery/teleport
 	name = "teleport"
-	icon = 'stationobjs.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	density = 1
 	anchored = 1.0
 	var/lockeddown = 0
@@ -310,14 +310,14 @@
 /*
 /obj/machinery/wire
 	name = "wire"
-	icon = 'power_cond_red.dmi'
+	icon = 'icons/obj/power_cond_red.dmi'
 	use_power = 1
 	idle_power_usage = 0
 	active_power_usage = 1
 */
 /obj/machinery/power
 	name = null
-	icon = 'power.dmi'
+	icon = 'icons/obj/power.dmi'
 	anchored = 1.0
 	var/datum/powernet/powernet = null
 	var/netnum = 0
@@ -354,7 +354,7 @@
 /obj/machinery/power/monitor
 	name = "power monitoring computer"
 	desc = "It monitors power levels across the station, and can remotely toggle main breakers."
-	icon = 'computer.dmi'
+	icon = 'icons/obj/computer.dmi'
 	icon_state = "power"
 	density = 1
 	anchored = 1
@@ -367,7 +367,7 @@
 /obj/machinery/light_switch
 	name = "light switch"
 	desc = "It turns lights on and off. What are you, simple?"
-	icon = 'power.dmi'
+	icon = 'icons/obj/power.dmi'
 	icon_state = "light1"
 	anchored = 1.0
 	var/on = 1
@@ -378,7 +378,7 @@
 /obj/machinery/crema_switch
 	desc = "Burn baby burn!"
 	name = "crematorium igniter"
-	icon = 'power.dmi'
+	icon = 'icons/obj/power.dmi'
 	icon_state = "crema_switch"
 	anchored = 1.0
 	req_access = list(access_crematorium)
@@ -406,13 +406,13 @@
 /obj/machinery/hologram/projector
 	name = "hologram projector"
 	desc = "It makes a hologram appear...with magnets or something..."
-	icon = 'stationobjs.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "hologram0"
 
 /obj/machinery/hologram/proj_ai
 	name = "hologram projector platform"
 	desc = "It's used by the AI for fooling around."
-	icon = 'stationobjs.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "hologram0"
 	var
 		temp = null
@@ -425,7 +425,7 @@
 	name = "coat rack"
 	desc = "A fancy stand for the Detective's coat and hat."
 	icon_state = "coatrack0"
-	icon = 'coatrack.dmi'
+	icon = 'icons/obj/coatrack.dmi'
 	density = 1
 	anchored = 1.0
 	var/obj/item/clothing/suit/storage/det_suit/coat

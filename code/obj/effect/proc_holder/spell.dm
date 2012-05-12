@@ -23,7 +23,7 @@
 	var/selection_type = "view" //can be "range" or "view"
 
 	var/overlay = 0
-	var/overlay_icon = 'wizard.dmi'
+	var/overlay_icon = 'icons/obj/wizard.dmi'
 	var/overlay_icon_state = "spell"
 	var/overlay_lifespan = 0
 
@@ -86,9 +86,9 @@
 		if("shout")
 			usr.say(invocation)
 			if(usr.gender=="male")
-				playsound(usr.loc, pick('null.ogg','null.ogg'), 100, 1)
+				playsound(usr.loc, pick('sound/misc/null.ogg','sound/misc/null.ogg'), 100, 1)
 			else
-				playsound(usr.loc, pick('null.ogg','null.ogg'), 100, 1)
+				playsound(usr.loc, pick('sound/misc/null.ogg','sound/misc/null.ogg'), 100, 1)
 		if("whisper")
 			usr.whisper(invocation)
 
@@ -320,9 +320,9 @@
 			if("shout")
 				usr.say("[invocation] [uppertext(chosenarea.name)]")
 				if(usr.gender=="male")
-					playsound(usr.loc, pick('null.ogg','null.ogg'), 100, 1)
+					playsound(usr.loc, pick('sound/misc/null.ogg','sound/misc/null.ogg'), 100, 1)
 				else
-					playsound(usr.loc, pick('null.ogg','null.ogg'), 100, 1)
+					playsound(usr.loc, pick('sound/misc/null.ogg','sound/misc/null.ogg'), 100, 1)
 			if("whisper")
 				usr.whisper("[invocation] [uppertext(chosenarea.name)]")
 
@@ -418,7 +418,7 @@
 			animation.name = "water"
 			animation.density = 0
 			animation.anchored = 1
-			animation.icon = 'mob.dmi'
+			animation.icon = 'icons/mob/mob.dmi'
 			animation.icon_state = "liquify"
 			animation.layer = 5
 			animation.master = holder
@@ -697,13 +697,13 @@ Also, you never added distance checking after target is selected. I've went ahea
 	name = "Projectile"
 	desc = "This spell summons projectiles which try to hit the targets."
 
-	var/proj_icon = 'projectiles.dmi'
+	var/proj_icon = 'icons/obj/projectiles.dmi'
 	var/proj_icon_state = "spell"
 	var/proj_name = "a spell projectile"
 
 	var/proj_trail = 0 //if it leaves a trail
 	var/proj_trail_lifespan = 0 //deciseconds
-	var/proj_trail_icon = 'wizard.dmi'
+	var/proj_trail_icon = 'icons/obj/wizard.dmi'
 	var/proj_trail_icon_state = "trail"
 
 	var/proj_type = "/obj/effect/proc_holder/spell/targeted" //IMPORTANT use only subtypes of this

@@ -10,7 +10,7 @@
 /obj/machinery/disposal
 	name = "disposal unit"
 	desc = "A pneumatic waste disposal unit."
-	icon = 'disposal.dmi'
+	icon = 'icons/obj/pipes/disposal.dmi'
 	icon_state = "disposal"
 	anchored = 1
 	density = 1
@@ -72,7 +72,7 @@
 
 		if(istype(I, /obj/item/weapon/weldingtool) && I:welding)
 			var/obj/item/weapon/weldingtool/W = I
-			playsound(src.loc, 'Welder.ogg', 100, 1)
+			playsound(src.loc, 'sound/items/Welder.ogg', 100, 1)
 			var/turf/T = get_turf(user)
 			user.visible_message("[user] welds apart the disposal.", "You start to weld apart the disposal.")
 			sleep(40)
@@ -351,7 +351,7 @@
 
 		// flush handle
 		if(flush)
-			overlays += image('disposal.dmi', "dispover-handle")
+			overlays += image('icons/obj/pipes/disposal.dmi', "dispover-handle")
 
 		// only handle is shown if no power
 		if(stat & NOPOWER)
@@ -359,13 +359,13 @@
 
 		// 	check for items in disposal - occupied light
 		if(contents.len > 0)
-			overlays += image('disposal.dmi', "dispover-full")
+			overlays += image('icons/obj/pipes/disposal.dmi', "dispover-full")
 
 		// charging and ready light
 		if(mode == 1)
-			overlays += image('disposal.dmi', "dispover-charge")
+			overlays += image('icons/obj/pipes/disposal.dmi', "dispover-charge")
 		else if(mode == 2)
-			overlays += image('disposal.dmi', "dispover-ready")
+			overlays += image('icons/obj/pipes/disposal.dmi', "dispover-ready")
 
 	// timed process
 	// charge the gas reservoir and perform flush if ready
@@ -430,7 +430,7 @@
 		air_contents = new()		// new empty gas resv.
 
 		sleep(10)
-		playsound(src, 'disposalflush.ogg', 50, 0, 0)
+		playsound(src, 'sound/machines/disposalflush.ogg', 50, 0, 0)
 		sleep(5) // wait for animation to finish
 
 
@@ -460,7 +460,7 @@
 		var/turf/target
 		if(!playing_sound)
 			playing_sound = 1
-			playsound(src, 'hiss.ogg', 50, 0, 0)
+			playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
 			spawn(20)
 				playing_sound = 0
 		if(H) // Somehow, someone managed to flush a window which broke mid-transit and caused the disposal to go in an infinite loop trying to expel null, hopefully this fixes it
@@ -551,9 +551,9 @@
 		overlays = null
 		if( !(stat & BROKEN) )
 			if(flush)
-				overlays += image('disposal.dmi',"toilet-handle",,dir)
+				overlays += image('icons/obj/pipes/disposal.dmi',"toilet-handle",,dir)
 			if( !(stat & NOPOWER) )
-				overlays += image('disposal.dmi',"toilet-ready",,dir)
+				overlays += image('icons/obj/pipes/disposal.dmi',"toilet-ready",,dir)
 		else
 			icon_state = "toilet-broken"
 			mode = 0
@@ -575,7 +575,7 @@
 		var/obj/structure/disposalholder/H = new()
 		H.init(src)
 		sleep(10)
-		playsound(src, 'disposalflush.ogg', 50, 0, 0)
+		playsound(src, 'sound/machines/disposalflush.ogg', 50, 0, 0)
 		sleep(30) // To prevent spam.
 		H.start(src)
 		flush--
@@ -706,7 +706,7 @@
 			for (var/mob/M in hearers(src.loc.loc))
 				M << "<FONT size=[max(0, 5 - get_dist(src, M))]>CLONG, clong!</FONT>"
 
-		playsound(src.loc, 'clang.ogg', 50, 0, 0)
+		playsound(src.loc, 'sound/effects/clang.ogg', 50, 0, 0)
 
 	// called to vent all gas in holder to a location
 	proc/vent_gas(var/atom/location)
@@ -716,7 +716,7 @@
 // Disposal pipes
 
 /obj/structure/disposalpipe
-	icon = 'disposal.dmi'
+	icon = 'icons/obj/pipes/disposal.dmi'
 	name = "disposal pipe"
 	desc = "An underfloor disposal pipe."
 	anchored = 1
@@ -807,11 +807,11 @@
 						M << "\red Your elbow doesn't bend that way, dammit!"
 					//else
 					//	M << "\red <b>You are tossed about in the pipes!</b>"
-					M << 'clang.ogg'
+					M << 'sound/effects/clang.ogg'
 					for (var/mob/O in hearers(get_turf(src)))
 						O << "<FONT size=[max(0, 5 - get_dist(src, M))]>CLONG!</FONT>"
 
-					playsound(src.loc, 'clang.ogg', 50, 0, 0)
+					playsound(src.loc, 'sound/effects/clang.ogg', 50, 0, 0)
 		else			// if wasn't a pipe, then set loc to turf
 			H.loc = T
 			return null
@@ -871,7 +871,7 @@
 
 			if(!playing_sound)
 				playing_sound = 1
-				playsound(src, 'hiss.ogg', 50, 0, 0)
+				playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
 				spawn(20)
 					playing_sound = 0
 			if(H)
@@ -888,7 +888,7 @@
 
 			if(!playing_sound)
 				playing_sound = 1
-				playsound(src, 'hiss.ogg', 50, 0, 0)
+				playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
 				spawn(20)
 					playing_sound = 0
 			if(H)
@@ -981,7 +981,7 @@
 			if(W.welding)
 				if(W.remove_fuel(0,user))
 					W:welding = 2
-					playsound(src.loc, 'Welder2.ogg', 100, 1)
+					playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
 					// check if anything changed over 2 seconds
 					var/turf/uloc = user.loc
 					var/atom/wloc = W.loc
@@ -1324,7 +1324,7 @@
 /obj/structure/disposaloutlet
 	name = "disposal outlet"
 	desc = "An outlet for the pneumatic disposal system."
-	icon = 'disposal.dmi'
+	icon = 'icons/obj/pipes/disposal.dmi'
 	icon_state = "outlet"
 	density = 1
 	anchored = 1
@@ -1346,14 +1346,14 @@
 		flick("outlet-open", src)
 		if(!playing_buzzer)
 			playing_buzzer = 1
-			playsound(src, 'warning-buzzer.ogg', 50, 0, 0)
+			playsound(src, 'sound/machines/warning-buzzer.ogg', 50, 0, 0)
 			spawn(30)
 				playing_buzzer = 0
 		sleep(20)	//wait until correct animation frame
 
 		if(!playing_sound)
 			playing_sound = 1
-			playsound(src, 'hiss.ogg', 50, 0, 0)
+			playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
 			spawn(20)
 				playing_sound = 0
 

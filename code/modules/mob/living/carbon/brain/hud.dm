@@ -1,6 +1,6 @@
-/obj/hud/proc/brain_hud(var/ui_style='screen1_old.dmi')
+/obj/hud/proc/brain_hud(var/ui_style='icons/mob/screen1_old.dmi')
 	station_explosion = new h_type( src )
-	station_explosion.icon = 'station_explosion.dmi'
+	station_explosion.icon = 'icons/effects/station_explosion.dmi'
 	station_explosion.icon_state = "start"
 	station_explosion.layer = 20
 	station_explosion.mouse_opacity = 0

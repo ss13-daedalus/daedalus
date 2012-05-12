@@ -1,6 +1,6 @@
 /obj/item/weapon
 	name = "weapon"
-	icon = 'weapons.dmi'
+	icon = 'icons/obj/weapons.dmi'
 
 /obj/item/weapon/offhand
 	name = "offhand"
@@ -14,7 +14,7 @@
 /obj/item/weapon/shield/riot
 	name = "riot shield"
 	desc = "A shield adept at blocking blunt objects from connecting with the torso of the shield wielder."
-	icon = 'weapons.dmi'
+	icon = 'icons/obj/weapons.dmi'
 	icon_state = "riot"
 	flags = FPRINT | TABLEPASS| CONDUCT| ONBACK
 	force = 5.0
@@ -108,7 +108,7 @@
 /obj/item/weapon/bodybag
 	name = "body bag"
 	desc = "A bag used to deal with a corpse."
-	icon = 'closet.dmi'
+	icon = 'icons/obj/closet.dmi'
 	icon_state = "bodybag"
 	flags = FPRINT | TABLEPASS| CONDUCT
 	force = 5.0
@@ -123,7 +123,7 @@
 /obj/item/weapon/rsf
 	name = "\improper Rapid-Service-Fabricator"
 	desc = "A device used to rapidly deploy service items."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "rcd"
 	opacity = 0
 	density = 0
@@ -136,7 +136,7 @@
 /obj/item/weapon/rsp
 	name = "\improper Rapid-Seed-Producer (RSP)"
 	desc = "A device used to rapidly deploy seeds."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "rcd"
 	opacity = 0
 	density = 0
@@ -149,7 +149,7 @@
 /obj/item/weapon/rcd_ammo
 	name = "compressed matter cartridge"
 	desc = "Highly compressed matter for the RCD."
-	icon = 'ammo.dmi'
+	icon = 'icons/obj/ammo.dmi'
 	icon_state = "rcd"
 	item_state = "rcdammo"
 	opacity = 0
@@ -168,7 +168,7 @@
 	name = "space cash"
 	desc = "It's worth 1 credit."
 	gender = PLURAL
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "spacecash"
 	opacity = 0
 	density = 0
@@ -322,7 +322,7 @@
 /obj/item/weapon/bananapeel
 	name = "banana peel"
 	desc = "A peel from a banana."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "banana_peel"
 	item_state = "banana_peel"
 	w_class = 1.0
@@ -333,7 +333,7 @@
 /obj/item/weapon/corncob
 	name = "corn cob"
 	desc = "A reminder of meals gone by."
-	icon = 'harvest.dmi'
+	icon = 'icons/obj/harvest.dmi'
 	icon_state = "corncob"
 	item_state = "corncob"
 	w_class = 1.0
@@ -345,7 +345,7 @@
 	name = "soap"
 	desc = "A cheap bar of soap. Doesn't smell."
 	gender = PLURAL
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "soap"
 	w_class = 1.0
 	throwforce = 0
@@ -367,7 +367,7 @@
 /obj/item/weapon/bedsheet
 	name = "bedsheet"
 	desc = "Nice, linen bedsheet. Perfect to put on a bed."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "sheet"
 	layer = 4.0
 	item_state = "bedsheet"
@@ -444,7 +444,7 @@
 /obj/item/weapon/bikehorn
 	name = "bike horn"
 	desc = "A horn off of a bicycle."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "bike_horn"
 	item_state = "bike_horn"
 	throwforce = 3
@@ -456,7 +456,7 @@
 /obj/item/stack/medical
 	name = "medical pack"
 	singular_name = "medical pack"
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	amount = 10 //To compensate for wounds
 	max_amount = 10
 	w_class = 1
@@ -477,7 +477,7 @@
 	name = "\improper S'rendarr's Hand leaf"
 	singular_name = "S'rendarr's Hand leaf"
 	desc = "A soft leaf that is rubbed on bruises."
-	icon = 'harvest.dmi'
+	icon = 'icons/obj/harvest.dmi'
 	icon_state = "cabbage"
 	heal_brute = 1
 
@@ -494,7 +494,7 @@
 	name = "\improper Messa's Tear leaf"
 	singular_name = "Messa's Tear leaf"
 	desc = "A cold leaf that is rubbed on burns."
-	icon = 'harvest.dmi'
+	icon = 'icons/obj/harvest.dmi'
 	icon_state = "ambrosiavulgaris"
 	heal_burn = 1
 
@@ -521,7 +521,7 @@
 /obj/item/weapon/c_tube
 	name = "cardboard tube"
 	desc = "A tube made of cardboard."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "c_tube"
 	throwforce = 1
 	w_class = 1.0
@@ -540,7 +540,7 @@
 /obj/item/weapon/card
 	name = "card"
 	desc = "Does card things."
-	icon = 'card.dmi'
+	icon = 'icons/obj/card.dmi'
 	w_class = 1.0
 
 	var/list/files = list(  )
@@ -637,7 +637,7 @@
 /obj/item/weapon/clipboard
 	name = "clipboard"
 	desc = "Apply paper to this to write better. Can also hold pens."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "clipboard00"
 	var/obj/item/weapon/pen/pen = null
 	item_state = "clipboard"
@@ -655,7 +655,7 @@
 #define MAXCOIL 30
 /obj/item/weapon/cable_coil
 	name = "cable coil"
-	icon = 'power.dmi'
+	icon = 'icons/obj/power.dmi'
 	icon_state = "coil_red"
 	var/amount = MAXCOIL
 	var/color = "red"
@@ -697,7 +697,7 @@
 /obj/item/weapon/crowbar
 	name = "crowbar"
 	desc = "Used to remove floor tiles."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "crowbar"
 	flags = FPRINT | TABLEPASS| CONDUCT | ONBELT
 	force = 5.0
@@ -708,7 +708,7 @@
 	origin_tech = "engineering=1"
 
 /obj/item/weapon/crowbar/red
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "red_crowbar"
 
 /obj/item/weapon/fireaxe  // DEM AXES MAN, marker -Agouri
@@ -725,7 +725,7 @@
 /obj/item/weapon/cane
 	name = "cane"
 	desc = "A cane used by a true gentlemen."
-	icon = 'weapons.dmi'
+	icon = 'icons/obj/weapons.dmi'
 	icon_state = "cane"
 	flags = FPRINT | TABLEPASS| CONDUCT
 	force = 6.0
@@ -740,7 +740,7 @@
 
 /obj/item/weapon/disk
 	name = "disk"
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 
 /obj/item/weapon/disk/nuclear
 	name = "nuclear authentication disk"
@@ -758,11 +758,11 @@
 /obj/item/weapon/extinguisher
 	name = "fire extinguisher"
 	desc = "Contains water for fighting fires."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "fire_extinguisher0"
 	var/last_use = 1.0
 	var/safety = 1
-	hitsound = 'smash.ogg'
+	hitsound = 'sound/weapons/smash.ogg'
 	flags = FPRINT | USEDELAY | TABLEPASS | CONDUCT
 	throwforce = 10
 	w_class = 3.0
@@ -775,7 +775,7 @@
 /obj/item/weapon/f_card
 	name = "finger print card"
 	desc = "Used to take fingerprints."
-	icon = 'card.dmi'
+	icon = 'icons/obj/card.dmi'
 	icon_state = "fingerprint0"
 	var/amount = 10.0
 	item_state = "paper"
@@ -788,13 +788,13 @@
 /obj/item/weapon/fcardholder
 	name = "fingerprint card case"
 	desc = "Holds fingerprint cards."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "fcardholder0"
 	item_state = "clipboard"
 
 /obj/item/weapon/flasks
 	name = "flask"
-	icon = 'Cryogenic2.dmi'
+	icon = 'icons/obj/Cryogenic2.dmi'
 	var/oxygen = 0.0
 	var/phoron = 0.0
 	var/coolant = 0.0
@@ -816,7 +816,7 @@
 
 /obj/item/weapon/game_kit
 	name = "Gaming Kit"
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "game_kit"
 	var/selected = null
 	var/board_stat = null
@@ -828,7 +828,7 @@
 /obj/item/weapon/gift
 	name = "gift"
 	desc = "A wrapped item."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "gift3"
 	var/size = 3.0
 	var/obj/item/gift = null
@@ -838,7 +838,7 @@
 /obj/item/weapon/hand_tele
 	name = "hand tele"
 	desc = "A portable item using blue-space technology."
-	icon = 'device.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "hand_tele"
 	item_state = "electronic"
 	throwforce = 5
@@ -852,7 +852,7 @@
 	name = "handcuffs"
 	desc = "Use this to keep prisoners in line."
 	gender = PLURAL
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "handcuff"
 	flags = FPRINT | TABLEPASS | CONDUCT | ONBELT
 	throwforce = 5
@@ -870,7 +870,7 @@
 /obj/item/weapon/locator
 	name = "locator"
 	desc = "Used to track those with locater implants."
-	icon = 'device.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "locator"
 	var/temp = null
 	var/frequency = 1451
@@ -887,7 +887,7 @@
 /obj/item/weapon/caution
 	desc = "Caution! Wet Floor!"
 	name = "wet floor sign"
-	icon = 'janitor.dmi'
+	icon = 'icons/obj/janitor.dmi'
 	icon_state = "caution"
 	force = 1.0
 	throwforce = 3.0
@@ -903,7 +903,7 @@
 
 /obj/item/weapon/paper
 	name = "Paper"
-	icon = 'paper.dmi'
+	icon = 'icons/obj/paper.dmi'
 	icon_state = "paper"
 	var/info = null
 	var/infoold = null
@@ -925,7 +925,7 @@
 	name = "crumpled paper"
 	gender = PLURAL
 	desc = "This is a crumpled piece of paper."
-	icon = 'weapons.dmi'
+	icon = 'icons/obj/weapons.dmi'
 	icon_state = "crumpled"
 	throwforce = 0
 	w_class = 1.0
@@ -982,7 +982,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/paper_bin
 	name = "Paper Bin"
 	desc = "This contains many papers."
-	icon = 'paper.dmi'
+	icon = 'icons/obj/paper.dmi'
 	icon_state = "paper_bin1"
 	var/amount = 30.0
 	item_state = "sheet-metal"
@@ -994,7 +994,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/pen
 	desc = "It's a normal black ink pen."
 	name = "pen"
-	icon = 'paper.dmi'
+	icon = 'icons/obj/paper.dmi'
 	icon_state = "pen"
 	flags = FPRINT | ONBELT | TABLEPASS
 	throwforce = 0
@@ -1027,7 +1027,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/banhammer
 	desc = "A banhammer"
 	name = "banhammer"
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "toyhammer"
 	flags = FPRINT | ONBELT | TABLEPASS
 	throwforce = 0
@@ -1048,7 +1048,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/rack_parts
 	name = "rack parts"
 	desc = "Parts of a rack."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "rack_parts"
 	flags = FPRINT | TABLEPASS| CONDUCT
 	m_amt = 3750
@@ -1056,7 +1056,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/rubber_chicken
 	name = "rubber chicken"
 	desc = "A rubber chicken, isn't that hilarious?"
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "rubber_chicken"
 	item_state = "rubber_chicken"
 	w_class = 2.0
@@ -1064,7 +1064,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/screwdriver
 	name = "screwdriver"
 	desc = "Used for screwing."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "screwdriver"
 	flags = FPRINT | TABLEPASS| CONDUCT | ONBELT
 	force = 5.0
@@ -1077,7 +1077,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 
 /obj/item/weapon/shard
 	name = "shard"
-	icon = 'shards.dmi'
+	icon = 'icons/obj/shards.dmi'
 	icon_state = "large"
 	desc = "Could probably be used as ... a throwing weapon?"
 	w_class = 1.0
@@ -1089,7 +1089,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/SWF_uplink
 	name = "station-bounced radio"
 	desc = "used to comunicate it appears."
-	icon = 'radio.dmi'
+	icon = 'icons/obj/radio.dmi'
 	icon_state = "radio"
 	var/temp = null
 	var/uses = 4.0
@@ -1108,7 +1108,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/spellbook
 	name = "spell book"
 	desc = "The legendary book of spells of a wizard."
-	icon = 'library.dmi'
+	icon = 'icons/obj/library.dmi'
 	icon_state ="book"
 	throw_speed = 1
 	throw_range = 5
@@ -1126,7 +1126,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/staff
 	name = "wizards staff"
 	desc = "Apparently a staff used by a wizard."
-	icon = 'wizard.dmi'
+	icon = 'icons/obj/wizard.dmi'
 	icon_state = "staff"
 	force = 3.0
 	throwforce = 5.0
@@ -1139,7 +1139,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/staff/stick
 	name = "stick"
 	desc = "A great tool to drag someone else's drinks across the bar."
-	icon = 'weapons.dmi'
+	icon = 'icons/obj/weapons.dmi'
 	icon_state = "stick"
 	item_state = "stick"
 	force = 3.0
@@ -1153,7 +1153,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 	name = "table parts"
 	desc = "Parts of a table. Poor table."
 	gender = PLURAL
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "table_parts"
 	m_amt = 3750
 	flags = FPRINT | TABLEPASS| CONDUCT
@@ -1161,7 +1161,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/table_parts/reinforced
 	name = "reinforced table parts"
 	desc = "Hard table parts. Well...harder..."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "reinf_tableparts"
 	m_amt = 7500
 	flags = FPRINT | TABLEPASS| CONDUCT
@@ -1175,7 +1175,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/teleportation_scroll
 	name = "scroll of teleportation"
 	desc = "A scroll for moving around."
-	icon = 'wizard.dmi'
+	icon = 'icons/obj/wizard.dmi'
 	icon_state = "scroll"
 	var/uses = 4.0
 	flags = FPRINT | TABLEPASS
@@ -1188,7 +1188,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/wire
 	desc = "This is just a simple piece of regular insulated wire."
 	name = "wire"
-	icon = 'power.dmi'
+	icon = 'icons/obj/power.dmi'
 	icon_state = "item_wire"
 	var/amount = 1.0
 	var/laying = 0.0
@@ -1198,14 +1198,14 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/wrapping_paper
 	name = "wrapping paper"
 	desc = "You can use this to wrap items in."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "wrap_paper"
 	var/amount = 20.0
 
 /obj/item/weapon/cell
 	name = "power cell"
 	desc = "A rechargable electrochemical power cell."
-	icon = 'power.dmi'
+	icon = 'icons/obj/power.dmi'
 	icon_state = "cell"
 	item_state = "cell"
 	origin_tech = "powerstorage=1"
@@ -1266,7 +1266,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 	name = "potato battery"
 	desc = "A rechargable starch based power cell."
 	origin_tech = "powerstorage=1"
-	icon = 'power.dmi' //'harvest.dmi'
+	icon = 'icons/obj/power.dmi' //'icons/obj/harvest.dmi'
 	icon_state = "cell" //"potato_battery"
 	charge = 100
 	maxcharge = 300
@@ -1301,7 +1301,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 
 
 /obj/item/weapon/module
-	icon = 'module.dmi'
+	icon = 'icons/obj/module.dmi'
 	icon_state = "std_module"
 	w_class = 2.0
 	item_state = "electronic"
@@ -1339,7 +1339,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/a_gift
 	name = "gift"
 	desc = "A gift, it appears."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "gift"
 	item_state = "gift"
 	pressure_resistance = 70
@@ -1347,7 +1347,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 
 /obj/item/weapon/camera_bug
 	name = "camera bug"
-	icon = 'device.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "flash"
 	w_class = 1.0
 	item_state = "electronic"
@@ -1356,7 +1356,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 
 
 /obj/item/weapon/kitchen
-	icon = 'kitchen.dmi'
+	icon = 'icons/obj/kitchen.dmi'
 
 /obj/item/weapon/kitchen/rollingpin
 	name = "rolling pin"
@@ -1370,7 +1370,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 
 /obj/item/weapon/kitchenknife
 	name = "kitchen knife"
-	icon = 'kitchen.dmi'
+	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "knife"
 	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
 	flags = FPRINT | TABLEPASS | CONDUCT
@@ -1384,7 +1384,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 
 /obj/item/weapon/butch
 	name = "butcher's cleaver"
-	icon = 'kitchen.dmi'
+	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "butch"
 	desc = "A huge thing used for chopping and chopping up meat."
 	flags = FPRINT | TABLEPASS | CONDUCT
@@ -1398,7 +1398,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 
 /obj/item/weapon/tray
 	name = "tray"
-	icon = 'food.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "tray"
 	desc = "A metal tray to lay food on."
 	throwforce = 12.0
@@ -1460,7 +1460,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/scalpel
 	name = "scalpel"
 	desc = "Cut, cut, and once more cut."
-	icon = 'surgery.dmi'
+	icon = 'icons/obj/surgery.dmi'
 	icon_state = "scalpel"
 	flags = FPRINT | TABLEPASS | CONDUCT
 	force = 10.0
@@ -1475,7 +1475,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/retractor
 	name = "retractor"
 	desc = "Retracts stuff."
-	icon = 'surgery.dmi'
+	icon = 'icons/obj/surgery.dmi'
 	icon_state = "retractor"
 	flags = FPRINT | TABLEPASS | CONDUCT
 	w_class = 1.0
@@ -1484,7 +1484,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/hemostat
 	name = "hemostat"
 	desc = "You think you have seen this before."
-	icon = 'surgery.dmi'
+	icon = 'icons/obj/surgery.dmi'
 	icon_state = "hemostat"
 	flags = FPRINT | TABLEPASS | CONDUCT
 	w_class = 1.0
@@ -1493,7 +1493,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/cautery
 	name = "cautery"
 	desc = "This stops bleeding."
-	icon = 'surgery.dmi'
+	icon = 'icons/obj/surgery.dmi'
 	icon_state = "cautery"
 	flags = FPRINT | TABLEPASS | CONDUCT
 	w_class = 1.0
@@ -1502,7 +1502,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/surgicaldrill
 	name = "surgical drill"
 	desc = "You can drill using this item. You dig?"
-	icon = 'surgery.dmi'
+	icon = 'icons/obj/surgery.dmi'
 	icon_state = "drill"
 	flags = FPRINT | TABLEPASS | CONDUCT
 	force = 15.0
@@ -1512,7 +1512,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/circular_saw
 	name = "circular saw"
 	desc = "For heavy duty cutting."
-	icon = 'surgery.dmi'
+	icon = 'icons/obj/surgery.dmi'
 	icon_state = "saw3"
 	flags = FPRINT | TABLEPASS | CONDUCT
 	force = 15.0
@@ -1527,7 +1527,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/autopsy_scanner
 	name = "autopsy scanner"
 	desc = "Extracts information on wounds."
-	icon = 'autopsy_scanner.dmi'
+	icon = 'icons/obj/autopsy_scanner.dmi'
 	icon_state = ""
 	flags = FPRINT | TABLEPASS | CONDUCT
 	w_class = 1.0
@@ -1536,7 +1536,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/syntiflesh
 	name = "syntiflesh"
 	desc = "Meat that appears...strange..."
-	icon = 'food.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "meat"
 	flags = FPRINT | TABLEPASS | CONDUCT
 	w_class = 1.0
@@ -1545,7 +1545,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/hatchet
 	name = "hatchet"
 	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
-	icon = 'weapons.dmi'
+	icon = 'icons/obj/weapons.dmi'
 	icon_state = "hatchet"
 	flags = FPRINT | TABLEPASS | CONDUCT
 	force = 12.0
@@ -1559,7 +1559,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/stamp
 	desc = "A rubber stamp for stamping important documents."
 	name = "rubber stamp"
-	icon = 'paper.dmi'
+	icon = 'icons/obj/paper.dmi'
 	icon_state = "stamp-qm"
 	item_state = "stamp"
 	flags = FPRINT | TABLEPASS
@@ -1619,7 +1619,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/cigarpacket
 	name = "Pete's Cuban Cigars"
 	desc = "The most robust cigars on the planet."
-	icon = 'cigarettes.dmi'
+	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cigarpacket"
 	item_state = "cigarpacket"
 	w_class = 1
@@ -1631,7 +1631,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/mousetrap
 	name = "mousetrap"
 	desc = "A handy little spring-loaded trap for catching pesty rodents."
-	icon = 'weapons.dmi'
+	icon = 'icons/obj/weapons.dmi'
 	icon_state = "mousetrap"
 	item_state = "mousetrap"
 	w_class = 1
@@ -1655,7 +1655,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 	name = "d6"
 	desc = "A dice with six sides."
 	var/sides = 6
-	icon = 'dice.dmi'
+	icon = 'icons/obj/dice.dmi'
 	icon_state = "d66"
 
 /obj/item/weapon/dice/New()
@@ -1684,7 +1684,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/pai_cable
 	desc = "A flexible coated cable with a universal jack on one end."
 	name = "data cable"
-	icon = 'power.dmi'
+	icon = 'icons/obj/power.dmi'
 	icon_state = "wire1"
 	var/obj/machinery/machine
 
@@ -1692,7 +1692,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 	name = "plastic explosives"
 	desc = "Used to put holes in specific areas without too much extra hole."
 	gender = PLURAL
-	icon = 'assemblies.dmi'
+	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "plastic-explosive0"
 	item_state = "plasticx"
 	flags = FPRINT | TABLEPASS | USEDELAY
@@ -1707,7 +1707,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 	name = "stock part"
 	desc = "What?"
 	gender = PLURAL
-	icon = 'stock_parts.dmi'
+	icon = 'icons/obj/stock_parts.dmi'
 	w_class = 2.0
 	var/rating = 1
 	New()
@@ -1905,7 +1905,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 	name = "ectoplasm"
 	desc = "spooky"
 	gender = PLURAL
-	icon = 'wizard.dmi'
+	icon = 'icons/obj/wizard.dmi'
 	icon_state = "ectoplasm"
 
 /obj/item/weapon/appendix

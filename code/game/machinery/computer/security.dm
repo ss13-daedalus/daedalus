@@ -526,7 +526,7 @@ What a mess.*/
 /obj/item/weapon/disk/records
 	name = "Crew Records Disk"
 	desc = "Stores security and medical records."
-	icon = 'cloning.dmi'
+	icon = 'icons/obj/cloning.dmi'
 	icon_state = "datadisk2"
 	item_state = "card-id"
 	w_class = 1.0

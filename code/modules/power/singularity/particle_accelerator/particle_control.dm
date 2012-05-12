@@ -1,7 +1,7 @@
 /obj/machinery/particle_accelerator/control_box
 	name = "Particle Accelerator Control Box"
 	desc = "Part of a Particle Accelerator."
-	icon = 'particle_accelerator.dmi'
+	icon = 'icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "control_box"
 	anchored = 0
 	density = 1

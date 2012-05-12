@@ -100,7 +100,7 @@
 
 /obj/machinery/computer/HolodeckControl/attackby(var/obj/item/weapon/D as obj, var/mob/user as mob)
 /*		if(istype(D, /obj/item/weapon/screwdriver))
-			playsound(src.loc, 'Screwdriver.ogg', 50, 1)
+			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 			if(do_after(user, 20))
 				if (src.stat & BROKEN)
 					user << "\blue The broken glass falls out."
@@ -128,7 +128,7 @@
 
 */
 	if(istype(D, /obj/item/weapon/card/emag) && !emagged)
-		playsound(src.loc, 'sparks4.ogg', 75, 1)
+		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
 		user << "\blue You vastly increase projector power and override the safety and security protocols."
 		user << "Warning.  Automatic shutoff and derezing protocols have been corrupted.  Please call Nanotrasen maintence and do not use the simulator."
@@ -295,7 +295,7 @@
 /obj/structure/table/holotable
 	name = "table"
 	desc = "A square piece of metal standing on four metal legs. It can not move."
-	icon = 'structures.dmi'
+	icon = 'icons/obj/structures.dmi'
 	icon_state = "table"
 	density = 1
 	anchored = 1.0
@@ -347,7 +347,7 @@
 
 /obj/structure/holowindow
 	name = "reinforced window"
-	icon = 'structures.dmi'
+	icon = 'icons/obj/structures.dmi'
 	icon_state = "rwindow"
 	desc = "A window."
 	density = 1
@@ -380,7 +380,7 @@
 /obj/machinery/readybutton
 	name = "Ready Declaration Device"
 	desc = "This device is used to declare ready.  If all devices in an area are ready, the event will begin!"
-	icon = 'monitors.dmi'
+	icon = 'icons/obj/monitors.dmi'
 	icon_state = "auth_off"
 	var/ready = 0
 	var/area/currentarea = null

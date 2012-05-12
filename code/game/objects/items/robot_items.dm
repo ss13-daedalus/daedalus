@@ -4,7 +4,7 @@
 //Might want to move this into several files later but for now it works here
 /obj/item/borg/stun
 	name = "Electrified Arm"
-	icon = 'decals.dmi'
+	icon = 'icons/obj/decals.dmi'
 	icon_state = "shock"
 
 	attack(mob/M as mob, mob/living/silicon/robot/user as mob)
@@ -28,14 +28,14 @@
 
 /obj/item/borg/overdrive
 	name = "Overdrive"
-	icon = 'decals.dmi'
+	icon = 'icons/obj/decals.dmi'
 	icon_state = "shock"
 
 /**********************************************************************
 						HUD/SIGHT things
 ***********************************************************************/
 /obj/item/borg/sight
-	icon = 'decals.dmi'
+	icon = 'icons/obj/decals.dmi'
 	icon_state = "securearea"
 	var/sight_mode = null
 
@@ -97,7 +97,7 @@
 /obj/item/weapon/reagent_containers/glass/bottle/robot/inaprovaline
 	name = "internal inaprovaline bottle"
 	desc = "A small bottle. Contains inaprovaline - used to stabilize patients."
-	icon = 'chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
 	reagent = "inaprovaline"
 
@@ -110,7 +110,7 @@
 /obj/item/weapon/reagent_containers/glass/bottle/robot/antitoxin
 	name = "internal anti-toxin bottle"
 	desc = "A small bottle of Anti-toxins. Counters poisons, and repairs damage, a wonder drug."
-	icon = 'chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle17"
 	reagent = "anti_toxin"
 
@@ -124,7 +124,7 @@
 /obj/item/weapon/reagent_containers/robodropper
 	name = "Industrial Dropper"
 	desc = "A larger dropper. Transfers 10 units."
-	icon = 'chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "dropper0"
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(1,2,3,4,5,6,7,8,9,10)
@@ -181,7 +181,7 @@
 /obj/item/borg/rcd
 	name = "robotic rapid-construction-device"
 	desc = "A device used to rapidly build walls/floor."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "rcd"
 	flags = FPRINT | TABLEPASS| CONDUCT
 	force = 5.0
@@ -203,12 +203,12 @@
 	proc/activate()
 //		spark_system.set_up(5, 0, src)
 //		src.spark_system.start()
-		playsound(src.loc, 'Deconstruct.ogg', 50, 1)
+		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 
 
 	attack_self(mob/user as mob)
 		//Change the mode
-		playsound(src.loc, 'pop.ogg', 50, 0)
+		playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
 		if(mode == 1)
 			mode = 2
 			user << "Changed mode to 'Airlock'"
@@ -251,7 +251,7 @@
 					if(istype(A, /turf/simulated/floor))
 						if(!cell.use(90))	return
 						user << "Building Wall (3)..."
-						playsound(src.loc, 'click.ogg', 50, 1)
+						playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 						if(do_after(user, 20))
 							activate()
 							A:ReplaceWithWall()
@@ -261,7 +261,7 @@
 					if(istype(A, /turf/simulated/floor))
 						if(!cell.use(300))	return
 						user << "Building Airlock..."
-						playsound(src.loc, 'click.ogg', 50, 1)
+						playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 						if(do_after(user, 50))
 							activate()
 							if(locate(/obj/machinery/door) in get_turf(src))	return
@@ -273,7 +273,7 @@
 					if(istype(A, /turf/simulated/wall))
 						if(!cell.use(150))	return
 						user << "Deconstructing Wall..."
-						playsound(src.loc, 'click.ogg', 50, 1)
+						playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 						if(do_after(user, 40))
 							activate()
 							A:ReplaceWithPlating()
@@ -284,7 +284,7 @@
 
 					if(istype(A, /turf/simulated/floor))
 						user << "Deconstructing Floor..."
-						playsound(src.loc, 'click.ogg', 50, 1)
+						playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 						if(do_after(user, 50))
 							activate()
 							A:ReplaceWithSpace()
@@ -292,9 +292,9 @@
 
 					if(istype(A, /obj/machinery/door/airlock))
 						user << "Deconstructing Airlock..."
-						playsound(src.loc, 'click.ogg', 50, 1)
+						playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 						if(do_after(user, 50))
-							playsound(src.loc, 'click.ogg', 50, 1)
+							playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 							del(A)
 						return
 		return

@@ -22,7 +22,7 @@
 
 
 /datum/controller/game_ticker/proc/pregame()
-	login_music = pick('title1.ogg', 'title2.ogg')
+	login_music = pick('sound/ambience/title1.ogg', 'sound/ambience/title2.ogg')
 
 	do
 		pregame_timeleft = 180
@@ -104,7 +104,7 @@
 				del(S)
 		spawn(-1)
 			world << "<FONT color='blue'><B>Enjoy the game!</B></FONT>"
-			world << sound('welcome.ogg') // Skie
+			world << sound('sound/announcer/welcome.ogg') // Skie
 
 	spawn() supply_ticker() // Added to kick-off the supply shuttle regenerating points -- TLE
 

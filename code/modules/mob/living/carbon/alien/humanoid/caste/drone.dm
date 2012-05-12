@@ -8,9 +8,9 @@
 	spawn (1)
 		src.verbs += /mob/living/carbon/alien/humanoid/proc/corrode_target
 		src.verbs -= /mob/living/carbon/alien/humanoid/verb/ActivateHuggers
-		src.stand_icon = new /icon('alien.dmi', "aliend_s")
-		src.lying_icon = new /icon('alien.dmi', "aliend_l")
-		src.resting_icon = new /icon('alien.dmi', "aliend_sleep")
+		src.stand_icon = new /icon('icons/mob/alien.dmi', "aliend_s")
+		src.lying_icon = new /icon('icons/mob/alien.dmi', "aliend_l")
+		src.resting_icon = new /icon('icons/mob/alien.dmi', "aliend_sleep")
 		src.icon = src.stand_icon
 		update_clothing()
 		src << "\blue Your icons have been generated!"

@@ -1,5 +1,5 @@
 obj/structure/door_assembly
-	icon = 'door_assembly.dmi'
+	icon = 'icons/obj/doors/door_assembly.dmi'
 
 	name = "Airlock Assembly"
 	icon_state = "door_as0"
@@ -165,7 +165,7 @@ obj/structure/door_assembly
 		if (W:remove_fuel(0,user))
 			W:welding = 2
 			user.visible_message("[user] dissassembles the airlock assembly.", "You start to dissassemble the airlock assembly.")
-			playsound(src.loc, 'Welder2.ogg', 50, 1)
+			playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
 			if(do_after(user, 40))
 				user << "\blue You dissasembled the airlock assembly!"
 				new /obj/item/stack/sheet/metal(get_turf(src), 4)
@@ -177,7 +177,7 @@ obj/structure/door_assembly
 			user << "\blue You need more welding fuel to dissassemble the airlock assembly."
 			return
 	else if(istype(W, /obj/item/weapon/wrench) && !anchored )
-		playsound(src.loc, 'Ratchet.ogg', 100, 1)
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 		var/turf/T = get_turf(user)
 		user.visible_message("[user] secures the airlock assembly to the floor.", "You start to secure the airlock assembly to the floor.")
 		sleep(40)
@@ -186,7 +186,7 @@ obj/structure/door_assembly
 			src.name = "Secured Airlock Assembly"
 			src.anchored = 1
 	else if(istype(W, /obj/item/weapon/wrench) && anchored )
-		playsound(src.loc, 'Ratchet.ogg', 100, 1)
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 		var/turf/T = get_turf(user)
 		user.visible_message("[user] unsecures the airlock assembly from the floor.", "You start to unsecure the airlock assembly from the floor.")
 		sleep(40)
@@ -205,7 +205,7 @@ obj/structure/door_assembly
 			user << "\blue You wire the Airlock!"
 			src.name = "Wired Airlock Assembly"
 	else if(istype(W, /obj/item/weapon/wirecutters) && state == 1 )
-		playsound(src.loc, 'Wirecutter.ogg', 100, 1)
+		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		var/turf/T = get_turf(user)
 		user.visible_message("[user] cuts the wires from the airlock assembly.", "You start to cut the wires from airlock assembly.")
 		sleep(40)
@@ -215,7 +215,7 @@ obj/structure/door_assembly
 			src.state = 0
 			src.name = "Secured Airlock Assembly"
 	else if(istype(W, /obj/item/weapon/airlock_electronics) && state == 1 )
-		playsound(src.loc, 'Screwdriver.ogg', 100, 1)
+		playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 		var/turf/T = get_turf(user)
 		user.visible_message("[user] installs the electronics into the airlock assembly.", "You start to install electronics into the airlock assembly.")
 		user.drop_item()
@@ -244,7 +244,7 @@ obj/structure/door_assembly
 		else
 			W.loc = src.loc
 	else if(istype(W, /obj/item/weapon/crowbar) && state == 2 )
-		playsound(src.loc, 'Crowbar.ogg', 100, 1)
+		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
 		var/turf/T = get_turf(user)
 		user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to install electronics into the airlock assembly.")
 		sleep(40)
@@ -260,7 +260,7 @@ obj/structure/door_assembly
 				electronics = null
 				ae.loc = src.loc
 	else if(istype(W, /obj/item/stack/sheet/rglass) && glass == 0 && ispath(glass_type))
-		playsound(src.loc, 'Crowbar.ogg', 100, 1)
+		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
 		user.visible_message("[user] adds reinforced glass windows to the airlock assembly.", "You start to install reinforced glass windows into the airlock assembly.")
 		var/obj/item/stack/sheet/rglass/G = W
 		if(do_after(user, 40))
@@ -272,7 +272,7 @@ obj/structure/door_assembly
 					src.name = "Near finished Window Airlock Assembly"
 					src.airlock_type = glass_type
 	else if(istype(W, /obj/item/weapon/screwdriver) && state == 2 )
-		playsound(src.loc, 'Screwdriver.ogg', 100, 1)
+		playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 		var/turf/T = get_turf(user)
 		user << "\blue Now finishing the airlock."
 		sleep(40)

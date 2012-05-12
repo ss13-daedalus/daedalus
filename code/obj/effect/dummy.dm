@@ -1,6 +1,6 @@
 /obj/effect/dummy/spell_jaunt
 	name = "water"
-	icon = 'effects.dmi'
+	icon = 'icons/effects/effects.dmi'
 	icon_state = "nothing"
 	var/canmove = 1
 	density = 0

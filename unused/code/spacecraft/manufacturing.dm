@@ -7,7 +7,7 @@
 // Crate
 
 /obj/deploycrate
-	icon = 'mining.dmi'
+	icon = 'icons/obj/mining.dmi'
 	icon_state = "deploycrate"
 	density = 1
 	var
@@ -26,7 +26,7 @@
 
 
 /obj/machinery/nanosprayer
-	icon = 'mining.dmi'
+	icon = 'icons/obj/mining.dmi'
 	icon_state = "sprayer"
 	density = 1
 	anchored = 1
@@ -167,7 +167,7 @@ obj/machinery/nanosprayer/Topic(href, href_list)
 	src.updateUsrDialog()
 
 /obj/machinery/smelter
-	icon = 'mining.dmi'
+	icon = 'icons/obj/mining.dmi'
 	icon_state = "sprayer"
 	density = 1
 	anchored = 1
@@ -226,7 +226,7 @@ obj/machinery/smelter/Topic(href, href_list)
 
 
 /obj/machinery/slaggrinder
-	icon = 'mining.dmi'
+	icon = 'icons/obj/mining.dmi'
 
 	density = 1
 	anchored = 1
@@ -234,7 +234,7 @@ obj/machinery/smelter/Topic(href, href_list)
 
 
 /obj/machinery/adminmachine
-	icon = 'mining.dmi'
+	icon = 'icons/obj/mining.dmi'
 	icon_state = "sprayer"
 	density = 1
 	anchored = 1

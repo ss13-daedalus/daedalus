@@ -4,7 +4,7 @@
 
 	name = "disposal pipe segment"
 	desc = "A huge pipe segment used for constructing disposal systems."
-	icon = 'disposal.dmi'
+	icon = 'icons/obj/pipes/disposal.dmi'
 	icon_state = "conpipe-s"
 	anchored = 0
 	density = 0
@@ -136,12 +136,12 @@
 				level = 1
 				density = 0
 				user << "You attach the pipe to the underfloor."
-			playsound(src.loc, 'Ratchet.ogg', 100, 1)
+			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 
 		else if(istype(I, /obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/W = I
 			if(W.remove_fuel(0,user))
-				playsound(src.loc, 'Welder2.ogg', 100, 1)
+				playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
 				user << "Welding the pipe in place."
 				W:welding = 2
 				if(do_after(user, 20))

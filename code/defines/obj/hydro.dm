@@ -2,7 +2,7 @@
 
 /obj/item/device/analyzer/plant_analyzer
 	name = "plant analyzer"
-	icon = 'device.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "hydro"
 	item_state = "analyzer"
 
@@ -15,7 +15,7 @@
 
 /obj/item/seeds
 	name = "pack of seeds"
-	icon = 'seeds.dmi'
+	icon = 'icons/obj/seeds.dmi'
 	icon_state = "seed" // unknown plant seed - these shouldn't exist in-game
 	flags = FPRINT | TABLEPASS
 	w_class = 1.0 // Makes them pocketable
@@ -968,7 +968,7 @@
 	var/yield = 0
 	var/potency = -1
 	var/plant_type = 0
-	icon = 'harvest.dmi'
+	icon = 'icons/obj/harvest.dmi'
 	New(newloc,newpotency)
 		if (!isnull(newpotency))
 			potency = newpotency
@@ -1333,7 +1333,7 @@
 	seed = "/obj/item/seeds/bananaseed"
 	name = "banana"
 	desc = "It's an excellent prop for a clown."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "banana"
 	item_state = "banana"
 	On_Consume()
@@ -1674,7 +1674,7 @@
 
 /obj/item/weapon/grown // Grown weapons
 	name = "grown_weapon"
-	icon = 'weapons.dmi'
+	icon = 'icons/obj/weapons.dmi'
 	var/seed = ""
 	var/plantname = ""
 	var/productname = ""
@@ -1694,7 +1694,7 @@
 /obj/item/weapon/grown/log
 	name = "tower-cap log"
 	desc = "It's better than bad, it's good!"
-	icon = 'harvest.dmi'
+	icon = 'icons/obj/harvest.dmi'
 	icon_state = "logs"
 	force = 5
 	flags = TABLEPASS
@@ -1717,7 +1717,7 @@
 /obj/item/weapon/grown/sunflower // FLOWER POWER!
 	name = "sunflower"
 	desc = "It's beautiful! A certain person might beat you to death if you trample these."
-	icon = 'harvest.dmi'
+	icon = 'icons/obj/harvest.dmi'
 	icon_state = "sunflower"
 	damtype = "fire"
 	force = 0
@@ -1731,7 +1731,7 @@
 /*
 /obj/item/weapon/grown/gibtomato
 	desc = "A plump tomato."
-	icon = 'harvest.dmi'
+	icon = 'icons/obj/harvest.dmi'
 	name = "Gib Tomato"
 	icon_state = "gibtomato"
 	damtype = "fire"
@@ -1755,7 +1755,7 @@
 */
 /obj/item/weapon/grown/nettle // -- Skie
 	desc = "It's probably <B>not</B> wise to touch it with bare hands..."
-	icon = 'weapons.dmi'
+	icon = 'icons/obj/weapons.dmi'
 	name = "nettle"
 	icon_state = "nettle"
 	damtype = "fire"
@@ -1776,7 +1776,7 @@
 
 /obj/item/weapon/grown/deathnettle // -- Skie
 	desc = "The \red glowing \black nettle incites \red<B>rage</B>\black in you just from looking at it!"
-	icon = 'weapons.dmi'
+	icon = 'icons/obj/weapons.dmi'
 	name = "deathnettle"
 	icon_state = "deathnettle"
 	damtype = "fire"
@@ -1801,7 +1801,7 @@
 
 /obj/item/pestkiller
 	name = "bottle of pestkiller"
-	icon = 'chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
 	flags = FPRINT |  TABLEPASS
 	var/toxicity = 0
@@ -1812,7 +1812,7 @@
 
 /obj/item/pestkiller/carbaryl
 	name = "bottle of carbaryl"
-	icon = 'chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
 	flags = FPRINT |  TABLEPASS
 	toxicity = 4
@@ -1823,7 +1823,7 @@
 
 /obj/item/pestkiller/lindane
 	name = "bottle of lindane"
-	icon = 'chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle18"
 	flags = FPRINT |  TABLEPASS
 	toxicity = 6
@@ -1834,7 +1834,7 @@
 
 /obj/item/pestkiller/phosmet
 	name = "bottle of phosmet"
-	icon = 'chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle15"
 	flags = FPRINT |  TABLEPASS
 	toxicity = 8
@@ -1849,7 +1849,7 @@
 
 /obj/item/weapon/plantbgone // -- Skie
 	desc = "<I>Kill those pesky weeds!<I/>"
-	icon = 'hydroponics.dmi'
+	icon = 'icons/obj/hydroponics.dmi'
 	name = "bottle of Plant-B-Gone"
 	icon_state = "plantbgone"
 	item_state = "plantbgone"
@@ -1863,7 +1863,7 @@
 
 /obj/item/weapon/weedspray // -- Skie
 	desc = "It's a toxic mixture, in spray form, to kill small weeds."
-	icon = 'hydroponics.dmi'
+	icon = 'icons/obj/hydroponics.dmi'
 	name = "weed-spray"
 	icon_state = "weedspray"
 	item_state = "spray"
@@ -1877,7 +1877,7 @@
 
 /obj/item/weapon/pestspray // -- Skie
 	desc = "It's some pest eliminator spray! <I>Do not inhale!</I>"
-	icon = 'hydroponics.dmi'
+	icon = 'icons/obj/hydroponics.dmi'
 	name = "pest-spray"
 	icon_state = "pestspray"
 	item_state = "spray"
@@ -1892,7 +1892,7 @@
 /obj/item/weapon/minihoe // -- Numbers
 	name = "mini hoe"
 	desc = "It's used for removing weeds or scratching your back."
-	icon = 'weapons.dmi'
+	icon = 'icons/obj/weapons.dmi'
 	icon_state = "hoe"
 	item_state = "hoe"
 	flags = FPRINT | TABLEPASS | CONDUCT | USEDELAY
@@ -1907,7 +1907,7 @@
 
 /obj/item/weedkiller
 	name = "bottle of weedkiller"
-	icon = 'chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
 	flags = FPRINT |  TABLEPASS
 	var/toxicity = 0
@@ -1915,7 +1915,7 @@
 
 /obj/item/weedkiller/triclopyr
 	name = "bottle of glyphosate"
-	icon = 'chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
 	flags = FPRINT |  TABLEPASS
 	toxicity = 4
@@ -1923,7 +1923,7 @@
 
 /obj/item/weedkiller/lindane
 	name = "bottle of triclopyr"
-	icon = 'chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle18"
 	flags = FPRINT |  TABLEPASS
 	toxicity = 6
@@ -1931,7 +1931,7 @@
 
 /obj/item/weedkiller/D24
 	name = "bottle of 2,4-D"
-	icon = 'chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle15"
 	flags = FPRINT |  TABLEPASS
 	toxicity = 8
@@ -1943,7 +1943,7 @@
 
 /obj/item/nutrient
 	name = "bottle of nutrient"
-	icon = 'chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
 	flags = FPRINT |  TABLEPASS
 	w_class = 1.0
@@ -1955,7 +1955,7 @@
 
 /obj/item/nutrient/ez
 	name = "bottle of E-Z-Nutrient"
-	icon = 'chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
 	flags = FPRINT |  TABLEPASS
 	mutmod = 1
@@ -1966,7 +1966,7 @@
 
 /obj/item/nutrient/l4z
 	name = "bottle of Left 4 Zed"
-	icon = 'chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle18"
 	flags = FPRINT |  TABLEPASS
 	mutmod = 2
@@ -1977,7 +1977,7 @@
 
 /obj/item/nutrient/rh
 	name = "bottle of Robust Harvest"
-	icon = 'chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle15"
 	flags = FPRINT |  TABLEPASS
 	mutmod = 0

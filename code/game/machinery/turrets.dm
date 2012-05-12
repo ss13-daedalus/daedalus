@@ -38,7 +38,7 @@
 
 /obj/machinery/turret
 	name = "turret"
-	icon = 'turrets.dmi'
+	icon = 'icons/obj/turrets.dmi'
 	icon_state = "grey_target_prism"
 	var/raised = 0
 	var/enabled = 1
@@ -79,7 +79,7 @@
 
 /obj/machinery/turretcover
 	name = "pop-up turret cover"
-	icon = 'turrets.dmi'
+	icon = 'icons/obj/turrets.dmi'
 	icon_state = "turretCover"
 	anchored = 1
 	layer = 3.5
@@ -254,7 +254,7 @@
 
 /obj/machinery/turret/attackby(obj/item/weapon/W, mob/user)//I can't believe no one added this before/N
 	..()
-	playsound(src.loc, 'smash.ogg', 60, 1)
+	playsound(src.loc, 'sound/weapons/smash.ogg', 60, 1)
 	src.spark_system.start()
 	src.health -= W.force * 0.5
 	if (src.health <= 0)
@@ -287,7 +287,7 @@
 
 /obj/machinery/turretid
 	name = "Turret deactivation control"
-	icon = 'device.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "motion3"
 	anchored = 1
 	density = 0
@@ -380,7 +380,7 @@
 
 /obj/machinery/turret/attack_alien(mob/living/carbon/alien/humanoid/M as mob)
 	if(!(stat & BROKEN))
-		playsound(src.loc, 'slash.ogg', 25, 1, -1)
+		playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1, -1)
 		for(var/mob/O in viewers(src, null))
 			if ((O.client && !( O.blinded )))
 				O.show_message(text("\red <B>[] has slashed at []!</B>", M, src), 1)
@@ -453,7 +453,7 @@
 	var/health = 40
 	var/list/scan_for = list("human"=0,"cyborg"=0,"mecha"=0,"alien"=1)
 	var/on = 0
-	icon = 'turrets.dmi'
+	icon = 'icons/obj/turrets.dmi'
 	icon_state = "gun_turret"
 
 
@@ -601,7 +601,7 @@
 				continue
 			if (targloc == curloc)
 				continue
-			playsound(src, 'Gunshot.ogg', 50, 1)
+			playsound(src, 'sound/weapons/Gunshot.ogg', 50, 1)
 			var/obj/item/projectile/A = new /obj/item/projectile(curloc)
 			src.projectiles--
 			A.current = curloc

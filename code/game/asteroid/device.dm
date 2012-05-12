@@ -1,6 +1,6 @@
 /obj/item/device/gps
 	name = "GPS"
-	icon = 'device.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "pinoff"
 	flags = FPRINT | TABLEPASS| CONDUCT | ONBELT
 	w_class = 2.0
@@ -86,7 +86,7 @@
 	return
 
 /obj/effect/ship_landing_beacon
-	icon = 'craft.dmi'
+	icon = 'icons/obj/craft.dmi'
 	icon_state = "beacon"
 	name = "Beacon"
 	var/active = 0

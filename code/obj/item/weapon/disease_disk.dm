@@ -1,6 +1,6 @@
 /obj/item/weapon/disease_disk
 	name = "Blank GNA disk"
-	icon = 'cloning.dmi'
+	icon = 'icons/obj/cloning.dmi'
 	icon_state = "datadisk0"
 	var/datum/disease2/effectholder/effect = null
 	var/stage = 1

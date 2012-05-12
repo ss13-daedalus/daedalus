@@ -5,7 +5,7 @@
 	var/state = 1.0
 	var/obj/effect/beam/e_beam/first
 	var/power = 500
-	icon = 'engine.dmi'
+	icon = 'icons/obj/engine.dmi'
 	icon_state = "laser"
 	anchored = 1
 	var/id
@@ -41,7 +41,7 @@
 
 /obj/effect/beam/e_beam
 	name = "Laser beam"
-	icon = 'projectiles.dmi'
+	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "u_laser"
 	var/obj/machinery/engine/laser/master = null
 	var/obj/effect/beam/e_beam/next = null

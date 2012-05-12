@@ -2,7 +2,7 @@
 	name = "chem dispenser"
 	density = 1
 	anchored = 1
-	icon = 'chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "dispenser"
 	use_power = 1
 	var/energy = 25
@@ -162,7 +162,7 @@
 	name = "ChemMaster 3000"
 	density = 1
 	anchored = 1
-	icon = 'chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
 	var/beaker = null
 	var/mode = 0
@@ -346,9 +346,9 @@
 				spawn()
 					has_sprites += user.client
 					for(var/i = 1 to MAX_PILL_SPRITE)
-						usr << browse_rsc(icon('chemical.dmi', "pill" + num2text(i)), "pill[i].png")
+						usr << browse_rsc(icon('icons/obj/chemical.dmi', "pill" + num2text(i)), "pill[i].png")
 					for(var/i = 1 to MAX_BOTTLE_SPRITE)
-						usr << browse_rsc(icon('chemical.dmi', "bottle" + num2text(i)), "bottle[i].png")
+						usr << browse_rsc(icon('icons/obj/chemical.dmi', "bottle" + num2text(i)), "bottle[i].png")
 			return
 		user.machine = src
 		var/dat = ""
@@ -359,16 +359,16 @@
 				spawn()
 					has_sprites += user.client
 					for(var/i = 1 to MAX_PILL_SPRITE)
-						usr << browse_rsc(icon('chemical.dmi', "pill" + num2text(i)), "pill[i].png")
+						usr << browse_rsc(icon('icons/obj/chemical.dmi', "pill" + num2text(i)), "pill[i].png")
 					for(var/i = 1 to MAX_BOTTLE_SPRITE)
-						usr << browse_rsc(icon('chemical.dmi', "bottle" + num2text(i)), "bottle[i].png")
+						usr << browse_rsc(icon('icons/obj/chemical.dmi', "bottle" + num2text(i)), "bottle[i].png")
 		else
 			if(!(user.client in has_sprites))
 				has_sprites += user.client
 				for(var/i = 1 to MAX_PILL_SPRITE)
-					usr << browse_rsc(icon('chemical.dmi', "pill" + num2text(i)), "pill[i].png")
+					usr << browse_rsc(icon('icons/obj/chemical.dmi', "pill" + num2text(i)), "pill[i].png")
 				for(var/i = 1 to MAX_BOTTLE_SPRITE)
-					usr << browse_rsc(icon('chemical.dmi', "bottle" + num2text(i)), "bottle[i].png")
+					usr << browse_rsc(icon('icons/obj/chemical.dmi', "bottle" + num2text(i)), "bottle[i].png")
 			var/datum/reagents/R = beaker:reagents
 			dat += "<A href='?src=\ref[src];eject=1'>Eject beaker and Clear Buffer</A><BR><BR>"
 			if(!R.total_volume)
@@ -420,7 +420,7 @@
 	name = "PanD.E.M.I.C 2200"
 	density = 1
 	anchored = 1
-	icon = 'chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
 	var/temphtml = ""
 	var/wait = null
@@ -588,7 +588,7 @@
 
 	attackby(var/obj/I as obj, var/mob/user as mob)
 		if(istype(I, /obj/item/weapon/screwdriver))
-			playsound(src.loc, 'Screwdriver.ogg', 50, 1)
+			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 			if(do_after(user, 20))
 				if (src.stat & BROKEN)
 					user << "\blue The broken glass falls out."
@@ -633,7 +633,7 @@
 ////////////////////////////////////////////////////////////////////////
 /obj/machinery/reagentgrinder
 	name = "Reagent Grinder"
-	icon = 'kitchen.dmi'
+	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "juicer1"
 	layer = 2.9
 	density = 1
@@ -796,7 +796,7 @@
 		return
 	if (!beaker || beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 		return
-	playsound(src.loc, 'juicer.ogg', 20, 1)
+	playsound(src.loc, 'sound/machines/juicer.ogg', 20, 1)
 	for (var/obj/item/weapon/reagent_containers/food/snacks/O in src.contents)
 		if (beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 			break

@@ -10,8 +10,8 @@
 		src.verbs += /mob/living/carbon/alien/humanoid/proc/corrode_target
 		src.verbs += /mob/living/carbon/alien/humanoid/sentinel/verb/spit
 		src.verbs -= /mob/living/carbon/alien/humanoid/verb/ventcrawl
-		src.stand_icon = new /icon('alien.dmi', "queen_s")
-		src.lying_icon = new /icon('alien.dmi', "queen_l")
+		src.stand_icon = new /icon('icons/mob/alien.dmi', "queen_s")
+		src.lying_icon = new /icon('icons/mob/alien.dmi', "queen_l")
 		src.icon = src.stand_icon
 		update_clothing()
 		src << "\blue Your icons have been generated!"

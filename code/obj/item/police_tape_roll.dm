@@ -1,7 +1,7 @@
 /obj/item/police_tape_roll
 	name = "police tape roll"
 	desc = "A roll of police tape used to block off crime scenes from the public."
-	icon = 'police_tape.dmi'
+	icon = 'icons/police_tape.dmi'
 	icon_state = "rollstart"
 	flags = FPRINT
 	w_class = 1.0

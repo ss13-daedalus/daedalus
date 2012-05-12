@@ -1,7 +1,7 @@
 /**********************Satchel**************************/
 
 /obj/item/weapon/satchel
-	icon = 'mining.dmi'
+	icon = 'icons/obj/mining.dmi'
 	icon_state = "satchel"
 	name = "Mining Satchel"
 	var/mode = 1;  //0 = pick one at a time, 1 = pick all on tile
@@ -38,7 +38,7 @@
 /**********************Ore box**************************/
 
 /obj/structure/ore_box
-	icon = 'mining.dmi'
+	icon = 'icons/obj/mining.dmi'
 	icon_state = "orebox0"
 	name = "Ore Box"
 	desc = "It's heavy"

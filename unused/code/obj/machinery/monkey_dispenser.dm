@@ -1,6 +1,6 @@
 /obj/machinery/monkey_dispenser
 	name = "Monkey dispenser"
-	icon = 'cloning.dmi'
+	icon = 'icons/obj/cloning.dmi'
 	icon_state = "pod_0"
 	density = 1
 	anchored = 1

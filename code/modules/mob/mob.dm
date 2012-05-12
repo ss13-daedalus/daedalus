@@ -445,7 +445,7 @@
 /*
 /mob/verb/help()
 	set name = "Help"
-	src << browse('help.html', "window=help")
+	src << browse('html/help.html', "window=help")
 	return
 */
 
@@ -520,10 +520,10 @@
 	set name = "Changelog"
 	set category = "OOC"
 	if (client)
-		src << browse_rsc('postcardsmall.jpg')
-		src << browse_rsc('somerights20.png')
-		src << browse_rsc('88x31.png')
-		src << browse('changelog.html', "window=changes;size=675x650")
+		src << browse_rsc('html/postcardsmall.jpg')
+		src << browse_rsc('html/somerights20.png')
+		src << browse_rsc('html/88x31.png')
+		src << browse('html/changelog.html', "window=changes;size=675x650")
 		client.changes = 1
 
 /client/var/ghost_ears = 1
@@ -867,7 +867,7 @@
 
 	animation = new(loc)
 	animation.icon_state = "blank"
-	animation.icon = 'mob.dmi'
+	animation.icon = 'icons/mob/mob.dmi'
 	animation.master = src
 	if(ishuman(src))
 		flick("gibbed-h", animation)
@@ -932,7 +932,7 @@ Dusting robots does not eject the MMI, so it's a bit more powerful than gib() /N
 
 	animation = new(loc)
 	animation.icon_state = "blank"
-	animation.icon = 'mob.dmi'
+	animation.icon = 'icons/mob/mob.dmi'
 	animation.master = src
 	if(ishuman(src))
 		flick("dust-h", animation)
@@ -1069,7 +1069,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 			boom.icon_state = "start"
 
 	sleep(40)
-	mob << sound('explosionfar.ogg')
+	mob << sound('sound/effects/explosionfar.ogg')
 	boom.icon_state = "end"
 	if(!station_missed) flick("explode", boom)
 	else flick("explode2", boom)

@@ -11,7 +11,7 @@ WELDINGTOOOL
 /obj/item/weapon/wrench
 	name = "wrench"
 	desc = "A wrench with common uses. Can be found in your hand."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "wrench"
 	flags = FPRINT | TABLEPASS| CONDUCT
 	force = 5.0
@@ -42,7 +42,7 @@ WELDINGTOOOL
 // WELDING TOOL
 /obj/item/weapon/weldingtool
 	name = "Welding Tool"
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "welder"
 	flags = FPRINT | TABLEPASS| CONDUCT
 	force = 3.0
@@ -144,7 +144,7 @@ WELDINGTOOOL
 		if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && !src.welding)
 			O.reagents.trans_to(src, max_fuel)
 			user << "\blue Welder refueled"
-			playsound(src.loc, 'refill.ogg', 50, 1, -6)
+			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
 		else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && src.welding)
 			message_admins("[key_name_admin(user)] triggered a fueltank explosion.")
@@ -308,7 +308,7 @@ WELDINGTOOOL
 /obj/item/weapon/wirecutters
 	name = "wirecutters"
 	desc = "This cuts wires."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "cutters"
 	flags = FPRINT | TABLEPASS| CONDUCT
 	force = 6.0

@@ -1,7 +1,7 @@
 /obj/structure/closet/crate
 	desc = "A crate."
 	name = "Crate"
-	icon = 'storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "crate"
 	density = 1
 	icon_opened = "crateopen"
@@ -14,7 +14,7 @@
 /obj/structure/closet/crate/internals
 	desc = "A internals crate."
 	name = "Internals crate"
-	icon = 'storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "o2crate"
 	density = 1
 	icon_opened = "o2crateopen"
@@ -23,7 +23,7 @@
 /obj/structure/closet/crate/trashcart
 	desc = "A heavy, metal trashcart with wheels."
 	name = "Trash Cart"
-	icon = 'storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "trashcart"
 	density = 1
 	icon_opened = "trashcartopen"
@@ -32,7 +32,7 @@
 /obj/structure/closet/crate/hat
 	desc = "A crate filled with Valuable Collector's Hats!."
 	name = "Hat Crate"
-	icon = 'storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "crate"
 	density = 1
 	icon_opened = "crateopen"
@@ -41,7 +41,7 @@
 /obj/structure/closet/crate/medical
 	desc = "A medical crate."
 	name = "Medical crate"
-	icon = 'storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "medicalcrate"
 	density = 1
 	icon_opened = "medicalcrateopen"
@@ -50,7 +50,7 @@
 /obj/structure/closet/crate/rcd
 	desc = "A crate for the storage of the RCD."
 	name = "RCD crate"
-	icon = 'storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "crate"
 	density = 1
 	icon_opened = "crateopen"
@@ -59,7 +59,7 @@
 /obj/structure/closet/crate/freezer
 	desc = "A freezer."
 	name = "Freezer"
-	icon = 'storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "freezer"
 	density = 1
 	icon_opened = "freezeropen"
@@ -68,7 +68,7 @@
 /obj/structure/closet/crate/bin
 	desc = "A large bin."
 	name = "Large bin"
-	icon = 'storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "largebin"
 	density = 1
 	icon_opened = "largebinopen"
@@ -77,7 +77,7 @@
 /obj/structure/closet/crate/radiation
 	desc = "A crate with a radiation sign on it."
 	name = "Radioactive gear crate"
-	icon = 'storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "radiation"
 	density = 1
 	icon_opened = "radiationopen"
@@ -88,7 +88,7 @@
 /obj/structure/closet/crate/secure/weapon
 	desc = "A secure weapons crate."
 	name = "Weapons crate"
-	icon = 'storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "weaponcrate"
 	density = 1
 	icon_opened = "weaponcrateopen"
@@ -97,7 +97,7 @@
 /obj/structure/closet/crate/secure/phoron
 	desc = "A secure phoron crate."
 	name = "Phoron crate"
-	icon = 'storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "plasmacrate"
 	density = 1
 	icon_opened = "plasmacrateopen"
@@ -106,7 +106,7 @@
 /obj/structure/closet/crate/secure/gear
 	desc = "A secure gear crate."
 	name = "Gear crate"
-	icon = 'storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "secgearcrate"
 	density = 1
 	icon_opened = "secgearcrateopen"
@@ -139,7 +139,7 @@
 /obj/structure/closet/crate/hydroponics
 	name = "Hydroponics crate"
 	desc = "All you need to destroy those pesky weeds and pests."
-	icon = 'storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "hydrocrate"
 	icon_opened = "hydrocrateopen"
 	icon_closed = "hydrocrate"
@@ -149,7 +149,7 @@
 	//This exists so the prespawned hydro crates spawn with their contents.
 /*	name = "Hydroponics crate"
 	desc = "All you need to destroy those pesky weeds and pests."
-	icon = 'storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "hydrocrate"
 	icon_opened = "hydrocrateopen"
 	icon_closed = "hydrocrate"
@@ -203,7 +203,7 @@
 	new /obj/item/clothing/head/radiation(src)
 
 /obj/structure/closet/crate/open()
-	playsound(src.loc, 'click.ogg', 15, 1, -3)
+	playsound(src.loc, 'sound/machines/click.ogg', 15, 1, -3)
 
 	for(var/obj/O in src)
 		O.loc = get_turf(src)
@@ -215,7 +215,7 @@
 	src.opened = 1
 
 /obj/structure/closet/crate/close()
-	playsound(src.loc, 'click.ogg', 15, 1, -3)
+	playsound(src.loc, 'sound/machines/click.ogg', 15, 1, -3)
 
 	for(var/obj/O in get_turf(src))
 		if(O.density || O.anchored || O == src) continue
@@ -296,7 +296,7 @@
 			overlays += emag
 			overlays += sparks
 			spawn(6) overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
-			playsound(src.loc, 'sparks4.ogg', 75, 1)
+			playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 			src.locked = 0
 	if(!opened && prob(20/severity))
 		if(!locked)

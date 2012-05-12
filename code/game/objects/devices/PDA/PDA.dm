@@ -4,7 +4,7 @@
 /obj/item/device/pda
 	name = "PDA"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
-	icon = 'pda.dmi'
+	icon = 'icons/obj/pda.dmi'
 	icon_state = "pda"
 	item_state = "electronic"
 	w_class = 1.0
@@ -452,7 +452,7 @@
 						scanmode = 4
 				if("Honk")
 					if ( !(last_honk && world.time < last_honk + 20) )
-						playsound(loc, 'bikehorn.ogg', 50, 1)
+						playsound(loc, 'sound/items/bikehorn.ogg', 50, 1)
 						last_honk = world.time
 
 //MESSENGER/NOTE FUNCTIONS===================================
@@ -534,12 +534,12 @@
 								ai.show_message("<i>Intercepted message from <b>[who]</b>: [t]</i>")
 
 						if (!P.silent)
-							playsound(P.loc, 'twobeep.ogg', 50, 1)
+							playsound(P.loc, 'sound/machines/twobeep.ogg', 50, 1)
 							for (var/mob/O in hearers(3, P.loc))
 								O.show_message(text("\icon[P] *[P.ttone]*"))
 
 						P.overlays = null
-						P.overlays += image('pda.dmi', "pda-r")
+						P.overlays += image('icons/obj/pda.dmi', "pda-r")
 
 					// pAI Message
 					else
@@ -565,7 +565,7 @@
 							for (var/mob/living/silicon/ai/ai in world)
 								ai.show_message("<i>Intercepted message from <b>[who]</b>: [t]</i>")
 
-						playsound(P.loc, 'twobeep.ogg', 50, 1)
+						playsound(P.loc, 'sound/machines/twobeep.ogg', 50, 1)
 
 					log_pda("[usr] (PDA: [src.name]) sent \"[t]\" to [P.name]")
 
@@ -685,7 +685,7 @@
 
 	if ((honkamt > 0) && (prob(60)))//For clown virus.
 		honkamt--
-		playsound(loc, 'bikehorn.ogg', 30, 1)
+		playsound(loc, 'sound/items/bikehorn.ogg', 30, 1)
 
 	if(U.machine == src)//Final safety.
 		attack_self(U)//It auto-closes the menu prior if the user is not in range and so on.
@@ -891,7 +891,7 @@
 
 		M.pulling = null
 		M << "\blue You slipped on the PDA!"
-		playsound(src.loc, 'slip.ogg', 50, 1, -3)
+		playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 		M.Stun(8)
 		M.Weaken(5)
 
@@ -948,12 +948,12 @@
 	selected:tnote += "<i><b>&larr; From (AI) [usr.name]:</b></i><br>[t]<br>"
 
 	if (!selected:silent)
-		playsound(selected.loc, 'twobeep.ogg', 50, 1)
+		playsound(selected.loc, 'sound/machines/twobeep.ogg', 50, 1)
 		for (var/mob/O in hearers(3, selected.loc))
 			O.show_message(text("\icon[selected] *[selected:ttone]*"))
 
 	selected.overlays = null
-	selected.overlays += image('pda.dmi', "pda-r")
+	selected.overlays += image('icons/obj/pda.dmi', "pda-r")
 
 
 //Some spare PDAs in a box
@@ -961,7 +961,7 @@
 /obj/item/weapon/storage/PDAbox
 	name = "spare PDAs"
 	desc = "A box of spare PDA microcomputers."
-	icon = 'pda.dmi'
+	icon = 'icons/obj/pda.dmi'
 	icon_state = "pdabox"
 	item_state = "syringe_kit"
 	foldable = /obj/item/stack/sheet/cardboard	//BubbleWrap

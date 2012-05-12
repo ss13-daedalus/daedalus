@@ -1,7 +1,7 @@
 /obj/item/police_tape
 	name = "police tape"
 	desc = "A length of police tape.  Do not cross."
-	icon = 'police_tape.dmi'
+	icon = 'icons/police_tape.dmi'
 	anchored = 1
 	density = 1
 	req_access = list(access_security)

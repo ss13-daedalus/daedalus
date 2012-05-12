@@ -33,7 +33,7 @@
 	name = "pill bottle"
 	desc = "It's an airtight container for storing medication."
 	icon_state = "pill_canister"
-	icon = 'chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	item_state = "contsolid"
 	w_class = 2.0
 	can_hold = list("/obj/item/weapon/reagent_containers/pill")
@@ -43,7 +43,7 @@
 	name = "pack of dice"
 	desc = "It's a small container with dice inside."
 	icon_state = "pill_canister"
-	icon = 'chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	item_state = "contsolid"
 	w_class = 2.0
 	can_hold = list("/obj/item/weapon/dice")
@@ -354,7 +354,7 @@
 /obj/item/weapon/storage/seccart_kit
 	name = "Spare R.O.B.U.S.T. Cartridges"
 	desc = "A box full of R.O.B.U.S.T. Cartridges, used by Security."
-	icon = 'pda.dmi'
+	icon = 'icons/obj/pda.dmi'
 	icon_state = "pdabox"
 	item_state = "syringe_kit"
 	foldable = /obj/item/stack/sheet/cardboard	//BubbleWrap
@@ -427,7 +427,7 @@
 /obj/item/weapon/storage/toolbox
 	name = "toolbox"
 	desc = "Danger. Very heavy."
-	icon = 'storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "red"
 	item_state = "toolbox_red"
 	flags = FPRINT | TABLEPASS| CONDUCT
@@ -471,7 +471,7 @@
 /obj/item/weapon/storage/PCMBox
 	name = "spare power control modules"
 	desc = "A box of spare power control module circuit boards."
-	icon = 'storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "circuit"
 	item_state = "syringe_kit"
 
@@ -485,7 +485,7 @@
 
 /obj/item/weapon/storage/book
 	name = "book"
-	icon = 'library.dmi'
+	icon = 'icons/obj/library.dmi'
 	icon_state ="book"
 	throw_speed = 1
 	throw_range = 5

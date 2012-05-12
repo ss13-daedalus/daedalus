@@ -19,7 +19,7 @@
 		if(!M.handcuffed)
 			var/turf/p_loc = user.loc
 			var/turf/p_loc_m = M.loc
-			playsound(src.loc, 'handcuffs.ogg', 30, 1, -2)
+			playsound(src.loc, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
 			for(var/mob/O in viewers(user, null))
 				O.show_message("\red <B>[user] is trying to put handcuffs on [M]!</B>", 1)
 			spawn(30)
@@ -63,7 +63,7 @@
 				O.place = "handcuff"
 				M.requests += O
 				spawn( 0 )
-					playsound(src.loc, 'handcuffs.ogg', 30, 1, -2)
+					playsound(src.loc, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
 					O.process()
 			return
 		else
@@ -77,7 +77,7 @@
 				O.place = "handcuff"
 				M.requests += O
 				spawn( 0 )
-					playsound(src.loc, 'handcuffs.ogg', 30, 1, -2)
+					playsound(src.loc, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
 					O.process()
 			return
 	return
@@ -106,7 +106,7 @@
 		var/obj/o = target
 		o.reagents.trans_to(src, 50)
 		user << "\blue Extinguisher refilled"
-		playsound(src.loc, 'refill.ogg', 50, 1, -6)
+		playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 		return
 
 	if (!safety)
@@ -118,7 +118,7 @@
 
 		src.last_use = world.time
 
-		playsound(src.loc, 'extinguish.ogg', 75, 1, -3)
+		playsound(src.loc, 'sound/effects/extinguish.ogg', 75, 1, -3)
 
 		var/direction = get_dir(src,target)
 
@@ -437,7 +437,7 @@
 /obj/item/latexballon/proc/burst()
 	if (!air_contents)
 		return
-	playsound(src, 'Gunshot.ogg', 100, 1)
+	playsound(src, 'sound/weapons/Gunshot.ogg', 100, 1)
 	icon_state = "latexballon_bursted"
 	item_state = "lgloves"
 	loc.assume_air(air_contents)

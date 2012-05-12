@@ -65,7 +65,7 @@
 
 			comm.messagetitle.Add("Cent. Com. CONFIDENTIAL REPORT")
 			comm.messagetext.Add(intercepttext)
-	world << sound('commandreport.ogg')
+	world << sound('sound/announcer/commandreport.ogg')
 
 /datum/game_mode/epidemic/proc/announce_to_kill_crew()
 	var/intercepttext = "<FONT size = 3 color='red'><B>CONFIDENTIAL REPORT</FONT><HR>"
@@ -80,7 +80,7 @@
 
 			comm.messagetitle.Add("Cent. Com. CONFIDENTIAL REPORT")
 			comm.messagetext.Add(intercepttext)
-	world << sound('commandreport.ogg')
+	world << sound('sound/announcer/commandreport.ogg')
 
 
 /datum/game_mode/epidemic/post_setup()
@@ -169,7 +169,7 @@
 	ticker.mode:explosion_in_progress = 1
 	for(var/mob/M in world)
 		if(M.client)
-			M << 'Alarm.ogg'
+			M << 'sound/machines/Alarm.ogg'
 	world << "\blue<b>Incoming missile detected.. Impact in 10..</b>"
 	for (var/i=9 to 1 step -1)
 		sleep(10)

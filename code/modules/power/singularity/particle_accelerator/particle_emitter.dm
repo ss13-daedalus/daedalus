@@ -1,7 +1,7 @@
 /obj/structure/particle_accelerator/particle_emitter
 	name = "Particle Accelerator Emitter"
 	desc = "Part of a Particle Accelerator, might not want to stand near this end."
-	icon = 'particle_accelerator.dmi'
+	icon = 'icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "none"
 	var
 		fire_delay = 50

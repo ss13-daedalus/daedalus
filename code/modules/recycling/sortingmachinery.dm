@@ -1,7 +1,7 @@
 /obj/structure/bigDelivery
 	desc = "A big wrapped package."
 	name = "large parcel"
-	icon = 'storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "deliverycloset"
 	var/tmp/obj/wrapped = null
 	density = 1
@@ -29,14 +29,14 @@
 	update_icon()
 		overlays = new()
 		if(name != initial(name) || examtext)
-			var/image/I = new/image('storage.dmi',"delivery_label")
+			var/image/I = new/image('icons/obj/storage.dmi',"delivery_label")
 			if(!label_x)
 				label_x = rand(-8, 6)
 			I.pixel_x = label_x
 			I.pixel_y = -3
 			overlays += I
 		if(sortTag)
-			var/image/I = new/image('storage.dmi',"delivery_tag")
+			var/image/I = new/image('icons/obj/storage.dmi',"delivery_tag")
 			if(!tag_x)
 				tag_x = rand(-8, 6)
 			I.pixel_x = tag_x
@@ -97,7 +97,7 @@
 /obj/item/smallDelivery
 	desc = "A small wrapped package."
 	name = "small parcel"
-	icon = 'storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "deliverycrateSmall"
 	var/tmp/obj/item/wrapped = null
 	var/sortTag = null
@@ -115,9 +115,9 @@
 	update_icon()
 		overlays = new()
 		if(name != initial(name) || examtext)
-			overlays += new/image('storage.dmi',"delivery_label")
+			overlays += new/image('icons/obj/storage.dmi',"delivery_label")
 		if(sortTag)
-			overlays += new/image('storage.dmi',"delivery_tag")
+			overlays += new/image('icons/obj/storage.dmi',"delivery_tag")
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if(istype(W, /obj/item/device/destTagger))
@@ -165,7 +165,7 @@
 
 /obj/item/weapon/packageWrap
 	name = "package wrapper"
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "deliveryPaper"
 	w_class = 3.0
 	var/amount = 25.0
@@ -364,7 +364,7 @@
 		sleep(10)	// Prevent sound spam when several objects are flushed simultaneously.
 		if(!currentlyFlushing)
 			currentlyFlushing = 1
-			playsound(src, 'disposalflush.ogg', 50, 0, 0)
+			playsound(src, 'sound/machines/disposalflush.ogg', 50, 0, 0)
 			spawn(17)	// Sound file is ~3 seconds long, adjust this if it becomes longer/shorter.
 				currentlyFlushing = 0
 

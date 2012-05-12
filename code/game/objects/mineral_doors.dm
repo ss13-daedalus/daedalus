@@ -7,7 +7,7 @@
 	anchored = 1
 	opacity = 1
 
-	icon = 'mineral_doors.dmi'
+	icon = 'icons/obj/doors/mineral_doors.dmi'
 	icon_state = "iron"
 
 	var/mineralType = "iron"
@@ -69,7 +69,7 @@
 
 	proc/Open()
 		isSwitchingStates = 1
-		playsound(loc, 'stonedoor_openclose.ogg', 100, 1)
+		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 100, 1)
 		flick("[mineralType]opening",src)
 		sleep(10)
 		density = 0
@@ -80,7 +80,7 @@
 
 	proc/Close()
 		isSwitchingStates = 1
-		playsound(loc, 'stonedoor_openclose.ogg', 100, 1)
+		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 100, 1)
 		flick("[mineralType]closing",src)
 		sleep(10)
 		density = 1

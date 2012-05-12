@@ -1699,7 +1699,7 @@ CIRCULAR SAW
 
 /obj/item/weapon/surgical_tool/bonegel
 	name = "bone gel"
-	icon = 'surgery.dmi'
+	icon = 'icons/obj/surgery.dmi'
 	icon_state = "bone gel"
 
 /obj/item/weapon/surgical_tool/bonegel/New()
@@ -1725,7 +1725,7 @@ CIRCULAR SAW
 
 /obj/item/weapon/surgical_tool/bonesetter
 	name = "bone setter"
-	icon = 'surgery.dmi'
+	icon = 'icons/obj/surgery.dmi'
 	icon_state = "bone setter"
 
 /obj/item/weapon/surgical_tool/bonesetter/New()
@@ -1752,7 +1752,7 @@ CIRCULAR SAW
 /obj/item/weapon/boneinjector
 	name = "Bone-repairing Nanites Injector"
 	desc = "This injects the person with nanites that repair bones."
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "implanter1"
 	throw_speed = 1
 	throw_range = 5

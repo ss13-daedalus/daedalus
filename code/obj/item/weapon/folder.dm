@@ -4,7 +4,7 @@
 /obj/item/weapon/folder
 	name = "folder"
 	desc = "A folder."
-	icon = 'bureaucracy.dmi'
+	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "folder"
 	w_class = 2
 

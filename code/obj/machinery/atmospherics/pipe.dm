@@ -56,7 +56,7 @@ obj/machinery/atmospherics/pipe
 		..()
 
 	simple
-		icon = 'pipes.dmi'
+		icon = 'icons/obj/pipes.dmi'
 		icon_state = "intact-f"
 
 		name = "pipe"
@@ -159,7 +159,7 @@ obj/machinery/atmospherics/pipe
 
 		proc/burst()
 			src.visible_message("\red \bold [src] bursts!");
-			playsound(src.loc, 'bang.ogg', 25, 1)
+			playsound(src.loc, 'sound/effects/bang.ogg', 25, 1)
 			var/datum/effect/effect/system/harmless_smoke_spread/smoke = new
 			smoke.set_up(1,0, src.loc, 0)
 			smoke.start()
@@ -312,7 +312,7 @@ obj/machinery/atmospherics/pipe
 
 
 	simple/insulated
-		icon = 'red_pipe.dmi'
+		icon = 'icons/obj/atmospherics/red_pipe.dmi'
 		icon_state = "intact"
 
 		minimum_temperature_difference = 10000
@@ -325,7 +325,7 @@ obj/machinery/atmospherics/pipe
 
 
 	tank
-		icon = 'pipe_tank.dmi'
+		icon = 'icons/obj/atmospherics/pipe_tank.dmi'
 		icon_state = "intact"
 
 		name = "Pressure Tank"
@@ -369,7 +369,7 @@ obj/machinery/atmospherics/pipe
 				..()
 
 		toxins
-			icon = 'orange_pipe_tank.dmi'
+			icon = 'icons/obj/atmospherics/orange_pipe_tank.dmi'
 			name = "Pressure Tank (Phoron)"
 
 			New()
@@ -382,7 +382,7 @@ obj/machinery/atmospherics/pipe
 				..()
 
 		oxygen_agent_b
-			icon = 'red_orange_pipe_tank.dmi'
+			icon = 'icons/obj/atmospherics/red_orange_pipe_tank.dmi'
 			name = "Pressure Tank (Oxygen + Phoron)"
 
 			New()
@@ -398,7 +398,7 @@ obj/machinery/atmospherics/pipe
 				..()
 
 		oxygen
-			icon = 'blue_pipe_tank.dmi'
+			icon = 'icons/obj/atmospherics/blue_pipe_tank.dmi'
 			name = "Pressure Tank (Oxygen)"
 
 			New()
@@ -411,7 +411,7 @@ obj/machinery/atmospherics/pipe
 				..()
 
 		nitrogen
-			icon = 'red_pipe_tank.dmi'
+			icon = 'icons/obj/atmospherics/red_pipe_tank.dmi'
 			name = "Pressure Tank (Nitrogen)"
 
 			New()
@@ -424,7 +424,7 @@ obj/machinery/atmospherics/pipe
 				..()
 
 		air
-			icon = 'red_pipe_tank.dmi'
+			icon = 'icons/obj/atmospherics/red_pipe_tank.dmi'
 			name = "Pressure Tank (Air)"
 
 			New()
@@ -438,7 +438,7 @@ obj/machinery/atmospherics/pipe
 				..()
 
 		n2o
-			icon = 'n2o_pipe_tank.dmi'
+			icon = 'icons/obj/atmospherics/n2o_pipe_tank.dmi'
 			name = "Pressure Tank (N2O)"
 
 			New()
@@ -468,7 +468,7 @@ obj/machinery/atmospherics/pipe
 					..()
 
 			toxins
-				icon = 'orange_pipe_tank.dmi'
+				icon = 'icons/obj/atmospherics/orange_pipe_tank.dmi'
 				name = "High Capacity Pressure Tank (Phoron)"
 
 				New()
@@ -481,7 +481,7 @@ obj/machinery/atmospherics/pipe
 					..()
 
 			oxygen_agent_b
-				icon = 'red_orange_pipe_tank.dmi'
+				icon = 'icons/obj/atmospherics/red_orange_pipe_tank.dmi'
 				name = "High Capacity Pressure Tank (Oxygen + Phoron)"
 
 				New()
@@ -497,7 +497,7 @@ obj/machinery/atmospherics/pipe
 					..()
 
 			oxygen
-				icon = 'blue_pipe_tank.dmi'
+				icon = 'icons/obj/atmospherics/blue_pipe_tank.dmi'
 				name = "High Capacity Pressure Tank (Oxygen)"
 
 				New()
@@ -510,7 +510,7 @@ obj/machinery/atmospherics/pipe
 					..()
 
 			nitrogen
-				icon = 'red_pipe_tank.dmi'
+				icon = 'icons/obj/atmospherics/red_pipe_tank.dmi'
 				name = "High Capacity Pressure Tank (Nitrogen)"
 
 				New()
@@ -523,7 +523,7 @@ obj/machinery/atmospherics/pipe
 					..()
 
 			air
-				icon = 'red_pipe_tank.dmi'
+				icon = 'icons/obj/atmospherics/red_pipe_tank.dmi'
 				name = "High Capacity Pressure Tank (Air)"
 
 				New()
@@ -537,7 +537,7 @@ obj/machinery/atmospherics/pipe
 					..()
 
 			n2o
-				icon = 'n2o_pipe_tank.dmi'
+				icon = 'icons/obj/atmospherics/n2o_pipe_tank.dmi'
 				name = "High Capacity Pressure Tank (N2O)"
 
 				New()
@@ -622,7 +622,7 @@ obj/machinery/atmospherics/pipe
 					user << "\blue Tank is empty!"
 
 	vent
-		icon = 'pipe_vent.dmi'
+		icon = 'icons/obj/atmospherics/pipe_vent.dmi'
 		icon_state = "intact"
 
 		name = "Vent"
@@ -706,7 +706,7 @@ obj/machinery/atmospherics/pipe
 				icon_state = "exposed"
 
 	manifold
-		icon = 'pipe_manifold.dmi'
+		icon = 'icons/obj/atmospherics/pipe_manifold.dmi'
 		icon_state = "manifold-f"
 
 		name = "pipe manifold"
@@ -927,7 +927,7 @@ obj/machinery/atmospherics/pipe
 		icon_state = "manifold-f"
 
 	manifold4w
-		icon = 'pipe_manifold.dmi'
+		icon = 'icons/obj/atmospherics/pipe_manifold.dmi'
 		icon_state = "manifold4w-f"
 
 		name = "4-way pipe manifold"
@@ -1029,7 +1029,7 @@ obj/machinery/atmospherics/pipe
 
 			else
 				icon_state = "manifold4w_ex"
-				var/icon/con = new/icon('pipe_manifold.dmi',"manifold4w_con")
+				var/icon/con = new/icon('icons/obj/atmospherics/pipe_manifold.dmi',"manifold4w_con")
 
 				if(node1)
 					overlays += new/image(con,dir=1)
@@ -1125,7 +1125,7 @@ obj/machinery/atmospherics/pipe
 	cap
 		name = "pipe endcap"
 		desc = "An endcap for pipes"
-		icon = 'pipes.dmi'
+		icon = 'icons/obj/pipes.dmi'
 		icon_state = "cap"
 		level = 2
 
@@ -1238,7 +1238,7 @@ obj/machinery/atmospherics/pipe/attackby(var/obj/item/weapon/W as obj, var/mob/u
 		user << "\red You cannot unwrench this [src], it too exerted due to internal pressure."
 		add_fingerprint(user)
 		return 1
-	playsound(src.loc, 'Ratchet.ogg', 50, 1)
+	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 	user << "\blue You begin to unfasten \the [src]..."
 	if (do_after(user, 40))
 		user.visible_message( \

@@ -10,7 +10,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	name = "Requests Console"
 	desc = "A console intended to send requests to diferent departments on the station."
 	anchored = 1
-	icon = 'terminals.dmi'
+	icon = 'icons/obj/terminals.dmi'
 	icon_state = "req_comp0"
 	var/department = "Unknown" //The list of all departments on the station (Determined from this variable on each unit) Set this to the same thing if you want several consoles in one department
 	var/list/messages = list() //List of all messages
@@ -242,7 +242,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 							CONSOLE.newmessagepriority = 2
 							CONSOLE.icon_state = "req_comp2"
 						if(!CONSOLE.silent)
-							playsound(CONSOLE.loc, 'twobeep.ogg', 50, 1)
+							playsound(CONSOLE.loc, 'sound/machines/twobeep.ogg', 50, 1)
 							for (var/mob/O in hearers(5, CONSOLE.loc))
 								O.show_message(text("\icon[CONSOLE] *The Requests Console beeps: 'PRIORITY Alert in [src.department]'"))
 						CONSOLE.messages += "<B><FONT color='red'>High Priority message from <A href='?src=\ref[CONSOLE];write=[ckey(src.department)]'>[src.department]</A></FONT></B><BR>[message]"
@@ -252,7 +252,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 							CONSOLE.newmessagepriority = 3
 							CONSOLE.icon_state = "req_comp3"
 						if(!CONSOLE.silent)
-							playsound(CONSOLE.loc, 'twobeep.ogg', 50, 1)
+							playsound(CONSOLE.loc, 'sound/machines/twobeep.ogg', 50, 1)
 							for (var/mob/O in hearers(7, CONSOLE.loc))
 								O.show_message(text("\icon[CONSOLE] *The Requests Console yells: 'EXTREME PRIORITY alert in [src.department]'"))
 						CONSOLE.messages += "<B><FONT color='red'>Extreme Priority message from [ckey(src.department)]</FONT></B><BR>[message]"
@@ -261,7 +261,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 							CONSOLE.newmessagepriority = 1
 							CONSOLE.icon_state = "req_comp1"
 						if(!CONSOLE.silent)
-							playsound(CONSOLE.loc, 'twobeep.ogg', 50, 1)
+							playsound(CONSOLE.loc, 'sound/machines/twobeep.ogg', 50, 1)
 							for (var/mob/O in hearers(4, CONSOLE.loc))
 								O.show_message(text("\icon[CONSOLE] *The Requests Console beeps: 'Message from [src.department]'"))
 						CONSOLE.messages += "<B>Message from <A href='?src=\ref[CONSOLE];write=[ckey(src.department)]'>[src.department]</A></FONT></B><BR>[message]"

@@ -1,7 +1,7 @@
 /obj/item/weapon/gun
 	name = "\improper Gun"
 	desc = "Its a gun. It's pretty terrible, though."
-	icon = 'gun.dmi'
+	icon = 'icons/obj/gun.dmi'
 	icon_state = "detective"
 	item_state = "gun"
 	flags =  FPRINT | TABLEPASS | CONDUCT | ONBELT | USEDELAY
@@ -14,7 +14,7 @@
 	origin_tech = "combat=1"
 
 	var
-		fire_sound = 'Gunshot.ogg'
+		fire_sound = 'sound/weapons/Gunshot.ogg'
 		tmp/obj/item/projectile/in_chamber = null
 		caliber = ""
 		silenced = 0
@@ -168,7 +168,7 @@
 		if(!load_into_chamber())
 			user.visible_message("*click click*", "\red <b>*click*</b>")
 			for(var/mob/K in viewers(usr))
-				K << 'empty.ogg'
+				K << 'sound/weapons/empty.ogg'
 			return
 
 		if(!in_chamber)	return
@@ -231,7 +231,7 @@
 			else
 				usr.visible_message("\red <b>[usr] aims \a [src] at [M]!</b>")
 			for(var/mob/K in viewers(usr))
-				K << 'TargetOn.ogg'
+				K << 'sound/weapons/TargetOn.ogg'
 			M.Targeted(src)
 
 
@@ -259,7 +259,7 @@
 		else
 			usr.visible_message("*click click*", "\red <b>*click*</b>")
 			for(var/mob/K in viewers(usr))
-				K << 'empty.ogg'
+				K << 'sound/weapons/empty.ogg'
 		var/dir_to_fire = sd_get_approx_dir(M,T)
 		if(dir_to_fire != M.dir)
 			M.dir = dir_to_fire
@@ -425,7 +425,7 @@ mob/proc
 	NotTargeted(var/obj/item/weapon/gun/I)
 		if(!I.silenced)
 			for(var/mob/M in viewers(src))
-				M << 'TargetOff.ogg'
+				M << 'sound/weapons/TargetOff.ogg'
 		del(target_locked) //Remove the overlay
 		targeted_by -= I
 		I.target.Remove(src) //De-target them

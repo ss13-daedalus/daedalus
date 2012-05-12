@@ -1773,7 +1773,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/dough
 	name = "dough"
 	desc = "A dough."
-	icon = 'food_ingredients.dmi'
+	icon = 'icons/obj/food_ingredients.dmi'
 	icon_state = "dough"
 	bitesize = 2
 	New()
@@ -1792,7 +1792,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough
 	name = "flat dough"
 	desc = "A flattened dough."
-	icon = 'food_ingredients.dmi'
+	icon = 'icons/obj/food_ingredients.dmi'
 	icon_state = "flat dough"
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/doughslice
 	slices_num = 3
@@ -1803,7 +1803,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/doughslice
 	name = "dough slice"
 	desc = "Make your magic."
-	icon = 'food_ingredients.dmi'
+	icon = 'icons/obj/food_ingredients.dmi'
 	icon_state = "doughslice"
 	New()
 		..()
@@ -1813,7 +1813,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/bun
 	name = "bun"
 	desc = "A base for any self-respecting burger."
-	icon = 'food_ingredients.dmi'
+	icon = 'icons/obj/food_ingredients.dmi'
 	icon_state = "bun"
 	bitesize = 2
 	New()
@@ -1905,7 +1905,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/rawcutlet
 	name = "raw cutlet"
 	desc = "A thin piece of meat."
-	icon = 'food_ingredients.dmi'
+	icon = 'icons/obj/food_ingredients.dmi'
 	icon_state = "rawcutlet"
 	bitesize = 1
 	New()
@@ -1915,7 +1915,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/cutlet
 	name = "cutlet"
 	desc = "A tasty meat slice - 'Bacon'."
-	icon = 'food_ingredients.dmi'
+	icon = 'icons/obj/food_ingredients.dmi'
 	icon_state = "cutlet"
 	bitesize = 2
 	New()
@@ -1925,7 +1925,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/rawfaggot
 	name = "raw meatball"
 	desc = "A raw meatball."
-	icon = 'food_ingredients.dmi'
+	icon = 'icons/obj/food_ingredients.dmi'
 	icon_state = "rawmeatball"
 	bitesize = 2
 	New()
@@ -1944,7 +1944,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/flatbread
 	name = "flatbread"
 	desc = "Bland but filling."
-	icon = 'food_ingredients.dmi'
+	icon = 'icons/obj/food_ingredients.dmi'
 	icon_state = "flatbread"
 	bitesize = 2
 	New()
@@ -1964,7 +1964,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/rawsticks
 	name = "raw potato sticks"
 	desc = "Maybe you should cook it first?"
-	icon = 'food_ingredients.dmi'
+	icon = 'icons/obj/food_ingredients.dmi'
 	icon_state = "rawsticks"
 	bitesize = 2
 	New()

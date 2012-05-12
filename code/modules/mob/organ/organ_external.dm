@@ -85,7 +85,7 @@
 	body_part = HAND_LEFT
 
 obj/item/weapon/organ
-	icon = 'human.dmi'
+	icon = 'icons/mob/human.dmi'
 
 obj/item/weapon/organ/New(loc, mob/living/carbon/human/H)
 	..(loc)

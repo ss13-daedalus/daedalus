@@ -1,6 +1,6 @@
 /obj/machinery/computer
 	name = "computer"
-	icon = 'computer.dmi'
+	icon = 'icons/obj/computer.dmi'
 	density = 1
 	anchored = 1.0
 	var/obj/item/weapon/circuitboard/circuit = null //if circuit==null, computer can't disassemble
@@ -9,7 +9,7 @@
 /obj/machinery/computer/arcade
 	name = "arcade machine"
 	desc = "Does not support Pinball."
-	icon = 'computer.dmi'
+	icon = 'icons/obj/computer.dmi'
 	icon_state = "arcade"
 	circuit = "/obj/item/weapon/circuitboard/arcade"
 	var/enemy_name = "Space Villian"
@@ -61,7 +61,7 @@
 /obj/machinery/computer/hologram_comp
 	name = "Hologram Computer"
 	desc = "Rumoured to control holograms."
-	icon = 'stationobjs.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "holo_console0"
 	var/obj/machinery/hologram/projector/projector = null
 	var/temp = null
@@ -93,7 +93,7 @@
 
 
 /obj/machinery/computer/secure_data/detective_computer
-	icon = 'computer.dmi'
+	icon = 'icons/obj/computer.dmi'
 	icon_state = "messyfiles"
 
 
@@ -148,7 +148,7 @@
 /obj/machinery/computer/security/telescreen
 	name = "Telescreen"
 	desc = "Used for watching an empty arena."
-	icon = 'stationobjs.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "telescreen"
 	department = ""
 	network = "Thunderdome"
@@ -185,7 +185,7 @@
 /*/obj/machinery/computer/scan_consolenew    //Coming Soon, I highly doubt this but Ill leave it here anyways
 	name = "DNA Modifier Access Console"
 	desc = "Scand DNA."
-	icon = 'computer.dmi'
+	icon = 'icons/obj/computer.dmi'
 	icon_state = "scanner"
 	density = 1
 	var/uniblock = 1.0

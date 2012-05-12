@@ -57,7 +57,7 @@ obj/effect/hotspot
 
 	//luminosity = 3
 
-	icon = 'fire.dmi'
+	icon = 'icons/effects/fire.dmi'
 	icon_state = "1"
 
 	layer = TURF_LAYER
@@ -160,7 +160,7 @@ obj
 
 		//luminosity = 3
 
-		icon = 'fire.dmi'
+		icon = 'icons/effects/fire.dmi'
 		icon_state = "1"
 
 		layer = TURF_LAYER
@@ -265,7 +265,7 @@ obj
 			..()
 
 obj/liquid_fuel
-	icon = 'effects.dmi'
+	icon = 'icons/effects/effects.dmi'
 	icon_state = "slube"
 	layer = TURF_LAYER+0.2
 	anchored = 1

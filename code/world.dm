@@ -78,13 +78,13 @@ Today, these people were mean:
 			KickInactiveClients()
 
 	plmaster = new /obj/effect/overlay(  )
-	plmaster.icon = 'tile_effects.dmi'
+	plmaster.icon = 'icons/effects/tile_effects.dmi'
 	plmaster.icon_state = "plasma"
 	plmaster.layer = FLY_LAYER
 	plmaster.mouse_opacity = 0
 
 	slmaster = new /obj/effect/overlay(  )
-	slmaster.icon = 'tile_effects.dmi'
+	slmaster.icon = 'icons/effects/tile_effects.dmi'
 	slmaster.icon_state = "sleeping_agent"
 	slmaster.layer = FLY_LAYER
 	slmaster.mouse_opacity = 0
@@ -99,7 +99,7 @@ Today, these people were mean:
 //Crispy fullban
 /world/Reboot(var/reason)
 	spawn(0)
-		//world << sound(pick('newroundsexy.ogg','apcdestroyed.ogg','bangindonk.ogg')) // random end sounds!! - LastyBatsy No, no random end sounds. - Miniature
+		//world << sound(pick('newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy No, no random end sounds. - Miniature
 		//if(prob(40))
 		//	for(var/mob/M in world)
 		//		if(M.client)
@@ -107,7 +107,7 @@ Today, these people were mean:
 		//else
 		//	for(var/mob/M in world)
 		//		if(M.client)
-		//			M << sound('apcdestroyed.ogg')
+		//			M << sound('sound/misc/apcdestroyed.ogg')
 	//send2irc(world.url,"Server Rebooting!")
 	for(var/client/C)
 		if (config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite

@@ -84,7 +84,7 @@ proc/move_mining_shuttle()
 
 /obj/machinery/computer/mining_shuttle
 	name = "Mining Shuttle Console"
-	icon = 'computer.dmi'
+	icon = 'icons/obj/computer.dmi'
 	icon_state = "shuttle"
 	req_access = list(access_mining)
 	var/hacked = 0
@@ -151,7 +151,7 @@ proc/move_mining_shuttle()
 
 /obj/item/weapon/pickaxe
 	name = "Miner's pickaxe"
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "pickaxe"
 	flags = FPRINT | TABLEPASS| CONDUCT | ONBELT
 	force = 15.0
@@ -228,7 +228,7 @@ proc/move_mining_shuttle()
 
 /obj/item/weapon/shovel
 	name = "Shovel"
-	icon = 'items.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "shovel"
 	flags = FPRINT | TABLEPASS| CONDUCT | ONBELT
 	force = 8.0
@@ -250,7 +250,7 @@ proc/move_mining_shuttle()
 /obj/structure/closet/crate/miningcar
 	desc = "A mining car. This one doesn't work on rails, but has to be dragged."
 	name = "Mining car (not for rails)"
-	icon = 'storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "miningcar"
 	density = 1
 	icon_opened = "miningcaropen"

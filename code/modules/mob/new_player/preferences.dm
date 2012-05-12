@@ -981,9 +981,9 @@ datum/preferences
 
 		switch (UI)
 			if(UI_OLD)
-				character.UI = 'screen1_old.dmi'
+				character.UI = 'icons/mob/screen1_old.dmi'
 			if(UI_NEW)
-				character.UI = 'screen1.dmi'
+				character.UI = 'icons/mob/screen1.dmi'
 
 		character.hair_style = hair_style
 		character.facial_hair_style = facial_hair_style
