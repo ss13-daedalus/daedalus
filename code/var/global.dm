@@ -239,6 +239,6 @@ var/global
 
 	datum/tension/tension_master
 
-	list/teleportlocs = list()
+	list/teleport_locs = list()
 	list/ghost_teleport_locs = list()
 

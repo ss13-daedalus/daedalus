@@ -750,20 +750,20 @@ proc/equalize_gases(datum/gas_mixture/list/gases)
 proc/process_teleport_locs()
 	for(var/area/AR in world)
 		if(istype(AR, /area/shuttle) || istype(AR, /area/syndicate_station) || istype(AR, /area/wizard_station)) continue
-		if(teleportlocs.Find(AR.name)) continue
+		if(teleport_locs.Find(AR.name)) continue
 		var/turf/picked = pick(get_area_turfs(AR.type))
 		if (picked.z == 1)
-			teleportlocs += AR.name
-			teleportlocs[AR.name] = AR
+			teleport_locs += AR.name
+			teleport_locs[AR.name] = AR
 
 	var/not_in_order = 0
 	do
 		not_in_order = 0
-		if(teleportlocs.len <= 1)
+		if(teleport_locs.len <= 1)
 			break
-		for(var/i = 1, i <= (teleportlocs.len - 1), i++)
-			if(sorttext(teleportlocs[i], teleportlocs[i+1]) == -1)
-				teleportlocs.Swap(i, i+1)
+		for(var/i = 1, i <= (teleport_locs.len - 1), i++)
+			if(sorttext(teleport_locs[i], teleport_locs[i+1]) == -1)
+				teleport_locs.Swap(i, i+1)
 				not_in_order = 1
 	while(not_in_order)
 

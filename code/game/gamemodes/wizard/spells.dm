@@ -322,12 +322,12 @@
 			theareas[AR.name] = AR
 */
 
-	A = input("Area to jump to", "BOOYEA", A) in teleportlocs
+	A = input("Area to jump to", "BOOYEA", A) in teleport_locs
 
 	spawn(600)
 		usr.verbs += /mob/proc/teleport
 
-	var/area/thearea = teleportlocs[A]
+	var/area/thearea = teleport_locs[A]
 
 	usr.say("SCYAR NILA [uppertext(A)]")
 	usr.spellvoice()
@@ -359,8 +359,8 @@
 		return
 	var/A
 
-	A = input("Area to jump to", "BOOYEA", A) in teleportlocs
-	var/area/thearea = teleportlocs[A]
+	A = input("Area to jump to", "BOOYEA", A) in teleport_locs
+	var/area/thearea = teleport_locs[A]
 
 	var/datum/effect/effect/system/harmless_smoke_spread/smoke = new /datum/effect/effect/system/harmless_smoke_spread()
 	smoke.set_up(5, 0, usr.loc)
