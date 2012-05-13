@@ -208,28 +208,7 @@ AI MODULES
 	target << law
 	target.add_supplied_law(9, law)
 
-/******************** Freeform ********************/
-// Removed in favor of a more dynamic freeform law system. -- TLE
-/*
-/obj/item/weapon/aiModule/freeform
-	name = "'Freeform' AI Module"
-	var/newFreeFormLaw = "freeform"
-	desc = "A 'freeform' AI module: '<freeform>'"
-
-/obj/item/weapon/aiModule/freeform/attack_self(var/mob/user as mob)
-	..()
-	var/eatShit = "Eat shit and die"
-	var/targName = input(usr, "Please enter anything you want the AI to do. Anything. Serious.", "What?", eatShit)
-	newFreeFormLaw = targName
-	desc = text("A 'freeform' AI module: '[]'", newFreeFormLaw)
-
-/obj/item/weapon/aiModule/freeform/transmitInstructions(var/mob/living/silicon/ai/target, var/mob/sender)
-	..()
-	var/law = "[newFreeFormLaw]"
-	target << law
-	target.add_supplied_law(10, law)
-*/
-/****************** New Freeform ******************/
+/****************** Freeform ******************/
 
 /obj/item/weapon/aiModule/freeform // Slightly more dynamic freeform module -- TLE
 	name = "'Freeform' AI Module"
@@ -257,7 +236,6 @@ AI MODULES
 		lawpos = 15
 	target.add_supplied_law(lawpos, law)
 	lawchanges.Add("The law was '[newFreeFormLaw]'")
-
 
 /******************** Reset ********************/
 
