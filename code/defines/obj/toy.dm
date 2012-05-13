@@ -241,7 +241,7 @@
 			user.Weaken(5)
 		return
 
-/obj/item/weapon/storage/crayonbox
+/obj/item/weapon/storage/crayon_box
 	name = "box of crayons"
 	desc = "A box of crayons for all your rune drawing needs."
 	icon = 'icons/obj/crayons.dmi'

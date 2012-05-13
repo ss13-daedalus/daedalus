@@ -612,7 +612,7 @@
 		H.equip_if_possible(new /obj/item/weapon/bikehorn(H), H.slot_in_backpack)
 		H.equip_if_possible(new /obj/item/weapon/stamp/clown(H), H.slot_in_backpack)
 		H.equip_if_possible(new /obj/item/toy/crayon/rainbow(H), H.slot_in_backpack)
-		H.equip_if_possible(new /obj/item/toy/crayonbox(H), H.slot_in_backpack)
+		H.equip_if_possible(new /obj/item/toy/crayon_box(H), H.slot_in_backpack)
 		H.mutations |= CLOWN
 		return 1
 

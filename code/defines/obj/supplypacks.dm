@@ -73,7 +73,7 @@
 
 /datum/supply_packs/artscrafts
 	name = "Arts and Crafts supplies"
-	contains = list("/obj/item/toy/crayonbox",
+	contains = list("/obj/item/toy/crayon_box",
 	"/obj/item/weapon/camera_test",
 	"/obj/item/weapon/storage/photo_album",
 	"/obj/item/weapon/packageWrap",

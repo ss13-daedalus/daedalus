@@ -867,6 +867,7 @@
 #include "code\obj\item\weapon\virus_dish.dm"
 #include "code\obj\item\weapon\welding_pack.dm"
 #include "code\obj\item\weapon\gun\projectile.dm"
+#include "code\obj\item\weapon\storage\crayon_box.dm"
 #include "code\obj\machinery\atm.dm"
 #include "code\obj\machinery\atmospherics.dm"
 #include "code\obj\machinery\coatrack.dm"
