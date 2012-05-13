@@ -238,3 +238,7 @@ var/global
 	list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin verb for now
 
 	datum/tension/tension_master
+
+	list/teleportlocs = list()
+	list/ghostteleportlocs = list()
+

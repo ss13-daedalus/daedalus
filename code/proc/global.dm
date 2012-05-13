@@ -746,3 +746,45 @@ proc/equalize_gases(datum/gas_mixture/list/gases)
 		return "centcom"
 	else
 		return "Unknown"
+
+proc/process_teleport_locs()
+	for(var/area/AR in world)
+		if(istype(AR, /area/shuttle) || istype(AR, /area/syndicate_station) || istype(AR, /area/wizard_station)) continue
+		if(teleportlocs.Find(AR.name)) continue
+		var/turf/picked = pick(get_area_turfs(AR.type))
+		if (picked.z == 1)
+			teleportlocs += AR.name
+			teleportlocs[AR.name] = AR
+
+	var/not_in_order = 0
+	do
+		not_in_order = 0
+		if(teleportlocs.len <= 1)
+			break
+		for(var/i = 1, i <= (teleportlocs.len - 1), i++)
+			if(sorttext(teleportlocs[i], teleportlocs[i+1]) == -1)
+				teleportlocs.Swap(i, i+1)
+				not_in_order = 1
+	while(not_in_order)
+
+proc/process_ghost_teleport_locs()
+	for(var/area/AR in world)
+		if(ghostteleportlocs.Find(AR.name)) continue
+		if(istype(AR, /area/turret_protected/aisat) || istype(AR, /area/derelict) || istype(AR, /area/tdome))
+			ghostteleportlocs += AR.name
+			ghostteleportlocs[AR.name] = AR
+		var/turf/picked = pick(get_area_turfs(AR.type))
+		if (picked.z == 1 || picked.z == 5 || picked.z == 3)
+			ghostteleportlocs += AR.name
+			ghostteleportlocs[AR.name] = AR
+
+	var/not_in_order = 0
+	do
+		not_in_order = 0
+		if(ghostteleportlocs.len <= 1)
+			break
+		for(var/i = 1, i <= (ghostteleportlocs.len - 1), i++)
+			if(sorttext(ghostteleportlocs[i], ghostteleportlocs[i+1]) == -1)
+				ghostteleportlocs.Swap(i, i+1)
+				not_in_order = 1
+	while(not_in_order)
