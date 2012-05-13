@@ -12,6 +12,7 @@
 #include "code\define.dm"
 // BEGIN_INCLUDE
 #include "code\obj.dm"
+#include "code\area.dm"
 #include "code\atom.dm"
 #include "code\client.dm"
 #include "code\names.dm"
@@ -68,7 +69,6 @@
 #include "code\defines\hub.dm"
 #include "code\defines\obj.dm"
 #include "code\defines\turf.dm"
-#include "code\defines\area\Space Station 13 areas.dm"
 #include "code\defines\mob\dead\observer.dm"
 #include "code\defines\mob\living\living.dm"
 #include "code\defines\mob\living\carbon\alien.dm"
