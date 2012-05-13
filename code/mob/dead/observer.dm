@@ -113,8 +113,8 @@ Works together with spawning an observer, noted above.
 	spawn(30)
 		usr.verbs += /mob/dead/observer/proc/dead_tele
 	var/A
-	A = input("Area to jump to", "BOOYEA", A) in ghostteleportlocs
-	var/area/thearea = ghostteleportlocs[A]
+	A = input("Area to jump to", "BOOYEA", A) in ghost_teleport_locs
+	var/area/thearea = ghost_teleport_locs[A]
 
 	var/list/L = list()
 	for(var/turf/T in get_area_turfs(thearea.type))
