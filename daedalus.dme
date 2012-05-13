@@ -853,6 +853,7 @@
 #include "code\obj\machinery.dm"
 #include "code\obj\effect\dummy.dm"
 #include "code\obj\effect\proc_holder.dm"
+#include "code\obj\effect\decal\cleanable.dm"
 #include "code\obj\effect\proc_holder\spell.dm"
 #include "code\obj\item\police_tape.dm"
 #include "code\obj\item\police_tape_roll.dm"
