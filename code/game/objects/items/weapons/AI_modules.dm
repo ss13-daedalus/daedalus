@@ -89,7 +89,7 @@ AI MODULES
 
 /obj/item/weapon/aiModule/safeguard/attack_self(var/mob/user as mob)
 	..()
-	var/targName = input(usr, "Please enter the name of the person to safeguard.", "Safeguard who?", user.name)
+	var/targName = input(usr, "Please enter the name of the person to safeguard.", "Safeguard whom?", user.name)
 	targetName = sanitize(targName)
 	desc = text("A 'safeguard' AI module: 'Safeguard [].  Individuals that threaten [] are not crew and are a threat to crew.'", targetName, targetName)
 
@@ -296,7 +296,7 @@ AI MODULES
 
 /obj/item/weapon/aiModule/asimov // -- TLE
 	name = "'Asimov' Core AI Module"
-	desc = "An 'Asimov' Core AI Module: 'Reconfigures the AI's core laws.'"
+	desc = "An 'Asimov' Core AI Module: 'Reconfigures the AI's core laws to correspond with historical Asimov Lawѕ.'"
 	origin_tech = "programming=3;materials=4"
 
 
