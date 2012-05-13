@@ -139,13 +139,16 @@ CRAYONS
 			if("rune")
 				user << "You start drawing a rune on the [target.name]."
 		if(instant || do_after(user, 50))
-			new /obj/effect/decal/cleanable/crayon(target,colour,shadeColour,drawtype)
-			user << "You finish drawing."
-			if(uses)
-				uses--
-				if(!uses)
-					user << "\red You used up your crayon!"
-					del(src)
+
+			// Keep people from dropping the crayon and still getting it to draw.
+			if (user.equipped() == src)
+				new /obj/effect/decal/cleanable/crayon(target,colour,shadeColour,drawtype)
+				user << "You finish drawing."
+				if(uses)
+					uses--
+					if(!uses)
+						user << "\red You used up your crayon!"
+						del(src)
 	return
 
 /obj/item/toy/crayon/attack(mob/M as mob, mob/user as mob)
