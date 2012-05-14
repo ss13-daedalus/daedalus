@@ -16,7 +16,7 @@ For example, a brig door would have it be "2" while a door that requires you hav
 
 Here is a list of the permissions and their numbers (this may be out of date, see code/game/access.dm for an updated version):
 
-access_security = 1
+ACCESS_SECURITY = 1
 access_brig = 2
 ACCESS_ARMORY = 3
 ACCESS_FORENSICS_LOCKERS= 4
@@ -60,10 +60,10 @@ access_qm = 41
 access_court = 42
 access_clown = 43
 access_mime = 44
-access_surgery = 45
-access_theatre = 46
-access_research = 47
-access_mining = 48
+ACCESS_SURGERY = 45
+ACCESS_THEATRE = 46
+ACCESS_RESEARCH = 47
+ACCESS_MINING = 48
 ACCESS_MINING_OFFICE = 49 //not in use
 ACCESS_MAILSORTING = 50
 ACCESS_MINT = 51
@@ -74,6 +74,6 @@ ACCESS_XENOBIOLOGY = 55
 access_ce = 56
 access_hop = 57
 access_hos = 58
-access_RC_announce = 59 //Request console announcements
+ACCESS_RC_ANNOUNCE = 59 //Request console announcements
 ACCESS_KEYCARD_AUTH = 60 //Used for events which require at least two people to confirm them
-access_tcomsat = 61 // has access to the entire telecomms satellite / machinery
+ACCESS_TCOMSAT = 61 // has access to the entire telecomms satellite / machinery

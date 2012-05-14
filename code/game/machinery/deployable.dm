@@ -6,7 +6,7 @@ Barricades
 
 for reference:
 
-	access_security = 1
+	ACCESS_SECURITY = 1
 	access_brig = 2
 	ACCESS_ARMORY = 3
 	ACCESS_FORENSICS_LOCKERS= 4
@@ -145,7 +145,7 @@ for reference:
 	name = "deployable"
 	desc = "deployable"
 	icon = 'icons/obj/objects.dmi'
-	req_access = list(access_security)//I'm changing this until these are properly tested./N
+	req_access = list(ACCESS_SECURITY)//I'm changing this until these are properly tested./N
 
 /obj/machinery/deployable/barrier
 	name = "deployable barrier"
@@ -214,13 +214,13 @@ for reference:
 			if (src.health < src.maxhealth)
 				src.health = src.maxhealth
 				src.emagged = 0
-				src.req_access = list(access_security)
+				src.req_access = list(ACCESS_SECURITY)
 				for(var/mob/O in viewers(src, null))
 					O << "\red [user] repairs the [src]!"
 				return
 			else if (src.emagged > 0)
 				src.emagged = 0
-				src.req_access = list(access_security)
+				src.req_access = list(ACCESS_SECURITY)
 				for(var/mob/O in viewers(src, null))
 					O << "\red [user] repairs the [src]!"
 				return

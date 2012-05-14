@@ -73,7 +73,7 @@
 
 /obj/item/weapon/storage/lockbox/loyalty
 	name = "Lockbox (Loyalty Implants)"
-	req_access = list(access_security)
+	req_access = list(ACCESS_SECURITY)
 
 	New()
 		..()
@@ -86,7 +86,7 @@
 /obj/item/weapon/storage/lockbox/clusterbang
 	name = "lockbox (clusterbang)"
 	desc = "You have a bad feeling about opening this."
-	req_access = list(access_security)
+	req_access = list(ACCESS_SECURITY)
 
 	New()
 		..()

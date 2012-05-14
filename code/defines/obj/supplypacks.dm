@@ -339,7 +339,7 @@
 	cost = 10
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Standard Costumes"
-	access = access_theatre
+	access = ACCESS_THEATRE
 	group = "Clothing"
 
 /datum/supply_packs/wizard
@@ -642,7 +642,7 @@
 	cost = 30
 	containertype = "/obj/structure/closet/crate/secure/weapon"
 	containername = "Weapons crate"
-	access = access_security
+	access = ACCESS_SECURITY
 	group = "Security"
 
 /datum/supply_packs/eweapons
@@ -669,7 +669,7 @@
 	cost = 15
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Armor crate"
-	access = access_security
+	access = ACCESS_SECURITY
 	group = "Security"
 
 /datum/supply_packs/riot

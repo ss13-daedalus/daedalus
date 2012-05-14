@@ -16,7 +16,7 @@
 	icon_locked = "miningsec1"
 	icon_broken = "miningsecbroken"
 	icon_off = "miningsecoff"
-	req_access = list(access_mining)
+	req_access = list(ACCESS_MINING)
 
 /obj/structure/closet/secure_closet/miner/New()
 	..()
@@ -86,7 +86,7 @@ proc/move_mining_shuttle()
 	name = "Mining Shuttle Console"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "shuttle"
-	req_access = list(access_mining)
+	req_access = list(ACCESS_MINING)
 	var/hacked = 0
 	var/location = 0 //0 = station, 1 = mining base
 

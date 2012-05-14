@@ -368,7 +368,7 @@ var/const/maximum_age = 65
 
 //	Security access levels
 /var/const
-	access_security = 1
+#define ACCESS_SECURITY 1
 	access_brig = 2
 #define ACCESS_ARMORY 3
 #define ACCESS_FORENSICS_LOCKERS 4
@@ -412,10 +412,10 @@ var/const/maximum_age = 65
 	access_court = 42
 	access_clown = 43
 	access_mime = 44
-	access_surgery = 45
-	access_theatre = 46
-	access_research = 47
-	access_mining = 48
+#define ACCESS_SURGERY 45
+#define ACCESS_THEATRE 46
+#define ACCESS_RESEARCH 47
+#define ACCESS_MINING 48
 #define ACCESS_MINING_OFFICE 49 //not in use
 #define ACCESS_MAILSORTING 50
 #define ACCESS_MINT 51
@@ -426,9 +426,9 @@ var/const/maximum_age = 65
 	access_ce = 56
 	access_hop = 57
 	access_hos = 58
-	access_RC_announce = 59 //Request console announcements
+#define ACCESS_RC_ANNOUNCE 59 //Request console announcements
 #define ACCESS_KEYCARD_AUTH 60 //Used for events which require at least two people to confirm them
-	access_tcomsat = 61 // has access to the entire telecomms satellite / machinery
+#define ACCESS_TCOMSAT 61 // has access to the entire telecomms satellite / machinery
 
 	//BEGIN CENTCOM ACCESS
 	/*Should leave plenty of room if we need to add more access levels.

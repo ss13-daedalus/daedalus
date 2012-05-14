@@ -407,9 +407,9 @@ proc/equalize_gases(datum/gas_mixture/list/gases)
 		if("Chaplain")
 			return list(access_morgue, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM)
 		if("Detective")
-			return list(access_security, ACCESS_FORENSICS_LOCKERS, access_morgue, ACCESS_MAINT_TUNNELS, access_court)
+			return list(ACCESS_SECURITY, ACCESS_FORENSICS_LOCKERS, access_morgue, ACCESS_MAINT_TUNNELS, access_court)
 		if("Medical Doctor")
-			return list(access_medical, access_morgue, access_surgery, ACCESS_VIROLOGY)
+			return list(access_medical, access_morgue, ACCESS_SURGERY, ACCESS_VIROLOGY)
 		if("Botanist")	// -- TLE
 			return list(ACCESS_HYDROPONICS) // Removed tox and chem access because STOP PISSING OFF THE CHEMIST GUYS // //Removed medical access because WHAT THE FUCK YOU AREN'T A DOCTOR YOU GROW WHEAT
 		if("Librarian") // -- TLE
@@ -419,24 +419,24 @@ proc/equalize_gases(datum/gas_mixture/list/gases)
 		if("Captain")
 			return get_all_accesses()
 		if("Security Officer")
-			return list(access_security, access_brig, access_court, ACCESS_MAINT_TUNNELS)
+			return list(ACCESS_SECURITY, access_brig, access_court, ACCESS_MAINT_TUNNELS)
 		if("Warden")
-			return list(access_security, access_brig, ACCESS_ARMORY, access_court, ACCESS_MAINT_TUNNELS)
+			return list(ACCESS_SECURITY, access_brig, ACCESS_ARMORY, access_court, ACCESS_MAINT_TUNNELS)
 		if("Scientist")
-			return list(access_tox, ACCESS_TOX_STORAGE, access_research, ACCESS_XENOBIOLOGY)
+			return list(access_tox, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY)
 		if("Head of Security")
 			return list(access_medical, access_morgue, access_tox, ACCESS_TOX_STORAGE, ACCESS_CHEMISTRY, ACCESS_MEDLAB, access_court,
-			            ACCESS_TELEPORTER, ACCESS_HEADS, ACCESS_TECH_STORAGE, access_security, access_brig, ACCESS_ATMOSPHERICS,
+			            ACCESS_TELEPORTER, ACCESS_HEADS, ACCESS_TECH_STORAGE, ACCESS_SECURITY, access_brig, ACCESS_ATMOSPHERICS,
 			            ACCESS_MAINT_TUNNELS, ACCESS_BAR, ACCESS_JANITOR, ACCESS_KITCHEN, ACCESS_ROBOTICS, ACCESS_ARMORY, ACCESS_HYDROPONICS,
-			            access_theatre, access_research, access_hos, access_RC_announce, ACCESS_FORENSICS_LOCKERS, ACCESS_KEYCARD_AUTH)
+			            ACCESS_THEATRE, ACCESS_RESEARCH, access_hos, ACCESS_RC_ANNOUNCE, ACCESS_FORENSICS_LOCKERS, ACCESS_KEYCARD_AUTH)
 		if("Head of Personnel")
-			return list(access_security, access_brig, access_court, ACCESS_FORENSICS_LOCKERS,
+			return list(ACCESS_SECURITY, access_brig, access_court, ACCESS_FORENSICS_LOCKERS,
 			            access_tox, ACCESS_TOX_STORAGE, ACCESS_CHEMISTRY, access_medical, ACCESS_MEDLAB, ACCESS_ENGINE,
 			            ACCESS_EMERGENCY_STORAGE, ACCESS_CHANGE_IDS, ACCESS_AI_UPLOAD, ACCESS_EVA, ACCESS_HEADS,
 			            ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_BAR, ACCESS_JANITOR,
 			            ACCESS_CREMATORIUM, ACCESS_KITCHEN, ACCESS_ROBOTICS, access_cargo, ACCESS_CARGO_BOT, ACCESS_HYDROPONICS, ACCESS_LAWYER,
-			            access_theatre, access_research, access_mining, ACCESS_HEADS_VAULT, ACCESS_MINING_STATION,
-			            access_hop, access_RC_announce, ACCESS_KEYCARD_AUTH)
+			            ACCESS_THEATRE, ACCESS_RESEARCH, ACCESS_MINING, ACCESS_HEADS_VAULT, ACCESS_MINING_STATION,
+			            access_hop, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH)
 		if("Atmospheric Technician")
 			return list(ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS, ACCESS_EMERGENCY_STORAGE)
 		if("Bartender")
@@ -446,9 +446,9 @@ proc/equalize_gases(datum/gas_mixture/list/gases)
 		if("Janitor")
 			return list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS)
 		if("Clown")
-			return list(access_clown, access_theatre)
+			return list(access_clown, ACCESS_THEATRE)
 		if("Mime")
-			return list(access_mime, access_theatre)
+			return list(access_mime, ACCESS_THEATRE)
 		if("Chef")
 			return list(ACCESS_KITCHEN)
 		if("Roboticist")
@@ -456,25 +456,25 @@ proc/equalize_gases(datum/gas_mixture/list/gases)
 		if("Cargo Technician")
 			return list(ACCESS_MAINT_TUNNELS, access_cargo, ACCESS_CARGO_BOT, ACCESS_MAILSORTING)
 		if("Shaft Miner")
-			return list(access_mining, ACCESS_MINT, ACCESS_MINING_STATION)
+			return list(ACCESS_MINING, ACCESS_MINT, ACCESS_MINING_STATION)
 		if("Quartermaster")
-			return list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, access_cargo, ACCESS_CARGO_BOT, access_qm, ACCESS_MINT, access_mining)
+			return list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, access_cargo, ACCESS_CARGO_BOT, access_qm, ACCESS_MINT, ACCESS_MINING)
 		if("Chief Engineer")
 			return list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS,
 			            ACCESS_TELEPORTER, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_ATMOSPHERICS, ACCESS_EMERGENCY_STORAGE, ACCESS_EVA,
 			            ACCESS_HEADS, ACCESS_AI_UPLOAD, ACCESS_CONSTRUCTION, ACCESS_ROBOTICS,
-			            ACCESS_MINT, access_ce, access_RC_announce, ACCESS_KEYCARD_AUTH, access_tcomsat)
+			            ACCESS_MINT, access_ce, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT)
 		if("Research Director")
 			return list(ACCESS_MEDLAB, access_rd,
 			            ACCESS_HEADS, access_tox,
 			            ACCESS_TOX_STORAGE, ACCESS_CHEMISTRY, ACCESS_TELEPORTER,
-			            access_research, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY, access_RC_announce,
-			            ACCESS_KEYCARD_AUTH, access_tcomsat)
+			            ACCESS_RESEARCH, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY, ACCESS_RC_ANNOUNCE,
+			            ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT)
 		/*if("Virologist")
 			return list(access_medical, access_morgue, ACCESS_VIROLOGY)*/
 		if("Chief Medical Officer")
 			return list(access_medical, access_morgue, ACCESS_MEDLAB, ACCESS_HEADS,
-			ACCESS_CHEMISTRY, ACCESS_VIROLOGY, access_cmo, access_surgery, access_RC_announce,
+			ACCESS_CHEMISTRY, ACCESS_VIROLOGY, access_cmo, ACCESS_SURGERY, ACCESS_RC_ANNOUNCE,
 			ACCESS_KEYCARD_AUTH)
 		else
 			return list()
@@ -501,17 +501,17 @@ proc/equalize_gases(datum/gas_mixture/list/gases)
 			return get_all_centcom_access()
 
 /proc/get_all_accesses()
-	return list(access_security, access_brig, ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS, access_court,
+	return list(ACCESS_SECURITY, access_brig, ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS, access_court,
 	            access_medical, ACCESS_MEDLAB, access_morgue, access_rd,
 	            access_tox, ACCESS_TOX_STORAGE, ACCESS_CHEMISTRY, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_MAINT_TUNNELS,
 	            ACCESS_EXTERNAL_AIRLOCKS, ACCESS_EMERGENCY_STORAGE, ACCESS_CHANGE_IDS, ACCESS_AI_UPLOAD,
 	            ACCESS_TELEPORTER, ACCESS_EVA, ACCESS_HEADS, ACCESS_CAPTAIN, ACCESS_ALL_PERSONAL_LOCKERS,
 	            ACCESS_TECH_STORAGE, ACCESS_CHAPEL_OFFICE, ACCESS_ATMOSPHERICS, ACCESS_KITCHEN,
 	            ACCESS_BAR, ACCESS_JANITOR, ACCESS_CREMATORIUM, ACCESS_ROBOTICS, access_cargo, ACCESS_CARGO_BOT, ACCESS_CONSTRUCTION,
-	            ACCESS_HYDROPONICS, ACCESS_LIBRARY, ACCESS_MANUFACTURING, ACCESS_LAWYER, ACCESS_VIROLOGY, access_cmo, access_qm, access_clown, access_mime, access_surgery,
-	            access_theatre, access_research, access_mining, ACCESS_MAILSORTING, ACCESS_MINT_VAULT, ACCESS_MINT,
-	            ACCESS_HEADS_VAULT, ACCESS_MINING_STATION, ACCESS_XENOBIOLOGY, access_ce, access_hop, access_hos, access_RC_announce,
-	            ACCESS_KEYCARD_AUTH, access_tcomsat)
+	            ACCESS_HYDROPONICS, ACCESS_LIBRARY, ACCESS_MANUFACTURING, ACCESS_LAWYER, ACCESS_VIROLOGY, access_cmo, access_qm, access_clown, access_mime, ACCESS_SURGERY,
+	            ACCESS_THEATRE, ACCESS_RESEARCH, ACCESS_MINING, ACCESS_MAILSORTING, ACCESS_MINT_VAULT, ACCESS_MINT,
+	            ACCESS_HEADS_VAULT, ACCESS_MINING_STATION, ACCESS_XENOBIOLOGY, access_ce, access_hop, access_hos, ACCESS_RC_ANNOUNCE,
+	            ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT)
 
 /proc/get_all_centcom_access()
 	return list(access_cent_general, access_cent_thunder, access_cent_specops, access_cent_medical, access_cent_living, access_cent_storage, access_cent_teleporter, access_cent_creed, access_cent_captain)
@@ -524,19 +524,19 @@ proc/equalize_gases(datum/gas_mixture/list/gases)
 		if(0)
 			return get_all_accesses()
 		if(1) //security
-			return list(access_security, access_brig, ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS, access_court, access_hos)
+			return list(ACCESS_SECURITY, access_brig, ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS, access_court, access_hos)
 		if(2) //medbay
-			return list(access_medical, ACCESS_MEDLAB, access_morgue, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, access_cmo, access_surgery)
+			return list(access_medical, ACCESS_MEDLAB, access_morgue, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, access_cmo, ACCESS_SURGERY)
 		if(3) //research
-			return list(access_tox, ACCESS_TOX_STORAGE, access_rd, ACCESS_HYDROPONICS, access_research, ACCESS_XENOBIOLOGY)
+			return list(access_tox, ACCESS_TOX_STORAGE, access_rd, ACCESS_HYDROPONICS, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY)
 		if(4) //engineering and maintenance
 			return list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_EMERGENCY_STORAGE, ACCESS_TECH_STORAGE, ACCESS_ATMOSPHERICS, ACCESS_CONSTRUCTION, ACCESS_ROBOTICS, access_ce)
 		if(5) //command
-			return list(ACCESS_CHANGE_IDS, ACCESS_AI_UPLOAD, ACCESS_TELEPORTER, ACCESS_EVA, ACCESS_HEADS, ACCESS_CAPTAIN, ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_MINT_VAULT, ACCESS_HEADS_VAULT, access_hop, access_RC_announce, ACCESS_KEYCARD_AUTH, access_tcomsat)
+			return list(ACCESS_CHANGE_IDS, ACCESS_AI_UPLOAD, ACCESS_TELEPORTER, ACCESS_EVA, ACCESS_HEADS, ACCESS_CAPTAIN, ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_MINT_VAULT, ACCESS_HEADS_VAULT, access_hop, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT)
 		if(6) //station general
-			return list(ACCESS_CHAPEL_OFFICE, ACCESS_KITCHEN,ACCESS_BAR, ACCESS_JANITOR, ACCESS_CREMATORIUM, ACCESS_LIBRARY, access_theatre, ACCESS_LAWYER, access_clown, access_mime)
+			return list(ACCESS_CHAPEL_OFFICE, ACCESS_KITCHEN,ACCESS_BAR, ACCESS_JANITOR, ACCESS_CREMATORIUM, ACCESS_LIBRARY, ACCESS_THEATRE, ACCESS_LAWYER, access_clown, access_mime)
 		if(7) //supply
-			return list(access_cargo, ACCESS_CARGO_BOT, access_qm, access_mining, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINT)
+			return list(access_cargo, ACCESS_CARGO_BOT, access_qm, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINT)
 
 /proc/get_region_accesses_name(var/code)
 	switch(code)
@@ -564,7 +564,7 @@ proc/equalize_gases(datum/gas_mixture/list/gases)
 			return "Cargo Bay"
 		if(ACCESS_CARGO_BOT)
 			return "Cargo Bot Delivery"
-		if(access_security)
+		if(ACCESS_SECURITY)
 			return "Security"
 		if(access_brig)
 			return "Brig"
@@ -646,15 +646,15 @@ proc/equalize_gases(datum/gas_mixture/list/gases)
 			return "HONK! Access"
 		if(access_mime)
 			return "Silent Access"
-		if(access_surgery)
+		if(ACCESS_SURGERY)
 			return "Operating Room"
-		if(access_theatre)
+		if(ACCESS_THEATRE)
 			return "Theatre"
 		if(ACCESS_MANUFACTURING)
 			return "Manufacturing"
-		if(access_research)
+		if(ACCESS_RESEARCH)
 			return "Research"
-		if(access_mining)
+		if(ACCESS_MINING)
 			return "Mining"
 		if(ACCESS_MINING_OFFICE)
 			return "Mining Office"
@@ -676,11 +676,11 @@ proc/equalize_gases(datum/gas_mixture/list/gases)
 			return "HoS Private"
 		if(access_ce)
 			return "CE Private"
-		if(access_RC_announce)
+		if(ACCESS_RC_ANNOUNCE)
 			return "RC announcements"
 		if(ACCESS_KEYCARD_AUTH)
 			return "Keycode auth. device"
-		if(access_tcomsat)
+		if(ACCESS_TCOMSAT)
 			return "Telecommunications Satellite"
 
 /proc/get_centcom_access_desc(A)

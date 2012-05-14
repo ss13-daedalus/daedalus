@@ -13,7 +13,7 @@
 	New()
 		possibleNets["Engineering"] = access_ce
 		possibleNets["SS13"] = access_hos
-		possibleNets["Mining"] = access_mining
+		possibleNets["Mining"] = ACCESS_MINING
 		possibleNets["Cargo"] = access_qm
 		possibleNets["Research"] = access_rd
 		possibleNets["Medbay"] = access_cmo

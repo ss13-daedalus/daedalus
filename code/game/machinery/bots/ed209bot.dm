@@ -7,7 +7,7 @@
 	density = 1
 	anchored = 0
 //	weight = 1.0E7
-	req_access = list(access_security)
+	req_access = list(ACCESS_SECURITY)
 	health = 100
 	maxhealth = 100
 	fire_dam_coeff = 0.7
