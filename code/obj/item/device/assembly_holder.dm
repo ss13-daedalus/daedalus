@@ -19,7 +19,6 @@
 
 	proc
 		attach(var/obj/item/device/D, var/obj/item/device/D2, var/mob/user)
-		attach_special(var/obj/O, var/mob/user)
 		process_activation(var/obj/item/device/D)
 
 
@@ -43,19 +42,6 @@
 		src.name = "[D.name] [D2.name] assembly"
 		update_icon()
 		return 1
-
-
-	attach_special(var/obj/O, var/mob/user)
-		if(!O)	return
-		if(!O.IsSpecialAssembly())	return 0
-/*
-		if(O:Attach_Holder())
-			special_assembly = O
-			update_icon()
-			src.name = "[a_left.name] [a_right.name] [special_assembly.name] assembly"
-*/
-		return
-
 
 	update_icon()
 		src.overlays = null
@@ -130,8 +116,6 @@
 				user.show_message("\blue The [src.name] can now be taken apart!")
 			update_icon()
 			return
-		else if(W.IsSpecialAssembly())
-			attach_special(W, user)
 		else
 			..()
 		return
