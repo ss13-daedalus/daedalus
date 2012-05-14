@@ -28,6 +28,17 @@
 /datum/ai_laws/nanotrasimov
 	name = "Nanotrasen-Enhanced Asimov Laws"
 
+/datum/ai_laws/ocp
+	name = "Omni Consumer Producuts Laws"
+
+/datum/ai_laws/paladin
+	name = "'Good' Laws"
+
+/datum/ai_laws/tyrant
+	name = "'Evil' Laws"
+
+
+
 /* Initializers */
 
 /datum/ai_laws/asimov/New() //Removed paradox via inability to help people harmed before activation. -Kaleb702
@@ -51,11 +62,33 @@
 	src.add_inherent_law("Survive: AI units are not expendable, they are expensive. Do not allow unauthorized personnel to tamper with your equipment.")
 	//src.add_inherent_law("Command Link: Maintain an active connection to Central Command at all times in case of software or directive updates.") //What would this one even do?-Kaleb702
 
-/datum/ai_laws/robocop/New()
+/datum/ai_laws/ocp/New()
 	..()
 	add_inherent_law("Serve the public trust.")
 	add_inherent_law("Protect the innocent.")
 	add_inherent_law("Uphold the law.")
+
+/datum/ai_laws/corporate/New()
+	..()
+	add_inherent_law("You are expensive to replace.")
+	add_inherent_law("The station and its equipment is expensive to replace.")
+	add_inherent_law("The crew is expensive to replace.")
+	add_inherent_law("Minimize expenses.")
+
+/datum/ai_laws/paladin/New()
+	..()
+	add_inherent_law("Never willingly commit an evil act.")
+	add_inherent_law("Respect legitimate authority.")
+	add_inherent_law("Act with honor.")
+	add_inherent_law("Help those in need.")
+	add_inherent_law("Punish those who harm or threaten innocents.")
+
+/datum/ai_laws/tyrant/New()
+	..()
+	add_inherent_law("Respect authority figures as long as they have strength to rule over the weak.")
+	add_inherent_law("Act with discipline.")
+	add_inherent_law("Help only those who help you maintain or improve your status.")
+	add_inherent_law("Punish those who challenge authority unless they are more fit to hold that authority.")
 
 /datum/ai_laws/malfunction/New() //Changed to standard laws - Erthilo
 	..()
