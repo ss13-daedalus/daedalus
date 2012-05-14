@@ -1,0 +1,27 @@
+HOW TO CONVERT A MAP TO THE NEW (june 2008) ACCESS LEVEL SYSTEM
+1. Open the .dmp file up in Notepad
+2. Find all the "access = blahblah" attributes of doors.
+3. Delete them.
+4. Open the map up in Dream Maker. If you didn't get them all, it'll tell you so.
+5. Assign the existing doors new access permissions using the method below.
+
+HOW TO MAKE A MAP USING THE NEW (june 2008) ACCESS LEVEL SYSTEM
+1. Make a map as normal
+2. Select a door that you want to not be accessible to everybody
+3. Right click on it and edit its attributes
+4. Make the "req_access_txt" attribute be a semicolon-separated list of the permissions required to open the doors
+5. Repeat for all doors.
+
+For example, a brig door would have it be "2" while a door that requires you have toxins and teleporter access (for whatever reason) would have it be "9;20"
+
+Here is a list of the permissions; see code/define.dm for their numerical prepresentation.
+
+ACCESS_SECURITY ACCESS_BRIG ACCESS_ARMORY ACCESS_FORENSICS_LOCKERS ACCESS_MEDICAL ACCESS_MORGUE ACCESS_TOX 
+ACCESS_TOX_STORAGE ACCESS_MEDLAB ACCESS_ENGINE ACCESS_ENGINE_EQUIP ACCESS_MAINT_TUNNELS ACCESS_EXTERNAL_AIRLOCKS 
+ACCESS_EMERGENCY_STORAGE ACCESS_CHANGE_IDS ACCESS_AI_UPLOAD ACCESS_TELEPORTER ACCESS_EVA ACCESS_HEADS ACCESS_CAPTAIN 
+ACCESS_ALL_PERSONAL_LOCKERS ACCESS_CHAPEL_OFFICE ACCESS_TECH_STORAGE ACCESS_ATMOSPHERICS ACCESS_BAR ACCESS_JANITOR 
+ACCESS_CREMATORIUM ACCESS_KITCHEN ACCESS_ROBOTICS ACCESS_RD ACCESS_CARGO ACCESS_CONSTRUCTION ACCESS_CHEMISTRY 
+ACCESS_CARGO_BOT access_hydroponics access_manufacturing access_library ACCESS_LAWYER ACCESS_VIROLOGY ACCESS_CMO 
+ACCESS_QM ACCESS_COURT ACCESS_CLOWN ACCESS_MIME ACCESS_SURGERY ACCESS_THEATRE ACCESS_RESEARCH ACCESS_MINING 
+ACCESS_MINING_OFFICE ACCESS_MAILSORTING ACCESS_MINT ACCESS_MINT_VAULT ACCESS_HEADS_VAULT ACCESS_MINING_STATION 
+ACCESS_XENOBIOLOGY access_ce access_hop access_hos ACCESS_RC_ANNOUNCE ACCESS_KEYCARD_AUTH ACCESS_TCOMSAT 
