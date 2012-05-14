@@ -31,9 +31,9 @@ for reference:
 	access_tech_storage = 23
 	access_atmospherics = 24
 	access_bar = 25
-	access_janitor = 26
-	access_crematorium = 27
-	access_kitchen = 28
+	ACCESS_JANITOR = 26
+	ACCESS_CREMATORIUM = 27
+	ACCESS_KITCHEN = 28
 	ACCESS_ROBOTICS = 29
 	access_rd = 30
 	access_cargo = 31

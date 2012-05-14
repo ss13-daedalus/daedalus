@@ -1,7 +1,7 @@
 
 /obj/structure/closet/secure_closet/chef_personal
 	name = "Chef's Locker"
-	req_access = list(access_kitchen)
+	req_access = list(ACCESS_KITCHEN)
 
 	New()
 		..()
@@ -68,7 +68,7 @@
 
 /obj/structure/closet/secure_closet/janitor_personal
 	name = "Janitor's Locker"
-	req_access = list(access_janitor)
+	req_access = list(ACCESS_JANITOR)
 
 	New()
 		..()

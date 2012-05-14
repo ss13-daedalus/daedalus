@@ -393,9 +393,9 @@ var/const/maximum_age = 65
 	access_tech_storage = 23
 	access_atmospherics = 24
 	access_bar = 25
-	access_janitor = 26
-	access_crematorium = 27
-	access_kitchen = 28
+#define ACCESS_JANITOR 26
+#define ACCESS_CREMATORIUM 27
+#define ACCESS_KITCHEN 28
 #define ACCESS_ROBOTICS 29
 	access_rd = 30
 	access_cargo = 31

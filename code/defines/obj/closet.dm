@@ -436,7 +436,7 @@
 
 /obj/structure/closet/secure_closet/kitchen
 	name = "kitchen cabinet"
-	req_access = list(access_kitchen)
+	req_access = list(ACCESS_KITCHEN)
 
 /obj/structure/closet/secure_closet/kitchen/mining
 	req_access = list()
