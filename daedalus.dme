@@ -846,6 +846,7 @@
 #include "code\obj\machinery.dm"
 #include "code\obj\effect\dummy.dm"
 #include "code\obj\effect\proc_holder.dm"
+#include "code\obj\effect\beam\infrared.dm"
 #include "code\obj\effect\decal\cleanable.dm"
 #include "code\obj\effect\proc_holder\spell.dm"
 #include "code\obj\item\ashtray.dm"
