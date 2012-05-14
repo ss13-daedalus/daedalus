@@ -1,24 +1,3 @@
-
-/proc/isassembly(O)
-	if(istype(O, /obj/item/device/assembly))
-		return 1
-	return 0
-
-/proc/isigniter(O)
-	if(istype(O, /obj/item/device/assembly/igniter))
-		return 1
-	return 0
-
-/proc/isprox(O)
-	if(istype(O, /obj/item/device/assembly/proximity_sensor))
-		return 1
-	return 0
-
-/proc/issignaler(O)
-	if(istype(O, /obj/item/device/assembly/signaler))
-		return 1
-	return 0
-
 /obj/item/device/assembly
 	name = "assembly"
 	desc = "A small electronic device that should never exist."

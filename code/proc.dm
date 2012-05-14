@@ -788,3 +788,23 @@ proc/process_ghost_teleport_locs()
 				ghost_teleport_locs.Swap(i, i+1)
 				not_in_order = 1
 	while(not_in_order)
+
+/proc/isassembly(O)
+	if(istype(O, /obj/item/device/assembly))
+		return 1
+	return 0
+
+/proc/isigniter(O)
+	if(istype(O, /obj/item/device/assembly/igniter))
+		return 1
+	return 0
+
+/proc/isprox(O)
+	if(istype(O, /obj/item/device/assembly/proximity_sensor))
+		return 1
+	return 0
+
+/proc/issignaler(O)
+	if(istype(O, /obj/item/device/assembly/signaler))
+		return 1
+	return 0
