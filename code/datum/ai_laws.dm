@@ -29,7 +29,7 @@
 	name = "Nanotrasen-Enhanced Asimov Laws"
 
 /datum/ai_laws/ocp
-	name = "Omni Consumer Producuts Laws"
+	name = "Omni Consumer Products Laws"
 
 /datum/ai_laws/paladin
 	name = "'Good' Laws"
