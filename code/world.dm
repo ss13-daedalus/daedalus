@@ -4,6 +4,11 @@ world
 	area = /area
 	view = "15x15"
 
+	// The following defines make Daedalus show up as a Space Station 13
+	// server on the BYOND hub.
+	hub = "Exadv1.spacestation13"
+	hub_password = "kMZy3U5jJHSiBQjr"
+	name = "Daedalus"
 
 	Topic(href, href_list[])
 		world << "Received a Topic() call!"

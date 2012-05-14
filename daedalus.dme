@@ -71,7 +71,6 @@
 #include "code\datum\event\ion_storm.dm"
 #include "code\datum\event\viral_infection.dm"
 #include "code\defines\atom.dm"
-#include "code\defines\hub.dm"
 #include "code\defines\obj.dm"
 #include "code\defines\turf.dm"
 #include "code\defines\mob\dead\observer.dm"
