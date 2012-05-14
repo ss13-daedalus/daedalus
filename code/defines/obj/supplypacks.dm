@@ -593,9 +593,9 @@
 
 /datum/supply_packs/robotics
 	name = "Robotics Assembly Crate"
-	contains = list("/obj/item/device/assembly/prox_sensor",
-					"/obj/item/device/assembly/prox_sensor",
-					"/obj/item/device/assembly/prox_sensor",
+	contains = list("/obj/item/device/assembly/proximity_sensor",
+					"/obj/item/device/assembly/proximity_sensor",
+					"/obj/item/device/assembly/proximity_sensor",
 					"/obj/item/weapon/storage/toolbox/electrical",
 					"/obj/item/device/flash",
 					"/obj/item/device/flash",
@@ -617,9 +617,9 @@
 					"/obj/item/device/assembly/igniter",
 					"/obj/item/device/assembly/igniter",
 					"/obj/item/device/assembly/igniter",
-					"/obj/item/device/assembly/prox_sensor",
-					"/obj/item/device/assembly/prox_sensor",
-					"/obj/item/device/assembly/prox_sensor",
+					"/obj/item/device/assembly/proximity_sensor",
+					"/obj/item/device/assembly/proximity_sensor",
+					"/obj/item/device/assembly/proximity_sensor",
 					"/obj/item/device/assembly/timer",
 					"/obj/item/device/assembly/timer",
 					"/obj/item/device/assembly/timer")

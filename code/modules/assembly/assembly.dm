@@ -15,7 +15,7 @@
 	return 0
 
 /proc/isprox(O)
-	if(istype(O, /obj/item/device/assembly/prox_sensor))
+	if(istype(O, /obj/item/device/assembly/proximity_sensor))
 		return 1
 	return 0
 

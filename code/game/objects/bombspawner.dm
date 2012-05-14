@@ -48,7 +48,7 @@
 		if (1)
 			var/obj/item/assembly/m_i_ptank/R = new /obj/item/assembly/m_i_ptank(src.loc)
 			var/obj/item/weapon/tank/phoron/p3 = new /obj/item/weapon/tank/phoron(R)
-			var/obj/item/device/prox_sensor/p1 = new /obj/item/device/prox_sensor(R)
+			var/obj/item/device/proximity_sensor/p1 = new /obj/item/device/proximity_sensor(R)
 			var/obj/item/device/igniter/p2 = new /obj/item/device/igniter(R)
 			R.part1 = p1
 			R.part2 = p2
@@ -161,7 +161,7 @@
 			var/obj/item/weapon/tank/phoron/PT = new(V)
 			var/obj/item/weapon/tank/oxygen/OT = new(V)
 
-			var/obj/item/device/assembly/prox_sensor/P = new(V)
+			var/obj/item/device/assembly/proximity_sensor/P = new(V)
 
 			V.tank_one = PT
 			V.tank_two = OT

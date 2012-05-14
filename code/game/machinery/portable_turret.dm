@@ -166,7 +166,7 @@ Neutralize All Unidentified Life Signs: []<BR>"},
 					Gun.power_supply.charge=gun_charge
 					Gun.update_icon()
 				if(prob(50)) new /obj/item/stack/sheet/metal( loc, rand(1,4))
-				if(prob(50)) new /obj/item/device/assembly/prox_sensor(locate(x,y,z))
+				if(prob(50)) new /obj/item/device/assembly/proximity_sensor(locate(x,y,z))
 			else
 				user << "You remove the turret but did not manage to salvage anything."
 			del(src)
@@ -759,7 +759,7 @@ Neutralize All Unidentified Life Signs: []<BR>"},
 
 		if(5)
 			user << "You remove the prox sensor from the turret frame."
-			new/obj/item/device/assembly/prox_sensor(locate(x,y,z))
+			new/obj/item/device/assembly/proximity_sensor(locate(x,y,z))
 			build_step = 4
 
 

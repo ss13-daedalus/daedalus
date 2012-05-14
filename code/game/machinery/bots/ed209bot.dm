@@ -695,7 +695,7 @@ Auto Patrol: []"},
 	Sa.build_step = 1
 	Sa.overlays += image('icons/obj/aibots.dmi', "hs_hole")
 	Sa.created_name = src.name
-	new /obj/item/device/assembly/prox_sensor(Tsec)
+	new /obj/item/device/assembly/proximity_sensor(Tsec)
 
 	var/obj/item/weapon/melee/baton/B = new /obj/item/weapon/melee/baton(Tsec)
 	B.charges = 0

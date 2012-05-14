@@ -956,7 +956,7 @@
 	src.visible_message("\red <B>[src] blows apart!</B>", 1)
 	var/turf/Tsec = get_turf(src)
 
-	new /obj/item/device/assembly/prox_sensor(Tsec)
+	new /obj/item/device/assembly/proximity_sensor(Tsec)
 	new /obj/item/stack/rods(Tsec)
 	new /obj/item/stack/rods(Tsec)
 	new /obj/item/weapon/cable_coil/cut(Tsec)

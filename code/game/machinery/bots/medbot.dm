@@ -449,7 +449,7 @@
 
 	new /obj/item/weapon/storage/firstaid(Tsec)
 
-	new /obj/item/device/assembly/prox_sensor(Tsec)
+	new /obj/item/device/assembly/proximity_sensor(Tsec)
 
 	new /obj/item/device/healthanalyzer(Tsec)
 

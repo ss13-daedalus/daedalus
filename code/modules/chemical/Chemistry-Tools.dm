@@ -55,7 +55,7 @@
 							W.loc = src
 							user << "\blue You insert the beaker into the casing."
 
-					else if(istype(W, /obj/item/device/assembly/signaler) || istype(W, /obj/item/device/assembly/timer) || istype(W, /obj/item/device/assembly/infra) || istype(W, /obj/item/device/assembly/prox_sensor))
+					else if(istype(W, /obj/item/device/assembly/signaler) || istype(W, /obj/item/device/assembly/timer) || istype(W, /obj/item/device/assembly/infra) || istype(W, /obj/item/device/assembly/proximity_sensor))
 						if(attached_device)
 							user << "\red There is already an device attached to the controls, remove it first!"
 							return
@@ -175,11 +175,11 @@
 						if(istype(W, /obj/item/weapon/crowbar) && motion)
 							playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 							user << "\blue You remove the proximity sensor."
-							var/obj/item/device/assembly/prox_sensor/S = locate() in src
+							var/obj/item/device/assembly/proximity_sensor/S = locate() in src
 							if(S)
 								S.loc = src.loc
 							else
-								new /obj/item/device/assembly/prox_sensor( src.loc, 1 )
+								new /obj/item/device/assembly/proximity_sensor( src.loc, 1 )
 							motion = 0
 						if(istype(W, /obj/item/stack/sheet/glass))
 							if(W:amount >= 1)
@@ -252,8 +252,8 @@
 
 
 	has_proximity(atom/movable/AM as mob|obj)
-		if(istype(attached_device, /obj/item/device/assembly/prox_sensor))
-			var/obj/item/device/assembly/prox_sensor/D = attached_device
+		if(istype(attached_device, /obj/item/device/assembly/proximity_sensor))
+			var/obj/item/device/assembly/proximity_sensor/D = attached_device
 			if (istype(AM, /obj/effect/beam))
 				return
 			if (AM.move_speed < 12)

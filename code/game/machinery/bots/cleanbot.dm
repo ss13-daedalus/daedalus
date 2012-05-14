@@ -341,7 +341,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 
 	new /obj/item/weapon/reagent_containers/glass/bucket(Tsec)
 
-	new /obj/item/device/assembly/prox_sensor(Tsec)
+	new /obj/item/device/assembly/proximity_sensor(Tsec)
 
 	if (prob(50))
 		new /obj/item/robot_parts/l_arm(Tsec)
