@@ -73,7 +73,6 @@
 #include "code\defines\atom.dm"
 #include "code\defines\obj.dm"
 #include "code\defines\turf.dm"
-#include "code\defines\mob\dead\observer.dm"
 #include "code\defines\mob\living\living.dm"
 #include "code\defines\mob\living\carbon\alien.dm"
 #include "code\defines\mob\living\carbon\alien_humanoid.dm"
