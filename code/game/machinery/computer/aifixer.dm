@@ -2,7 +2,7 @@
 	name = "AI System Integrity Restorer"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "ai-fixer"
-	req_access = list(access_captain, ACCESS_ROBOTICS, access_heads)
+	req_access = list(ACCESS_CAPTAIN, ACCESS_ROBOTICS, ACCESS_HEADS)
 	var/mob/living/silicon/ai/occupant = null
 	var/active = 0
 

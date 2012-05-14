@@ -602,7 +602,7 @@
 /obj/item/weapon/card/id/syndicate
 	name = "agent card"
 	desc = "Shhhhh."
-	access = list(access_maint_tunnels)
+	access = list(ACCESS_MAINT_TUNNELS)
 	origin_tech = "syndicate=3"
 
 /obj/item/weapon/card/id/syndicate_command

@@ -8,7 +8,7 @@
 	var/authenticated = 0.0
 	var/mode = 0.0
 	var/printing = null
-	req_access = list(access_change_ids)
+	req_access = list(ACCESS_CHANGE_IDS)
 
 
 /obj/machinery/computer/card/centcom
@@ -20,7 +20,7 @@
 /obj/machinery/computer/card/attackby(O as obj, user as mob)
 	if(istype(O, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/idcard = O
-		if(access_change_ids in idcard.access)
+		if(ACCESS_CHANGE_IDS in idcard.access)
 			if(!scan)
 				usr.drop_item()
 				idcard.loc = src

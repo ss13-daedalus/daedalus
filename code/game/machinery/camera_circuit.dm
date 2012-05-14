@@ -102,7 +102,7 @@
 				var/obj/item/device/pda/pda = I
 				I = pda.id
 			if (I && istype(I))
-				if(access_captain in I.access)
+				if(ACCESS_CAPTAIN in I.access)
 					authorised = 1
 				else if (possibleNets[network] in I.access)
 					authorised = 1

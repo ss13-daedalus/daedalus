@@ -17,15 +17,15 @@ for reference:
 	access_medlab = 9
 	access_engine = 10
 	access_engine_equip= 11
-	access_maint_tunnels = 12
-	access_external_airlocks = 13
-	access_emergency_storage = 14
-	access_change_ids = 15
-	access_ai_upload = 16
-	access_teleporter = 17
-	access_eva = 18
-	access_heads = 19
-	access_captain = 20
+	ACCESS_MAINT_TUNNELS = 12
+	ACCESS_EXTERNAL_AIRLOCKS = 13
+	ACCESS_EMERGENCY_STORAGE = 14
+	ACCESS_CHANGE_IDS = 15
+	ACCESS_AI_UPLOAD = 16
+	ACCESS_TELEPORTER = 17
+	ACCESS_EVA = 18
+	ACCESS_HEADS = 19
+	ACCESS_CAPTAIN = 20
 	ACCESS_ALL_PERSONAL_LOCKERS = 21
 	ACCESS_CHAPEL_OFFICE = 22
 	ACCESS_TECH_STORAGE = 23
@@ -157,7 +157,7 @@ for reference:
 	var/health = 100.0
 	var/maxhealth = 100.0
 	var/locked = 0.0
-//	req_access = list(access_maint_tunnels)
+//	req_access = list(ACCESS_MAINT_TUNNELS)
 
 	New()
 		..()

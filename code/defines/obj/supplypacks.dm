@@ -515,7 +515,7 @@
 	cost = 10
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Emitter crate"
-	access = access_heads
+	access = ACCESS_HEADS
 	group = "Engineering"
 
 /datum/supply_packs/engine/field_gen
@@ -657,7 +657,7 @@
 	cost = 25
 	containertype = "/obj/structure/closet/crate/secure/weapon"
 	containername = "Experimental weapons crate"
-	access = access_heads
+	access = ACCESS_HEADS
 	group = "Security"
 
 /datum/supply_packs/armor

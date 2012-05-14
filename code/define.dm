@@ -379,15 +379,15 @@ var/const/maximum_age = 65
 	access_medlab = 9
 	access_engine = 10
 	access_engine_equip= 11
-	access_maint_tunnels = 12
-	access_external_airlocks = 13
-	access_emergency_storage = 14
-	access_change_ids = 15
-	access_ai_upload = 16
-	access_teleporter = 17
-	access_eva = 18
-	access_heads = 19
-	access_captain = 20
+#define ACCESS_MAINT_TUNNELS 12
+#define ACCESS_EXTERNAL_AIRLOCKS 13
+#define ACCESS_EMERGENCY_STORAGE 14
+#define ACCESS_CHANGE_IDS 15
+#define ACCESS_AI_UPLOAD 16
+#define ACCESS_TELEPORTER 17
+#define ACCESS_EVA 18
+#define ACCESS_HEADS 19
+#define ACCESS_CAPTAIN 20
 #define ACCESS_ALL_PERSONAL_LOCKERS 21
 #define ACCESS_CHAPEL_OFFICE 22
 #define ACCESS_TECH_STORAGE 23
@@ -420,7 +420,7 @@ var/const/maximum_age = 65
 	access_mailsorting = 50
 	access_mint = 51
 	access_mint_vault = 52
-	access_heads_vault = 53
+#define ACCESS_HEADS_VAULT 53
 	access_mining_station = 54
 	access_xenobiology = 55
 	access_ce = 56
