@@ -70,48 +70,6 @@
 		O.loc = src.loc
 	icon_state = icon_broken
 
-/obj/item/ashtray/plastic
-	name = "plastic ashtray"
-	desc = "Cheap plastic ashtray."
-	icon_state = "ashtray_bl"
-	icon_empty = "ashtray_bl"
-	icon_half  = "ashtray_half_bl"
-	icon_full  = "ashtray_full_bl"
-	icon_broken  = "ashtray_bork_bl"
-	max_butts = 14
-	health = 24.0
-	g_amt = 30
-	m_amt = 30
-	empty_desc = "Cheap plastic ashtray."
-	throwforce = 3.0
-	die()
-		..()
-		name = "pieces of plastic"
-		desc = "Pieces of plastic with ash on them."
-		return
-
-
-/obj/item/ashtray/bronze
-	name = "bronze ashtray"
-	desc = "Massive bronze ashtray."
-	icon_state = "ashtray_br"
-	icon_empty = "ashtray_br"
-	icon_half  = "ashtray_half_br"
-	icon_full  = "ashtray_full_br"
-	icon_broken  = "ashtray_bork_br"
-	max_butts = 10
-	health = 72.0
-	m_amt = 80
-	empty_desc = "Massive bronze ashtray."
-	throwforce = 10.0
-
-	die()
-		..()
-		name = "pieces of bronze"
-		desc = "Pieces of bronze with ash on them."
-		return
-
-
 /obj/item/ashtray/glass
 	name = "glass ashtray"
 	desc = "Glass ashtray. Looks fragile."
