@@ -14,7 +14,7 @@
 	var
 		scanning = 0
 		visible = 0
-		obj/effect/beam/i_beam/first = null
+		obj/effect/beam/infrared/first = null
 
 	proc
 		trigger_beam()
@@ -64,7 +64,7 @@
 				return
 
 		if((!( src.first ) && (src.secured && (istype(src.loc, /turf) || (src.holder && istype(src.holder.loc, /turf))))))
-			var/obj/effect/beam/i_beam/I = new /obj/effect/beam/i_beam( (src.holder ? src.holder.loc : src.loc) )
+			var/obj/effect/beam/infrared/I = new /obj/effect/beam/infrared( (src.holder ? src.holder.loc : src.loc) )
 			I.master = src
 			I.density = 1
 			I.dir = src.dir
@@ -166,11 +166,11 @@
 
 /***************************IBeam*********************************/
 
-/obj/effect/beam/i_beam
-	name = "i beam"
+/obj/effect/beam/infrared
+	name = "Infrared beam"
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "ibeam"
-	var/obj/effect/beam/i_beam/next = null
+	var/obj/effect/beam/infrared/next = null
 	var/obj/item/device/assembly/infra/master = null
 	var/limit = null
 	var/visible = 0.0
@@ -179,7 +179,7 @@
 	flags = TABLEPASS
 
 
-/obj/effect/beam/i_beam/proc/hit()
+/obj/effect/beam/infrared/proc/hit()
 	//world << "beam \ref[src]: hit"
 	if(src.master)
 		//world << "beam hit \ref[src]: calling master \ref[master].hit"
@@ -187,18 +187,18 @@
 	del(src)
 	return
 
-/obj/effect/beam/i_beam/proc/vis_spread(v)
-	//world << "i_beam \ref[src] : vis_spread"
+/obj/effect/beam/infrared/proc/vis_spread(v)
+	//world << "infrared \ref[src] : vis_spread"
 	src.visible = v
 	spawn(0)
 		if(src.next)
-			//world << "i_beam \ref[src] : is next [next.type] \ref[next], calling spread"
+			//world << "infrared \ref[src] : is next [next.type] \ref[next], calling spread"
 			src.next.vis_spread(v)
 		return
 	return
 
-/obj/effect/beam/i_beam/process()
-	//world << "i_beam \ref[src] : process"
+/obj/effect/beam/infrared/process()
+	//world << "infrared \ref[src] : process"
 
 	if((src.loc.density || !( src.master )))
 		//SN src = null
@@ -219,7 +219,7 @@
 
 
 	//world << "now [src.left] left"
-	var/obj/effect/beam/i_beam/I = new /obj/effect/beam/i_beam( src.loc )
+	var/obj/effect/beam/infrared/I = new /obj/effect/beam/infrared( src.loc )
 	I.master = src.master
 	I.density = 1
 	I.dir = src.dir
@@ -252,15 +252,15 @@
 		return
 	return
 
-/obj/effect/beam/i_beam/Bump()
+/obj/effect/beam/infrared/Bump()
 	del(src)
 	return
 
-/obj/effect/beam/i_beam/Bumped()
+/obj/effect/beam/infrared/Bumped()
 	src.hit()
 	return
 
-/obj/effect/beam/i_beam/HasEntered(atom/movable/AM as mob|obj)
+/obj/effect/beam/infrared/HasEntered(atom/movable/AM as mob|obj)
 	if(istype(AM, /obj/effect/beam))
 		return
 	spawn( 0 )
@@ -268,7 +268,7 @@
 		return
 	return
 
-/obj/effect/beam/i_beam/Del()
+/obj/effect/beam/infrared/Del()
 	del(src.next)
 	..()
 	return

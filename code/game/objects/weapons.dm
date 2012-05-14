@@ -109,7 +109,7 @@
 /turf/Entered(atom/A as mob|obj)
 	..()
 	if ((A && A.density && !( istype(A, /obj/effect/beam) )))
-		for(var/obj/effect/beam/i_beam/I in src)
+		for(var/obj/effect/beam/infrared/I in src)
 			spawn( 0 )
 				if (I)
 					I.hit()
