@@ -23,7 +23,7 @@
 		process_activation(var/obj/item/device/D)
 
 
-	IsAssemblyHolder()
+	is_assembly_holder()
 		return 1
 
 

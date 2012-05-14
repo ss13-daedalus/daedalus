@@ -166,10 +166,10 @@
 		return //HTML MENU FOR WIRES GOES HERE
 
 /*
-Name:	IsAssemblyHolder
+Name:	is_assembly_holder
 Desc:	If true is an object that can hold an assemblyholder object
 */
-/obj/proc/IsAssemblyHolder()
+/obj/proc/is_assembly_holder()
 	return 0
 /*
 	proc
@@ -218,7 +218,7 @@ Desc:	If true is an object that can be attached to an assembly holder but is a s
 
 	Attach_Holder(var/obj/H, var/mob/user)
 		if(!H)	return 0
-		if(!H.IsAssemblyHolder())	return 0
+		if(!H.is_assembly_holder())	return 0
 		//Remember to have it set its loc somewhere in here
 
 

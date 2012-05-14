@@ -13,7 +13,7 @@
 	proc
 		process_activation(var/obj/item/device/D)
 
-	IsAssemblyHolder()
+	is_assembly_holder()
 		return 1
 
 	attackby(obj/item/item, mob/user)
