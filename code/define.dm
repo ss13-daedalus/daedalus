@@ -423,9 +423,9 @@ var/const/maximum_age = 65
 #define ACCESS_HEADS_VAULT 53
 #define ACCESS_MINING_STATION 54
 #define ACCESS_XENOBIOLOGY 55
-	access_ce = 56
-	access_hop = 57
-	access_hos = 58
+#define ACCESS_CE 56
+#define ACCESS_HOP 57
+#define ACCESS_HOS 58
 #define ACCESS_RC_ANNOUNCE 59 //Request console announcements
 #define ACCESS_KEYCARD_AUTH 60 //Used for events which require at least two people to confirm them
 #define ACCESS_TCOMSAT 61 // has access to the entire telecomms satellite / machinery
@@ -433,18 +433,18 @@ var/const/maximum_age = 65
 	//BEGIN CENTCOM ACCESS
 	/*Should leave plenty of room if we need to add more access levels.
 	Mostly for admin fun times.*/
-	access_cent_general = 101//General facilities.
-	access_cent_thunder = 102//Thunderdome.
-	access_cent_specops = 103//Special Ops.
-	access_cent_medical = 104//Medical/Research
-	access_cent_living = 105//Living quarters.
-	access_cent_storage = 106//Generic storage areas.
-	access_cent_teleporter = 107//Teleporter.
-	access_cent_creed = 108//Creed's office.
-	access_cent_captain = 109//Captain's office/ID comp/AI.
+#define ACCESS_CENT_GENERAL 101//General facilities.
+#define ACCESS_CENT_THUNDER 102//Thunderdome.
+#define ACCESS_CENT_SPECOPS 103//Special Ops.
+#define ACCESS_CENT_MEDICAL 104//Medical/Research
+#define ACCESS_CENT_LIVING 105//Living quarters.
+#define ACCESS_CENT_STORAGE 106//Generic storage areas.
+#define ACCESS_CENT_TELEPORTED 107//Teleporter.
+#define ACCESS_CENT_CREED 108//Creed's office.
+#define ACCESS_CENT_CAPTAIN 109//Captain's office/ID comp/AI.
 
 	//The Syndicate
-	access_syndicate = 150//General Syndicate Access
+#define ACCESS_SYNDICATE 150//General Syndicate Access
 
 	//MONEY
 #define ACCESS_CRATE_CASH 200

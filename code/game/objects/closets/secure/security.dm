@@ -30,7 +30,7 @@
 
 /obj/structure/closet/secure_closet/hop
 	name = "Head of Personnel"
-	req_access = list(access_hop)
+	req_access = list(ACCESS_HOP)
 	icon_state = "capsecure1"
 	icon_closed = "capsecure"
 	icon_locked = "capsecure1"
@@ -59,7 +59,7 @@
 
 /obj/structure/closet/secure_closet/hos
 	name = "Head Of Security"
-	req_access = list(access_hos)
+	req_access = list(ACCESS_HOS)
 	icon_state = "hossecure1"
 	icon_closed = "hossecure"
 	icon_locked = "hossecure1"
@@ -189,7 +189,7 @@
 
 /obj/structure/closet/secure_closet/injection
 	name = "Lethal Injections"
-	req_access = list(access_hos)
+	req_access = list(ACCESS_HOS)
 
 
 	New()

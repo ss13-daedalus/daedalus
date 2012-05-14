@@ -610,7 +610,7 @@
 	desc = "An ID straight from the Syndicate."
 	registered_name = "Syndicate"
 	assignment = "Syndicate Overlord"
-	access = list(access_syndicate)
+	access = list(ACCESS_SYNDICATE)
 
 /obj/item/weapon/card/id/captains_spare
 	name = "captain's spare ID"
