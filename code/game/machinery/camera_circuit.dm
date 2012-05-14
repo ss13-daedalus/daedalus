@@ -14,7 +14,7 @@
 		possibleNets["Engineering"] = access_ce
 		possibleNets["SS13"] = access_hos
 		possibleNets["Mining"] = ACCESS_MINING
-		possibleNets["Cargo"] = access_qm
+		possibleNets["Cargo"] = ACCESS_QM
 		possibleNets["Research"] = ACCESS_RD
 		possibleNets["Medbay"] = ACCESS_CMO
 

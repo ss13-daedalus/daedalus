@@ -46,10 +46,10 @@ for reference:
 	ACCESS_LAWYER = 38
 	ACCESS_VIROLOGY = 39
 	ACCESS_CMO = 40
-	access_qm = 41
-	access_court = 42
-	access_clown = 43
-	access_mime = 44
+	ACCESS_QM = 41
+	ACCESS_COURT = 42
+	ACCESS_CLOWN = 43
+	ACCESS_MIME = 44
 
 */
 

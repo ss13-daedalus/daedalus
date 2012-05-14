@@ -408,10 +408,10 @@ var/const/maximum_age = 65
 #define ACCESS_LAWYER 38
 #define ACCESS_VIROLOGY 39
 #define ACCESS_CMO 40
-	access_qm = 41
-	access_court = 42
-	access_clown = 43
-	access_mime = 44
+#define ACCESS_QM 41
+#define ACCESS_COURT 42
+#define ACCESS_CLOWN 43
+#define ACCESS_MIME 44
 #define ACCESS_SURGERY 45
 #define ACCESS_THEATRE 46
 #define ACCESS_RESEARCH 47

@@ -22,7 +22,7 @@
 
 /obj/structure/closet/secure_closet/qm_personal
 	name = "Quartermaster's Locker"
-	req_access = list(access_qm)
+	req_access = list(ACCESS_QM)
 
 	New()
 		..()
