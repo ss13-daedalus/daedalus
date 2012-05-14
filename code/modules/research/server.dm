@@ -13,7 +13,7 @@
 		heat_gen = 100
 		heating_power = 40000
 		delay = 10
-	req_access = list(access_rd) //Only the R&D can change server settings.
+	req_access = list(ACCESS_RD) //Only the R&D can change server settings.
 
 	New()
 		..()

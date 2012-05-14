@@ -445,7 +445,7 @@
 	cost = 20
 	containertype = "/obj/structure/closet/crate/secure/weapon"
 	containername = "Virus crate"
-	access = access_cmo
+	access = ACCESS_CMO
 	group = "Medical / Science"
 */
 
@@ -576,7 +576,7 @@
 	cost = 20
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Surgery crate"
-	access = access_medical
+	access = ACCESS_MEDICAL
 	group = "Medical / Science"
 
 /datum/supply_packs/mecha_odysseus
@@ -626,7 +626,7 @@
 	cost = 10
 	containertype = "/obj/structure/closet/crate/secure/phoron"
 	containername = "Phoron assembly crate"
-	access = access_tox
+	access = ACCESS_TOX
 	group = "Medical / Science"
 
 /datum/supply_packs/weapons

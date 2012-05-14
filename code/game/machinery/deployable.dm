@@ -7,12 +7,12 @@ Barricades
 for reference:
 
 	ACCESS_SECURITY = 1
-	access_brig = 2
+	ACCESS_BRIG = 2
 	ACCESS_ARMORY = 3
 	ACCESS_FORENSICS_LOCKERS= 4
-	access_medical = 5
-	access_morgue = 6
-	access_tox = 7
+	ACCESS_MEDICAL = 5
+	ACCESS_MORGUE = 6
+	ACCESS_TOX = 7
 	ACCESS_TOX_STORAGE = 8
 	ACCESS_MEDLAB = 9
 	ACCESS_ENGINE = 10
@@ -35,8 +35,8 @@ for reference:
 	ACCESS_CREMATORIUM = 27
 	ACCESS_KITCHEN = 28
 	ACCESS_ROBOTICS = 29
-	access_rd = 30
-	access_cargo = 31
+	ACCESS_RD = 30
+	ACCESS_CARGO = 31
 	ACCESS_CONSTRUCTION = 32
 	ACCESS_CHEMISTRY = 33
 	ACCESS_CARGO_BOT = 34
@@ -45,7 +45,7 @@ for reference:
 	ACCESS_LIBRARY = 37
 	ACCESS_LAWYER = 38
 	ACCESS_VIROLOGY = 39
-	access_cmo = 40
+	ACCESS_CMO = 40
 	access_qm = 41
 	access_court = 42
 	access_clown = 43

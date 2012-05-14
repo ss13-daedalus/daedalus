@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/cargotech
 	name = "Cargo Technician's Locker"
-	req_access = list(access_cargo)
+	req_access = list(ACCESS_CARGO)
 	//icon_state = "secureeng1"
 	//icon_closed = "secureeng"
 	//icon_locked = "secureeng1"
@@ -39,7 +39,7 @@
 
 /obj/structure/closet/secure_closet/cargo_tech_personal
 	name = "Cargo Tech's Locker"
-	req_access = list(access_cargo)
+	req_access = list(ACCESS_CARGO)
 
 	New()
 		..()
@@ -54,7 +54,7 @@
 
 /obj/structure/closet/secure_closet/miner_personal
 	name = "Miner's Locker"
-	req_access = list(access_cargo)
+	req_access = list(ACCESS_CARGO)
 
 	New()
 		..()

@@ -15,8 +15,8 @@
 		possibleNets["SS13"] = access_hos
 		possibleNets["Mining"] = ACCESS_MINING
 		possibleNets["Cargo"] = access_qm
-		possibleNets["Research"] = access_rd
-		possibleNets["Medbay"] = access_cmo
+		possibleNets["Research"] = ACCESS_RD
+		possibleNets["Medbay"] = ACCESS_CMO
 
 	proc/updateBuildPath()
 		build_path = ""

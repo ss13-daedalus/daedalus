@@ -119,7 +119,7 @@
 		"carbon dioxide" = new/datum/tlv(-1.0,-1.0, 0.5,   1), // Partial pressure, kpa
 */
 /obj/machinery/alarm/server
-	//req_access = list(access_rd) //no, let departaments to work together
+	//req_access = list(ACCESS_RD) //no, let departaments to work together
 	TLV = list(
 		"oxygen"         = new/datum/tlv(-1.0, -1.0,-1.0,-1.0), // Partial pressure, kpa
 		"carbon dioxide" = new/datum/tlv(-1.0, -1.0,   5,  10), // Partial pressure, kpa

@@ -417,7 +417,7 @@
 	anchored = 1
 	density = 0
 	wall_mounted = 1
-	req_access = list(access_medical)
+	req_access = list(ACCESS_MEDICAL)
 
 /obj/structure/closet/secure_closet/personal
 	desc = "It's a secure locker for personnel. The first card swiped gains control."

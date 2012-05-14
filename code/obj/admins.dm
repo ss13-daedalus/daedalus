@@ -2261,16 +2261,16 @@ var/global/BSACooldown = 0
 					if(!admin_log.len)
 						dat += "No-one has done anything this round!"
 					usr << browse(dat, "window=admin_log")
-				if("maint_access_brig")
+				if("maint_ACCESS_BRIG")
 					for(var/obj/machinery/door/airlock/maintenance/M in world)
 						if (ACCESS_MAINT_TUNNELS in M.req_access)
-							M.req_access = list(access_brig)
+							M.req_access = list(ACCESS_BRIG)
 					message_admins("[key_name_admin(usr)] made all maint doors brig access-only.")
 				if("maint_access_engiebrig")
 					for(var/obj/machinery/door/airlock/maintenance/M in world)
 						if (ACCESS_MAINT_TUNNELS in M.req_access)
 							M.req_access = list()
-							M.req_one_access = list(access_brig,ACCESS_ENGINE)
+							M.req_one_access = list(ACCESS_BRIG,ACCESS_ENGINE)
 					message_admins("[key_name_admin(usr)] made all maint doors engineering and brig access-only.")
 				if("infinite_sec")
 					var/datum/job/J = job_master.GetJob("Security Officer")
@@ -2612,7 +2612,7 @@ var/global/BSACooldown = 0
 <B>Security Level Elevated</B><BR>
 <BR>
 <A href='?src=\ref[src];secretscoder=maint_access_engiebrig'>Change all maintenance doors to engie/brig access only</A><BR>
-<A href='?src=\ref[src];secretscoder=maint_access_brig'>Change all maintenance doors to brig access only</A><BR>
+<A href='?src=\ref[src];secretscoder=maint_ACCESS_BRIG'>Change all maintenance doors to brig access only</A><BR>
 <A href='?src=\ref[src];secretscoder=infinite_sec'>Remove cap on security officers</A><BR>
 <BR>
 <B>Coder Secrets</B><BR>

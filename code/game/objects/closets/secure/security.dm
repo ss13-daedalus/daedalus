@@ -203,7 +203,7 @@
 
 /obj/structure/closet/secure_closet/brig
 	name = "Brig Locker"
-	req_access = list(access_brig)
+	req_access = list(ACCESS_BRIG)
 	anchored = 1
 	var/id = null
 

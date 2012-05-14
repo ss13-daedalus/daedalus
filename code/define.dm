@@ -369,12 +369,12 @@ var/const/maximum_age = 65
 //	Security access levels
 /var/const
 #define ACCESS_SECURITY 1
-	access_brig = 2
+#define ACCESS_BRIG 2
 #define ACCESS_ARMORY 3
 #define ACCESS_FORENSICS_LOCKERS 4
-	access_medical = 5
-	access_morgue = 6
-	access_tox = 7
+#define ACCESS_MEDICAL 5
+#define ACCESS_MORGUE 6
+#define ACCESS_TOX 7
 #define ACCESS_TOX_STORAGE 8
 #define ACCESS_MEDLAB 9
 #define ACCESS_ENGINE 10
@@ -397,8 +397,8 @@ var/const/maximum_age = 65
 #define ACCESS_CREMATORIUM 27
 #define ACCESS_KITCHEN 28
 #define ACCESS_ROBOTICS 29
-	access_rd = 30
-	access_cargo = 31
+#define ACCESS_RD 30
+#define ACCESS_CARGO 31
 #define ACCESS_CONSTRUCTION 32
 #define ACCESS_CHEMISTRY 33
 #define ACCESS_CARGO_BOT 34
@@ -407,7 +407,7 @@ var/const/maximum_age = 65
 #define ACCESS_LIBRARY 37
 #define ACCESS_LAWYER 38
 #define ACCESS_VIROLOGY 39
-	access_cmo = 40
+#define ACCESS_CMO 40
 	access_qm = 41
 	access_court = 42
 	access_clown = 43

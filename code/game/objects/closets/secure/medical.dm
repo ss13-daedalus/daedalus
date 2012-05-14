@@ -7,7 +7,7 @@
 	icon_opened = "securemedopen"
 	icon_broken = "securemedbroken"
 	icon_off = "securemed1"
-	req_access = list(access_medical)
+	req_access = list(ACCESS_MEDICAL)
 
 
 	New()
@@ -35,7 +35,7 @@
 	icon_opened = "securemedopen"
 	icon_broken = "securemedbroken"
 	icon_off = "securemed1"
-	req_access = list(access_medical)
+	req_access = list(ACCESS_MEDICAL)
 
 
 	New()
@@ -53,7 +53,7 @@
 
 /obj/structure/closet/secure_closet/doctor_personal
 	name = "Doctor's Locker"
-	req_access = list(access_medical)
+	req_access = list(ACCESS_MEDICAL)
 	icon_state = "securemed1"
 	icon_closed = "securemed"
 	icon_locked = "securemed1"
@@ -127,7 +127,7 @@
 
 /obj/structure/closet/secure_closet/CMO
 	name = "Chief Medical Officer's Locker"
-	req_access = list(access_cmo)
+	req_access = list(ACCESS_CMO)
 	icon_state = "cmosecure1"
 	icon_closed = "cmosecure"
 	icon_locked = "cmosecure1"
@@ -154,7 +154,7 @@
 
 /obj/structure/closet/secure_closet/animal
 	name = "Animal Control"
-	req_access = list(access_medical)
+	req_access = list(ACCESS_MEDICAL)
 
 
 	New()
@@ -177,7 +177,7 @@
 	icon_opened = "securemedopen"
 	icon_broken = "securemedbroken"
 	icon_off = "securemed1"
-	req_access = list(access_medical)
+	req_access = list(ACCESS_MEDICAL)
 
 
 	New()
