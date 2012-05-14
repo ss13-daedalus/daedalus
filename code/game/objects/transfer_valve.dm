@@ -13,9 +13,6 @@
 	proc
 		process_activation(var/obj/item/device/D)
 
-	is_assembly_holder()
-		return 1
-
 	attackby(obj/item/item, mob/user)
 		if(istype(item, /obj/item/weapon/tank))
 			if(tank_one && tank_two)

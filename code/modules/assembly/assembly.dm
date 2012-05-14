@@ -132,14 +132,3 @@
 
 	interact(mob/user as mob)
 		return //HTML MENU FOR WIRES GOES HERE
-
-/*
-Name:	is_assembly_holder
-Desc:	If true is an object that can hold an assemblyholder object
-*/
-/obj/proc/is_assembly_holder()
-	return 0
-/*
-	proc
-		Process_Activation(var/obj/D, var/normal = 1, var/special = 1)
-*/

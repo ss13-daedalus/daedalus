@@ -21,11 +21,6 @@
 		attach(var/obj/item/device/D, var/obj/item/device/D2, var/mob/user)
 		process_activation(var/obj/item/device/D)
 
-
-	is_assembly_holder()
-		return 1
-
-
 	attach(var/obj/item/device/D, var/obj/item/device/D2, var/mob/user)
 		if((!D)||(!D2))	return 0
 		if((!isassembly(D))||(!isassembly(D2)))	return 0
