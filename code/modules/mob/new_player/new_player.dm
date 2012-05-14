@@ -267,7 +267,6 @@
 		var/mob/living/carbon/human/character = create_character()
 		var/icon/char_icon = getFlatIcon(character,0)//We're creating out own cache so it's not needed.
 		job_master.EquipRank(character, rank, 1)
-		EquipCustomItems(character)
 		character.loc = pick(latejoin)
 		character.lastarea = get_area(loc)
 		if(character.client)
