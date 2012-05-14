@@ -14,9 +14,6 @@
 	name = "Prime Directives"
 	randomly_selectable = 1
 
-/datum/ai_laws/robocop
-	name = "Prime Directives"
-
 /datum/ai_laws/syndicate_override
 
 /datum/ai_laws/malfunction
