@@ -367,7 +367,6 @@ var/const/maximum_age = 65
 #define LOCATION_NAME "NSS Icarus"
 
 //	Security access levels
-/var/const
 #define ACCESS_SECURITY 1
 #define ACCESS_BRIG 2
 #define ACCESS_ARMORY 3
