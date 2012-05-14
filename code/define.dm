@@ -396,17 +396,17 @@ var/const/maximum_age = 65
 	access_janitor = 26
 	access_crematorium = 27
 	access_kitchen = 28
-	access_robotics = 29
+#define ACCESS_ROBOTICS 29
 	access_rd = 30
 	access_cargo = 31
-	access_construction = 32
-	access_chemistry = 33
-	access_cargo_bot = 34
-	access_hydroponics = 35
-	access_manufacturing = 36
-	access_library = 37
-	access_lawyer = 38
-	access_virology = 39
+#define ACCESS_CONSTRUCTION 32
+#define ACCESS_CHEMISTRY 33
+#define ACCESS_CARGO_BOT 34
+#define ACCESS_HYDROPONICS 35
+#define ACCESS_MANUFACTURING 36
+#define ACCESS_LIBRARY 37
+#define ACCESS_LAWYER 38
+#define ACCESS_VIROLOGY 39
 	access_cmo = 40
 	access_qm = 41
 	access_court = 42
@@ -447,7 +447,7 @@ var/const/maximum_age = 65
 	access_syndicate = 150//General Syndicate Access
 
 	//MONEY
-	access_crate_cash = 200
+#define ACCESS_CRATE_CASH 200
 
 // End the stupid preprocessor macro tricks.
 #endif

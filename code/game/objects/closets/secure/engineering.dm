@@ -143,7 +143,7 @@
 
 /obj/structure/closet/secure_closet/roboticist_personal
 	name = "Roboticist's Locker"
-	req_access = list(access_robotics)
+	req_access = list(ACCESS_ROBOTICS)
 
 	New()
 		..()

@@ -374,7 +374,7 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/hydroponics
 	containername = "Hydroponics crate"
-	access = access_hydroponics
+	access = ACCESS_HYDROPONICS
 	group = "Hydroponics"
 
 /datum/supply_packs/seeds
@@ -393,7 +393,7 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/hydroponics
 	containername = "Seeds crate"
-	access = access_hydroponics
+	access = ACCESS_HYDROPONICS
 	group = "Hydroponics"
 
 /datum/supply_packs/exoticseeds
@@ -410,7 +410,7 @@
 	cost = 15
 	containertype = /obj/structure/closet/crate/hydroponics
 	containername = "Exotic Seeds crate"
-	access = access_hydroponics
+	access = ACCESS_HYDROPONICS
 	group = "Hydroponics"
 
 /datum/supply_packs/medical
@@ -560,7 +560,7 @@
 	cost = 30
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "APLU \"Ripley\" Circuit Crate"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 	group = "Robotics"
 
 /datum/supply_packs/surgery
@@ -588,7 +588,7 @@
 	cost = 25
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "\"Odysseus\" Circuit Crate"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 	group = "Robotics"
 
 /datum/supply_packs/robotics
@@ -606,7 +606,7 @@
 	cost = 10
 	containertype = "/obj/structure/closet/crate/secure/gear"
 	containername = "Robotics Assembly"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 	group = "Robotics"
 
 /datum/supply_packs/phoron

@@ -53,7 +53,7 @@
 
 /obj/structure/closet/secure_closet/hydro_personal
 	name = "Botanist's Locker"
-	req_access = list(access_hydroponics)
+	req_access = list(ACCESS_HYDROPONICS)
 
 	New()
 		..()
@@ -82,7 +82,7 @@
 
 /obj/structure/closet/secure_closet/lawyer_personal
 	name = "Lawyer's Locker"
-	req_access = list(access_lawyer)
+	req_access = list(ACCESS_LAWYER)
 
 	New()
 		..()
@@ -98,7 +98,7 @@
 
 /obj/structure/closet/secure_closet/librarian_personal
 	name = "Librarian's Locker"
-	req_access = list(access_library)
+	req_access = list(ACCESS_LIBRARY)
 
 	New()
 		..()

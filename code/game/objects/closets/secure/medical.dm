@@ -78,7 +78,7 @@
 
 /obj/structure/closet/secure_closet/chemist_personal
 	name = "Chemist's Locker"
-	req_access = list(access_chemistry)
+	req_access = list(ACCESS_CHEMISTRY)
 
 	New()
 		..()
@@ -110,7 +110,7 @@
 
 /obj/structure/closet/secure_closet/viro_personal
 	name = "Virologist's Locker"
-	req_access = list(access_virology)
+	req_access = list(ACCESS_VIROLOGY)
 
 	New()
 		..()
