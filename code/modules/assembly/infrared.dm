@@ -1,5 +1,5 @@
-/obj/item/device/assembly/infra
-	name = "Infrared Beam"
+/obj/item/device/assembly/infrared_emitter
+	name = "Infrared Beam Emitter"
 	desc = "Emits a visible or invisible beam and is triggered when the beam is interrupted."
 	icon_state = "infrared_old"
 	m_amt = 1000

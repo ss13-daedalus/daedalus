@@ -3,7 +3,7 @@
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "ibeam"
 	var/obj/effect/beam/infrared/next = null
-	var/obj/item/device/assembly/infra/master = null
+	var/obj/item/device/assembly/infrared_emitter/master = null
 	var/limit = null
 	var/visible = 0.0
 	var/left = null

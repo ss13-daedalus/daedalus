@@ -10,7 +10,7 @@
 	return 0
 
 /proc/isinfared(O)
-	if(istype(O, /obj/item/device/assembly/infra))
+	if(istype(O, /obj/item/device/assembly/infrared_emitter))
 		return 1
 	return 0
 

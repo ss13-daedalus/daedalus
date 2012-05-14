@@ -55,7 +55,7 @@
 							W.loc = src
 							user << "\blue You insert the beaker into the casing."
 
-					else if(istype(W, /obj/item/device/assembly/signaler) || istype(W, /obj/item/device/assembly/timer) || istype(W, /obj/item/device/assembly/infra) || istype(W, /obj/item/device/assembly/proximity_sensor))
+					else if(istype(W, /obj/item/device/assembly/signaler) || istype(W, /obj/item/device/assembly/timer) || istype(W, /obj/item/device/assembly/infrared_emitter) || istype(W, /obj/item/device/assembly/proximity_sensor))
 						if(attached_device)
 							user << "\red There is already an device attached to the controls, remove it first!"
 							return
