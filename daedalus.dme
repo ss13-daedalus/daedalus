@@ -912,7 +912,6 @@
 #include "code\WorkInProgress\mapload\reader.dm"
 #include "code\WorkInProgress\Mini\atmos_control.dm"
 #include "code\WorkInProgress\Mini\pipe_heater.dm"
-#include "code\WorkInProgress\Mloc\Shortcuts.dm"
 #include "code\WorkInProgress\organs\implants.dm"
 #include "code\WorkInProgress\organs\organs.dm"
 #include "code\WorkInProgress\Ported\head.dm"
