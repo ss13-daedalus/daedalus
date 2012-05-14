@@ -15,7 +15,7 @@
 
 /obj/structure/closet/secure_closet/bar
 	name = "Booze"
-	req_access = list(access_bar)
+	req_access = list(ACCESS_BAR)
 
 
 	New()
@@ -35,7 +35,7 @@
 
 /obj/structure/closet/secure_closet/barman_personal
 	name = "Barman's Locker"
-	req_access = list(access_bar)
+	req_access = list(ACCESS_BAR)
 
 	New()
 		..()
@@ -112,7 +112,7 @@
 
 /obj/structure/closet/secure_closet/counselor_personal
 	name = "Counselor's Locker"
-	req_access = list(access_chapel_office)
+	req_access = list(ACCESS_CHAPEL_OFFICE)
 
 	New()
 		..()

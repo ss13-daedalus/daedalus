@@ -26,11 +26,11 @@ for reference:
 	access_eva = 18
 	access_heads = 19
 	access_captain = 20
-	access_all_personal_lockers = 21
-	access_chapel_office = 22
-	access_tech_storage = 23
-	access_atmospherics = 24
-	access_bar = 25
+	ACCESS_ALL_PERSONAL_LOCKERS = 21
+	ACCESS_CHAPEL_OFFICE = 22
+	ACCESS_TECH_STORAGE = 23
+	ACCESS_ATMOSPHERICS = 24
+	ACCESS_BAR = 25
 	ACCESS_JANITOR = 26
 	ACCESS_CREMATORIUM = 27
 	ACCESS_KITCHEN = 28

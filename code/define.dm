@@ -388,11 +388,11 @@ var/const/maximum_age = 65
 	access_eva = 18
 	access_heads = 19
 	access_captain = 20
-	access_all_personal_lockers = 21
-	access_chapel_office = 22
-	access_tech_storage = 23
-	access_atmospherics = 24
-	access_bar = 25
+#define ACCESS_ALL_PERSONAL_LOCKERS 21
+#define ACCESS_CHAPEL_OFFICE 22
+#define ACCESS_TECH_STORAGE 23
+#define ACCESS_ATMOSPHERICS 24
+#define ACCESS_BAR 25
 #define ACCESS_JANITOR 26
 #define ACCESS_CREMATORIUM 27
 #define ACCESS_KITCHEN 28

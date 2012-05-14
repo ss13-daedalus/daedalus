@@ -127,7 +127,7 @@
 
 /obj/structure/closet/secure_closet/atmos_personal
 	name = "Atmospheric Technician's Locker"
-	req_access = list(access_atmospherics)
+	req_access = list(ACCESS_ATMOSPHERICS)
 
 	New()
 		..()
