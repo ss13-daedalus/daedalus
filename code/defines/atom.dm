@@ -81,7 +81,7 @@ obj
 /atom/proc/HasEntered(atom/movable/AM as mob|obj)
 	return
 
-/atom/proc/HasProximity(atom/movable/AM as mob|obj)
+/atom/proc/has_proximity(atom/movable/AM as mob|obj)
 	return
 
 /atom/proc/emp_act(var/severity)

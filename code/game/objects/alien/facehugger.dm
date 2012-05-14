@@ -233,7 +233,7 @@ var/const
 /obj/item/clothing/mask/facehugger/angry
 	stat = CONSCIOUS
 
-/obj/item/clothing/mask/facehugger/angry/HasProximity(atom/movable/AM as mob|obj)
+/obj/item/clothing/mask/facehugger/angry/has_proximity(atom/movable/AM as mob|obj)
 	if(istype(AM , /mob/living/))
 		Attach(AM)
 

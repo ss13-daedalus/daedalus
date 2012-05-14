@@ -57,9 +57,9 @@
 		return
 
 
-	HasProximity(atom/movable/AM as mob|obj)
+	has_proximity(atom/movable/AM as mob|obj)
 		if(!attached_device)	return
-		attached_device.HasProximity(AM)
+		attached_device.has_proximity(AM)
 		return
 
 

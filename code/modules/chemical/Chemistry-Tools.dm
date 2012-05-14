@@ -251,7 +251,7 @@
 		explode()
 
 
-	HasProximity(atom/movable/AM as mob|obj)
+	has_proximity(atom/movable/AM as mob|obj)
 		if(istype(attached_device, /obj/item/device/assembly/prox_sensor))
 			var/obj/item/device/assembly/prox_sensor/D = attached_device
 			if (istype(AM, /obj/effect/beam))

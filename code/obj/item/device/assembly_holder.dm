@@ -86,13 +86,13 @@
 		return
 
 
-	HasProximity(atom/movable/AM as mob|obj)
+	has_proximity(atom/movable/AM as mob|obj)
 		if(a_left)
-			a_left.HasProximity(AM)
+			a_left.has_proximity(AM)
 		if(a_right)
-			a_right.HasProximity(AM)
+			a_right.has_proximity(AM)
 		if(special_assembly)
-			special_assembly.HasProximity(AM)
+			special_assembly.has_proximity(AM)
 		return
 
 

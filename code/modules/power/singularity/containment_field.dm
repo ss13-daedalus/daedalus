@@ -39,7 +39,7 @@
 		return 0
 
 
-	HasProximity(atom/movable/AM as mob|obj)
+	has_proximity(atom/movable/AM as mob|obj)
 		if(istype(AM,/mob/living/silicon) && prob(40))
 			shock(AM)
 			return 1

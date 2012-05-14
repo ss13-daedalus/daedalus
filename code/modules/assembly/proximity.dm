@@ -40,7 +40,7 @@
 		return secured
 
 
-	HasProximity(atom/movable/AM as mob|obj)
+	has_proximity(atom/movable/AM as mob|obj)
 		if (istype(AM, /obj/effect/beam))	return
 		if (AM.move_speed < 12)	sense()
 		return

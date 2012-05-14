@@ -111,7 +111,7 @@
 		objects++
 		spawn( 0 )
 			if ((A && M))
-				A.HasProximity(M, 1)
+				A.has_proximity(M, 1)
 			return
 	return
 
