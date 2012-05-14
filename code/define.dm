@@ -427,7 +427,7 @@ var/const/maximum_age = 65
 	access_hop = 57
 	access_hos = 58
 	access_RC_announce = 59 //Request console announcements
-	access_keycard_auth = 60 //Used for events which require at least two people to confirm them
+#define ACCESS_KEYCARD_AUTH 60 //Used for events which require at least two people to confirm them
 	access_tcomsat = 61 // has access to the entire telecomms satellite / machinery
 
 	//BEGIN CENTCOM ACCESS
