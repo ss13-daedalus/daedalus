@@ -56,7 +56,7 @@ Devices and Tools;
 /obj/item/device/encryptionkey/traitor:3:Traitor Radio Key;
 /obj/item/device/encryptionkey/binary:3:Binary Translator Key;
 /obj/item/weapon/storage/syndie_kit/space:3:Space Suit;
-/obj/item/weapon/aiModule/syndicate:7:Hacked AI Upload Module;
+/obj/item/weapon/ai_module/syndicate:7:Hacked AI Upload Module;
 /obj/item/weapon/plastique:2:C-4 (Destroys walls);
 /obj/item/weapon/syndie/c4explosive:4:Low Power Explosive Charge, with Detonator;
 /obj/item/device/powersink:5:Powersink (DANGER!);

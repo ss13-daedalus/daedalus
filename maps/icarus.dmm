@@ -935,7 +935,7 @@
 "arY" = (/obj/structure/table,/obj/machinery/cell_charger{pixel_y = 5},/obj/machinery/light{dir = 1},/obj/machinery/ai_status_display{pixel_y = 32},/turf/simulated/floor/plating,/area/storage/tech)
 "arZ" = (/turf/simulated/floor/plating,/area/storage/tech)
 "asa" = (/obj/structure/table,/obj/machinery/light{dir = 1},/obj/machinery/camera{c_tag = "Technical Storage"; dir = 2},/obj/machinery/status_display{layer = 4; pixel_x = 0; pixel_y = 32},/turf/simulated/floor/plating,/area/storage/tech)
-"asb" = (/obj/structure/table,/obj/item/device/aicard,/obj/item/weapon/aiModule/reset,/turf/simulated/floor/plating,/area/storage/tech)
+"asb" = (/obj/structure/table,/obj/item/device/aicard,/obj/item/weapon/ai_module/reset,/turf/simulated/floor/plating,/area/storage/tech)
 "asc" = (/obj/structure/table,/obj/item/device/flashlight{pixel_x = 1; pixel_y = 5},/obj/item/device/flashlight{pixel_x = 1; pixel_y = 5},/obj/item/device/flash,/obj/item/device/flash,/turf/simulated/floor/plating,/area/storage/tech)
 "asd" = (/turf/simulated/wall/r_wall,/area/maintenance/fpmaint)
 "ase" = (/obj/effect/sign/vacuum,/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,/turf/simulated/wall/r_wall,/area/maintenance/fpmaint)

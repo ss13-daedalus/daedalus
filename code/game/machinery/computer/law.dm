@@ -24,8 +24,8 @@
 
 
 	attackby(obj/item/weapon/O as obj, mob/user as mob)
-		if(istype(O, /obj/item/weapon/aiModule))
-			var/obj/item/weapon/aiModule/M = O
+		if(istype(O, /obj/item/weapon/ai_module))
+			var/obj/item/weapon/ai_module/M = O
 			M.install(src)
 		else
 			..()
@@ -57,8 +57,8 @@
 	var/mob/living/silicon/robot/current = null
 
 
-	attackby(obj/item/weapon/aiModule/module as obj, mob/user as mob)
-		if(istype(module, /obj/item/weapon/aiModule))
+	attackby(obj/item/weapon/ai_module/module as obj, mob/user as mob)
+		if(istype(module, /obj/item/weapon/ai_module))
 			module.install(src)
 		else
 			return ..()
@@ -126,29 +126,29 @@
 
 /obj/structure/aiuploadcloset/New()
 	..()
-	new /obj/item/weapon/aiModule/asimov(src)
-	new /obj/item/weapon/aiModule/antimov(src)
-	new /obj/item/weapon/aiModule/corporate(src)
-	new /obj/item/weapon/aiModule/freeform(src)
-	new /obj/item/weapon/aiModule/nanotrasen(src)
-	new /obj/item/weapon/aiModule/nanotrasimov(src)
-	new /obj/item/weapon/aiModule/oneHuman(src)
-	new /obj/item/weapon/aiModule/ocp(src)
-	new /obj/item/weapon/aiModule/oxygen(src)
-	new /obj/item/weapon/aiModule/paladin(src)
-	new /obj/item/weapon/aiModule/protectStation(src)
-	new /obj/item/weapon/aiModule/purge(src)
-	new /obj/item/weapon/aiModule/quarantine(src)
-	new /obj/item/weapon/aiModule/reset(src)
-	new /obj/item/weapon/aiModule/safeguard(src)
-	new /obj/item/weapon/aiModule/teleporterOffline(src)
-	new /obj/item/weapon/aiModule/tyrant(src)
-	for(var/obj/item/weapon/aiModule/M in src)
+	new /obj/item/weapon/ai_module/asimov(src)
+	new /obj/item/weapon/ai_module/antimov(src)
+	new /obj/item/weapon/ai_module/corporate(src)
+	new /obj/item/weapon/ai_module/freeform(src)
+	new /obj/item/weapon/ai_module/nanotrasen(src)
+	new /obj/item/weapon/ai_module/nanotrasimov(src)
+	new /obj/item/weapon/ai_module/oneHuman(src)
+	new /obj/item/weapon/ai_module/ocp(src)
+	new /obj/item/weapon/ai_module/oxygen(src)
+	new /obj/item/weapon/ai_module/paladin(src)
+	new /obj/item/weapon/ai_module/protectStation(src)
+	new /obj/item/weapon/ai_module/purge(src)
+	new /obj/item/weapon/ai_module/quarantine(src)
+	new /obj/item/weapon/ai_module/reset(src)
+	new /obj/item/weapon/ai_module/safeguard(src)
+	new /obj/item/weapon/ai_module/teleporterOffline(src)
+	new /obj/item/weapon/ai_module/tyrant(src)
+	for(var/obj/item/weapon/ai_module/M in src)
 		M.pixel_x = rand(-10, 10)
 		M.pixel_y = rand(-10, 10)
 
 /obj/structure/aiuploadcloset/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/aiModule))
+	if(istype(W, /obj/item/weapon/ai_module))
 		user.drop_item()
 		W.loc = get_turf(src)
 	else
@@ -157,7 +157,7 @@
 /obj/structure/aiuploadcloset/attack_hand(mob/user as mob)
 	if(!open)
 		var/temp_count
-		for(var/obj/item/weapon/aiModule/M in src)
+		for(var/obj/item/weapon/ai_module/M in src)
 			M.loc = src.loc
 			temp_count++
 
@@ -167,7 +167,7 @@
 
 	else
 		var/temp_count
-		for(var/obj/item/weapon/aiModule/M in get_turf(src))
+		for(var/obj/item/weapon/ai_module/M in get_turf(src))
 			M.loc = src
 			temp_count++
 
@@ -178,19 +178,19 @@
 /obj/structure/aiuploadcloset/ex_act(severity)
 	switch(severity)
 		if (1)
-			for(var/obj/item/weapon/aiModule/M in src)
+			for(var/obj/item/weapon/ai_module/M in src)
 				M.loc = src.loc
 				M.ex_act(severity)
 			del(src)
 		if (2)
 			if (prob(50))
-				for(var/obj/item/weapon/aiModule/M in src)
+				for(var/obj/item/weapon/ai_module/M in src)
 					M.loc = src.loc
 					M.ex_act(severity)
 				del(src)
 		if (3)
 			if (prob(5))
-				for(var/obj/item/weapon/aiModule/M in src)
+				for(var/obj/item/weapon/ai_module/M in src)
 					M.loc = src.loc
 					M.ex_act(severity)
 				del(src)
