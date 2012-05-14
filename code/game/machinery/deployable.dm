@@ -15,7 +15,7 @@ for reference:
 	access_tox = 7
 	ACCESS_TOX_STORAGE = 8
 	access_medlab = 9
-	access_engine = 10
+	ACCESS_ENGINE = 10
 	ACCESS_ENGINE_EQUIP= 11
 	ACCESS_MAINT_TUNNELS = 12
 	ACCESS_EXTERNAL_AIRLOCKS = 13

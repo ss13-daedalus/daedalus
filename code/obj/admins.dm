@@ -2270,7 +2270,7 @@ var/global/BSACooldown = 0
 					for(var/obj/machinery/door/airlock/maintenance/M in world)
 						if (ACCESS_MAINT_TUNNELS in M.req_access)
 							M.req_access = list()
-							M.req_one_access = list(access_brig,access_engine)
+							M.req_one_access = list(access_brig,ACCESS_ENGINE)
 					message_admins("[key_name_admin(usr)] made all maint doors engineering and brig access-only.")
 				if("infinite_sec")
 					var/datum/job/J = job_master.GetJob("Security Officer")

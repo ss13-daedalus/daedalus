@@ -377,7 +377,7 @@ var/const/maximum_age = 65
 	access_tox = 7
 #define ACCESS_TOX_STORAGE 8
 	access_medlab = 9
-	access_engine = 10
+#define ACCESS_ENGINE 10
 #define ACCESS_ENGINE_EQUIP 11
 #define ACCESS_MAINT_TUNNELS 12
 #define ACCESS_EXTERNAL_AIRLOCKS 13
@@ -418,11 +418,11 @@ var/const/maximum_age = 65
 	access_mining = 48
 #define ACCESS_MINING_OFFICE 49 //not in use
 #define ACCESS_MAILSORTING 50
-	access_mint = 51
+#define ACCESS_MINT 51
 #define ACCESS_MINT_VAULT 52
 #define ACCESS_HEADS_VAULT 53
 #define ACCESS_MINING_STATION 54
-	access_xenobiology = 55
+#define ACCESS_XENOBIOLOGY 55
 	access_ce = 56
 	access_hop = 57
 	access_hos = 58

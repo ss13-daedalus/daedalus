@@ -480,7 +480,7 @@
 	cost = 15
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Electrical maintenance crate"
-	access = access_engine
+	access = ACCESS_ENGINE
 	group = "Engineering"
 
 /datum/supply_packs/mechanical
@@ -497,7 +497,7 @@
 	cost = 10
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Mechanical maintenance crate"
-	access = access_engine
+	access = ACCESS_ENGINE
 	group = "Engineering"
 
 /datum/supply_packs/waterfueltank
