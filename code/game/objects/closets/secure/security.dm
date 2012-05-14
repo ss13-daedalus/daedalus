@@ -87,7 +87,7 @@
 
 /obj/structure/closet/secure_closet/warden
 	name = "Warden's Locker"
-	req_access = list(access_armory)
+	req_access = list(ACCESS_ARMORY)
 	icon_state = "wardensecure1"
 	icon_closed = "wardensecure"
 	icon_locked = "wardensecure1"
@@ -155,7 +155,7 @@
 
 /obj/structure/closet/secure_closet/detective
 	name = "Detective"
-	req_access = list(access_forensics_lockers)
+	req_access = list(ACCESS_FORENSICS_LOCKERS)
 	icon_state = "cabinetdetective_locked"
 	icon_closed = "cabinetdetective"
 	icon_locked = "cabinetdetective_locked"

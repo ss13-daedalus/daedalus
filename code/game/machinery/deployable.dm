@@ -8,15 +8,15 @@ for reference:
 
 	access_security = 1
 	access_brig = 2
-	access_armory = 3
-	access_forensics_lockers= 4
+	ACCESS_ARMORY = 3
+	ACCESS_FORENSICS_LOCKERS= 4
 	access_medical = 5
 	access_morgue = 6
 	access_tox = 7
-	access_tox_storage = 8
+	ACCESS_TOX_STORAGE = 8
 	access_medlab = 9
 	access_engine = 10
-	access_engine_equip= 11
+	ACCESS_ENGINE_EQUIP= 11
 	ACCESS_MAINT_TUNNELS = 12
 	ACCESS_EXTERNAL_AIRLOCKS = 13
 	ACCESS_EMERGENCY_STORAGE = 14

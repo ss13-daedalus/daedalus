@@ -370,15 +370,15 @@ var/const/maximum_age = 65
 /var/const
 	access_security = 1
 	access_brig = 2
-	access_armory = 3
-	access_forensics_lockers= 4
+#define ACCESS_ARMORY 3
+#define ACCESS_FORENSICS_LOCKERS 4
 	access_medical = 5
 	access_morgue = 6
 	access_tox = 7
-	access_tox_storage = 8
+#define ACCESS_TOX_STORAGE 8
 	access_medlab = 9
 	access_engine = 10
-	access_engine_equip= 11
+#define ACCESS_ENGINE_EQUIP 11
 #define ACCESS_MAINT_TUNNELS 12
 #define ACCESS_EXTERNAL_AIRLOCKS 13
 #define ACCESS_EMERGENCY_STORAGE 14
@@ -416,12 +416,12 @@ var/const/maximum_age = 65
 	access_theatre = 46
 	access_research = 47
 	access_mining = 48
-	access_mining_office = 49 //not in use
-	access_mailsorting = 50
+#define ACCESS_MINING_OFFICE 49 //not in use
+#define ACCESS_MAILSORTING 50
 	access_mint = 51
-	access_mint_vault = 52
+#define ACCESS_MINT_VAULT 52
 #define ACCESS_HEADS_VAULT 53
-	access_mining_station = 54
+#define ACCESS_MINING_STATION 54
 	access_xenobiology = 55
 	access_ce = 56
 	access_hop = 57

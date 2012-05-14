@@ -695,7 +695,7 @@
 	cost = 60
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Riot gear crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 	group = "Security"
 
 /datum/supply_packs/loyalty
@@ -704,7 +704,7 @@
 	cost = 60
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Loyalty implant crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 	group = "Security"
 
 /datum/supply_packs/ballistic
@@ -716,7 +716,7 @@
 	cost = 50
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Ballistic gear crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 	group = "Security"
 
 /datum/supply_packs/expenergy
@@ -728,7 +728,7 @@
 	cost = 50
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Experimental energy gear crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 	group = "Security"
 
 /datum/supply_packs/exparmor
@@ -740,7 +740,7 @@
 	cost = 35
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Experimental armor crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 	group = "Security"
 
 /datum/supply_packs/securitybarriers

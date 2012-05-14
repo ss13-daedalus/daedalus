@@ -362,7 +362,7 @@
 	idle_power_usage = 20
 	active_power_usage = 80
 	var/control = 0
-	req_access = list(access_engine_equip)
+	req_access = list(ACCESS_ENGINE_EQUIP)
 
 /obj/machinery/light_switch
 	name = "light switch"
