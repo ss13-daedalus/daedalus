@@ -14,7 +14,7 @@ for reference:
 	access_morgue = 6
 	access_tox = 7
 	ACCESS_TOX_STORAGE = 8
-	access_medlab = 9
+	ACCESS_MEDLAB = 9
 	ACCESS_ENGINE = 10
 	ACCESS_ENGINE_EQUIP= 11
 	ACCESS_MAINT_TUNNELS = 12

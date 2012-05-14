@@ -376,7 +376,7 @@ var/const/maximum_age = 65
 	access_morgue = 6
 	access_tox = 7
 #define ACCESS_TOX_STORAGE 8
-	access_medlab = 9
+#define ACCESS_MEDLAB 9
 #define ACCESS_ENGINE 10
 #define ACCESS_ENGINE_EQUIP 11
 #define ACCESS_MAINT_TUNNELS 12

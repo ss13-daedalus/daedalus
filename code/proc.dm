@@ -399,7 +399,7 @@ proc/equalize_gases(datum/gas_mixture/list/gases)
 /proc/get_access(job)
 	switch(job)
 		if("Geneticist")
-			return list(access_medical, access_morgue, access_medlab)
+			return list(access_medical, access_morgue, ACCESS_MEDLAB)
 		if("Station Engineer")
 			return list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION)
 		if("Assistant")
@@ -425,13 +425,13 @@ proc/equalize_gases(datum/gas_mixture/list/gases)
 		if("Scientist")
 			return list(access_tox, ACCESS_TOX_STORAGE, access_research, ACCESS_XENOBIOLOGY)
 		if("Head of Security")
-			return list(access_medical, access_morgue, access_tox, ACCESS_TOX_STORAGE, ACCESS_CHEMISTRY, access_medlab, access_court,
+			return list(access_medical, access_morgue, access_tox, ACCESS_TOX_STORAGE, ACCESS_CHEMISTRY, ACCESS_MEDLAB, access_court,
 			            ACCESS_TELEPORTER, ACCESS_HEADS, ACCESS_TECH_STORAGE, access_security, access_brig, ACCESS_ATMOSPHERICS,
 			            ACCESS_MAINT_TUNNELS, ACCESS_BAR, ACCESS_JANITOR, ACCESS_KITCHEN, ACCESS_ROBOTICS, ACCESS_ARMORY, ACCESS_HYDROPONICS,
 			            access_theatre, access_research, access_hos, access_RC_announce, ACCESS_FORENSICS_LOCKERS, access_keycard_auth)
 		if("Head of Personnel")
 			return list(access_security, access_brig, access_court, ACCESS_FORENSICS_LOCKERS,
-			            access_tox, ACCESS_TOX_STORAGE, ACCESS_CHEMISTRY, access_medical, access_medlab, ACCESS_ENGINE,
+			            access_tox, ACCESS_TOX_STORAGE, ACCESS_CHEMISTRY, access_medical, ACCESS_MEDLAB, ACCESS_ENGINE,
 			            ACCESS_EMERGENCY_STORAGE, ACCESS_CHANGE_IDS, ACCESS_AI_UPLOAD, ACCESS_EVA, ACCESS_HEADS,
 			            ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_BAR, ACCESS_JANITOR,
 			            ACCESS_CREMATORIUM, ACCESS_KITCHEN, ACCESS_ROBOTICS, access_cargo, ACCESS_CARGO_BOT, ACCESS_HYDROPONICS, ACCESS_LAWYER,
@@ -465,7 +465,7 @@ proc/equalize_gases(datum/gas_mixture/list/gases)
 			            ACCESS_HEADS, ACCESS_AI_UPLOAD, ACCESS_CONSTRUCTION, ACCESS_ROBOTICS,
 			            ACCESS_MINT, access_ce, access_RC_announce, access_keycard_auth, access_tcomsat)
 		if("Research Director")
-			return list(access_medlab, access_rd,
+			return list(ACCESS_MEDLAB, access_rd,
 			            ACCESS_HEADS, access_tox,
 			            ACCESS_TOX_STORAGE, ACCESS_CHEMISTRY, ACCESS_TELEPORTER,
 			            access_research, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY, access_RC_announce,
@@ -473,7 +473,7 @@ proc/equalize_gases(datum/gas_mixture/list/gases)
 		/*if("Virologist")
 			return list(access_medical, access_morgue, ACCESS_VIROLOGY)*/
 		if("Chief Medical Officer")
-			return list(access_medical, access_morgue, access_medlab, ACCESS_HEADS,
+			return list(access_medical, access_morgue, ACCESS_MEDLAB, ACCESS_HEADS,
 			ACCESS_CHEMISTRY, ACCESS_VIROLOGY, access_cmo, access_surgery, access_RC_announce,
 			access_keycard_auth)
 		else
@@ -502,7 +502,7 @@ proc/equalize_gases(datum/gas_mixture/list/gases)
 
 /proc/get_all_accesses()
 	return list(access_security, access_brig, ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS, access_court,
-	            access_medical, access_medlab, access_morgue, access_rd,
+	            access_medical, ACCESS_MEDLAB, access_morgue, access_rd,
 	            access_tox, ACCESS_TOX_STORAGE, ACCESS_CHEMISTRY, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_MAINT_TUNNELS,
 	            ACCESS_EXTERNAL_AIRLOCKS, ACCESS_EMERGENCY_STORAGE, ACCESS_CHANGE_IDS, ACCESS_AI_UPLOAD,
 	            ACCESS_TELEPORTER, ACCESS_EVA, ACCESS_HEADS, ACCESS_CAPTAIN, ACCESS_ALL_PERSONAL_LOCKERS,
@@ -526,7 +526,7 @@ proc/equalize_gases(datum/gas_mixture/list/gases)
 		if(1) //security
 			return list(access_security, access_brig, ACCESS_ARMORY, ACCESS_FORENSICS_LOCKERS, access_court, access_hos)
 		if(2) //medbay
-			return list(access_medical, access_medlab, access_morgue, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, access_cmo, access_surgery)
+			return list(access_medical, ACCESS_MEDLAB, access_morgue, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, access_cmo, access_surgery)
 		if(3) //research
 			return list(access_tox, ACCESS_TOX_STORAGE, access_rd, ACCESS_HYDROPONICS, access_research, ACCESS_XENOBIOLOGY)
 		if(4) //engineering and maintenance
@@ -574,7 +574,7 @@ proc/equalize_gases(datum/gas_mixture/list/gases)
 			return "Forensics"
 		if(access_medical)
 			return "Medical"
-		if(access_medlab)
+		if(ACCESS_MEDLAB)
 			return "Med-Sci"
 		if(access_morgue)
 			return "Morgue"
