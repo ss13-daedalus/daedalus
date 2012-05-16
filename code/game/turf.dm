@@ -1382,7 +1382,7 @@ turf/simulated/floor/return_siding_icon_state()
 		// Okay, so let's make it so that people can travel z levels but not nuke disks!
 		// if(ticker.mode.name == "nuclear emergency")	return
 		if (src.x <= TRANSITIONEDGE || A.x >= (world.maxx - TRANSITIONEDGE - 1) || src.y <= TRANSITIONEDGE || A.y >= (world.maxy - TRANSITIONEDGE - 1))
-			if(istype(A, /obj/effect/meteor)||istype(A, /obj/effect/space_dust))
+			if(istype(A, /obj/effect/meteor))
 				del(A)
 				return
 
@@ -1431,7 +1431,7 @@ turf/simulated/floor/return_siding_icon_state()
 	var/list/y_arr
 
 	if(src.x <= 1)
-		if(istype(A, /obj/effect/meteor)||istype(A, /obj/effect/space_dust))
+		if(istype(A, /obj/effect/meteor))
 			del(A)
 			return
 
@@ -1506,7 +1506,7 @@ turf/simulated/floor/return_siding_icon_state()
 					A.loc.Entered(A)
 
 	else if (src.y >= world.maxy)
-		if(istype(A, /obj/effect/meteor)||istype(A, /obj/effect/space_dust))
+		if(istype(A, /obj/effect/meteor))
 			del(A)
 			return
 		var/list/cur_pos = src.get_global_map_pos()
