@@ -760,18 +760,6 @@
 
 	return
 
-/mob/living/carbon/human/meteorhit(O as obj)
-	for(var/mob/M in viewers(src, null))
-		if ((M.client && !( M.blinded )))
-			M.show_message(text("\red [] has been hit by []", src, O), 1)
-	if (health > 0)
-		var/datum/organ/external/affecting = get_organ(pick("chest", "chest", "chest", "head"))
-		if(!affecting || affecting.destroyed)	return
-		affecting.take_damage((istype(O, /obj/effect/meteor/small) ? 10 : 25), 30)
-		UpdateDamageIcon()
-		updatehealth()
-	return
-
 /mob/living/carbon/human/Move(a, b, flag)
 
 	if (buckled)

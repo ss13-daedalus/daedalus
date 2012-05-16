@@ -355,6 +355,3 @@ TABLE AND RACK OBJECT INTERATIONS
 	user.drop_item()
 	if(W && W.loc)	W.loc = src.loc
 	return
-
-/obj/structure/rack/meteorhit(obj/O as obj)
-	del(src)

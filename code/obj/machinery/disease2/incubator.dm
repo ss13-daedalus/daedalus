@@ -28,10 +28,6 @@
 		if (prob(25))
 			del(src)
 
-	meteorhit()
-		del(src)
-		return
-
 	attackby(var/obj/B as obj, var/mob/user as mob)
 		if(istype(B, /obj/item/weapon/reagent_containers/glass) || istype(B,/obj/item/weapon/reagent_containers/syringe))
 

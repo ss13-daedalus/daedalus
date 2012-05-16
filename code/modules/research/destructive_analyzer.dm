@@ -28,10 +28,6 @@ Note: Must be placed within 3 tiles of the R&D Console
 		T = between (0, T, 1)
 		decon_mod = T
 
-	meteorhit()
-		del(src)
-		return
-
 	proc/ConvertReqString2List(var/list/source_list)
 		var/list/temp_list = params2list(source_list)
 		for(var/O in temp_list)

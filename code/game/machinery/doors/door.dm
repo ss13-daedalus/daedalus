@@ -97,11 +97,6 @@
 			flick("door_deny", src)
 		return
 
-	meteorhit(obj/M as obj)
-		src.open()
-		return
-
-
 	attack_ai(mob/user as mob)
 		return src.attack_hand(user)
 

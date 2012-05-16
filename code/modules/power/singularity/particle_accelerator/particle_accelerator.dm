@@ -111,13 +111,6 @@ PE|PE|PE
 			del(src)
 		return
 
-
-	meteorhit()
-		if(prob(50))
-			del(src)
-		return
-
-
 	proc
 		update_state()
 			if(master)
@@ -268,13 +261,6 @@ PE|PE|PE
 		if(prob(50))
 			del(src)
 		return
-
-
-	meteorhit()
-		if(prob(50))
-			del(src)
-		return
-
 
 	proc
 		update_state()

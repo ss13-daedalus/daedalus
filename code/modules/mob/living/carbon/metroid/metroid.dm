@@ -209,18 +209,6 @@
 /mob/living/carbon/metroid/db_click(text, t1)
 	return
 
-/mob/living/carbon/metroid/meteorhit(O as obj)
-	for(var/mob/M in viewers(src, null))
-		if ((M.client && !( M.blinded )))
-			M.show_message(text("\red [] has been hit by []", src, O), 1)
-	if (health > 0)
-		adjustBruteLoss((istype(O, /obj/effect/meteor/small) ? 10 : 25))
-		adjustFireLoss(30)
-
-		updatehealth()
-	return
-
-
 /mob/living/carbon/metroid/Move(a, b, flag)
 
 	var/t7 = 1

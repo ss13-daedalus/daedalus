@@ -38,18 +38,6 @@
 			update_icon()
 		del(src)
 
-/obj/machinery/dispenser/meteorhit()
-	while(src.o2tanks > 0)
-		new /obj/item/weapon/tank/oxygen( src.loc )
-		src.o2tanks--
-		update_icon()
-	while(src.pltanks > 0)
-		new /obj/item/weapon/tank/phoron( src.loc )
-		src.pltanks--
-		update_icon()
-	del(src)
-	return
-
 /obj/machinery/dispenser/process()
 	return
 

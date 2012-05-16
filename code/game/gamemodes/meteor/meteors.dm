@@ -108,9 +108,6 @@
 		for(var/mob/M in range(10, src))
 			if(!M.stat && !istype(M, /mob/living/silicon/ai)) //bad idea to shake an ai's view
 				shake_camera(M, 3, 1)
-		if (A)
-			A.meteorhit(src)
-			playsound(src.loc, 'sound/effects/meteorimpact.ogg', 40, 1)
 		if (--src.hits <= 0)
 			if(prob(15))// && !istype(A, /obj/structure/grille))
 				explosion(src.loc, 4, 5, 6, 7, 0)

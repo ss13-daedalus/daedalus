@@ -113,15 +113,6 @@ for reference:
 					del(src)
 				return
 
-	meteorhit()
-		for(var/mob/O in viewers(src, null))
-			O << "\red <B>The barricade is smashed appart!</B>"
-		new /obj/item/stack/sheet/wood(get_turf(src))
-		new /obj/item/stack/sheet/wood(get_turf(src))
-		new /obj/item/stack/sheet/wood(get_turf(src))
-		del(src)
-		return
-
 	blob_act()
 		src.health -= 25
 		if (src.health <= 0)
@@ -246,10 +237,6 @@ for reference:
 				if (src.health <= 0)
 					src.explode()
 				return
-
-	meteorhit()
-		src.explode()
-		return
 
 	blob_act()
 		src.health -= 25

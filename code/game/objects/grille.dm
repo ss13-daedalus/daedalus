@@ -35,14 +35,6 @@
 		del(src)
 		return
 
-
-	meteorhit(var/obj/M)
-		if (M.icon_state == "flaming")
-			src.health -= 2
-			healthcheck()
-		return
-
-
 	attack_hand(var/mob/user)
 		playsound(src.loc, 'sound/effects/grillehit.ogg', 80, 1)
 		user.visible_message("[user.name] kicks the [src.name].", \

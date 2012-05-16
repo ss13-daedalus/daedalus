@@ -50,20 +50,6 @@
 		return 0
 	return 1
 
-/obj/structure/window/meteorhit()
-
-	//*****RM
-	//world << "glass at [x],[y],[z] Mhit"
-	src.health = 0
-	new /obj/item/weapon/shard( src.loc )
-	if(reinf) new /obj/item/stack/rods( src.loc)
-	src.density = 0
-
-
-	del(src)
-	return
-
-
 /obj/structure/window/hitby(AM as mob|obj)
 
 	..()

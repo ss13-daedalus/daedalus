@@ -769,16 +769,6 @@
 	F.sd_LumReset()
 	return
 
-/turf/simulated/wall/meteorhit(obj/M as obj)
-	if (prob(15))
-		dismantle_wall()
-	else if(prob(70))
-		ReplaceWithPlating()
-	else
-		ReplaceWithLattice()
-	return 0
-
-
 //This is so damaged or burnt tiles or platings don't get remembered as the default tile
 var/list/icons_to_ignore_at_floor_init = list("damaged1","damaged2","damaged3","damaged4",
 				"damaged5","panelscorched","floorscorched1","floorscorched2","platingdmg1","platingdmg2",

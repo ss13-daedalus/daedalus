@@ -465,10 +465,6 @@
 		del src
 		return
 
-	meteorhit()
-		del src
-		return
-
 	proc/update_health()
 		if(src.health<=0)
 			del src
