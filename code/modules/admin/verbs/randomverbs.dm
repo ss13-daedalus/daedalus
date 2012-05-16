@@ -898,7 +898,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /client/proc/toggle_random_events()
 	set category = "Server"
 	set name = "Toggle random events on/off"
-	set desc = "Toggles random events such as meteors, black holes, blob (but not space dust) on/off"
+	set desc = "Toggles random events such black holes and blobs on/off"
 	if(!config.allow_random_events)
 		config.allow_random_events = 1
 		usr << "Random events enabled"
