@@ -208,6 +208,7 @@ client/proc/edit_news(ID as num)
 	spawn(1)
 		display_all_news_list()
 
+/*
 client/verb/discon_pipes()
 	set name = "Show Disconnected Pipes"
 	set category = "Debug"
@@ -226,7 +227,7 @@ client/verb/discon_pipes()
 	for(var/obj/machinery/atmospherics/pipe/manifold4w/P in world)
 		if(!P.node1 || !P.node2 || !P.node3 || !P.node4)
 			usr << "[P], [P.x], [P.y], [P.z], [P.loc.loc]"
-
+*/
 
 // reference: /client/proc/modify_variables(var/atom/O, var/param_var_name = null, var/autodetect_class = 0)
 
