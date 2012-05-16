@@ -1878,17 +1878,6 @@ var/global/BSACooldown = 0
 						spawn(0)
 							sleep(rand(30,400))
 							Wall.ex_act(rand(2,1)) */
-				if("wave")
-					//feedback_inc("admin_secrets_fun_used",1)
-					//feedback_add_details("admin_secrets_fun_used","MW")
-					if ((src.rank in list("Trial Admin", "Badmin", "Game Admin", "Game Master"  )))
-						meteor_wave()
-						message_admins("[key_name_admin(usr)] has spawned meteors", 1)
-						command_alert("Meteors have been detected on collision course with the station.", "Meteor Alert")
-						world << sound('sound/announcer/meteors.ogg')
-					else
-						alert("You cannot perform this action. You must be of a higher administrative rank!", null, null, null, null, null)
-						return
 				if("gravanomalies")
 					//feedback_inc("admin_secrets_fun_used",1)
 					//feedback_add_details("admin_secrets_fun_used","GA")
@@ -2555,7 +2544,6 @@ var/global/BSACooldown = 0
 		dat += {"
 <B>'Random' Events</B><BR>
 <BR>
-<A href='?src=\ref[src];secretsfun=wave'>Spawn a wave of meteors</A><BR>
 <A href='?src=\ref[src];secretsfun=gravanomalies'>Spawn a gravitational anomaly (Untested)</A><BR>
 <A href='?src=\ref[src];secretsfun=timeanomalies'>Spawn wormholes (Untested)</A><BR>
 <A href='?src=\ref[src];secretsfun=goblob'>Spawn blob(Untested)</A><BR>

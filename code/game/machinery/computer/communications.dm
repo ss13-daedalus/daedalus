@@ -479,7 +479,7 @@
 /proc/cancel_call_proc(var/mob/user)
 	if ((!( ticker ) || emergency_shuttle.location || emergency_shuttle.direction == 0 || emergency_shuttle.timeleft() < 300))
 		return
-	if((ticker.mode.name == "blob")||(ticker.mode.name == "meteor"))
+	if(ticker.mode.name == "blob")
 		return
 
 	if(emergency_shuttle.direction != -1 && emergency_shuttle.online) //check that shuttle isn't already heading to centcomm
