@@ -1,5 +1,21 @@
+/*
+ * This tool will automatically detect the start of top-level class definitions and will redirect them to
+ * the proper output .dm file for each class path. The tool should be run from the base directory with
+ * the .dme file as follows with FILEPATH replaced with the input file one wishes to cleanup.
+ *
+ * states -s default -f tools/code_cleanup.st < FILEPATH.dm | sh
+ *
+ * The output will be a shell script with multiple "here documents" that when executed, will append the
+ * various class definitions to the proper output files. In practice, one should examine the output of the
+ * shell script and make any manual corrections as needed.
+ *
+ * This tool is written for the "states" command which is part of GNU Enscript. This mini-language is
+ * similar to awk, but the regex patterns can match anywhere, unlike the line oriented nature of awk.
+ * Essentially, it's a scripted lexical analyzer.
+ */
+
 /* Regular expression to detect a class/proc/var top-level definition and extract the type name */
-type_regex = /^\/?([a-zA-Z0-9_][a-zA-Z0-9_\/]*)/;
+type_regex = /^\/?([a-zA-Z0-9_][a-zA-Z0-9_\/]*\(?)/;
 
 /* Comment blocks and file header are saved here temporarily so they can be later sent to another file */
 saved_text = "";
@@ -7,13 +23,17 @@ saved_text = "";
 /* If true, output to a file has begun and it's no longer necessary to save all input in saved_text */
 output = "";
 
-/* Detected end of line format; needed when running in Cygwin to keep line endings consistent */
+/* Detected end of line format; needed when printing the final "here document" delimiter */
 eol = "\n";
+
+/* Delimiter to mark the end of each shell "here document" in the output */
+delim_print = "######################################################################";
+delim_regex = /######################################################################/;
 
 state default
 {
 	/* Safety check to make sure input doesn't already contain the "here document" delimiter */
-	/__END_OF_FILE__/    { panic("!!! SHELL CODE INJECTION DETECTED !!!"); }
+	delim_regex { panic("!!! SHELL CODE INJECTION DETECTED !!!"); }
 
 	/\/\*/      { save($0); call(block_comment); }
 	/\{\"/      { dump($0); call(block_string); }
@@ -28,49 +48,45 @@ state default
 		type_name = $1;
 
 		/* Safety check to make sure input doesn't already contain the "here document" delimiter */
-		if(regmatch(text, /__END_OF_FILE__/)) {
+		if(regmatch(text, delim_regex)) {
 			panic("!!! SHELL CODE INJECTION DETECTED !!!");
 		}
 
 		/* Isolate the typename and its base directory which will hold the output file */
 		type_name = regsub(type_name, /\/(var|proc|verb).*($|\n)/, "");
-		base_name = regsub(type_name, /\/[a-zA-Z0-9_]+($|\n)/, "");
+		type_name = regsub(type_name, /\/[a-zA-Z0-9_]+\(/, "");
 
-		/* Check for global proc definitions which go into code/proc.dm */		
-		if(regmatch(type_name, /^proc/)) {
+		/* Check for global proc definitions which go into code/proc.dm */
+		if(regmatch(type_name, /^\/?proc/)) {
 			type_name = "proc";
-			base_name = "";
 		}
-		
+
 		/* Check for const var definitions which go into code/var/const.dm as an indented block */
 		else if(regmatch(type_name, /^var\/const\//)) {
 			type_name = "var/const";
-			base_name = "";
-			text = regsub(text, /^var\/const\//, "\t");
+			text = regsub(text, /^\/?var\/const\//, "\t");
 		}
-		
+
 		/* Check for global var definitions which go into code/var/global.dm as an indented block */
 		else if(regmatch(type_name, /^var(\/global)?\//)) {
 			type_name = "var/global";
-			base_name = "";
-			text = regsub(text, /^var(\/global)?\//, "\t");			
+			text = regsub(text, /^\/?var(\/global)?\//, "\t");
 		}
 
 		/* Only start a new output file if if is different from the current output file or it's the first one */
-		if(strcmp(output, type_name) != 0) {		
+		if(strcmp(output, type_name) != 0) {
 			/* If file output has already started, terminate the previous shell "here document" */
 			if(length(output)) {
-				print("__END_OF_FILE__", eol);
+				print(delim_print, "\n");
 			}
 			output = type_name;
 
-			/* XXX TODO: Global vars/procs need to be send to their own special file (length(base_name) == 0) */
-
 			/* Create destination directory and start a new shell "here document" that redirects to output file */
-			if(length(base_name)) {
-				print("mkdir -p code/", base_name, eol);
-			}
-			print("cat << __END_OF_FILE__ >> code/", type_name, ".dm", eol);
+			base_name = regsub(type_name, /(^|\/)[a-zA-Z0-9_]+($|\n)/, "");
+			print("mkdir -p code/", base_name, "\n");
+
+			print("cat >> code/", type_name, ".dm <<\\\n");
+			print("\"", delim_print, "\"\n");
 		}
 
 		/* Print out any previous comment blocks followed by this definition line to the output file */
@@ -80,7 +96,7 @@ state default
 	/* Triggered at the end of input to close the final "here document" if one is open */
 	END {
 		if(output) {
-			print("__END_OF_FILE__", eol);
+			print(eol, delim_print, "\n");
 		}
 	}
 }
@@ -92,7 +108,7 @@ state default
 state block_comment
 {
 	/* Safety check to make sure input doesn't already contain the "here document" delimiter */
-	/__END_OF_FILE__/    { panic("!!! SHELL CODE INJECTION DETECTED !!!"); }
+	delim_regex     { panic("!!! SHELL CODE INJECTION DETECTED !!!"); }
 
 	/\*\/ *\r?\n?/  { save($0); return; }
 	/./             { save($0); }
@@ -101,27 +117,27 @@ state block_comment
 /*
  * Parse inline comments started with // and continuing until the end of the current line.
  * Comment blocks are temporarily saved so they can be redirected later to the proper file.
- * Remaining whitespace on the same line as the closing comment delimeter is saved as if it
+ * Remaining whitespace on the same line as the closing comment delimiter is saved as if it
  * was part of the comment block. This allows immediatly adjacent comment blocks to group
  * together for the purposes of saving and redirecting them to the proper file.
  */
 state inline_comment
 {
 	/* Safety check to make sure input doesn't already contain the "here document" delimiter */
-	/__END_OF_FILE__/    { panic("!!! SHELL CODE INJECTION DETECTED !!!"); }
+	delim_regex    { panic("!!! SHELL CODE INJECTION DETECTED !!!"); }
 
 	/\n/    { save($0); return; }
 	/./     { save($0); }
 }
 
 /*
- * Parse block strings enclosed within {" and "}. End delimeters escaped with \"} are handled
+ * Parse block strings enclosed within {" and "}. End delimiters escaped with \"} are handled
  * and do not prematurely terminate the string block.
  */
 state block_string
 {
 	/* Safety check to make sure input doesn't already contain the "here document" delimiter */
-	/__END_OF_FILE__/    { panic("!!! SHELL CODE INJECTION DETECTED !!!"); }
+	delim_regex    { panic("!!! SHELL CODE INJECTION DETECTED !!!"); }
 
 	/\\\"/  { dump($0); }
 	/\"\}/  { dump($0); return; }
@@ -135,7 +151,7 @@ state block_string
 state inline_string
 {
 	/* Safety check to make sure input doesn't already contain the "here document" delimiter */
-	/__END_OF_FILE__/    { panic("!!! SHELL CODE INJECTION DETECTED !!!"); }
+	delim_regex    { panic("!!! SHELL CODE INJECTION DETECTED !!!"); }
 
 	/\\\"/  { dump($0); }
 	/\"/    { dump($0); return; }
