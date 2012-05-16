@@ -767,11 +767,8 @@
 	if (health > 0)
 		var/datum/organ/external/affecting = get_organ(pick("chest", "chest", "chest", "head"))
 		if(!affecting || affecting.destroyed)	return
-		if (istype(O, /obj/effect/immovablerod))
-			affecting.take_damage(101, 0)
-		else
-			affecting.take_damage((istype(O, /obj/effect/meteor/small) ? 10 : 25), 30)
-			UpdateDamageIcon()
+		affecting.take_damage((istype(O, /obj/effect/meteor/small) ? 10 : 25), 30)
+		UpdateDamageIcon()
 		updatehealth()
 	return
 

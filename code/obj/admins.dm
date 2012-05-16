@@ -1942,11 +1942,6 @@ var/global/BSACooldown = 0
 					//feedback_add_details("admin_secrets_fun_used","R")
 					message_admins("[key_name_admin(usr)] has has irradiated the station", 1)
 					Force_Event(/datum/event/radiation)
-				if("immovable")
-					//feedback_inc("admin_secrets_fun_used",1)
-					//feedback_add_details("admin_secrets_fun_used","IR")
-					message_admins("[key_name_admin(usr)] has sent an immovable rod to the station", 1)
-					immovablerod()
 				if("prison_break")
 					//feedback_inc("admin_secrets_fun_used",1)
 					//feedback_add_details("admin_secrets_fun_used","PB")
@@ -2570,7 +2565,6 @@ var/global/BSACooldown = 0
 <A href='?src=\ref[src];secretsfun=prison_break'>Trigger a Prison Break</A><BR>
 <A href='?src=\ref[src];secretsfun=virus'>Trigger a Virus Outbreak</A><BR>
 <A href='?src=\ref[src];secretsfun=trigger_armed_response_team'>Trigger the Emergency Response Team</A><BR>
-<A href='?src=\ref[src];secretsfun=immovable'>Spawn an Immovable Rod</A><BR>
 <A href='?src=\ref[src];secretsfun=lightsout'>Toggle a "lights out" event</A><BR>
 <A href='?src=\ref[src];secretsfun=ion_storm'>Spawn an Ion Storm</A><BR>
 <A href='?src=\ref[src];secretsfun=spacevines'>Spawn Space-Vines</A><BR>
