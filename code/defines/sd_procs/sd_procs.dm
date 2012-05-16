@@ -36,32 +36,6 @@ Base 64 (base64.dm)
 	sd_text2hex(txt)
 		Accepts a plain text string and returns the hexidecimal equivalent.
 
-
-Colors(color.dm)
-	sd_color
-		sd_color is a special datum that contains color data in various
-		formats. Sample colors are available in samplecolors.dm.
-		VARS
-			name		// the name of the color
-			red			// red componant of the color
-			green		// green componant of the color
-			blue		// red componant of the color
-			html		// html string for the color
-			icon/Icon	// contains the icon produced by rgb2icon() proc
-
-		PROCS
-			brightness()
-				Returns the grayscale brightness of the RGB color set.
-
-			html2rgb()
-				Calculates the rgb colors from the html colors.
-
-			rgb2html()
-				Calculates the html color from the rbg colors.
-
-			rgb2icon()
-				Converts the rgb value to a solid icon stored as src.Icon
-
 Direction procs (direction.dm)
 	sd_get_approx_dir(atom/ref,atom/target)
 		returns the approximate direction from ref to target.
