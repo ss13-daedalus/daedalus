@@ -333,7 +333,7 @@
 
 	add_fingerprint(user)
 
-	if(!(user.zone_sel.selecting == ("head")) || !istype(M, /mob/living/carbon/human))
+	if(!(user.zone_sel.selecting == "head") || !istype(M, /mob/living/carbon/human))
 		return ..()
 
 	if(!(locate(/obj/machinery/optable, M.loc) && M.resting))
@@ -353,7 +353,7 @@
 
 	if(M:brain_op_stage == 4.0)
 		for(var/mob/O in viewers(M, null))
-			if(O == (user || M))
+			if((O == user) || (O == M))
 				continue
 			if(M == user)
 				O.show_message(text("\red [user] inserts [src] into his head!"), 1)
