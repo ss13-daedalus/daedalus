@@ -208,7 +208,7 @@ client/proc/edit_news(ID as num)
 	spawn(1)
 		display_all_news_list()
 
-client/proc/discon_pipes()
+client/proc/show_disconnected_pipes()
 	set name = "Show Disconnected Pipes"
 	set category = "Debug"
 
