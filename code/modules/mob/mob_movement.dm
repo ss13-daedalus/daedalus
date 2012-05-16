@@ -198,12 +198,8 @@
 			if("run")
 				if(mob.drowsyness > 0)
 					move_delay += 5
-//				if(mob.organStructure && mob.organStructure.legs)
-//					move_delay += mob.organStructure.legs.moveRunDelay
 				move_delay += 2
 			if("walk")
-//				if(mob.organStructure && mob.organStructure.legs)
-//					move_delay += mob.organStructure.legs.moveWalkDelay
 				move_delay += 5
 		move_delay += mob.movement_delay()
 		move_delay += mob.grav_delay

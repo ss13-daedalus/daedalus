@@ -11,14 +11,6 @@
 
 	//MOB overhaul
 
-	//Not in use yet
-//	var/obj/organstructure/organStructure = null
-
-	//Vars that have been relocated to organStructure
-	//Vars that have been relocated to organStructure ++END
-
-
-
 	//Vars that should only be accessed via procs
 	var/bruteloss = 0.0//Living
 	var/oxyloss = 0.0//Living
@@ -272,8 +264,6 @@ the mob is also allowed to move without any sort of restriction. For instance, i
 						// This can be used if you want to change the icon on the fly and want it to stay
 
 	var/UI = 'icons/mob/screen1_old.dmi' // For changing the UI from preferences
-
-//	var/obj/effect/organstructure/organStructure = null //for dem organs
 
 	var/canstun = 1 	// determines if this mob can be stunned by things
 	var/canweaken = 1	// determines if this mob can be weakened/knocked down by things

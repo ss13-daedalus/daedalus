@@ -141,8 +141,6 @@
 	/*var/known_languages = list()
 	known_languages.Add("english")*/
 
-//	organStructure = new /obj/effect/organstructure/human(src)
-
 /mob/living/carbon/human/proc/fixblood()
 	for(var/datum/reagent/blood/B in vessel.reagent_list)
 		if(B.id == "blood")
