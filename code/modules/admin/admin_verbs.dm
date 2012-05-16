@@ -276,6 +276,7 @@
 			verbs += /client/proc/make_tajaran
 			verbs += /client/proc/CarbonCopy
 			verbs += /client/proc/jump_to_dead_group
+			verbs += /client/proc/discon_pipes
 		else	return
 
 		//Game Master
@@ -452,6 +453,7 @@
 	verbs -= /client/proc/playernotes
 	verbs -= /obj/admins/proc/show_skills
 	verbs -= /client/proc/enable_mapping_debug
+	verbs -= /client/proc/discon_pipes
 	return
 
 
