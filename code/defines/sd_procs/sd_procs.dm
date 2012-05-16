@@ -68,15 +68,6 @@ Direction procs (direction.dm)
 		Accepts a radial direction (0-7) and returns the BYOND direction
 		value.
 
-HSL procs (hsl.dm)
-	hsl2rgb(hue, sat, lgh, scale = 240)
-		Returns the RRGGBB format of an HSL color.
-		ALTERNATE FORMAT: hsl2rgb(HSL, scale)
-
-	rgb2hsl(red, grn, blu, scale = 240)
-		Returns the HHSSLL string of an RGB color
-		ALTERNATE FORMAT: rgb2hsl(RGB, scale)
-
 Math procs (math.dm)
 	sd_base2dec(number as text, base = 16 as num)
 		Accepts a number in any base (2 to 36) and returns the equivelent
