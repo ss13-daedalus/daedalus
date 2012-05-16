@@ -158,7 +158,6 @@
 #include "code\game\events\Events\Appendicitis.dm"
 #include "code\game\events\Events\ElectricalStorm.dm"
 #include "code\game\events\Events\GravitationalAnomaly.dm"
-#include "code\game\events\Events\MeteorStorm.dm"
 #include "code\game\events\Events\MiniBlob.dm"
 #include "code\game\events\Events\PowerOffline.dm"
 #include "code\game\events\Events\PrisonBreak.dm"
