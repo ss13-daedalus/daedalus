@@ -64,6 +64,8 @@
 								background = "'background-color:#CD853F;'"
 							if("Released")
 								background = "'background-color:#3BB9FF;'"
+							if("Deceased")
+								background = "'background-color:#777777;'"
 							if("None")
 								background = "'background-color:#00FF7F;'"
 							if("")
@@ -149,6 +151,8 @@
 									background = "'background-color:#CD853F;'"
 								if("Released")
 									background = "'background-color:#3BB9FF;'"
+								if("Deceased")
+									background = "'background-color:#777777;'"
 								if("None")
 									background = "'background-color:#00FF7F;'"
 								if("")
@@ -450,6 +454,7 @@ What a mess.*/
 							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=incarcerated'>Incarcerated</a></li>"
 							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=parolled'>Parolled</a></li>"
 							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=released'>Released</a></li>"
+							temp += "<li><a href='?src=\ref[src];chouce=Change Criminal Status;criminal2=deceaѕed'>Deceased</a></li>"
 							temp += "</ul>"
 					if("rank")
 						var/list/L = list( "Head of Personnel", "Captain", "AI" )
@@ -503,6 +508,8 @@ What a mess.*/
 									active2.fields["criminal"] = "Parolled"
 								if("released")
 									active2.fields["criminal"] = "Released"
+								if("deceased")
+									active2.fields["criminal"] = "Deceased"
 
 					if ("Delete Record (Security) Execute")
 						if (active2)
