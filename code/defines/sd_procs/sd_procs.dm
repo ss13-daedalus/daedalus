@@ -119,14 +119,6 @@ Math procs (math.dm)
 		Returns the square of the mathematical 3D distance between two atoms. (More processor
 		friendly than sd_get_dist() and useful for modelling realworld physics.)
 
-Nybble Color procs (nybble.dm)
-	sd_nybble2rgb(original, bit = 8, short = 0)
-		Converts a nybble color to a hexidecimal RGB color string.
-
-	sd_rgb2nybble(rgb, bit = 8)
-		Converts an RGB color string to a nybble color.
-
-
 Sample sd_colors. (samplecolors.dm)
 	This file includes 142 predefined sd_colors. It will not automatically
 	be included in your projects, since you may want to define them differently.
