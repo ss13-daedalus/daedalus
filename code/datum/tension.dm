@@ -908,7 +908,7 @@
 						if(new_character.mind.special_role=="traitor")
 							call(/datum/game_mode/proc/add_law_zero)(new_character)
 					if("AI")
-						new_character = new_character.AIize()
+						new_character = new_character.become_ai()
 						if(new_character.mind.special_role=="traitor")
 							call(/datum/game_mode/proc/add_law_zero)(new_character)
 					//Add aliens.

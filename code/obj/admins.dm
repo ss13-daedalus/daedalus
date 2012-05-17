@@ -1061,7 +1061,7 @@ var/global/BSACooldown = 0
 			var/mob/M = locate(href_list["makeai"])
 			if(istype(M, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
-				message_admins("\red Admin [key_name_admin(usr)] AIized [key_name_admin(M)]!", 1)
+				message_admins("\red Admin [key_name_admin(usr)] turned [key_name_admin(M)] into an AI!", 1)
 //				if (ticker.mode.name  == "AI malfunction")
 //					var/obj/O = locate("landmark*ai")
 //					M << "\blue <B>You have been teleported to your new starting location!</B>"
@@ -1074,8 +1074,8 @@ var/global/BSACooldown = 0
 //						M.loc = S.loc
 //						M.buckled = null
 				//	world << "<b>[M.real_name] is the AI!</b>"
-				log_admin("[key_name(usr)] AIized [key_name(M)]")
-				H.AIize()
+				log_admin("[key_name(usr)] turned [key_name(M)] into an AI")
+				H.become_ai()
 			else
 				alert("I cannot allow this.")
 				return
@@ -1088,9 +1088,9 @@ var/global/BSACooldown = 0
 			var/mob/M = locate(href_list["makeaisilent"])
 			if(istype(M, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
-				message_admins("\red Admin [key_name_admin(usr)] AIized [key_name_admin(M)] silently!", 1)
-				log_admin("[key_name(usr)] AIized [key_name(M)] silently")
-				H.AIizeSilent()
+				message_admins("\red Admin [key_name_admin(usr)] turned [key_name_admin(M)] into an AI silently!", 1)
+				log_admin("[key_name(usr)] turned [key_name(M)] into an AI silently")
+				H.become_ai_silent()
 			else
 				alert("I cannot allow this.")
 				return

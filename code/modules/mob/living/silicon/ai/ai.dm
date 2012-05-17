@@ -56,7 +56,7 @@
 		//Hologram verb./N
 		verbs += /mob/living/silicon/ai/proc/ai_hologram_change
 
-	if(!safety)//Only used by AIize() to successfully spawn an AI.
+	if(!safety)//Only used by become_ai() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
 			new/obj/structure/AIcore/deactivated(loc)//New empty terminal.
 			del(src)//Delete AI.

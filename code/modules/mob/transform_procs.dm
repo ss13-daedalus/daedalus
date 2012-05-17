@@ -50,11 +50,11 @@
 		del(src)
 	return O
 
-/mob/new_player/AIize()
+/mob/new_player/become_ai()
 	spawning = 1
 	return ..()
 
-/mob/living/carbon/human/AIize()
+/mob/living/carbon/human/become_ai()
 	if (monkeyizing)
 		return
 	for(var/name in organs)
@@ -64,7 +64,7 @@
 		src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // stop the jams for AIs
 	return ..()
 
-/mob/living/carbon/AIize()
+/mob/living/carbon/become_ai()
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
@@ -76,7 +76,7 @@
 	invisibility = 101
 	return ..()
 
-/mob/proc/AIize()
+/mob/proc/become_ai()
 	if(client)
 		client.screen.len = null
 	var/mob/living/silicon/ai/O = new (loc, /datum/ai_laws/nanotrasen,,1)//No MMI but safety is in effect.
@@ -340,7 +340,7 @@
 		del(src)
 	return
 
-/mob/living/carbon/human/AIizeSilent()
+/mob/living/carbon/human/become_ai_silent()
 	if (monkeyizing)
 		return
 	for(var/name in organs)
@@ -350,7 +350,7 @@
 		src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // stop the jams for AIs
 	return ..()
 
-/mob/living/carbon/AIizeSilent()
+/mob/living/carbon/become_ai_silent()
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
@@ -362,7 +362,7 @@
 	invisibility = 101
 	return ..()
 
-/mob/proc/AIizeSilent()
+/mob/proc/become_ai_silent()
 	if(client)
 		client.screen.len = null
 	var/mob/living/silicon/ai/O = new (loc, /datum/ai_laws/nanotrasen,,1)//No MMI but safety is in effect.

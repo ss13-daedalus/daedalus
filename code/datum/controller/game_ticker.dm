@@ -136,7 +136,7 @@
 			if(player.ready)
 				if(player.mind && player.mind.assigned_role=="AI")
 					player.close_spawn_windows()
-					player.AIize()
+					player.become_ai()
 				else if(player.mind)
 					player.create_character()
 					del(player)
