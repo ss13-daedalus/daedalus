@@ -1467,8 +1467,6 @@ var/global/BSACooldown = 0
 						removed_paths += dirty_path
 					else if (ispath(path, /obj/item/weapon/melee/energy/blade))//Not an item one should be able to spawn./N
 						removed_paths += dirty_path
-					else if (ispath(path, /obj/effect/bhole) && !(src.rank in list("Game Admin", "Game Master")))
-						removed_paths += dirty_path
 					else if (ispath(path, /mob) && !(src.rank in list("Badmin", "Game Admin", "Game Master")))
 						removed_paths += dirty_path
 

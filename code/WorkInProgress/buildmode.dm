@@ -145,7 +145,7 @@
 					return
 				if(2)
 					objholder = input(usr,"Enter typepath:" ,"Typepath","/obj/structure/closet")
-					var/list/removed_paths = list("/obj/effect/bhole")
+					var/list/removed_paths = list()
 					if(objholder in removed_paths)
 						alert("That path is not allowed.")
 						objholder = "/obj/structure/closet"
