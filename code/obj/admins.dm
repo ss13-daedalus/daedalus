@@ -1878,15 +1878,6 @@ var/global/BSACooldown = 0
 						spawn(0)
 							sleep(rand(30,400))
 							Wall.ex_act(rand(2,1)) */
-				if("gravanomalies")
-					//feedback_inc("admin_secrets_fun_used",1)
-					//feedback_add_details("admin_secrets_fun_used","GA")
-					command_alert("Gravitational anomalies detected on the station. There is no additional data.", "Anomaly Alert")
-					world << sound('sound/announcer/granomalies.ogg')
-					var/turf/T = pick(blobstart)
-					var/obj/effect/bhole/bh = new /obj/effect/bhole( T.loc, 30 )
-					spawn(rand(50, 300))
-						del(bh)
 				if("timeanomalies")
 					command_alert("Space-time anomalies detected on the station. There is no additional data.", "Anomaly Alert")
 					world << sound('sound/announcer/spanomalies.ogg')
@@ -2544,7 +2535,6 @@ var/global/BSACooldown = 0
 		dat += {"
 <B>'Random' Events</B><BR>
 <BR>
-<A href='?src=\ref[src];secretsfun=gravanomalies'>Spawn a gravitational anomaly (Untested)</A><BR>
 <A href='?src=\ref[src];secretsfun=timeanomalies'>Spawn wormholes (Untested)</A><BR>
 <A href='?src=\ref[src];secretsfun=goblob'>Spawn blob(Untested)</A><BR>
 <A href='?src=\ref[src];secretsfun=aliens'>Trigger an Alien infestation</A><BR>
