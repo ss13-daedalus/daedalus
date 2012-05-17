@@ -20,6 +20,9 @@ type_regex = /^\/?([a-zA-Z0-9_][a-zA-Z0-9_\/]*\(?)/;
 /* Comment blocks and file header are saved here temporarily so they can be later sent to another file */
 saved_text = "";
 
+/* All #define lines are saved into this variable and output only at the very end */
+define_text = "";
+
 /* If true, output to a file has begun and it's no longer necessary to save all input in saved_text */
 output = "";
 
@@ -53,7 +56,7 @@ state default
 		}
 
 		/* Isolate the typename and its base directory which will hold the output file */
-		type_name = regsub(type_name, /\/(var|proc|verb).*($|\n)/, "");
+		type_name = regsub(type_name, /\/(var|proc|verb).*/, "");
 		type_name = regsub(type_name, /\/[a-zA-Z0-9_]+\(/, "");
 
 		/* Check for global proc definitions which go into code/proc.dm */
@@ -93,10 +96,38 @@ state default
 		dump(text);
 	}
 
+	/* All preprocessor #define statements are extracted from the input and are only output at the very end */
+	/^#define.*($|\n)/ {
+		text = $0;
+
+		/* Safety check to make sure input doesn't already contain the "here document" delimiter */
+		if(regmatch(text, delim_regex)) {
+			panic("!!! SHELL CODE INJECTION DETECTED !!!");
+		}
+
+		/* Save any previous comment blocks followed by this #define line for later output at the end */
+		define_text = concat(define_text, saved_text, text);
+		saved_text = "";
+	}
+
 	/* Triggered at the end of input to close the final "here document" if one is open */
 	END {
-		if(output) {
+		/* Close the last shell "here document" if one is open */
+		if(length(output)) {
 			print(eol, delim_print, "\n");
+		}
+
+		/*
+		 * Output any saved #define text by using "ed" to insert the text before the "#endif" in define.dm
+		 * Silly "ed" tries to read past end-of-file on its input, so the extra () subshell with /dev/null
+		 * for its input allows "ed" to terminate properly.
+		 */
+		if(length(define_text)) {
+			print("(cat | ed -s code/define.dm <<\\\n");
+			print("\"", delim_print, "\"\n");
+			print("$-1i\n", define_text, eol, ".\nwq\n");
+			print(delim_print, "\n");
+			print(") < /dev/null\n");
 		}
 	}
 }
