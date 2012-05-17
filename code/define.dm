@@ -237,7 +237,6 @@ var/const
 #define MAX_STACK_AMOUNT_RODS 60
 
 var/const
-	GAS_O2 = 1 << 0
 	GAS_N2 = 1 << 1
 	GAS_PL = 1 << 2
 	GAS_CO2 = 1 << 3
