@@ -454,7 +454,7 @@ What a mess.*/
 							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=incarcerated'>Incarcerated</a></li>"
 							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=parolled'>Parolled</a></li>"
 							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=released'>Released</a></li>"
-							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=deceaѕed'>Deceased</a></li>"
+							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=deceased'>Deceased</a></li>"
 							temp += "</ul>"
 					if("rank")
 						var/list/L = list( "Head of Personnel", "Captain", "AI" )
