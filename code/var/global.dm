@@ -296,3 +296,23 @@ var/global
 		/area/turret_protected/ai_upload_foyer,
 		/area/turret_protected/ai,
 	)
+
+// It turns out that /var/const can't handle lists, because lists use
+// an initializer.  Sigh.  That's no reason that we shouldn't make
+// actual "constant" lists explicit via naming convention and a
+// separate location, though, so: below are all lists that should not
+// ever be changed in code.
+
+/var/global
+	AI_VERB_LIST = list(
+		/mob/living/silicon/ai/proc/ai_call_shuttle,
+		/mob/living/silicon/ai/proc/show_laws_verb,
+		/mob/living/silicon/ai/proc/ai_camera_track,
+		/mob/living/silicon/ai/proc/ai_alerts,
+		/mob/living/silicon/ai/proc/ai_camera_list,
+		/mob/living/silicon/ai/proc/ai_network_change,
+		/mob/living/silicon/ai/proc/ai_statuschange,
+		/mob/living/silicon/ai/proc/ai_hologram_change,
+		/mob/living/silicon/ai/proc/ai_roster,
+	)
+	

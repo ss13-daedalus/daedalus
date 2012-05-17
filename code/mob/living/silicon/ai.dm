@@ -47,14 +47,7 @@
 	verbs += /mob/living/silicon/ai/proc/show_laws_verb
 
 	if (istype(loc, /turf))
-		verbs += /mob/living/silicon/ai/proc/ai_call_shuttle
-		verbs += /mob/living/silicon/ai/proc/ai_camera_track
-		verbs += /mob/living/silicon/ai/proc/ai_camera_list
-		//Added ai_network_change by Mord_Sith
-		verbs += /mob/living/silicon/ai/proc/ai_network_change
-		verbs += /mob/living/silicon/ai/proc/ai_statuschange
-		//Hologram verb./N
-		verbs += /mob/living/silicon/ai/proc/ai_hologram_change
+		verbs += AI_VERB_LIST
 
 	if(!safety)//Only used by become_ai() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
