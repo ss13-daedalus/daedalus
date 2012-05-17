@@ -13,7 +13,7 @@
 
 /obj/machinery/light
 	name = "light fixture"
-	icon = 'icons/effects/lighting.dmi'
+	icon = 'icons/obj/lighting.dmi'
 	var/base_state = "tube"		// base description and icon_state
 	icon_state = "tube1"
 	desc = "A lighting fixture."
@@ -452,7 +452,7 @@
 // will fit into empty /obj/machinery/light of the corresponding type
 
 /obj/item/weapon/light
-	icon = 'icons/effects/lighting.dmi'
+	icon = 'icons/obj/lighting.dmi'
 	flags = FPRINT | TABLEPASS
 	force = 2
 	throwforce = 5
@@ -630,7 +630,7 @@
 
 /obj/structure/light_frame
 	name = "Light Fixture Frame"
-	icon = 'icons/effects/lighting.dmi'
+	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-empty"
 	desc = "A lighting fixture frame."
 	anchored = 0
