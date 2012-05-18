@@ -960,3 +960,329 @@ proc/process_ghost_teleport_locs()
 			chosenobjectives += new /datum/objective/escape(null,job)
 	return chosenobjectives
 
+/proc/setupgenetics()
+
+	if (prob(50))
+		BLOCKADD = rand(-300,300)
+	if (prob(75))
+		DIFFMUT = rand(0,20)
+
+	var/list/avnums = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26)
+	var/tempnum
+
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	HULKBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	TELEBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	FIREBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	XRAYBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	CLUMSYBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	FAKEBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	DEAFBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	BLINDBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	HEADACHEBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	COUGHBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	TWITCHBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	NERVOUSBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	NOBREATHBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	REMOTEVIEWBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	REGENERATEBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	INCREASERUNBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	REMOTETALKBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	MORPHBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	BLENDBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	HALLUCINATIONBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	NOPRINTSBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	SHOCKIMMUNITYBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	SMALLSIZEBLOCK = tempnum
+	tempnum = pick(avnums)
+	avnums.Remove(tempnum)
+	GLASSESBLOCK = tempnum
+
+
+	// HIDDEN MUTATIONS / SUPERPOWERS INITIALIZTION
+
+	for(var/x in typesof(/datum/mutations) - /datum/mutations)
+		var/datum/mutations/mut = new x
+
+		for(var/i = 1, i <= mut.required, i++)
+			var/datum/mutationreq/require = new/datum/mutationreq
+			require.block = rand(1, 13)
+			require.subblock = rand(1, 3)
+
+			// Create random requirement identification
+			require.reqID = pick("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", \
+							 "B", "C", "D", "E", "F")
+
+			mut.requirements += require
+
+
+		global_mutations += mut// add to global mutations list!
+
+
+
+
+
+
+/* This was used for something before, I think, but is not worth the effort to process now.
+/proc/setupcorpses()
+	for (var/obj/effect/landmark/A in world)
+		if (A.name == "Corpse")
+			var/mob/living/carbon/human/M = new /mob/living/carbon/human(A.loc)
+			M.real_name = "Corpse"
+			M.death()
+			del(A)
+			continue
+		if (A.name == "Corpse-Engineer")
+			var/mob/living/carbon/human/M = new /mob/living/carbon/human(A.loc)
+			M.real_name = "Corpse"
+			M.death()
+			M.equip_if_possible(new /obj/item/device/radio/headset/headset_eng(M), M.slot_ears)
+			M.equip_if_possible(new /obj/item/device/pda/engineering(M), M.slot_belt)
+			M.equip_if_possible(new /obj/item/clothing/under/rank/engineer(M), M.slot_w_uniform)
+			M.equip_if_possible(new /obj/item/clothing/shoes/orange(M), M.slot_shoes)
+		//	M.equip_if_possible(new /obj/item/weapon/storage/toolbox/mechanical(M), M.slot_l_hand)
+			M.equip_if_possible(new /obj/item/clothing/gloves/yellow(M), M.slot_gloves)
+			M.equip_if_possible(new /obj/item/device/t_scanner(M), M.slot_r_store)
+			//M.equip_if_possible(new /obj/item/device/radio/headset(M), M.slot_ears)
+			M.equip_if_possible(new /obj/item/weapon/storage/backpack(M), M.slot_back)
+			if (prob(50))
+				M.equip_if_possible(new /obj/item/clothing/mask/gas(M), M.slot_wear_mask)
+			if (prob(50))
+				M.equip_if_possible(new /obj/item/clothing/head/helmet/hardhat(M), M.slot_head)
+			else
+				if (prob(50))
+					M.equip_if_possible(new /obj/item/clothing/head/helmet/welding(M), M.slot_head)
+			del(A)
+			continue
+		if (A.name == "Corpse-Engineer-Space")
+			var/mob/living/carbon/human/M = new /mob/living/carbon/human(A.loc)
+			M.real_name = "Corpse"
+			M.death()
+			M.equip_if_possible(new /obj/item/device/radio/headset/headset_eng(M), M.slot_ears)
+			M.equip_if_possible(new /obj/item/weapon/tank/emergency_oxygen(M), M.slot_belt)
+			M.equip_if_possible(new /obj/item/clothing/under/rank/engineer(M), M.slot_w_uniform)
+			M.equip_if_possible(new /obj/item/clothing/shoes/orange(M), M.slot_shoes)
+			M.equip_if_possible(new /obj/item/clothing/suit/space(M), M.slot_wear_suit)
+		//	M.equip_if_possible(new /obj/item/weapon/storage/toolbox/mechanical(M), M.slot_l_hand)
+			M.equip_if_possible(new /obj/item/clothing/gloves/yellow(M), M.slot_gloves)
+			M.equip_if_possible(new /obj/item/device/t_scanner(M), M.slot_r_store)
+			M.equip_if_possible(new /obj/item/weapon/storage/backpack(M), M.slot_back)
+			M.equip_if_possible(new /obj/item/clothing/mask/gas(M), M.slot_wear_mask)
+			if (prob(50))
+				M.equip_if_possible(new /obj/item/clothing/head/helmet/hardhat(M), M.slot_head)
+			else
+				if (prob(50))
+					M.equip_if_possible(new /obj/item/clothing/head/helmet/welding(M), M.slot_head)
+				else
+					M.equip_if_possible(new /obj/item/clothing/head/helmet/space(M), M.slot_head)
+			del(A)
+			continue
+		if (A.name == "Corpse-Engineer-Chief")
+			var/mob/living/carbon/human/M = new /mob/living/carbon/human(A.loc)
+			M.real_name = "Corpse"
+			M.death()
+			M.equip_if_possible(new /obj/item/device/radio/headset/headset_eng(M), M.slot_ears)
+			M.equip_if_possible(new /obj/item/weapon/storage/utilitybelt(M), M.slot_belt)
+			M.equip_if_possible(new /obj/item/clothing/under/rank/chief_engineer(M), M.slot_w_uniform)
+			M.equip_if_possible(new /obj/item/clothing/shoes/orange(M), M.slot_shoes)
+		//	M.equip_if_possible(new /obj/item/weapon/storage/toolbox/mechanical(M), M.slot_l_hand)
+			M.equip_if_possible(new /obj/item/clothing/gloves/yellow(M), M.slot_gloves)
+			M.equip_if_possible(new /obj/item/device/t_scanner(M), M.slot_r_store)
+			M.equip_if_possible(new /obj/item/weapon/storage/backpack(M), M.slot_back)
+			if (prob(50))
+				M.equip_if_possible(new /obj/item/clothing/mask/gas(M), M.slot_wear_mask)
+			if (prob(50))
+				M.equip_if_possible(new /obj/item/clothing/head/helmet/hardhat(M), M.slot_head)
+			else
+				if (prob(50))
+					M.equip_if_possible(new /obj/item/clothing/head/helmet/welding(M), M.slot_head)
+			del(A)
+			continue
+		if (A.name == "Corpse-Syndicate")
+			var/mob/living/carbon/human/M = new /mob/living/carbon/human(A.loc)
+			M.real_name = "Corpse"
+			M.death()
+			M.equip_if_possible(new /obj/item/device/radio/headset(M), M.slot_ears)
+			//M.equip_if_possible(new /obj/item/weapon/gun/revolver(M), M.slot_belt)
+			M.equip_if_possible(new /obj/item/clothing/under/syndicate(M), M.slot_w_uniform)
+			M.equip_if_possible(new /obj/item/clothing/shoes/black(M), M.slot_shoes)
+			M.equip_if_possible(new /obj/item/clothing/gloves/swat(M), M.slot_gloves)
+			M.equip_if_possible(new /obj/item/weapon/tank/jetpack(M), M.slot_back)
+			M.equip_if_possible(new /obj/item/clothing/mask/gas(M), M.slot_wear_mask)
+			if (prob(50))
+				M.equip_if_possible(new /obj/item/clothing/suit/space/syndicate(M), M.slot_wear_suit)
+				if (prob(50))
+					M.equip_if_possible(new /obj/item/clothing/head/helmet/swat(M), M.slot_head)
+				else
+					M.equip_if_possible(new /obj/item/clothing/head/helmet/space/syndicate(M), M.slot_head)
+			else
+				M.equip_if_possible(new /obj/item/clothing/suit/armor/vest(M), M.slot_wear_suit)
+				M.equip_if_possible(new /obj/item/clothing/head/helmet/swat(M), M.slot_head)
+			del(A)
+			continue
+*/
+
+/proc/iscultist(mob/living/carbon/M as mob)
+	return istype(M) && M.mind && ticker && ticker.mode && (M.mind in ticker.mode.cult)
+
+/proc/is_convertable_to_cult(datum/mind/mind)
+	if(!istype(mind))	return 0
+/*	if(istype(mind.current, /mob/living/carbon/human) && (mind.assigned_role in list("Captain", "Head of Security", "Security Officer", "Detective", "Chaplain", "Warden")))	return 0
+	for(var/obj/item/weapon/implant/loyalty/L in mind.current)
+		if(L && L.implanted)
+			return 0*/
+	return 1
+
+
+/proc/nukelastname(var/mob/M as mob) //--All praise goes to NEO|Phyte, all blame goes to DH, and it was Cindi-Kate's idea. Also praise Urist for copypasta ho.
+	var/randomname = pick(last_names)
+	var/newname = input(M,"You are the nuke operative [pick("Czar", "Boss", "Commander", "Chief", "Kingpin", "Director", "Overlord")]. Please choose a last name for your family.", "Name change",randomname)
+
+	if (length(newname) == 0)
+		newname = randomname
+
+	if (newname)
+		if (newname == "Unknown")
+			M << "That name is reserved."
+			return nukelastname(M)
+		if (length(newname) >= 26)
+			newname = copytext(newname, 1, 26)
+		newname = dd_replacetext(newname, ">", "'")
+
+	return newname
+
+/proc/NukeNameAssign(var/lastname,var/list/syndicates)
+	for(var/datum/mind/synd_mind in syndicates)
+		switch(synd_mind.current.gender)
+			if("male")
+				synd_mind.current.real_name = "[pick(first_names_male)] [lastname]"
+			if("female")
+				synd_mind.current.real_name = "[pick(first_names_female)] [lastname]"
+
+	return
+/proc/is_convertable_to_rev(datum/mind/mind)
+	return istype(mind) && \
+		istype(mind.current, /mob/living/carbon/human) && \
+		!(mind.assigned_role in command_positions) && \
+		!(mind.assigned_role in list("Security Officer", "Detective", "Warden"))
+
+/proc/spell_jaunt(var/mob/H, time = 50)
+	if(H.stat) return
+	spawn(0)
+		var/mobloc = get_turf(H.loc)
+		var/obj/effect/dummy/spell_jaunt/holder = new /obj/effect/dummy/spell_jaunt( mobloc )
+		var/atom/movable/overlay/animation = new /atom/movable/overlay( mobloc )
+		animation.name = "water"
+		animation.density = 0
+		animation.anchored = 1
+		animation.icon = 'icons/mob/mob.dmi'
+		animation.icon_state = "liquify"
+		animation.layer = 5
+		animation.master = holder
+		flick("liquify",animation)
+		H.loc = holder
+		H.client.eye = holder
+		var/datum/effect/effect/system/steam_spread/steam = new /datum/effect/effect/system/steam_spread()
+		steam.set_up(10, 0, mobloc)
+		steam.start()
+		sleep(time)
+		mobloc = get_turf(H.loc)
+		animation.loc = mobloc
+		steam.location = mobloc
+		steam.start()
+		H.canmove = 0
+		sleep(20)
+		flick("reappear",animation)
+		sleep(5)
+		H.loc = mobloc
+		H.canmove = 1
+		H.client.eye = H
+		del(animation)
+		del(holder)
+/*
+/obj/effect/dummy/spell_jaunt
+	name = "water"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "nothing"
+	var/canmove = 1
+	density = 0
+	anchored = 1
+
+/obj/effect/dummy/spell_jaunt/relaymove(var/mob/user, direction)
+	if (!src.canmove) return
+	switch(direction)
+		if(NORTH)
+			src.y++
+		if(SOUTH)
+			src.y--
+		if(EAST)
+			src.x++
+		if(WEST)
+			src.x--
+		if(NORTHEAST)
+			src.y++
+			src.x++
+		if(NORTHWEST)
+			src.y++
+			src.x--
+		if(SOUTHEAST)
+			src.y--
+			src.x++
+		if(SOUTHWEST)
+			src.y--
+			src.x--
+	src.canmove = 0
+	spawn(2) src.canmove = 1
+
+/obj/effect/dummy/spell_jaunt/ex_act(blah)
+	return
+/obj/effect/dummy/spell_jaunt/bullet_act(blah,blah)
+	return
+*/
+//MUTATE
+

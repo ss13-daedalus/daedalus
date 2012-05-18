@@ -4,7 +4,6 @@
 	flags = FPRINT | TABLEPASS
 	flags_inv = HIDEJUMPSUIT
 
-
 /obj/item/clothing/suit/armor/vest
 	name = "armor"
 	desc = "An armored vest that protects against some damage."
@@ -45,16 +44,6 @@
 	item_state = "armor_reflec"
 	armor = list(melee = 10, bullet = 10, laser = 80, energy = 50, bomb = 0, bio = 0, rad = 0)
 
-/obj/item/clothing/suit/storage/gearharness
-	name = "gear harness"
-	desc = "A simple security harness, used for storing small objects"
-	icon_state = "gearharness"
-	item_state = "gearharness"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	flags = FPRINT | TABLEPASS | ONESIZEFITSALL
-	allowed = list(/obj/item/weapon/gun/energy,/obj/item/weapon/pepperspray,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/barricade_tape_roll/police)
-	flags_inv = 0
-
 /obj/item/clothing/suit/armor/reactive
 	name = "Reactive Teleport Armor"
 	desc = "Someone seperated our Research Director from his own head!"
@@ -65,21 +54,10 @@
 	flags = FPRINT | TABLEPASS | ONESIZEFITSALL
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
-/obj/item/clothing/suit/storage/armourrigvest
-	name = "armour rig vest"
-	desc = "An important looking armoured vest, outfitted with pockets."
-	icon_state = "armourrigvest"
-	item_state = "armourrigvest"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	flags = FPRINT | TABLEPASS | ONESIZEFITSALL
-	allowed = list(/obj/item/weapon/gun/energy,/obj/item/weapon/pepperspray,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/barricade_tape_roll/police)
-	armor = list(melee = 50, bullet = 15, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
-
 /obj/item/clothing/suit/armor/reactive/IsShield()
 	if(active)
 		return 1
 	return 0
-
 
 /obj/item/clothing/suit/armor/reactive/attack_self(mob/user as mob)
 	src.active = !( src.active )
@@ -100,5 +78,57 @@
 	src.item_state = "reactiveoff"
 	..()
 
+//These hardly ever get spawned in and should likely be changed be children of heavy
+/obj/item/clothing/suit/armor/centcomm
+	name = "Cent. Com. armor"
+	desc = "A suit that protects against some damage."
+	icon_state = "centcom"
+	item_state = "centcom"
+	w_class = 4//bulky item
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	allowed = list(/obj/item/weapon/gun/energy,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/tank/emergency_oxygen)
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
+/obj/item/clothing/suit/armor/heavy
+	name = "heavy armor"
+	desc = "A heavily armored suit that protects against moderate damage."
+	icon_state = "heavy"
+	item_state = "swat_suit"
+	w_class = 4//bulky item
+	gas_transfer_coefficient = 0.90
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	slowdown = 3
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+
+/obj/item/clothing/suit/armor/tdome
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+
+/obj/item/clothing/suit/armor/tdome/red
+	name = "Thunderdome suit (red)"
+	desc = "Reddish armor."
+	icon_state = "tdred"
+	item_state = "tdred"
+
+/obj/item/clothing/suit/armor/tdome/green
+	name = "Thunderdome suit (green)"
+	desc = "Pukish armor."
+	icon_state = "tdgreen"
+	item_state = "tdgreen"
+
+/obj/item/clothing/suit/armor/swat
+	name = "swat suit"
+	desc = "A heavily armored suit that protects against moderate damage. Used in special operations."
+	icon_state = "deathsquad"
+	item_state = "swat_suit"
+	gas_transfer_coefficient = 0.01
+	permeability_coefficient = 0.01
+	heat_transfer_coefficient = 0.02
+	protective_temperature = 1000
+	flags = FPRINT | TABLEPASS | SUITSPACE
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/tank/emergency_oxygen)
+	slowdown = 1
+	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 0, rad = 0)
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 

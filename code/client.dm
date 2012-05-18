@@ -969,3 +969,1327 @@ client
 			if(!istype(DAT,/datum))
 				return
 			src.debug_variables(DAT)
+
+/client/proc/changeling_absorb_dna()
+	set category = "Changeling"
+	set name = "Absorb DNA"
+
+	if(!usr.changeling)
+		usr << "\red You're not a changeling, something's wrong!"
+		return
+
+	if(usr.stat)
+		usr << "\red Not when we are incapacitated."
+		return
+
+	if (!istype(usr.equipped(), /obj/item/weapon/grab))
+		usr << "\red We must be grabbing a creature in our active hand to absorb them."
+		return
+
+	var/obj/item/weapon/grab/G = usr.equipped()
+	var/mob/M = G.affecting
+
+	if (!ishuman(M))
+		usr << "\red This creature is not compatible with our biology."
+		return
+
+	if (M.mutations2 & NOCLONE)
+		usr << "\red This creature's DNA is ruined beyond useability!"
+		return
+
+	if (!G.killing)
+		usr << "\red We must have a tighter grip to absorb this creature."
+		return
+
+	if (usr.changeling.isabsorbing)
+		usr << "\red We are already absorbing!"
+		return
+
+
+
+	var/mob/living/carbon/human/T = M
+
+	usr << "\blue This creature is compatible. We must hold still..."
+	usr.changeling.isabsorbing = 1
+	if (!do_mob(usr, T, 150))
+		usr << "\red Our absorption of [T] has been interrupted!"
+		usr.changeling.isabsorbing = 0
+		return
+
+	usr << "\blue We extend a proboscis."
+	usr.visible_message(text("\red <B>[usr] extends a proboscis!</B>"))
+
+	if (!do_mob(usr, T, 150))
+		usr << "\red Our absorption of [T] has been interrupted!"
+		usr.changeling.isabsorbing = 0
+		return
+
+	usr << "\blue We stab [T] with the proboscis."
+	usr.visible_message(text("\red <B>[usr] stabs [T] with the proboscis!</B>"))
+	T << "\red <B>You feel a sharp stabbing pain!</B>"
+	T.take_overall_damage(40)
+
+	if (!do_mob(usr, T, 150))
+		usr << "\red Our absorption of [T] has been interrupted!"
+		usr.changeling.isabsorbing = 0
+		return
+
+	usr << "\blue We have absorbed [T]!"
+	usr.visible_message(text("\red <B>[usr] sucks the fluids from [T]!</B>"))
+	T << "\red <B>You have been absorbed by the changeling!</B>"
+
+	usr.changeling.absorbed_dna[T.real_name] = T.dna
+	if(usr.nutrition < 400) usr.nutrition = min((usr.nutrition + T.nutrition), 400)
+	usr.changeling.chem_charges += 10
+	usr.changeling.geneticpoints += 2
+	if(T.changeling)
+		if(T.changeling.absorbed_dna)
+			usr.changeling.absorbed_dna |= T.changeling.absorbed_dna //steal all their loot
+
+			T.changeling.absorbed_dna = list()
+			T.changeling.absorbed_dna[T.real_name] = T.dna
+
+		if(T.changeling.purchasedpowers)
+			for(var/obj/effect/proc_holder/power/Tp in T.changeling.purchasedpowers)
+				if(Tp in usr.changeling.purchasedpowers)
+					continue
+				else
+					usr.changeling.purchasedpowers += Tp
+
+					if(!Tp.isVerb)
+						call(Tp.verbpath)()
+
+					else
+						if(usr.changeling.changeling_level == 1)
+							usr.make_lesser_changeling()
+						else
+							usr.make_changeling()
+
+
+
+
+		usr.changeling.chem_charges += T.changeling.chem_charges
+		usr.changeling.geneticpoints += T.changeling.geneticpoints
+		T.changeling.chem_charges = 0
+	usr.changeling.isabsorbing = 0
+
+	T.death(0)
+	T.Drain()
+
+	return
+
+/client/proc/changeling_transform()
+	set category = "Changeling"
+	set name = "Transform (5)"
+
+	if(!usr.changeling)
+		usr << "\red You're not a changeling, something's wrong!"
+		return
+
+	if(usr.stat)
+		usr << "\red Not when we are incapacitated."
+		return
+
+	if (usr.changeling.absorbed_dna.len <= 0)
+		usr << "\red We have not yet absorbed any compatible DNA."
+		return
+
+	if(usr.changeling.chem_charges < 5)
+		usr << "\red We don't have enough stored chemicals to do that!"
+		return
+
+	var/S = input("Select the target DNA: ", "Target DNA", null) as null|anything in usr.changeling.absorbed_dna
+
+	if (S == null)
+		return
+
+	usr.changeling.chem_charges -= 5
+
+	usr.visible_message(text("\red <B>[usr] transforms!</B>"))
+
+	usr.dna = usr.changeling.absorbed_dna[S]
+	usr.real_name = S
+	updateappearance(usr, usr.dna.uni_identity)
+	domutcheck(usr, null)
+
+	usr.verbs -= /client/proc/changeling_transform
+
+	spawn(10)
+		usr.verbs += /client/proc/changeling_transform
+
+	return
+
+/client/proc/changeling_lesser_form()
+	set category = "Changeling"
+	set name = "Lesser Form (1)"
+
+	if(!usr.changeling)
+		usr << "\red You're not a changeling, something's wrong!"
+		return
+
+	if(usr.stat)
+		usr << "\red Not when we are incapacitated."
+		return
+
+	if(usr.changeling.chem_charges < 1)
+		usr << "\red We don't have enough stored chemicals to do that!"
+		return
+
+	if(usr.changeling.geneticdamage != 0)
+		usr << "Our genes are still mending themselves!  We cannot transform!"
+		return
+
+	usr.changeling.chem_charges--
+
+	usr.remove_changeling_powers()
+
+	usr.visible_message(text("\red <B>[usr] transforms!</B>"))
+
+	usr.changeling.geneticdamage = 30
+	usr << "Our genes cry out!"
+
+	var/list/implants = list() //Try to preserve implants.
+	for(var/obj/item/weapon/W in usr)
+		if (istype(W, /obj/item/weapon/implant))
+			implants += W
+
+	usr.update_clothing()
+	usr.monkeyizing = 1
+	usr.canmove = 0
+	usr.icon = null
+	usr.invisibility = 101
+	var/atom/movable/overlay/animation = new /atom/movable/overlay( usr.loc )
+	animation.icon_state = "blank"
+	animation.icon = 'icons/mob/mob.dmi'
+	animation.master = src
+	flick("h2monkey", animation)
+	sleep(48)
+	del(animation)
+
+	var/mob/living/carbon/monkey/O = new /mob/living/carbon/monkey(src)
+	O.dna = usr.dna
+	usr.dna = null
+	O.changeling = usr.changeling
+
+	for(var/obj/item/W in usr)
+		usr.drop_from_slot(W)
+
+
+	for(var/obj/T in usr)
+		del(T)
+	//for(var/R in usr.organs) //redundant, let's give garbage collector work to do --rastaf0
+	//	del(usr.organs[text("[]", R)])
+
+	O.loc = usr.loc
+
+	O.name = text("monkey ([])",copytext(md5(usr.real_name), 2, 6))
+	O.setToxLoss(usr.getToxLoss())
+	O.adjustBruteLoss(usr.getBruteLoss())
+	O.setOxyLoss(usr.getOxyLoss())
+	O.adjustFireLoss(usr.getFireLoss())
+	O.stat = usr.stat
+	O.a_intent = "hurt"
+	for (var/obj/item/weapon/implant/I in implants)
+		I.loc = O
+		I.implanted = O
+		continue
+
+	if(usr.mind)
+		usr.mind.transfer_to(O)
+
+	O.make_lesser_changeling()
+	O.verbs += /client/proc/changeling_lesser_transform
+	del(usr)
+	return
+
+/client/proc/changeling_lesser_transform()
+	set category = "Changeling"
+	set name = "Transform (1)"
+
+	if(!usr.changeling)
+		usr << "\red You're not a changeling, something's wrong!"
+		return
+
+	if(usr.stat)
+		usr << "\red Not when we are incapacitated."
+		return
+
+	if (usr.changeling.absorbed_dna.len <= 0)
+		usr << "\red We have not yet absorbed any compatible DNA."
+		return
+
+	if(usr.changeling.chem_charges < 1)
+		usr << "\red We don't have enough stored chemicals to do that!"
+		return
+
+	var/S = input("Select the target DNA: ", "Target DNA", null) in usr.changeling.absorbed_dna
+
+	if (S == null)
+		return
+
+	usr.changeling.chem_charges -= 1
+
+	usr.remove_changeling_powers()
+
+	usr.visible_message(text("\red <B>[usr] transforms!</B>"))
+
+	usr.dna = usr.changeling.absorbed_dna[S]
+
+	var/list/implants = list()
+	for (var/obj/item/weapon/implant/I in usr) //Still preserving implants
+		implants += I
+
+	usr.update_clothing()
+	usr.monkeyizing = 1
+	usr.canmove = 0
+	usr.icon = null
+	usr.invisibility = 101
+	var/atom/movable/overlay/animation = new /atom/movable/overlay( usr.loc )
+	animation.icon_state = "blank"
+	animation.icon = 'icons/mob/mob.dmi'
+	animation.master = src
+	flick("monkey2h", animation)
+	sleep(48)
+	del(animation)
+
+	for(var/obj/item/W in usr)
+		usr.u_equip(W)
+		if (usr.client)
+			usr.client.screen -= W
+		if (W)
+			W.loc = usr.loc
+			W.dropped(usr)
+			W.layer = initial(W.layer)
+
+	var/mob/living/carbon/human/O = new /mob/living/carbon/human( src )
+	if (isblockon(getblock(usr.dna.uni_identity, 11,3),11))
+		O.gender = FEMALE
+	else
+		O.gender = MALE
+	O.dna = usr.dna
+	usr.dna = null
+	O.changeling = usr.changeling
+	O.real_name = S
+
+	for(var/obj/T in usr)
+		del(T)
+
+	O.loc = usr.loc
+
+	updateappearance(O,O.dna.uni_identity)
+	domutcheck(O, null)
+	O.setToxLoss(usr.getToxLoss())
+	O.adjustBruteLoss(usr.getBruteLoss())
+	O.setOxyLoss(usr.getOxyLoss())
+	O.adjustFireLoss(usr.getFireLoss())
+	O.stat = usr.stat
+	for (var/obj/item/weapon/implant/I in implants)
+		I.loc = O
+		I.implanted = O
+		continue
+
+	if(usr.mind)
+		usr.mind.transfer_to(O)
+
+	O.make_changeling()
+
+	del(usr)
+	return
+
+/client/proc/changeling_fakedeath()
+	set category = "Changeling"
+	set name = "Regenerative Stasis (20)"
+
+	if(!usr.changeling)
+		usr << "\red You're not a changeling, something's wrong!"
+		return
+
+	if(usr.changeling.chem_charges < 20)
+		usr << "\red We don't have enough stored chemicals to do that!"
+		return
+
+	usr.changeling.chem_charges -= 20
+
+	usr << "\blue We will regenerate our form."
+
+	usr.lying = 1
+	usr.canmove = 0
+	usr.changeling.changeling_fakedeath = 1
+	usr.remove_changeling_powers()
+
+	usr.emote("gasp")
+
+	spawn(1200)
+		usr.stat = 0
+		//usr.fireloss = 0
+		usr.setToxLoss(0)
+		//usr.bruteloss = 0
+		usr.setOxyLoss(0)
+		usr.setCloneLoss(0)
+		usr.SetParalysis(0)
+		usr.SetStunned(0)
+		usr.SetWeakened(0)
+		usr.radiation = 0
+		//usr.health = 100
+		//usr.updatehealth()
+		var/mob/living/M = src
+		M.heal_overall_damage(M.getBruteLoss(), M.getFireLoss())
+		usr.reagents.clear_reagents()
+		usr.lying = 0
+		usr.canmove = 1
+		usr << "\blue We have regenerated."
+		usr.visible_message(text("\red <B>[usr] appears to wake from the dead, having healed all wounds.</B>"))
+
+		usr.changeling.changeling_fakedeath = 0
+		if (usr.changeling.changeling_level == 1)
+			usr.make_lesser_changeling()
+		else if (usr.changeling.changeling_level == 2)
+			usr.make_changeling()
+
+	return
+
+/client/proc/changeling_boost_range()
+	set category = "Changeling"
+	set name = "Ranged Sting (10)"
+	set desc="Your next sting ability can be used against targets 2 squares away."
+
+	if(!usr.changeling)
+		usr << "\red You're not a changeling, something's wrong!"
+		return
+
+	if(usr.stat)
+		usr << "\red Not when we are incapacitated."
+		return
+
+	if(usr.changeling.chem_charges < 10)
+		usr << "\red We don't have enough stored chemicals to do that!"
+		return
+
+	usr.changeling.chem_charges -= 10
+
+	usr << "\blue Your throat adjusts to launch the sting."
+	usr.changeling.sting_range = 2
+
+	usr.verbs -= /client/proc/changeling_boost_range
+
+	spawn(5)
+		usr.verbs += /client/proc/changeling_boost_range
+
+	return
+
+/client/proc/changeling_silence_sting()
+	set category = "Changeling"
+	set name = "Silence sting (10)"
+	set desc="Sting target"
+
+	if(!usr.changeling)
+		usr << "\red You're not a changeling, something's wrong!"
+		return
+
+	var/list/victims = list()
+	for(var/mob/living/carbon/C in oview(usr.changeling.sting_range))
+		victims += C
+	var/mob/T = input(usr, "Who do you wish to sting?") as null | anything in victims
+	if(T && T in view(usr.changeling.sting_range))
+
+		if(usr.stat)
+			usr << "\red Not when we are incapacitated."
+			return
+
+		if(usr.changeling.chem_charges < 10)
+			usr << "\red We don't have enough stored chemicals to do that!"
+			return
+
+		usr.changeling.chem_charges -= 10
+		usr.changeling.sting_range = 1
+
+		usr << "\blue We stealthily sting [T]."
+
+		if(!T.changeling)
+		//	T << "You feel a small prick and a burning sensation in your throat."
+			T.silent += 30
+		//else
+		//	T << "You feel a small prick."
+
+		usr.verbs -= /client/proc/changeling_silence_sting
+
+		spawn(5)
+			usr.verbs += /client/proc/changeling_silence_sting
+
+		return
+
+/client/proc/changeling_blind_sting()
+	set category = "Changeling"
+	set name = "Blind sting (20)"
+	set desc="Sting target"
+
+	if(!usr.changeling)
+		usr << "\red You're not a changeling, something's wrong!"
+		return
+
+	var/list/victims = list()
+	for(var/mob/living/carbon/C in oview(usr.changeling.sting_range))
+		victims += C
+	var/mob/T = input(usr, "Who do you wish to sting?") as null | anything in victims
+	if(T && T in view(usr.changeling.sting_range))
+		if(usr.stat)
+			usr << "\red Not when we are incapacitated."
+			return
+
+		if(usr.changeling.chem_charges < 20)
+			usr << "\red We don't have enough stored chemicals to do that!"
+			return
+
+		usr.changeling.chem_charges -= 20
+		usr.changeling.sting_range = 1
+
+		usr << "\blue We stealthily sting [T]."
+
+		var/obj/effect/overlay/B = new /obj/effect/overlay( T.loc )
+		B.icon_state = "blspell"
+		B.icon = 'icons/obj/wizard.dmi'
+		B.name = "spell"
+		B.anchored = 1
+		B.density = 0
+		B.layer = 4
+		T.canmove = 0
+		spawn(5)
+			del(B)
+			T.canmove = 1
+
+		if(!T.changeling)
+			T << text("\blue Your eyes cry out in pain!")
+			T.disabilities |= 1
+			spawn(300)
+				T.disabilities &= ~1
+			T.eye_blind = 10
+			T.eye_blurry = 20
+
+		usr.verbs -= /client/proc/changeling_blind_sting
+
+		spawn(5)
+			usr.verbs += /client/proc/changeling_blind_sting
+
+		return
+
+/client/proc/changeling_deaf_sting()
+	set category = "Changeling"
+	set name = "Deaf sting (5)"
+	set desc="Sting target:"
+
+	if(!usr.changeling)
+		usr << "\red You're not a changeling, something's wrong!"
+		return
+
+	var/list/victims = list()
+	for(var/mob/living/carbon/C in oview(usr.changeling.sting_range))
+		victims += C
+	var/mob/T = input(usr, "Who do you wish to sting?") as null | anything in victims
+
+	if(T && T in view(usr.changeling.sting_range))
+		if(usr.stat)
+			usr << "\red Not when we are incapacitated."
+			return
+
+		if(usr.changeling.chem_charges < 5)
+			usr << "\red We don't have enough stored chemicals to do that!"
+			return
+
+		usr.changeling.chem_charges -= 5
+		usr.changeling.sting_range = 1
+
+		usr << "\blue We stealthily sting [T]."
+
+		if(!T.changeling)
+			T.disabilities |= 32
+			spawn(300)
+				T.disabilities &= ~32
+
+		usr.verbs -= /client/proc/changeling_deaf_sting
+
+		spawn(5)
+			usr.verbs += /client/proc/changeling_deaf_sting
+
+		return
+
+/client/proc/changeling_paralysis_sting()
+	set category = "Changeling"
+	set name = "Paralysis sting (30)"
+	set desc="Sting target"
+
+	if(!usr.changeling)
+		usr << "\red You're not a changeling, something's wrong!"
+		return
+
+	var/list/victims = list()
+	for(var/mob/living/carbon/C in oview(usr.changeling.sting_range))
+		victims += C
+	var/mob/T = input(usr, "Who do you wish to sting?") as null | anything in victims
+
+	if(T && T in view(usr.changeling.sting_range))
+
+		if(usr.stat)
+			usr << "\red Not when we are incapacitated."
+			return
+
+		if(usr.changeling.chem_charges < 30)
+			usr << "\red We don't have enough stored chemicals to do that!"
+			return
+
+		usr.changeling.chem_charges -= 30
+		usr.changeling.sting_range = 1
+
+		usr << "\blue We stealthily sting [T]."
+
+		if(!T.changeling)
+			T << "You feel a small prick and a burning sensation."
+
+			if (T.reagents)
+				T.reagents.add_reagent("zombiepowder", 20)
+		else
+			T << "You feel a small prick."
+
+		usr.verbs -= /client/proc/changeling_paralysis_sting
+
+		spawn(5)
+			usr.verbs += /client/proc/changeling_paralysis_sting
+
+		return
+
+/client/proc/changeling_transformation_sting()
+	set category = "Changeling"
+	set name = "Transformation sting (30)"
+	set desc="Sting target"
+
+	if(!usr.changeling)
+		usr << "\red You're not a changeling, something's wrong!"
+		return
+
+	var/list/victims = list()
+	for(var/mob/living/carbon/C in oview(usr.changeling.sting_range))
+		victims += C
+	var/mob/T = input(usr, "Who do you wish to sting?") as null | anything in victims
+
+	if(T && T in view(usr.changeling.sting_range))
+		if(usr.stat)
+			usr << "\red Not when we are incapacitated."
+			return
+
+		if(usr.changeling.chem_charges < 30)
+			usr << "\red We don't have enough stored chemicals to do that!"
+			return
+
+		if(T.stat != 2 || (T.mutations & HUSK) || (!ishuman(T) && !ismonkey(T)))
+			usr << "\red We can't transform that target!"
+			return
+
+		var/S = input("Select the target DNA: ", "Target DNA", null) in usr.changeling.absorbed_dna
+
+		if (S == null)
+			return
+
+		usr.changeling.chem_charges -= 30
+		usr.changeling.sting_range = 1
+
+		usr << "\blue We stealthily sting [T]."
+
+		if(!T.changeling)
+			T.visible_message(text("\red <B>[T] transforms!</B>"))
+
+			T.dna = usr.changeling.absorbed_dna[S]
+			T.real_name = S
+			updateappearance(T, T.dna.uni_identity)
+			domutcheck(T, null)
+
+		usr.verbs -= /client/proc/changeling_transformation_sting
+
+		spawn(5)
+			usr.verbs += /client/proc/changeling_transformation_sting
+
+		return
+
+/client/proc/changeling_unfat_sting()
+	set category = "Changeling"
+	set name = "Unfat sting (5)"
+	set desc = "Sting target"
+
+	if(!usr.changeling)
+		usr << "\red You're not a changeling, something's wrong!"
+		return
+
+	var/list/victims = list()
+	for(var/mob/living/carbon/C in oview(usr.changeling.sting_range))
+		victims += C
+	var/mob/T = input(usr, "Who do you wish to sting?") as null | anything in victims
+
+	if(T && T in view(usr.changeling.sting_range))
+		if(usr.stat)
+			usr << "\red Not when we are incapacitated."
+			return
+
+		if(usr.changeling.chem_charges < 5)
+			usr << "\red We don't have enough stored chemicals to do that!"
+			return
+
+		usr.changeling.chem_charges -= 5
+		usr.changeling.sting_range = 1
+
+		usr << "\blue We stealthily sting [T]."
+
+		if(!T.changeling)
+			T << "You feel a small prick and a burning sensation."
+			T.overeatduration = 0
+			T.nutrition -= 100
+		else
+			T << "You feel a small prick."
+
+		usr.verbs -= /client/proc/changeling_unfat_sting
+
+		spawn(5)
+			usr.verbs += /client/proc/changeling_unfat_sting
+
+	return
+
+/client/proc/changeling_unstun()
+	set category = "Changeling"
+	set name = "Epinephrine Sacs (45)"
+	set desc = "Removes all stuns"
+
+	if(!usr.changeling)
+		usr << "\red You're not a changeling, something's wrong!"
+		return
+
+	if(usr.changeling.chem_charges < 45)
+		usr << "\red We don't have enough stored chemicals to do that!"
+		return
+
+	usr.changeling.chem_charges -= 45
+
+	var/mob/living/carbon/human/C = usr
+
+	if(C)
+		C.stat = 0
+		C.SetParalysis(0)
+		C.SetStunned(0)
+		C.SetWeakened(0)
+		C.lying = 0
+		C.canmove = 1
+
+	usr.verbs -= /client/proc/changeling_unstun
+
+	spawn(5)
+		usr.verbs += /client/proc/changeling_unstun
+
+
+
+/client/proc/changeling_fastchemical()
+
+	usr.changeling.chem_recharge_multiplier = usr.changeling.chem_recharge_multiplier*2
+
+/client/proc/changeling_engorgedglands()
+
+	usr.changeling.chem_storage = usr.changeling.chem_storage+25
+
+/client/proc/changeling_digitalcamo()
+	set category = "Changeling"
+	set name = "Toggle Digital Camoflague (10)"
+	set desc = "The AI can no longer track us, but we will look different if examined.  Has a constant cost while active."
+
+	if(!usr.changeling)
+		usr << "\red You're not a changeling, something's wrong!"
+		return
+
+	if(usr.changeling.chem_charges < 10)
+		usr << "\red We don't have enough stored chemicals to do that!"
+		return
+
+	usr.changeling.chem_charges -= 10
+
+	var/mob/living/carbon/human/C = usr
+
+	if(C)
+		C << "[C.digitalcamo ? "We return to normal." : "We distort our form."]"
+		C.digitalcamo = !C.digitalcamo
+		spawn(0)
+			while(C && C.digitalcamo)
+				C.changeling.chem_charges -= 1/4
+				sleep(10)
+
+
+	usr.verbs -= /client/proc/changeling_digitalcamo
+
+	spawn(5)
+		usr.verbs += /client/proc/changeling_digitalcamo
+
+
+/client/proc/changeling_DEATHsting()
+	set category = "Changeling"
+	set name = "Death Sting (40)"
+	set desc = "Causes spasms onto death."
+
+	if(!usr.changeling)
+		usr << "\red You're not a changeling, something's wrong!"
+		return
+
+	var/list/victims = list()
+	for(var/mob/living/carbon/C in oview(usr.changeling.sting_range))
+		victims += C
+	var/mob/T = input(usr, "Who do you wish to sting?") as null | anything in victims
+
+	if(T && T in view(usr.changeling.sting_range))
+
+		if(usr.stat)
+			usr << "\red Not when we are incapacitated."
+			return
+
+		if(usr.changeling.chem_charges < 40)
+			usr << "\red We don't have enough stored chemicals to do that!"
+			return
+
+		usr.changeling.chem_charges -= 40
+		usr.changeling.sting_range = 1
+
+		usr << "\blue We stealthily sting [T]."
+
+		if(!T.changeling)
+			T << "You feel a small prick and your chest becomes tight."
+
+			T.silent = (10)
+			T.Paralyse(10)
+			T.make_jittery(1000)
+
+			if (T.reagents)
+				T.reagents.add_reagent("lexorin", 40)
+
+		else
+			T << "You feel a small prick."
+
+		usr.verbs -= /client/proc/changeling_DEATHsting
+
+		spawn(5)
+			usr.verbs += /client/proc/changeling_DEATHsting
+
+		return
+
+
+
+/client/proc/changeling_rapidregen()
+	set category = "Changeling"
+	set name = "Rapid Regeneration (30)"
+	set desc = "Begins rapidly regenerating.  Does not effect stuns or chemicals."
+
+	if(!usr.changeling)
+		usr << "\red You're not a changeling, something's wrong!"
+		return
+
+	if(usr.changeling.chem_charges < 30)
+		usr << "\red We don't have enough stored chemicals to do that!"
+		return
+
+	usr.changeling.chem_charges -= 30
+
+	var/mob/living/carbon/human/C = usr
+
+	spawn(0)
+		for(var/i = 0, i<10,i++)
+			if(C)
+				C.adjustBruteLoss(-10)
+				C.adjustToxLoss(-10)
+				C.adjustOxyLoss(-10)
+				C.adjustFireLoss(-10)
+				sleep(10)
+
+
+	usr.verbs -= /client/proc/changeling_rapidregen
+
+	spawn(5)
+		usr.verbs += /client/proc/changeling_rapidregen
+
+
+
+
+/client/proc/changeling_lsdsting()
+	set category = "Changeling"
+	set name = "Hallucination Sting (15)"
+	set desc = "Causes terror in the target."
+
+	if(!usr.changeling)
+		usr << "\red You're not a changeling, something's wrong!"
+		return
+
+	var/list/victims = list()
+	for(var/mob/living/carbon/C in oview(usr.changeling.sting_range))
+		victims += C
+	var/mob/T = input(usr, "Who do you wish to sting?") as null | anything in victims
+
+	if(T && T in view(usr.changeling.sting_range))
+
+		if(usr.stat)
+			usr << "\red Not when we are incapacitated."
+			return
+
+		if(usr.changeling.chem_charges < 15)
+			usr << "\red We don't have enough stored chemicals to do that!"
+			return
+
+		usr.changeling.chem_charges -= 15
+		usr.changeling.sting_range = 1
+
+		usr << "\blue We stealthily sting [T]."
+
+		if(!T.changeling)
+		//	T << "You feel a small prick." // No warning.
+
+			var/timer = rand(300,600)
+
+			spawn(timer)
+				if(T)
+					if(T.reagents)
+					//	T.reagents.add_reagent("LSD", 50) // Slight overkill, it seems.
+						T.hallucination = 400
+
+
+		usr.verbs -= /client/proc/changeling_lsdsting
+
+		spawn(5)
+			usr.verbs += /client/proc/changeling_lsdsting
+
+		return
+/client/proc/fireproof_core()
+	set category = "Malfunction"
+	set name = "Fireproof Core"
+	for(var/mob/living/silicon/ai/ai in world)
+		ai.fire_res_on_core = 1
+	usr.verbs -= /client/proc/fireproof_core
+	usr << "\red Core fireproofed."
+
+/client/proc/upgrade_turrets()
+	set category = "Malfunction"
+	set name = "Upgrade Turrets"
+	usr.verbs -= /client/proc/upgrade_turrets
+	for(var/obj/machinery/turret/turret in world)
+		turret.health += 30
+		turret.shot_delay = 20
+
+/client/proc/disable_rcd()
+	set category = "Malfunction"
+	set name = "Disable RCDs"
+	for(var/datum/AI_Module/large/disable_rcd/rcdmod in usr:current_modules)
+		if(rcdmod.uses > 0)
+			rcdmod.uses --
+			for(var/obj/item/weapon/rcd/rcd in world)
+				rcd.disabled = 1
+			for(var/obj/item/mecha_parts/mecha_equipment/tool/rcd/rcd in world)
+				rcd.disabled = 1
+			usr << "RCD-disabling pulse emitted."
+		else usr << "Out of uses."
+
+/client/proc/overload_machine(obj/machinery/M as obj in world)
+	set name = "Overload Machine"
+	set category = "Malfunction"
+	if (istype(M, /obj/machinery))
+		for(var/datum/AI_Module/small/overload_machine/overload in usr:current_modules)
+			if(overload.uses > 0)
+				overload.uses --
+				for(var/mob/V in hearers(M, null))
+					V.show_message("\blue You hear a loud electrical buzzing sound!", 2)
+				spawn(50)
+					explosion(get_turf(M), 0,1,1,0)
+					del(M)
+			else usr << "Out of uses."
+	else usr << "That's not a machine."
+
+/client/proc/blackout()
+	set category = "Malfunction"
+	set name = "Blackout"
+	for(var/datum/AI_Module/small/blackout/blackout in usr:current_modules)
+		if(blackout.uses > 0)
+			blackout.uses --
+			for(var/obj/machinery/power/apc/apc in world)
+				if(prob(30*apc.overload))
+					apc.overload_lighting()
+				else apc.overload++
+		else usr << "Out of uses."
+
+/client/proc/interhack()
+	set category = "Malfunction"
+	set name = "Hack intercept"
+	usr.verbs -= /client/proc/interhack
+	ticker.mode:hack_intercept()
+
+/client/proc/reactivate_camera(obj/machinery/camera/C as obj in world)
+	set name = "Reactivate Camera"
+	set category = "Malfunction"
+	if (istype (C, /obj/machinery/camera))
+		for(var/datum/AI_Module/small/reactivate_camera/camera in usr:current_modules)
+			if(camera.uses > 0)
+				if(!C.status)
+					C.status = !C.status
+					camera.uses --
+					for(var/mob/V in viewers(src, null))
+						V.show_message(text("\blue You hear a quiet click."))
+				else
+					usr << "This camera is either active, or not repairable."
+			else usr << "Out of uses."
+	else usr << "That's not a camera."
+
+
+
+
+/client/proc/rightandwrong()
+	set category = "Spells"
+	set desc = "Summon Guns"
+	set name = "Wizards: No sense of right and wrong!"
+
+	for(var/mob/living/carbon/human/H in world)
+		if(H.stat == 2 || !(H.client)) continue
+		if(is_special_character(H)) continue
+		if(prob(25))
+			ticker.mode.traitors += H.mind
+			H.mind.special_role = "traitor"
+			var/datum/objective/survive/survive = new
+			survive.owner = H.mind
+			H.mind.objectives += survive
+			H << "<B>You are the survivor! Your own safety matters above all else, trust no one and kill anyone who gets in your way. However, armed as you are, now would be the perfect time to settle that score or grab that pair of yellow gloves you've been eyeing...</B>"
+			var/obj_count = 1
+			for(var/datum/objective/OBJ in H.mind.objectives)
+				H << "<B>Objective #[obj_count]</B>: [OBJ.explanation_text]"
+				obj_count++
+		var/randomize = pick("taser","egun","laser","revolver","smg","decloner","deagle","gyrojet","pulse","silenced","cannon","shotgun","freeze","uzi","crossbow")
+		switch (randomize)
+			if("taser")
+				new /obj/item/weapon/gun/energy/taser(get_turf(H))
+			if("egun")
+				new /obj/item/weapon/gun/energy(get_turf(H))
+			if("laser")
+				new /obj/item/weapon/gun/energy/laser(get_turf(H))
+			if("revolver")
+				new /obj/item/weapon/gun/projectile(get_turf(H))
+			if("smg")
+				new /obj/item/weapon/gun/projectile/automatic/c20r(get_turf(H))
+			if("decloner")
+				new /obj/item/weapon/gun/energy/decloner(get_turf(H))
+			if("deagle")
+				new /obj/item/weapon/gun/projectile/deagle/camo(get_turf(H))
+			if("gyrojet")
+				new /obj/item/weapon/gun/projectile/gyropistol(get_turf(H))
+			if("pulse")
+				new /obj/item/weapon/gun/energy/pulse_rifle(get_turf(H))
+			if("silenced")
+				new /obj/item/weapon/gun/projectile/silenced(get_turf(H))
+			if("cannon")
+				new /obj/item/weapon/gun/energy/lasercannon(get_turf(H))
+			if("shotgun")
+				new /obj/item/weapon/gun/projectile/shotgun/combat(get_turf(H))
+			if("freeze")
+				new /obj/item/weapon/gun/energy/temperature(get_turf(H))
+			if("uzi")
+				new /obj/item/weapon/gun/projectile/automatic/mini_uzi(get_turf(H))
+			if("crossbow")
+				new /obj/item/weapon/gun/energy/crossbow(get_turf(H))
+	usr.verbs -= /client/proc/rightandwrong
+
+//BLIND
+
+/client/proc/blind()
+	set category = "Spells"
+	set name = "Blind"
+	set desc = "This spell temporarly blinds a single person and does not require wizard garb."
+
+	var/mob/M = input(usr, "Who do you wish to blind?") as mob in oview()
+
+	if(M)
+		if(usr.stat)
+			src << "Not when you are incapacitated."
+			return
+	//	if(!usr.casting()) return
+		usr.verbs -= /client/proc/blind
+		spawn(300)
+			usr.verbs += /client/proc/blind
+
+		usr.whisper("STI KALY")
+	//	usr.spellvoice()
+
+		var/obj/effect/overlay/B = new /obj/effect/overlay( M.loc )
+		B.icon_state = "blspell"
+		B.icon = 'icons/obj/wizard.dmi'
+		B.name = "spell"
+		B.anchored = 1
+		B.density = 0
+		B.layer = 4
+		M.canmove = 0
+		spawn(5)
+			del(B)
+			M.canmove = 1
+		M << text("\blue Your eyes cry out in pain!")
+		M.disabilities |= 1
+		spawn(300)
+			M.disabilities &= ~1
+		M.eye_blind = 10
+		M.eye_blurry = 20
+		return
+
+//MAGIC MISSILE
+
+/client/proc/magicmissile()
+	set category = "Spells"
+	set name = "Magic missile"
+	set desc = "This spell fires several, slow moving, magic projectiles at nearby targets."
+	if(usr.stat)
+		src << "Not when you are incapacitated."
+		return
+	if(!usr.casting()) return
+
+	usr.say("FORTI GY AMA")
+	usr.spellvoice()
+
+	for (var/mob/living/M as mob in oview())
+		spawn(0)
+			var/obj/effect/overlay/A = new /obj/effect/overlay( usr.loc )
+			A.icon_state = "magicm"
+			A.icon = 'icons/obj/wizard.dmi'
+			A.name = "a magic missile"
+			A.anchored = 0
+			A.density = 0
+			A.layer = 4
+			var/i
+			for(i=0, i<20, i++)
+				if (!istype(M)) //it happens sometimes --rastaf0
+					break
+				var/obj/effect/overlay/B = new /obj/effect/overlay( A.loc )
+				B.icon_state = "magicmd"
+				B.icon = 'icons/obj/wizard.dmi'
+				B.name = "trail"
+				B.anchored = 1
+				B.density = 0
+				B.layer = 3
+				spawn(5)
+					del(B)
+				step_to(A,M,0)
+				if (get_dist(A,M) == 0)
+					M.Weaken(5)
+					M.take_overall_damage(0,10)
+					del(A)
+					return
+				sleep(5)
+			del(A)
+
+	usr.verbs -= /client/proc/magicmissile
+	spawn(100)
+		usr.verbs += /client/proc/magicmissile
+
+//SMOKE
+
+/client/proc/smokecloud()
+
+	set category = "Spells"
+	set name = "Smoke"
+	set desc = "This spell spawns a cloud of choking smoke at your location and does not require wizard garb."
+	if(usr.stat)
+		src << "Not when you are incapacitated."
+		return
+//	if(!usr.casting()) return
+	usr.verbs -= /client/proc/smokecloud
+	spawn(120)
+		usr.verbs += /client/proc/smokecloud
+	var/datum/effect/effect/system/bad_smoke_spread/smoke = new /datum/effect/effect/system/bad_smoke_spread()
+	smoke.set_up(10, 0, usr.loc)
+	smoke.start()
+
+
+//SLEEP SMOKE
+
+///client/proc/smokecloud()
+//
+//	set category = "Spells"
+//	set name = "Sleep Smoke"
+//	set desc = "This spell spawns a cloud of choking smoke at your location and does not require wizard garb. But, without the robes, you have no protection against the magic."
+//	if(usr.stat)
+//		src << "Not when you are incapacitated."
+//		return
+//	if(!usr.casting()) return
+//	usr.verbs -= /client/proc/smokecloud
+//	spawn(120)
+//		usr.verbs += /client/proc/smokecloud
+//	var/datum/effect/system/sleep_smoke_spread/smoke = new /datum/effect/system/sleep_smoke_spread()
+//	smoke.set_up(10, 0, usr.loc)
+//	smoke.start()
+
+//FORCE WALL
+
+/client/proc/forcewall()
+
+	set category = "Spells"
+	set name = "Forcewall"
+	set desc = "This spell creates an unbreakable wall that lasts for 30 seconds and does not need wizard garb."
+	if(usr.stat)
+		src << "Not when you are incapacitated."
+		return
+//	if(!usr.casting()) return
+
+	usr.verbs -= /client/proc/forcewall
+	spawn(100)
+		usr.verbs += /client/proc/forcewall
+	var/forcefield
+
+	usr.whisper("TARCOL MINTI ZHERI")
+//	usr.spellvoice()
+
+	forcefield =  new /obj/effect/forcefield(locate(usr.x,usr.y,usr.z))
+	spawn (300)
+		del (forcefield)
+	return
+
+//FIREBALLAN
+
+/client/proc/fireball(mob/living/T as mob in oview())
+	set category = "Spells"
+	set name = "Fireball"
+	set desc = "This spell fires a fireball at a target and does not require wizard garb."
+	if(usr.stat)
+		src << "Not when you are incapacitated."
+		return
+//	if(!usr.casting()) return
+
+	usr.verbs -= /client/proc/fireball
+	spawn(200)
+		usr.verbs += /client/proc/fireball
+
+	usr.say("ONI SOMA")
+	//	usr.spellvoice()
+
+	var/obj/effect/overlay/A = new /obj/effect/overlay( usr.loc )
+	A.icon_state = "fireball"
+	A.icon = 'icons/obj/wizard.dmi'
+	A.name = "a fireball"
+	A.anchored = 0
+	A.density = 0
+	var/i
+	for(i=0, i<100, i++)
+		step_to(A,T,0)
+		if (get_dist(A,T) <= 1)
+			T.take_overall_damage(20,25)
+			explosion(T.loc, -1, -1, 2, 2)
+			del(A)
+			return
+		sleep(2)
+	del(A)
+	return
+
+//KNOCK
+
+/client/proc/knock()
+	set category = "Spells"
+	set name = "Knock"
+	set desc = "This spell opens nearby doors and does not require wizard garb."
+	if(usr.stat)
+		src << "Not when you are incapacitated."
+		return
+//	if(!usr.casting()) return
+	usr.verbs -= /client/proc/knock
+	spawn(100)
+		usr.verbs += /client/proc/knock
+
+	usr.whisper("AULIE OXIN FIERA")
+//	usr.spellvoice()
+
+	for(var/obj/machinery/door/G in oview(3))
+		spawn(1)
+			G.open()
+	return
+
+//KILL
+
+/*
+/mob/proc/kill(mob/living/M as mob in oview(1))
+	set category = "Spells"
+	set name = "Disintegrate"
+	set desc = "This spell instantly kills somebody adjacent to you with the vilest of magick."
+	if(usr.stat)
+		src << "Not when you are incapacitated."
+		return
+	if(!usr.casting()) return
+	usr.verbs -= /mob/proc/kill
+	spawn(600)
+		usr.verbs += /mob/proc/kill
+
+	usr.say("EI NATH")
+	usr.spellvoice()
+
+	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	s.set_up(4, 1, M)
+	s.start()
+
+	M.dust()
+*/
+
+//DISABLE TECH
+
+/client/proc/blink()
+	set category = "Spells"
+	set name = "Blink"
+	set desc = "This spell randomly teleports you a short distance."
+	if(usr.stat)
+		src << "Not when you are incapacitated."
+		return
+	if(!usr.casting()) return
+	var/list/turfs = new/list()
+	for(var/turf/T in orange(6))
+		if(istype(T,/turf/space)) continue
+		if(T.density) continue
+		if(T.x>world.maxx-4 || T.x<4)	continue	//putting them at the edge is dumb
+		if(T.y>world.maxy-4 || T.y<4)	continue
+		turfs += T
+	if(!turfs.len) turfs += pick(/turf in orange(6))
+	var/datum/effect/effect/system/harmless_smoke_spread/smoke = new /datum/effect/effect/system/harmless_smoke_spread()
+	smoke.set_up(10, 0, usr.loc)
+	smoke.start()
+	var/turf/picked = pick(turfs)
+	if(!isturf(picked)) return
+	usr.loc = picked
+	usr.verbs -= /client/proc/blink
+	spawn(40)
+		usr.verbs += /client/proc/blink
+
+//TELEPORT
+
+/client/proc/jaunt()
+	set category = "Spells"
+	set name = "Ethereal Jaunt"
+	set desc = "This spell creates your ethereal form, temporarily making you invisible and able to pass through walls."
+	if(usr.stat)
+		src << "Not when you are incapacitated."
+		return
+	if(!usr.casting()) return
+	usr.verbs -= /client/proc/jaunt
+	spawn(300)
+		usr.verbs += /client/proc/jaunt
+	spell_jaunt(usr)
+
+/client/proc/mutate()
+	set category = "Spells"
+	set name = "Mutate"
+	set desc = "This spell causes you to turn into a hulk and gain laser vision for a short while."
+	if(usr.stat)
+		src << "Not when you are incapacitated."
+		return
+	if(!usr.casting()) return
+	usr.verbs -= /client/proc/mutate
+	spawn(400)
+		usr.verbs += /client/proc/mutate
+
+	usr.say("BIRUZ BENNAR")
+	usr.spellvoice()
+
+	usr << text("\blue You feel strong! You feel pressure building behind your eyes!")
+	if (!(usr.mutations & HULK))
+		usr.mutations |= HULK
+	if (!(usr.mutations & LASER))
+		usr.mutations |= LASER
+	spawn (300)
+		if (usr.mutations & LASER) usr.mutations &= ~LASER
+		if (usr.mutations & HULK) usr.mutations &= ~HULK
+	return
+
+//BODY SWAP /N
+

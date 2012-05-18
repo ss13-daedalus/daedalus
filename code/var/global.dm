@@ -316,3 +316,30 @@ var/global
 		/mob/living/silicon/ai/proc/ai_roster,
 	)
 	
+//Few global vars to track the blob
+var
+	list/blobs = list()
+	list/blob_cores = list()
+	list/blob_nodes = list()
+
+
+
+	list/powers = typesof(/obj/effect/proc_holder/power) //needed for the badmin verb for now
+	list/obj/effect/proc_holder/power/powerinstances = list()
+
+	
+	hsboxspawn = 1
+	list
+		hrefs = list(
+					"hsbsuit" = "Suit Up (Space Travel Gear)",
+					"hsbmetal" = "Spawn 50 Metal",
+					"hsbglass" = "Spawn 50 Glass",
+					"hsbairlock" = "Spawn Airlock",
+					"hsbregulator" = "Spawn Air Regulator",
+					"hsbfilter" = "Spawn Air Filter",
+					"hsbcanister" = "Spawn Canister",
+					"hsbfueltank" = "Spawn Welding Fuel Tank",
+					"hsbwater	tank" = "Spawn Water Tank",
+					"hsbtoolbox" = "Spawn Toolbox",
+					"hsbmedkit" = "Spawn Medical Kit")
+
