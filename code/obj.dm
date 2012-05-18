@@ -73,7 +73,6 @@
 			return 0
 	return 1
 
-
 /obj/proc/check_access_list(var/list/L)
 	if(!src.req_access  && !src.req_one_access)	return 1
 	if(!istype(src.req_access, /list))	return 1
@@ -88,3 +87,37 @@
 		if(!(req in L)) //doesn't have this access - Leave like this DMTG
 			return 0
 	return 1
+
+/obj/proc/GetJobName()
+	if (!istype(src, /obj/item/device/pda) && !istype(src,/obj/item/weapon/card/id))
+		return
+
+	var/jobName
+	var/list/accesses = list()
+
+	if(istype(src, /obj/item/device/pda))
+		if(src:id)
+			jobName = src:id:assignment
+			accesses = src:id:access
+	if(istype(src, /obj/item/weapon/card/id))
+		jobName = src:assignment
+		accesses = src:access
+
+	if(jobName in get_all_jobs())
+		return jobName
+
+	// hack for alt titles
+	if(istype(loc, /mob))
+		var/mob/M = loc
+		if(M.mind.role_alt_title == jobName && M.mind.assigned_role in get_all_jobs())
+			return M.mind.assigned_role
+
+	var/centcom = 0
+	for(var/i = 1, i <= accesses.len, i++)
+		if(accesses[i] > 100)
+			centcom = 1
+			break
+	if(centcom)
+		return "centcom"
+	else
+		return "Unknown"

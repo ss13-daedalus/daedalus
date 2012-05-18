@@ -713,40 +713,6 @@ proc/equalize_gases(datum/gas_mixture/list/gases)
 /proc/get_all_centcom_jobs()
 	return list("VIP Guest","Custodian","Thunderdome Overseer","Intel Officer","Medical Officer","Death Commando","Research Officer","BlackOps Commander","Supreme Commander")
 
-/obj/proc/GetJobName()
-	if (!istype(src, /obj/item/device/pda) && !istype(src,/obj/item/weapon/card/id))
-		return
-
-	var/jobName
-	var/list/accesses = list()
-
-	if(istype(src, /obj/item/device/pda))
-		if(src:id)
-			jobName = src:id:assignment
-			accesses = src:id:access
-	if(istype(src, /obj/item/weapon/card/id))
-		jobName = src:assignment
-		accesses = src:access
-
-	if(jobName in get_all_jobs())
-		return jobName
-
-	// hack for alt titles
-	if(istype(loc, /mob))
-		var/mob/M = loc
-		if(M.mind.role_alt_title == jobName && M.mind.assigned_role in get_all_jobs())
-			return M.mind.assigned_role
-
-	var/centcom = 0
-	for(var/i = 1, i <= accesses.len, i++)
-		if(accesses[i] > 100)
-			centcom = 1
-			break
-	if(centcom)
-		return "centcom"
-	else
-		return "Unknown"
-
 proc/process_teleport_locs()
 	for(var/area/AR in world)
 		if(istype(AR, /area/shuttle) || istype(AR, /area/syndicate_station) || istype(AR, /area/wizard_station)) continue
@@ -808,3 +774,189 @@ proc/process_ghost_teleport_locs()
 	if(istype(O, /obj/item/device/assembly/signaler))
 		return 1
 	return 0
+
+/proc/GenerateTheft(var/job,var/datum/mind/traitor)
+	var/list/datum/objective/objectives = list()
+	var/list/weight = list()
+	var/index = 1
+
+	for(var/o in typesof(/datum/objective/steal))
+		if(o != /datum/objective/steal)		//Make sure not to get a blank steal objective.
+			var/datum/objective/target = new o(null,job)
+			weight += list("[index]" = target.weight)
+			objectives += target
+			index++
+	return list(objectives, weight)
+
+/proc/GenerateAssassinate(var/job,var/datum/mind/traitor)
+	var/list/datum/objective/assassinate/missions = list()
+	var/list/weight = list()
+	var/index = 1
+
+	for(var/datum/mind/target in ticker.minds)
+		if((target != traitor) && istype(target.current, /mob/living/carbon/human))
+			if(target && target.current)
+				var/datum/objective/target_obj = new /datum/objective/assassinate(null,job,target)
+				weight += list("[index]" = target_obj.weight)
+				missions += target_obj
+				index++
+	return list(missions, weight)
+
+/proc/GenerateFrame(var/job,var/datum/mind/traitor)
+	var/list/datum/objective/frame/missions = list()
+	var/list/weight = list()
+	var/index = 1
+
+	for(var/datum/mind/target in ticker.minds)
+		if((target != traitor) && istype(target.current, /mob/living/carbon/human))
+			if(target && target.current)
+				var/datum/objective/target_obj = new /datum/objective/frame(null,job,target)
+				weight += list("[index]" = target_obj.weight)
+				missions += target_obj
+				index++
+	return list(missions, weight)
+
+/proc/GenerateProtection(var/job,var/datum/mind/traitor)
+	var/list/datum/objective/frame/missions = list()
+	var/list/weight = list()
+	var/index = 1
+
+	for(var/datum/mind/target in ticker.minds)
+		if((target != traitor) && istype(target.current, /mob/living/carbon/human))
+			if(target && target.current)
+				var/datum/objective/target_obj = new /datum/objective/protection(null,job,target)
+				weight += list("[index]" = target_obj.weight)
+				missions += target_obj
+				index++
+	return list(missions, weight)
+
+/proc/PickObjectiveFromList(var/list/objectivesArray)
+	var/list/datum/objectives = objectivesArray[1]
+	var/pick_index = text2num(pickweight(objectivesArray[2]))
+	if (pick_index > objectives.len || pick_index < 1)
+		log_admin("Objective picking failed. Error logged. One or more traitors will need to be manually-assigned objectives. Pick_index was [pick_index].  Tell Sky.")
+		message_admins("Objective picking failed. Error logged. One or more traitors will need to be manually-assigned objectives. Pick_index was [pick_index]. Tell Sky.")
+		CRASH("Objective picking failed. Pick_index was [pick_index].")
+
+	return objectives[pick_index]
+
+/proc/RemoveObjectiveFromList(var/list/objectiveArray, var/datum/objective/objective)
+	var/list/datum/objective/temp = objectiveArray[1]
+	var/list/weight = objectiveArray[2]
+	var/index = temp.Find(objective)
+	if(index == temp.len)
+		temp.Cut(index)
+		weight.Cut(index)
+	else
+		temp.Cut(index, index+1)
+		weight.Cut(index, index+1)
+	return list(temp,weight)
+
+/proc/SelectObjectives(var/job,var/datum/mind/traitor,var/hijack = 0)
+	var/list/chosenobjectives = list()
+	var/list/theftobjectives = GenerateTheft(job,traitor)		//Separated all the objective types so they can be picked independantly of each other.
+	var/list/killobjectives = GenerateAssassinate(job,traitor)
+	var/list/frameobjectives = GenerateFrame(job,traitor)
+	var/list/protectobjectives = GenerateProtection(job,traitor)
+	//var/points
+	var/totalweight
+	var/selectobj
+	var/conflict
+
+	while(totalweight < 100)
+		selectobj = rand(1,100)	//Randomly determine the type of objective to be given.
+		if(!length(killobjectives[1]) || !length(protectobjectives[1])|| !length(frameobjectives[1]))	//If any of these lists are empty, just give them theft objectives.
+			var/datum/objective/objective = PickObjectiveFromList(theftobjectives)
+			chosenobjectives += objective
+			totalweight += objective.points
+			theftobjectives = RemoveObjectiveFromList(theftobjectives, objective)
+		else switch(selectobj)
+			if(1 to 55)		//Theft Objectives (55% chance)
+				var/datum/objective/objective = PickObjectiveFromList(theftobjectives)
+				for(1 to 10)
+					if(objective.points + totalweight <= 100)
+						break
+					objective = PickObjectiveFromList(theftobjectives)
+				chosenobjectives += objective
+				totalweight += objective.points
+				theftobjectives = RemoveObjectiveFromList(theftobjectives, objective)
+			if(56 to 92)	//Assassination Objectives (37% chance)
+				var/datum/objective/assassinate/objective = PickObjectiveFromList(killobjectives)
+				world << objective
+				for(1 to 10)
+					if(objective.points + totalweight <= 100)
+						break
+					objective = PickObjectiveFromList(killobjectives)
+				if(!objective)
+					continue
+				for(var/datum/objective/protection/conflicttest in chosenobjectives)	//Check to make sure we aren't telling them to Assassinate somebody they need to Protect.
+					if(conflicttest.target == objective.target)
+						conflict = 1
+						break
+				for(var/datum/objective/frame/conflicttest in chosenobjectives)	//Check to make sure we aren't telling them to Protect somebody they need to Assassinate.
+					if(conflicttest.target == objective.target)
+						conflict = 1
+						break
+				if(!conflict)
+					chosenobjectives += objective
+					totalweight += objective.points
+					killobjectives = RemoveObjectiveFromList(killobjectives, objective)
+				conflict = 0
+			if(93 to 95)	//Framing Objectives (3% chance)
+				var/datum/objective/objective = PickObjectiveFromList(frameobjectives)
+				for(1 to 10)
+					if(objective.points + totalweight <= 100)
+						break
+					objective = PickObjectiveFromList(frameobjectives)
+				if(!objective)
+					continue
+				for(var/datum/objective/protection/conflicttest in chosenobjectives)	//Check to make sure we aren't telling them to Assassinate somebody they need to Protect.
+					if(conflicttest.target == objective.target)
+						conflict = 1
+						break
+				for(var/datum/objective/assassinate/conflicttest in chosenobjectives)	//Check to make sure we aren't telling them to Protect somebody they need to Assassinate.
+					if(conflicttest.target == objective.target)
+						conflict = 1
+						break
+				if(!conflict)
+					chosenobjectives += objective
+					totalweight += objective.points
+					frameobjectives = RemoveObjectiveFromList(frameobjectives, objective)
+				conflict = 0
+			if(96 to 100)	//Protection Objectives (5% chance)
+				var/datum/objective/protection/objective = PickObjectiveFromList(protectobjectives)
+				for(1 to 10)
+					if(objective.points + totalweight <= 100)
+						break
+					objective = PickObjectiveFromList(protectobjectives)
+				if(!objective)
+					continue
+				for(var/datum/objective/assassinate/conflicttest in chosenobjectives)	//Check to make sure we aren't telling them to Protect somebody they need to Assassinate.
+					if(conflicttest.target == objective.target)
+						conflict = 1
+						break
+				for(var/datum/objective/frame/conflicttest in chosenobjectives)	//Check to make sure we aren't telling them to Protect somebody they need to Assassinate.
+					if(conflicttest.target == objective.target)
+						conflict = 1
+						break
+				if(!conflict)
+					chosenobjectives += objective
+					totalweight += objective.points
+					protectobjectives = RemoveObjectiveFromList(protectobjectives, objective)
+				conflict = 0
+
+	var/hasendgame = 0
+	for(var/datum/objective/o in chosenobjectives)
+		if(o.type == /datum/objective/hijack || o.type == /datum/objective/escape)
+			hasendgame = 1
+			break
+	for(var/datum/objective/o in chosenobjectives)
+		if(o.explanation_text == "Free Objective")
+			del(o) //Cleaning up any sillies.
+	if(hasendgame == 0)
+		if(hijack)
+			chosenobjectives += new /datum/objective/hijack(null,job)
+		else
+			chosenobjectives += new /datum/objective/escape(null,job)
+	return chosenobjectives
+
