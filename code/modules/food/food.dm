@@ -42,7 +42,7 @@
 				M.emote("nibbles away at the [src]")
 
 /obj/item/weapon/reagent_containers/food/snacks/candy
-	name = "candy"
+	name = "Almond Bar"
 	desc = "Nougat love it or hate it."
 	icon_state = "candy"
 	trash = "candy"
@@ -63,7 +63,7 @@
 		bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/chips
-	name = "chips"
+	name = "Potato Chips"
 	desc = "Commander Riker's What-The-Crisps"
 	icon_state = "chips"
 	trash = "chips"
@@ -453,16 +453,6 @@
 		..()
 		reagents.add_reagent("nutriment", 2)
 
-/obj/item/weapon/reagent_containers/food/snacks/burger/clown
-	name = "Clown Burger"
-	desc = "This tastes funny..."
-	icon_state = "clownburger"
-
-/obj/item/weapon/reagent_containers/food/snacks/burger/mime
-	name = "Mime Burger"
-	desc = "Its taste defies language."
-	icon_state = "mimeburger"
-
 /obj/item/weapon/reagent_containers/food/snacks/omelette
 	name = "Omelette Du Fromage"
 	desc = "That's all you can say!"
@@ -683,7 +673,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/sosjerky
-	name = "Scaredy's Private Reserve Beef Jerky"
+	name = "Jim's Spicy Jerky"
 	icon_state = "sosjerky"
 	desc = "Beef jerky made from the finest space cows."
 	trash = "sosjerky"
@@ -693,7 +683,7 @@
 		bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/no_raisin
-	name = "4no Raisins"
+	name = "Raisins"
 	icon_state = "4no_raisins"
 	desc = "Best raisins in the universe. Not sure why."
 	trash = "raisins"
@@ -702,7 +692,7 @@
 		reagents.add_reagent("nutriment", 6)
 
 /obj/item/weapon/reagent_containers/food/snacks/spacetwinkie
-	name = "Space Twinkie"
+	name = "Galatic Twinkie"
 	icon_state = "space_twinkie"
 	desc = "Guaranteed to survive longer then you will."
 	New()
@@ -721,7 +711,7 @@
 		bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/syndicake
-	name = "Syndi-Cakes"
+	name = "Zingers"
 	icon_state = "syndi_cakes"
 	desc = "An extremely moist snack cake that tastes just as good after being nuked."
 	trash = "syndi_cakes"
@@ -902,17 +892,6 @@
 		reagents.add_reagent("water", 10)
 		bitesize = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/clownstears
-	name = "Clown's Tears"
-	desc = "Not very funny."
-	icon_state = "clownstears"
-	New()
-		..()
-		reagents.add_reagent("nutriment", 1)
-		reagents.add_reagent("banana", 5)
-		reagents.add_reagent("water", 10)
-		bitesize = 5
-
 /obj/item/weapon/reagent_containers/food/snacks/vegetablesoup
 	name = "Vegetable soup"
 	desc = "A true vegan meal" //TODO
@@ -1017,22 +996,7 @@
 		reagents.add_reagent("nutriment", 6)
 		reagents.add_reagent("frostoil", 3)
 		reagents.add_reagent("tomatojuice", 2)
-		bitesize = 5
-
-/obj/item/weapon/reagent_containers/food/snacks/telebacon
-	name = "Tele Bacon"
-	desc = "It tastes a little odd but it is still delicious."
-	icon_state = "bacon"
-	var/obj/item/device/radio/beacon/bacon/baconbeacon
-	bitesize = 2
-	New()
-		..()
-		reagents.add_reagent("nutriment", 4)
-		baconbeacon = new /obj/item/device/radio/beacon/bacon(src)
-	On_Consume()
-		if(!reagents.total_volume)
-			baconbeacon.loc = usr
-			baconbeacon.digest_delay()
+		bitesize = 4
 
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube
@@ -1074,16 +1038,6 @@
 		desc = "Still wrapped in some paper."
 		icon_state = "monkeycubewrap"
 		wrapped = 1
-
-
-/obj/item/weapon/reagent_containers/food/snacks/spellburger
-	name = "Spell Burger"
-	desc = "This is absolutely Ei Nath."
-	icon_state = "spellburger"
-	New()
-		..()
-		reagents.add_reagent("nutriment", 6)
-		bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/bigbiteburger
 	name = "Big Bite Burger"
