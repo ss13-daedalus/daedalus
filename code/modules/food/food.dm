@@ -692,7 +692,7 @@
 		reagents.add_reagent("nutriment", 6)
 
 /obj/item/weapon/reagent_containers/food/snacks/spacetwinkie
-	name = "Galatic Twinkie"
+	name = "Galactic Twinkie"
 	icon_state = "space_twinkie"
 	desc = "Guaranteed to survive longer then you will."
 	New()
