@@ -15,7 +15,7 @@
  */
 
 /* Regular expression to detect a class/proc/var top-level definition and extract the type name */
-type_regex = /^\/?([a-zA-Z0-9_][a-zA-Z0-9_\/]*\(?)/;
+type_regex = /^[a-zA-Z0-9_]*(\/[a-zA-Z0-9_]+)*\(?/;
 
 /* Comment blocks and file header are saved here temporarily so they can be later sent to another file */
 saved_text = "";
@@ -48,15 +48,14 @@ state default
 	/* Any filepath like definition at the start of a line begins a new file */
 	type_regex {
 		text = $0;
-		type_name = $1;
 
 		/* Safety check to make sure input doesn't already contain the "here document" delimiter */
 		if(regmatch(text, delim_regex)) {
 			panic("!!! SHELL CODE INJECTION DETECTED !!!");
 		}
 
-		/* Isolate the typename and its base directory which will hold the output file */
-		type_name = regsub(type_name, /\/(var|proc|verb).*/, "");
+		/* Isolate the typename which will hold the output file */
+		type_name = regsub(text, /\/(var|proc|verb).*/, "");
 		type_name = regsub(type_name, /\/[a-zA-Z0-9_]+\(/, "");
 
 		/* Check for global proc definitions which go into code/proc.dm */
