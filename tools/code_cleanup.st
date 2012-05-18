@@ -33,6 +33,15 @@ eol = "\n";
 delim_print = "######################################################################";
 delim_regex = /######################################################################/;
 
+/*
+ * For some reason, I need a dummy start state here for the END to work properly inside the "default".
+ * However, the script must still be invoked with "-f default" for it to work properly.
+ */
+start
+{
+	call(default);
+}
+
 state default
 {
 	/* Safety check to make sure input doesn't already contain the "here document" delimiter */
@@ -59,18 +68,18 @@ state default
 		type_name = regsub(type_name, /\/[a-zA-Z0-9_]+\(/, "");
 
 		/* Check for global proc definitions which go into code/proc.dm */
-		if(regmatch(type_name, /^\/?proc/)) {
+		if(regmatch(text, /^\/?proc/)) {
 			type_name = "proc";
 		}
 
 		/* Check for const var definitions which go into code/var/const.dm as an indented block */
-		else if(regmatch(type_name, /^var\/const\//)) {
+		else if(regmatch(text, /^\/?var\/const\//)) {
 			type_name = "var/const";
 			text = regsub(text, /^\/?var\/const\//, "\t");
 		}
 
 		/* Check for global var definitions which go into code/var/global.dm as an indented block */
-		else if(regmatch(type_name, /^var(\/global)?\//)) {
+		else if(regmatch(text, /^\/?var(\/global)?\//)) {
 			type_name = "var/global";
 			text = regsub(text, /^\/?var(\/global)?\//, "\t");
 		}
@@ -111,6 +120,9 @@ state default
 
 	/* Triggered at the end of input to close the final "here document" if one is open */
 	END {
+		/* Make sure any comment blocks accumulated from the end of the input are printed to the output */
+		dump("");
+
 		/* Close the last shell "here document" if one is open */
 		if(length(output)) {
 			print(eol, delim_print, "\n");
