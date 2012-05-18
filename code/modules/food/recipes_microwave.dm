@@ -1,20 +1,6 @@
 
 // see code/data/recipe.dm
 
-/datum/recipe/telebacon
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/sliceable/meat,
-		/obj/item/device/assembly/signaler
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/telebacon
-
-/datum/recipe/syntitelebacon
-	items = list(
-		/obj/item/weapon/syntiflesh,
-		/obj/item/device/assembly/signaler
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/telebacon
-
 /datum/recipe/friedegg
 	reagents = list("sodiumchloride" = 1, "blackpepper" = 1)
 	items = list(
@@ -108,21 +94,6 @@
 		/obj/item/weapon/ectoplasm
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/ghostburger
-
-/datum/recipe/clownburger
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/bun,
-		/obj/item/clothing/mask/gas/clown_hat,
-		/* /obj/item/weapon/reagent_containers/food/snacks/grown/banana, */
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/burger/clown
-
-/datum/recipe/mimeburger
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/bun,
-		/obj/item/clothing/head/beret
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/burger/mime
 
 /datum/recipe/waffles
 	reagents = list("sugar" = 5)
@@ -606,20 +577,6 @@
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/plump_pie
 
-/datum/recipe/spellburger
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/burger,
-		/obj/item/clothing/head/wizard/fake,
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/spellburger
-
-/datum/recipe/spellburger
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/burger,
-		/obj/item/clothing/head/wizard,
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/spellburger
-
 /datum/recipe/enchiladas
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/cutlet,
@@ -912,14 +869,6 @@
 	items = list(
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/metroidsoup
-
-/datum/recipe/clownstears
-	reagents = list("water" = 10)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/grown/banana,
-		/obj/item/weapon/ore/clown,
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/clownstears
 
 /datum/recipe/boiledmetroidcore
 	reagents = list("water" = 5)
