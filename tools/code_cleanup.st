@@ -64,7 +64,7 @@ state default
 		}
 
 		/* Isolate the typename which will hold the output file */
-		type_name = regsub(text, /\/(var|proc|verb).*/, "");
+		type_name = regsub(text, /\/(var|proc|verb)(\/|$)?.*/, "");
 		type_name = regsub(type_name, /\/[a-zA-Z0-9_]+\(/, "");
 
 		/* Check for global proc definitions which go into code/proc.dm */
@@ -84,8 +84,12 @@ state default
 			text = regsub(text, /^\/?var(\/global)?\//, "\t");
 		}
 
+		/* Remove leading slash from the type name to avoid a double // in the file path */
+		type_name = regsub(type_name, /^\//, "");
+
 		/* Only start a new output file if if is different from the current output file or it's the first one */
 		if(strcmp(output, type_name) != 0) {
+
 			/* If file output has already started, terminate the previous shell "here document" */
 			if(length(output)) {
 				print(delim_print, "\n");
