@@ -1,41 +1,4 @@
-/obj/item/weapon/storage/photo_album
-	name = "Photo album"
-	icon = 'icons/obj/items.dmi'
-	icon_state = "album"
-	item_state = "briefcase"
-	can_hold = list("/obj/item/weapon/photo",)
-
-/obj/item/weapon/storage/photo_album/MouseDrop(obj/over_object as obj)
-
-	if ((istype(usr, /mob/living/carbon/human) || (ticker && ticker.mode.name == "monkey")))
-		var/mob/M = usr
-		if (!( istype(over_object, /obj/screen) ))
-			return ..()
-		playsound(src.loc, "rustle", 50, 1, -5)
-		if ((!( M.restrained() ) && !( M.stat ) && M.back == src))
-			if (over_object.name == "r_hand")
-				if (!( M.r_hand ))
-					M.u_equip(src)
-					M.r_hand = src
-			else
-				if (over_object.name == "l_hand")
-					if (!( M.l_hand ))
-						M.u_equip(src)
-						M.l_hand = src
-			M.update_clothing()
-			src.add_fingerprint(usr)
-			return
-		if(over_object == usr && in_range(src, usr) || usr.contents.Find(src))
-			if (usr.s_active)
-				usr.s_active.close(usr)
-			src.show_to(usr)
-			return
-	return
-
-/obj/item/weapon/storage/photo_album/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	..()
-
-/obj/item/weapon/camera_test
+/obj/item/weapon/camera
 	name = "camera"
 	icon = 'icons/obj/items.dmi'
 	desc = "A Polaroid camera. It has 30 photos left."
@@ -51,66 +14,10 @@
 	var/pictures_left = 30
 	var/can_use = 1
 
-/obj/item/weapon/photo
-	name = "photo"
-	icon = 'icons/obj/items.dmi'
-	icon_state = "photo"
-	item_state = "clipboard"
-	w_class = 1.0
-	var/icon/img	//Big photo image
-	var/scribble	//Scribble on the back
-
-/obj/item/weapon/camera_film
-	name = "film cartridge"
-	icon = 'icons/obj/items.dmi'
-	desc = "A camera film cartridge. Insert it into a camera to reload it."
-	icon_state = "film"
-	item_state = "electropack"
-	w_class = 1.0
-
-/obj/item/weapon/photo/attack_self(var/mob/user as mob)
-		..()
-		examine()
-
-/obj/item/weapon/photo/attackby(obj/item/weapon/P as obj, mob/user as mob)
-	if (istype(P, /obj/item/weapon/pen) || istype(P, /obj/item/toy/crayon))
-		var/txt = scrub_input(usr, "What would you like to write on the back?", "Photo Writing", null)  as text
-		txt = copytext(txt, 1, 128)
-		if ((loc == usr && usr.stat == 0))
-			scribble = txt
-
-	..()
-
-/obj/item/weapon/photo/examine()
-	set src in oview(2)
-	..()
-	if (scribble)
-		usr << "\blue you see something written on photo's back. "
-	usr << browse_rsc(src.img, "tmp_photo.png")
-	usr << browse("<html><head><title>Photo</title></head>" \
-		+ "<body style='overflow:hidden'>" \
-		+ "<div> <img src='tmp_photo.png' width = '180'" \
-		+ "[scribble ? "<div> Writings on the back:<br><i>[scribble]</i>" : ]"\
-		+ "</body></html>", "window=book;size=200x[scribble ? 400 : 200]")
-	onclose(usr, "[name]")
-
-	return
-/obj/item/weapon/photo/verb/rename()
-	set name = "Rename photo"
-	set category = "Object"
-	set src in usr
-
-	var/n_name = input(usr, "What would you like to label the photo?", "Photo Labelling", src.name)  as text
-	n_name = copytext(n_name, 1, 32)
-	if ((loc == usr && usr.stat == 0))
-		name = "photo[(n_name ? text("- '[n_name]'") : null)]"
-	add_fingerprint(usr)
-	return
-//////////////////////////////////////////////////////////////////////////////////////////////////
-/obj/item/weapon/camera_test/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/weapon/camera/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	return
 
-/obj/item/weapon/camera_test/proc/get_icon(turf/the_turf as turf)
+/obj/item/weapon/camera/proc/get_icon(turf/the_turf as turf)
 	//Bigger icon base to capture those icons that were shifted to the next tile
 	//i.e. pretty much all wall-mounted machinery
 	var/icon/res = icon('icons/effects/96x96.dmi',"")
@@ -147,7 +54,7 @@
 				res.Blend(img,ICON_OVERLAY,32+A.pixel_x,32+A.pixel_y)
 	return res
 
-/obj/item/weapon/camera_test/attack_self(var/mob/user as mob)
+/obj/item/weapon/camera/attack_self(var/mob/user as mob)
 	..()
 	if (can_use)
 		can_use = 0
@@ -158,7 +65,7 @@
 		icon_state = "camera"
 		usr << "\blue You turn the camera on."
 
-/obj/item/weapon/camera_test/proc/get_mobs(turf/the_turf as turf)
+/obj/item/weapon/camera/proc/get_mobs(turf/the_turf as turf)
 	var/mob_detail
 	for(var/mob/living/carbon/A in the_turf)
 		if(A.invisibility) continue
@@ -177,7 +84,7 @@
 			mob_detail += "You can also see [A] on the photo[A:health < 75 ? " - [A] looks hurt":""].[holding ? " [holding]":"."]."
 	return mob_detail
 
-/obj/item/weapon/camera_test/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
+/obj/item/weapon/camera/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
 	if (!can_use || !pictures_left || ismob(target.loc)) return
 
 	var/x_c = target.x - 1
@@ -223,7 +130,7 @@
 		can_use = 1
 		icon_state = "camera"
 
-/obj/item/weapon/camera_test/attackby(A as obj, mob/user as mob)
+/obj/item/weapon/camera/attackby(A as obj, mob/user as mob)
 	if (istype(A, /obj/item/weapon/camera_film))
 		if (src.pictures_left >= pictures_max)
 			user << "\blue It's already full!"
