@@ -64,7 +64,7 @@ state default
 		}
 
 		/* Isolate the typename which will hold the output file */
-		type_name = regsub(text, /\/(var|proc|verb)(\/|$)?.*/, "");
+		type_name = regsub(text, /\/(var|proc|verb)[\/ ].*/, "");
 		type_name = regsub(type_name, /\/[a-zA-Z0-9_]+\(/, "");
 
 		/* Check for global proc definitions which go into code/proc.dm */
@@ -73,15 +73,15 @@ state default
 		}
 
 		/* Check for const var definitions which go into code/var/const.dm as an indented block */
-		else if(regmatch(text, /^\/?var\/const\//)) {
+		else if(regmatch(text, /^\/?var\/const/)) {
 			type_name = "var/const";
-			text = regsub(text, /^\/?var\/const\//, "\t");
+			text = regsub(text, /^\/?var\/const/, "\t");
 		}
 
 		/* Check for global var definitions which go into code/var/global.dm as an indented block */
-		else if(regmatch(text, /^\/?var(\/global)?\//)) {
+		else if(regmatch(text, /^\/?var(\/global)?/)) {
 			type_name = "var/global";
-			text = regsub(text, /^\/?var(\/global)?\//, "\t");
+			text = regsub(text, /^\/?var(\/global)?/, "\t");
 		}
 
 		/* Remove leading slash from the type name to avoid a double // in the file path */
