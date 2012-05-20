@@ -92,7 +92,7 @@ state default
 
 			/* If file output has already started, terminate the previous shell "here document" */
 			if(length(output)) {
-				print(delim_print, "\n");
+				finish_output();
 			}
 			output = type_name;
 
@@ -129,7 +129,8 @@ state default
 
 		/* Close the last shell "here document" if one is open */
 		if(length(output)) {
-			print(eol, delim_print, "\n");
+			print(eol);
+			finish_output();
 		}
 
 		/*
@@ -229,4 +230,26 @@ sub dump(text)
 	} else {
 		save(text);
 	}
+}
+
+/*
+ * If file output has already started, terminate the previous shell "here document" by printing
+ * the delimiter. Also print shell code that adds the current output file to git, and that will
+ * use sed to insert a #include into the daedalus.dme file (if it doesn't already contain a
+ * #include for the same filename).
+ */
+sub finish_output()
+{
+	/*
+	 * Change the / in the file to a \ for regex matching in .dme file. Note that we need
+	 * \\ (4 backshlahes) in the output for each / because the shell itself will interpret
+	 * \ as an escape in the double quoted script argument to sed. But also note that since
+	 * "states" uses as an escape as well, we actually need to use \\\\ here. :)
+	 */
+	include_file = concat("#include \"code\\\\", regsuball(output, /\//, "\\\\"), ".dm\"");
+
+	print(delim_print, "\n");
+	print("grep -q '", include_file, "' daedalus.dme || sed -i '\$i\\\n");
+	print(include_file, "' daedalus.dme\n");
+	print("git add \"code/", output, ".dm\"\n\n");
 }

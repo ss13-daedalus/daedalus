@@ -32,7 +32,7 @@ find "$1" -name '*.dm' | (
       file="$REPLY"
 
       # Apply code cleanup and let user review the results via a diff
-      states -s default -f tools/code_cleanup.st < "$REPLY" > "$temp"
+      states -s default -f tools/code_cleanup.st < "$file" > "$temp"
       "$diff" "$file" "$temp"
 
       # Prompt user for action on the tty since stdin has the file list on it
@@ -44,6 +44,23 @@ find "$1" -name '*.dm' | (
 
          case "$REPLY" in
             "Y" | "y")
+               # Change the / in the file to a \ for regex matching in .dme file
+               # Note that we need \\\\ (4 backshlahes) in the output for each /
+               # because the shell itself will interpret \ as an escape in the
+               # double quoted script argument to sed, and then sed itself will
+               # treat the \ as an escape inside the regex pattern. Note that
+               # the single quotes aronud the $() below keep us from having to
+               # use \\\\\\\\ :)
+               regex="/#include \"$(echo "$file" | sed 's/\//\\\\/g')\"/d"
+
+               # Remove the #include line for the .dme file that was just processed
+               sed -i "$regex" daedalus.dme
+
+               # Remove processed .dm file from Git but NOT from filesystem or it
+               # would mess up the find command which is iterating over all .dm files
+               git rm -q --cached "$file"
+
+               # Run the script to apply all the changes
                sh "$temp"
                break
                ;;
