@@ -1286,3 +1286,1188 @@ proc/process_ghost_teleport_locs()
 */
 //MUTATE
 
+proc/make_mining_asteroid_secret(var/size = 5)
+	var/valid = 0
+	var/turf/T = null
+	var/sanity = 0
+	var/list/room = null
+	var/list/turfs = null
+
+
+	turfs = get_area_turfs(/area/mine/unexplored)
+
+	if(!turfs.len)
+		return 0
+
+	while(!valid)
+		valid = 1
+		sanity++
+		if(sanity > 100)
+			return 0
+
+		T=pick(turfs)
+		if(!T)
+			return 0
+
+		var/list/surroundings = list()
+
+		surroundings += range(7, locate(T.x,T.y,T.z))
+		surroundings += range(7, locate(T.x+size,T.y,T.z))
+		surroundings += range(7, locate(T.x,T.y+size,T.z))
+		surroundings += range(7, locate(T.x+size,T.y+size,T.z))
+
+		if(locate(/area/mine/explored) in surroundings)			// +5s are for view range
+			valid = 0
+			continue
+
+		if(locate(/turf/space) in surroundings)
+			valid = 0
+			continue
+
+		if(locate(/area/asteroid/artifactroom) in surroundings)
+			valid = 0
+			continue
+
+		if(locate(/turf/simulated/floor/plating/airless/asteroid) in surroundings)
+			valid = 0
+			continue
+
+	if(!T)
+		return 0
+
+	room = spawn_room(T,size,size,,,1)
+
+	if(room)
+		T = pick(room["floors"])
+		if(T)
+			var/surprise = null
+			valid = 0
+			while(!valid)
+				surprise = pickweight(space_surprises)
+				if(surprise in spawned_surprises)
+					if(prob(20))
+						valid++
+					else
+						continue
+				else
+					valid++
+
+			spawned_surprises.Add(surprise)
+			new surprise(T)
+
+	return 1
+
+proc/spawn_room(var/atom/start_loc,var/x_size,var/y_size,var/wall,var/floor , var/clean = 0 , var/name)
+	var/list/room_turfs = list("walls"=list(),"floors"=list())
+
+	//world << "Room spawned at [start_loc.x],[start_loc.y],[start_loc.z]"
+	if(!wall)
+		wall = pick(/turf/simulated/wall/r_wall,/turf/simulated/wall,/obj/effect/alien/resin)
+	if(!floor)
+		floor = pick(/turf/simulated/floor,/turf/simulated/floor/engine)
+
+	for(var/x = 0,x<x_size,x++)
+		for(var/y = 0,y<y_size,y++)
+			var/turf/T
+			var/cur_loc = locate(start_loc.x+x,start_loc.y+y,start_loc.z)
+			if(clean)
+				for(var/O in cur_loc)
+					del(O)
+
+			var/area/asteroid/artifactroom/A = new
+			if(name)
+				A.name = name
+			else
+				A.name = "Artifact Room #[start_loc.x][start_loc.y][start_loc.z]"
+
+
+
+			if(x == 0 || x==x_size-1 || y==0 || y==y_size-1)
+				if(wall == /obj/effect/alien/resin)
+					T = new floor(cur_loc)
+					new /obj/effect/alien/resin(T)
+				else
+					T = new wall(cur_loc)
+					room_turfs["walls"] += T
+			else
+				T = new floor(cur_loc)
+				room_turfs["floors"] += T
+
+			A.contents += T
+
+
+	return room_turfs
+
+/proc/CanReachThrough(turf/srcturf, turf/targetturf, atom/target)
+	var/obj/item/weapon/dummy/D = new /obj/item/weapon/dummy( srcturf )
+
+	if(targetturf.density && targetturf != get_turf(target))
+		return 0
+
+	//Now, check objects to block exit that are on the border
+	for(var/obj/border_obstacle in srcturf)
+		if(border_obstacle.flags & ON_BORDER)
+			if(!border_obstacle.CheckExit(D, targetturf))
+				del D
+				return 0
+
+	//Next, check objects to block entry that are on the border
+	for(var/obj/border_obstacle in targetturf)
+		if((border_obstacle.flags & ON_BORDER) && (target != border_obstacle))
+			if(!border_obstacle.CanPass(D, srcturf, 1, 0))
+				del D
+				return 0
+
+	del D
+	return 1
+
+/*
+  HOW IT WORKS
+
+  The radio_controller is a global object maintaining all radio transmissions, think about it as about "ether".
+  Note that walkie-talkie, intercoms and headsets handle transmission using nonstandard way.
+  procs:
+
+    add_object(obj/device as obj, var/new_frequency as num, var/filter as text|null = null)
+      Adds listening object.
+      parameters:
+        device - device receiving signals, must have proc receive_signal (see description below).
+          one device may listen several frequencies, but not same frequency twice.
+        new_frequency - see possibly frequencies below;
+        filter - thing for optimization. Optional, but recommended.
+                 All filters should be consolidated in this file, see defines later.
+                 Device without listening filter will receive all signals (on specified frequency).
+                 Device with filter will receive any signals sent without filter.
+                 Device with filter will not receive any signals sent with different filter.
+      returns:
+       Reference to frequency object.
+
+    remove_object (obj/device, old_frequency)
+      Obliviously, after calling this proc, device will not receive any signals on old_frequency.
+      Other frequencies will left unaffected.
+
+   return_frequency(var/frequency as num)
+      returns:
+       Reference to frequency object. Use it if you need to send and do not need to listen.
+
+  radio_frequency is a global object maintaining list of devices that listening specific frequency.
+  procs:
+
+    post_signal(obj/source as obj|null, datum/signal/signal, var/filter as text|null = null, var/range as num|null = null)
+      Sends signal to all devices that wants such signal.
+      parameters:
+        source - object, emitted signal. Usually, devices will not receive their own signals.
+        signal - see description below.
+        filter - described above.
+        range - radius of regular byond's square circle on that z-level. null means everywhere, on all z-levels.
+
+  obj/proc/receive_signal(datum/signal/signal, var/receive_method as num, var/receive_param)
+    Handler from received signals. By default does nothing. Define your own for your object.
+    Avoid of sending signals directly from this proc, use spawn(-1). Do not use sleep() here please.
+      parameters:
+        signal - see description below. Extract all needed data from the signal before doing sleep(), spawn() or return!
+        receive_method - may be TRANSMISSION_WIRE or TRANSMISSION_RADIO.
+          TRANSMISSION_WIRE is currently unused.
+        receive_param - for TRANSMISSION_RADIO here comes frequency.
+
+  datum/signal
+    vars:
+    source
+      an object that emitted signal. Used for debug and bearing.
+    data
+      list with transmitting data. Usual use pattern:
+        data["msg"] = "hello world"
+    encryption
+      Some number symbolizing "encryption key".
+      Note that game actually do not use any cryptography here.
+      If receiving object don't know right key, it must ignore encrypted signal in its receive_signal.
+
+*/
+
+/*
+Frequency range: 1200 to 1600
+Radiochat range: 1441 to 1489 (most devices refuse to be tune to other frequency, even during mapmaking)
+
+Radio:
+1459 - standard radio chat
+1351 - Science
+1353 - Command
+1355 - Medical
+1357 - Engineering
+1359 - Security
+1441 - death squad
+1443 - Confession Intercom
+1349 - Miners
+1347 - Cargo techs
+
+Devices:
+1451 - tracking implant
+1457 - RSD default
+
+On the map:
+1311 for prison shuttle console (in fact, it is not used)
+1435 for status displays
+1437 for atmospherics/fire alerts
+1439 for engine components
+1439 for air pumps, air scrubbers, atmo control
+1441 for atmospherics - supply tanks
+1443 for atmospherics - distribution loop/mixed air tank
+1445 for bot nav beacons
+1447 for mulebot, secbot and ed209 control
+1449 for airlock controls, electropack, magnets
+1451 for toxin lab access
+1453 for engineering access
+1455 for AI access
+*/
+
+/proc/radioalert(var/message,var/from)
+	var/obj/item/device/radio/intercom/a = new /obj/item/device/radio/intercom(null)
+	a.autosay(message,from)
+
+/////////////////////////// DNA HELPER-PROCS
+/proc/getleftblocks(input,blocknumber,blocksize)
+	var/string
+
+	if (blocknumber > 1)
+		string = copytext(input,1,((blocksize*blocknumber)-(blocksize-1)))
+		return string
+	else
+		return null
+
+/proc/getrightblocks(input,blocknumber,blocksize)
+	var/string
+	if (blocknumber < (length(input)/blocksize))
+		string = copytext(input,blocksize*blocknumber+1,length(input)+1)
+		return string
+	else
+		return null
+
+/proc/getblock(input,blocknumber,blocksize)
+	var/result
+	result = copytext(input ,(blocksize*blocknumber)-(blocksize-1),(blocksize*blocknumber)+1)
+	return result
+
+/proc/getblockbuffer(input,blocknumber,blocksize)
+	var/result[3]
+	var/block = copytext(input ,(blocksize*blocknumber)-(blocksize-1),(blocksize*blocknumber)+1)
+	for(var/i = 1, i <= 3, i++)
+		result[i] = copytext(block, i, i+1)
+	return result
+
+/proc/setblock(istring, blocknumber, replacement, blocksize)
+	if(!istring || !blocknumber || !replacement || !blocksize)	return 0
+	var/result = getleftblocks(istring, blocknumber, blocksize) + replacement + getrightblocks(istring, blocknumber, blocksize)
+	return result
+
+/proc/add_zero2(t, u)
+	var/temp1
+	while (length(t) < u)
+		t = "0[t]"
+	temp1 = t
+	if (length(t) > u)
+		temp1 = copytext(t,2,u+1)
+	return temp1
+
+/proc/miniscramble(input,rs,rd)
+	var/output
+	output = null
+	if (input == "C" || input == "D" || input == "E" || input == "F")
+		output = pick(prob((rs*10));"4",prob((rs*10));"5",prob((rs*10));"6",prob((rs*10));"7",prob((rs*5)+(rd));"0",prob((rs*5)+(rd));"1",prob((rs*10)-(rd));"2",prob((rs*10)-(rd));"3")
+	if (input == "8" || input == "9" || input == "A" || input == "B")
+		output = pick(prob((rs*10));"4",prob((rs*10));"5",prob((rs*10));"A",prob((rs*10));"B",prob((rs*5)+(rd));"C",prob((rs*5)+(rd));"D",prob((rs*5)+(rd));"2",prob((rs*5)+(rd));"3")
+	if (input == "4" || input == "5" || input == "6" || input == "7")
+		output = pick(prob((rs*10));"4",prob((rs*10));"5",prob((rs*10));"A",prob((rs*10));"B",prob((rs*5)+(rd));"C",prob((rs*5)+(rd));"D",prob((rs*5)+(rd));"2",prob((rs*5)+(rd));"3")
+	if (input == "0" || input == "1" || input == "2" || input == "3")
+		output = pick(prob((rs*10));"8",prob((rs*10));"9",prob((rs*10));"A",prob((rs*10));"B",prob((rs*10)-(rd));"C",prob((rs*10)-(rd));"D",prob((rs*5)+(rd));"E",prob((rs*5)+(rd));"F")
+	if (!output) output = "5"
+	return output
+
+/proc/isblockon(hnumber, bnumber)
+	var/temp2
+	temp2 = hex2num(hnumber)
+	if (bnumber == HULKBLOCK || bnumber == TELEBLOCK)
+		if (temp2 >= 3500 + BLOCKADD)
+			return 1
+		else
+			return 0
+	if (bnumber == XRAYBLOCK || bnumber == FIREBLOCK)
+		if (temp2 >= 3050 + BLOCKADD)
+			return 1
+		else
+			return 0
+	if (temp2 >= 2050 + BLOCKADD)
+		return 1
+	else
+		return 0
+
+/proc/randmutb(mob/M as mob)
+	if(!M)	return
+	var/num
+	var/newdna
+	num = pick(GLASSESBLOCK,COUGHBLOCK,FAKEBLOCK,NERVOUSBLOCK,CLUMSYBLOCK,TWITCHBLOCK,HEADACHEBLOCK,BLINDBLOCK,DEAFBLOCK)
+	M.dna.check_integrity()
+	newdna = setblock(M.dna.struc_enzymes,num,toggledblock(getblock(M.dna.struc_enzymes,num,3)),3)
+	M.dna.struc_enzymes = newdna
+	return
+
+/proc/randmutg(mob/M as mob)
+	if(!M)	return
+	var/num
+	var/newdna
+	num = pick(HULKBLOCK,XRAYBLOCK,FIREBLOCK,TELEBLOCK)
+	M.dna.check_integrity()
+	newdna = setblock(M.dna.struc_enzymes,num,toggledblock(getblock(M.dna.struc_enzymes,num,3)),3)
+	M.dna.struc_enzymes = newdna
+	return
+
+/proc/scramble(var/type, mob/M as mob, var/p)
+	if(!M)	return
+	M.dna.check_integrity()
+	if(type)
+		for(var/i = 1, i <= 26, i++)
+			if(prob(p))
+				M.dna.uni_identity = setblock(M.dna.uni_identity, i, add_zero2(num2hex(rand(1,4095), 1), 3), 3)
+		updateappearance(M, M.dna.uni_identity)
+
+	else
+		for(var/i = 1, i <= 26, i++)
+			if(prob(p))
+				M.dna.struc_enzymes = setblock(M.dna.struc_enzymes, i, add_zero2(num2hex(rand(1,4095), 1), 3), 3)
+		domutcheck(M, null)
+	return
+
+/proc/randmuti(mob/M as mob)
+	if(!M)	return
+	var/num
+	var/newdna
+	num = pick(1,2,3,4,5,6,7,8,9,10,11,12,13)
+	M.dna.check_integrity()
+	newdna = setblock(M.dna.uni_identity,num,add_zero2(num2hex(rand(1,4095),1),3),3)
+	M.dna.uni_identity = newdna
+	return
+
+/proc/toggledblock(hnumber) //unused
+	var/temp3
+	var/chtemp
+	temp3 = hex2num(hnumber)
+	if (temp3 < 2050)
+		chtemp = rand(2050,4095)
+		return add_zero2(num2hex(chtemp,1),3)
+	else
+		chtemp = rand(1,2049)
+		return add_zero2(num2hex(chtemp,1),3)
+/////////////////////////// DNA HELPER-PROCS
+
+/////////////////////////// DNA MISC-PROCS
+/proc/updateappearance(mob/M as mob,structure)
+	if(istype(M, /mob/living/carbon/human))
+		M.dna.check_integrity()
+		var/mob/living/carbon/human/H = M
+		H.r_hair = hex2num(getblock(structure,1,3))
+		H.b_hair = hex2num(getblock(structure,2,3))
+		H.g_hair = hex2num(getblock(structure,3,3))
+		H.r_facial = hex2num(getblock(structure,4,3))
+		H.b_facial = hex2num(getblock(structure,5,3))
+		H.g_facial = hex2num(getblock(structure,6,3))
+		H.s_tone = round(((hex2num(getblock(structure,7,3)) / 16) - 220))
+		H.r_eyes = hex2num(getblock(structure,8,3))
+		H.g_eyes = hex2num(getblock(structure,9,3))
+		H.b_eyes = hex2num(getblock(structure,10,3))
+
+		if (isblockon(getblock(structure, 11,3),11))
+			H.gender = FEMALE
+		else
+			H.gender = MALE
+
+
+		/// BEARDS
+
+		var/beardnum = hex2num(getblock(structure,12,3))
+		var/list/facial_styles = typesof(/datum/sprite_accessory/facial_hair) - /datum/sprite_accessory/facial_hair
+		var/fstyle = round(1 +(beardnum / 4096)*facial_styles.len)
+
+		var/fpath = text2path("[facial_styles[fstyle]]")
+		var/datum/sprite_accessory/facial_hair/fhair = new fpath
+
+		H.face_icon_state = fhair.icon_state
+		H.f_style = fhair.icon_state
+		H.facial_hair_style = fhair
+
+
+		// HAIR
+		var/hairnum = hex2num(getblock(structure,13,3))
+		var/list/styles = typesof(/datum/sprite_accessory/hair) - /datum/sprite_accessory/hair
+		var/style = round(1 +(hairnum / 4096)*styles.len)
+
+		var/hpath = text2path("[styles[style]]")
+		var/datum/sprite_accessory/hair/hair = new hpath
+
+		H.hair_icon_state = hair.icon_state
+		H.h_style = hair.icon_state
+		H.hair_style = hair
+
+		H.update_face()
+		H.update_body()
+
+		H.warn_flavor_changed()
+
+		return 1
+	else
+		return 0
+
+/proc/ismuton(var/block,var/mob/M)
+	return isblockon(getblock(M.dna.struc_enzymes, block,3),block)
+
+/proc/domutcheck(mob/living/M as mob, connected, inj)
+	if (!M) return
+	//mutations
+	/*
+	TK				=(1<<0)	1
+	COLD_RESISTANCE	=(1<<1)	2
+	XRAY			=(1<<2)	4
+	HULK			=(1<<3)	8
+	CLUMSY			=(1<<4)	16
+	//FAT				=(1<<5) 32
+	HUSK			=(1<<6)	64
+	LASER			=(1<<7)	128
+	HEAL			=(1<<8)	256
+	mNobreath		=(1<<9)	512
+	mRemote			=(1<<10)	1024
+	mRegen			=(1<<11)	2048
+	mRun			=(1<<12)	4096
+	mRemotetalk		=(1<<13)	8192
+	mMorph			=(1<<14)	16384
+	mBlend			=(1<<15)	32768
+
+	mutations2:
+	mHallucination	=(1<<0) 1
+	mFingerprints	=(1<<1) 2
+	mShock			=(1<<2) 4
+	mSmallsize		=(1<<3)	8
+	*/
+
+	//disabilities
+	//1 = blurry eyes
+	//2 = headache
+	//4 = coughing
+	//8 = twitch
+	//16 = nervous
+	//32 = deaf
+	//64 = mute
+	//128 = blind
+
+	M.dna.check_integrity()
+
+	M.disabilities = 0
+	M.mutations = 0
+	M.mutations2 = 0
+
+	M.see_in_dark = 2
+	M.see_invisible = 0
+
+	if(ismuton(NOBREATHBLOCK,M))
+		if(prob(50))
+			M << "\blue You feel no need to breathe."
+			M.mutations |= mNobreath
+	if(ismuton(REMOTEVIEWBLOCK,M))
+		if(prob(50))
+			M << "\blue Your mind expands"
+			M.mutations |= mRemote
+	if(ismuton(REGENERATEBLOCK,M))
+		if(prob(50))
+			M << "\blue You feel strange"
+			M.mutations |= mRegen
+	if(ismuton(INCREASERUNBLOCK,M))
+		if(prob(50))
+			M << "\blue You feel quick"
+			M.mutations |= mRun
+	if(ismuton(REMOTETALKBLOCK,M))
+		if(prob(50))
+			M << "\blue You expand your mind outwards"
+			M.mutations |= mRemotetalk
+	if(ismuton(MORPHBLOCK,M))
+		if(prob(50))
+			M.mutations |= mMorph
+			M << "\blue Your skin feels strange"
+	if(ismuton(BLENDBLOCK,M))
+		if(prob(50))
+			M.mutations |= mBlend
+			M << "\blue You feel alone"
+	if(ismuton(HALLUCINATIONBLOCK,M))
+		if(prob(50))
+			M.mutations2 |= mHallucination
+			M << "\blue Your mind says 'Hello'"
+	if(ismuton(NOPRINTSBLOCK,M))
+		if(prob(50))
+			M.mutations2 |= mFingerprints
+			M << "\blue Your fingers feel numb"
+	if(ismuton(SHOCKIMMUNITYBLOCK,M))
+		if(prob(50))
+			M.mutations2 |= mShock
+			M << "\blue You feel strange"
+	if(ismuton(SMALLSIZEBLOCK,M))
+		if(prob(50))
+			M << "\blue Your skin feels rubbery"
+			M.mutations2 |= mSmallsize
+
+
+
+	if (isblockon(getblock(M.dna.struc_enzymes, HULKBLOCK,3),HULKBLOCK))
+		if(inj || prob(5))
+			M << "\blue Your muscles hurt."
+			M.mutations |= HULK
+	if (isblockon(getblock(M.dna.struc_enzymes, HEADACHEBLOCK,3),HEADACHEBLOCK))
+		M.disabilities |= 2
+		M << "\red You get a headache."
+	if (isblockon(getblock(M.dna.struc_enzymes, FAKEBLOCK,3),FAKEBLOCK))
+		M << "\red You feel strange."
+		if (prob(95))
+			if(prob(50))
+				randmutb(M)
+			else
+				randmuti(M)
+		else
+			randmutg(M)
+	if (isblockon(getblock(M.dna.struc_enzymes, COUGHBLOCK,3),COUGHBLOCK))
+		M.disabilities |= 4
+		M << "\red You start coughing."
+	if (isblockon(getblock(M.dna.struc_enzymes, CLUMSYBLOCK,3),CLUMSYBLOCK))
+		M << "\red You feel lightheaded."
+		M.mutations |= CLUMSY
+	if (isblockon(getblock(M.dna.struc_enzymes, TWITCHBLOCK,3),TWITCHBLOCK))
+		M.disabilities |= 8
+		M << "\red You twitch."
+	if (isblockon(getblock(M.dna.struc_enzymes, XRAYBLOCK,3),XRAYBLOCK))
+		if(inj || prob(30))
+			M << "\blue The walls suddenly disappear."
+			M.sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
+			M.see_in_dark = 8
+			M.see_invisible = 2
+			M.mutations |= XRAY
+	if (isblockon(getblock(M.dna.struc_enzymes, NERVOUSBLOCK,3),NERVOUSBLOCK))
+		M.disabilities |= 16
+		M << "\red You feel nervous."
+	if (isblockon(getblock(M.dna.struc_enzymes, FIREBLOCK,3),FIREBLOCK))
+		if(inj || prob(30))
+			M << "\blue Your body feels warm."
+			M.mutations |= COLD_RESISTANCE
+	if (isblockon(getblock(M.dna.struc_enzymes, BLINDBLOCK,3),BLINDBLOCK))
+		M.disabilities |= 128
+		M << "\red You can't seem to see anything."
+	if (isblockon(getblock(M.dna.struc_enzymes, TELEBLOCK,3),TELEBLOCK))
+		if(inj || prob(15))
+			M << "\blue You feel smarter."
+			M.mutations |= TK
+	if (isblockon(getblock(M.dna.struc_enzymes, DEAFBLOCK,3),DEAFBLOCK))
+		M.disabilities |= 32
+		M.ear_deaf = 1
+		M << "\red Its kinda quiet.."
+	if (isblockon(getblock(M.dna.struc_enzymes, GLASSESBLOCK,3),GLASSESBLOCK))
+		M.disabilities |= 1
+		M << "Your eyes feel weird..."
+
+//////////////////////////////////////////////////////////// Monkey Block
+	if (isblockon(getblock(M.dna.struc_enzymes, MONKEYBLOCK,3),MONKEYBLOCK) && istype(M, /mob/living/carbon/human))
+	// human > monkey
+		var/mob/living/carbon/human/H = M
+		H.monkeyizing = 1
+		if(!connected)
+			for(var/obj/item/W in (H.contents))
+				if (W==H.w_uniform) // will be teared
+					continue
+				H.drop_from_slot(W)
+			M.update_clothing()
+			M.monkeyizing = 1
+			M.canmove = 0
+			M.icon = null
+			M.invisibility = 101
+			var/atom/movable/overlay/animation = new( M.loc )
+			animation.icon_state = "blank"
+			animation.icon = 'icons/mob/mob.dmi'
+			animation.master = src
+			flick("h2monkey", animation)
+			sleep(48)
+			del(animation)
+
+		var/mob/living/carbon/monkey/O = new(src)
+		del(O.organs)
+		O.organs = H.organs
+		for(var/name in O.organs)
+			var/datum/organ/external/organ = O.organs[name]
+			organ.owner = O
+			for(var/obj/item/weapon/implant/implant in organ.implant)
+				implant.imp_in = O
+
+		if(M)
+			if (M.dna)
+				O.dna = M.dna
+				M.dna = null
+
+
+		for(var/datum/disease/D in M.viruses)
+			O.viruses += D
+			D.affected_mob = O
+			M.viruses -= D
+
+
+		for(var/obj/T in (M.contents))
+			del(T)
+		//for(var/R in M.organs)
+		//	del(M.organs[text("[]", R)])
+
+		O.loc = M.loc
+
+		if(M.mind)
+			M.mind.transfer_to(O)
+
+		if (connected) //inside dna thing
+			var/obj/machinery/dna_scannernew/C = connected
+			O.loc = C
+			C.occupant = O
+			connected = null
+		O.name = text("monkey ([])",copytext(md5(M.real_name), 2, 6))
+		O.take_overall_damage(M.getBruteLoss() + 40, M.getFireLoss())
+		O.adjustToxLoss(M.getToxLoss() + 20)
+		O.adjustOxyLoss(M.getOxyLoss())
+		O.stat = M.stat
+		O.a_intent = "hurt"
+		O.flavor_text = M.flavor_text
+		O.warn_flavor_changed()
+		O.update_clothing()
+		del(M)
+		return
+
+	if (!isblockon(getblock(M.dna.struc_enzymes, MONKEYBLOCK,3),MONKEYBLOCK) && !istype(M, /mob/living/carbon/human))
+	// monkey > human,
+		var/mob/living/carbon/monkey/Mo = M
+		Mo.monkeyizing = 1
+		if(!connected)
+			for(var/obj/item/W in (Mo.contents))
+				Mo.drop_from_slot(W)
+			M.update_clothing()
+			M.monkeyizing = 1
+			M.canmove = 0
+			M.icon = null
+			M.invisibility = 101
+			var/atom/movable/overlay/animation = new( M.loc )
+			animation.icon_state = "blank"
+			animation.icon = 'icons/mob/mob.dmi'
+			animation.master = src
+			flick("monkey2h", animation)
+			sleep(48)
+			del(animation)
+
+		var/mob/living/carbon/human/O = new( src )
+		if (isblockon(getblock(M.dna.uni_identity, 11,3),11))
+			O.gender = FEMALE
+		else
+			O.gender = MALE
+		O.dna = M.dna
+		M.dna = null
+		del(O.organs)
+		O.organs = M.organs
+		for(var/name in O.organs)
+			var/datum/organ/external/organ = O.organs[name]
+			organ.owner = O
+			for(var/obj/item/weapon/implant/implant in organ.implant)
+				implant.imp_in = O
+
+		for(var/datum/disease/D in M.viruses)
+			O.viruses += D
+			D.affected_mob = O
+			M.viruses -= D
+
+		//for(var/obj/T in M)
+		//	del(T)
+
+		O.loc = M.loc
+
+		if(M.mind)
+			M.mind.transfer_to(O)
+
+		if (connected) //inside dna thing
+			var/obj/machinery/dna_scannernew/C = connected
+			O.loc = C
+			C.occupant = O
+			connected = null
+
+		var/i
+		while (!i)
+			var/randomname
+			if (O.gender == MALE)
+				randomname = capitalize(pick(first_names_male) + " " + capitalize(pick(last_names)))
+			else
+				randomname = capitalize(pick(first_names_female) + " " + capitalize(pick(last_names)))
+			if (findname(randomname))
+				continue
+			else
+				O.real_name = randomname
+				i++
+		updateappearance(O,O.dna.uni_identity)
+		O.take_overall_damage(M.getBruteLoss(), M.getFireLoss())
+		O.adjustToxLoss(M.getToxLoss())
+		O.adjustOxyLoss(M.getOxyLoss())
+		O.stat = M.stat
+		O.flavor_text = M.flavor_text
+		O.warn_flavor_changed()
+		O.update_clothing()
+		del(M)
+		return
+//////////////////////////////////////////////////////////// Monkey Block
+	if (M)
+		M.update_clothing()
+	return null
+/////////////////////////// DNA MISC-PROCS
+
+
+/proc/mini_blob_event()
+
+	var/turf/T = pick(blobstart)
+	if(istype(T, /turf/simulated/wall))
+		T.ReplaceWithPlating()
+	for(var/atom/A in T)
+		if(A.density)
+			del(A)
+	var/obj/effect/blob/bl = new /obj/effect/blob( T, 30 )
+	spawn(0)
+		bl.Life()
+		bl.Life()
+		bl.Life()
+		bl.Life()
+		bl.blobdebug = 1
+		bl.Life()
+	blobevent = 1
+	spawn(0)
+		dotheblobbaby()
+	spawn(15000)
+		blobevent = 0
+	spawn(rand(600, 1800)) //Delayed announcements to keep the crew on their toes.
+		command_alert("Confirmed outbreak of level 5 biohazard aboard [station_name()].", "Biohazard Alert")
+		world << sound('sound/announcer/outbreak5.ogg')
+
+/proc/dotheblobbaby()
+	if (blobevent)
+		if(blobs.len)
+			for(var/i = 1 to 10)
+				sleep(-1)
+				if(!blobs.len)	break
+				var/obj/effect/blob/B = pick(blobs)
+				if(B.z != 1)
+					continue
+				B.Life()
+		spawn(150)
+			dotheblobbaby()
+/proc/power_failure()
+	command_alert("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the station's power will be shut off for an indeterminate duration.", "Critical Power Failure")
+	world << sound('sound/announcer/poweroff.ogg')
+	for(var/obj/machinery/power/apc/C in world)
+		if(C.cell && C.z == 1)
+			C.cell.charge = 0
+	for(var/obj/machinery/power/smes/S in world)
+		if(istype(get_area(S), /area/turret_protected) || S.z != 1)
+			continue
+		S.charge = 0
+		S.output = 0
+		S.online = 0
+		S.updateicon()
+		S.power_change()
+	for(var/area/A in world)
+		if(A.name != "Space" && A.name != "Engine Walls" && A.name != "Chemical Lab Test Chamber" && A.name != "Escape Shuttle" && A.name != "Arrival Area" && A.name != "Arrival Shuttle" && A.name != "start area" && A.name != "Engine Combustion Chamber")
+			A.power_light = 0
+			A.power_equip = 0
+			A.power_environ = 0
+			A.power_change()
+
+/proc/power_restore()
+	command_alert("Power has been restored to [station_name()]. We apologize for the inconvenience.", "Power Systems Nominal")
+	world << sound('sound/announcer/poweron.ogg')
+	for(var/obj/machinery/power/apc/C in world)
+		if(C.cell && C.z == 1)
+			C.cell.charge = C.cell.maxcharge
+	for(var/obj/machinery/power/smes/S in world)
+		if(S.z != 1)
+			continue
+		S.charge = S.capacity
+		S.output = 200000
+		S.online = 1
+		S.updateicon()
+		S.power_change()
+	for(var/area/A in world)
+		if(A.name != "Space" && A.name != "Engine Walls" && A.name != "Chemical Lab Test Chamber" && A.name != "space" && A.name != "Escape Shuttle" && A.name != "Arrival Area" && A.name != "Arrival Shuttle" && A.name != "start area" && A.name != "Engine Combustion Chamber")
+			A.power_light = 1
+			A.power_equip = 1
+			A.power_environ = 1
+			A.power_change()
+
+/proc/lightsout(isEvent = 0, lightsoutAmount = 1,lightsoutRange = 10) //leave lightsoutAmount as 0 to break ALL lights
+	if(isEvent)
+		command_alert("An Electrical storm has been detected in your area, please repair potential electronic overloads.","Electrical Storm Alert")
+
+	if(lightsoutAmount)
+		var/list/epicentreList = list()
+
+		for(var/i=1,i<=lightsoutAmount,i++)
+			var/list/possibleEpicentres = list()
+			for(var/obj/effect/landmark/newEpicentre in world)
+				if(newEpicentre.name == "lightsout" && !(newEpicentre in epicentreList))
+					possibleEpicentres += newEpicentre
+			if(possibleEpicentres.len)
+				epicentreList += pick(possibleEpicentres)
+			else
+				break
+
+		if(!epicentreList.len)
+			return
+
+		for(var/obj/effect/landmark/epicentre in epicentreList)
+			for(var/obj/machinery/power/apc/apc in range(epicentre,lightsoutRange))
+				apc.overload_lighting()
+
+	else
+		for(var/obj/machinery/power/apc/apc in world)
+			apc.overload_lighting()
+
+	return
+//Carn: Spacevines random event.
+/proc/spacevine_infestation()
+
+	spawn() //to stop the secrets panel hanging
+		var/list/turf/simulated/floor/turfs = list() //list of all the empty floor turfs in the hallway areas
+		for(var/areapath in typesof(/area/hallway))
+			var/area/hallway/A = locate(areapath)
+			for(var/turf/simulated/floor/F in A)
+				if(!F.contents.len)
+					turfs += F
+
+		if(turfs.len) //Pick a turf to spawn at if we can
+			var/turf/simulated/floor/T = pick(turfs)
+			new/obj/effect/spacevine_controller(T) //spawn a controller at turf
+			message_admins("\blue Event: Spacevines spawned at [T.loc] ([T.x],[T.y],[T.z])")
+
+/proc/space_ninja_arrival()
+
+	var/datum/game_mode/current_mode = ticker.mode
+	var/datum/mind/current_mind
+
+	/*Is the ninja playing for the good or bad guys? Is the ninja helping or hurting the station?
+	Their directives also influence behavior. At least in theory.*/
+	var/side = pick("face","heel")
+
+	var/antagonist_list[] = list()//The main bad guys. Evil minds that plot destruction.
+	var/protagonist_list[] = current_mode.get_living_heads()//The good guys. Mostly Heads. Who are alive.
+
+	var/xeno_list[] = list()//Aliens.
+	var/commando_list[] = list()//Commandos.
+
+	//We want the ninja to appear only in certain modes.
+//	var/acceptable_modes_list[] = list("traitor","revolution","cult","wizard","changeling","traitorchan","nuclear","malfunction","monkey")  // Commented out for both testing and ninjas
+//	if(!(current_mode.config_tag in acceptable_modes_list))
+//		return
+
+	/*No longer need to determine what mode it is since bad guys are basically universal.
+	And there is now a mode with two types of bad guys.*/
+
+	var/possible_bad_dudes[] = list(current_mode.traitors,current_mode.head_revolutionaries,current_mode.head_revolutionaries,
+	                                current_mode.cult,current_mode.wizards,current_mode.changelings,current_mode.syndicates)
+	for(var/list in possible_bad_dudes)//For every possible antagonist type.
+		for(current_mind in list)//For each mind in that list.
+			if(current_mind.current&&current_mind.current.stat!=2)//If they are not destroyed and not dead.
+				antagonist_list += current_mind//Add them.
+
+	if(protagonist_list.len)//If the mind is both a protagonist and antagonist.
+		for(current_mind in protagonist_list)
+			if(current_mind in antagonist_list)
+				protagonist_list -= current_mind//We only want it in one list.
+/*
+Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective completion. Only humans are added.
+*/
+
+	//Here we pick a location and spawn the ninja.
+	var/list/spawn_list = list()
+	for(var/obj/effect/landmark/L in world)
+		if (L.name == "ninjaspawn")
+			spawn_list.Add(L)
+
+	var/mob/dead/observer/G
+	var/list/candidates = list()
+	for(G in world)
+		if(G.client)//Now everyone can ninja!
+			if(((G.client.inactivity/10)/60) <= 5)
+				candidates.Add(G)
+
+	//The ninja will be created on the right spawn point or at late join.
+	var/mob/living/carbon/human/new_ninja = create_space_ninja(pick(spawn_list.len ? spawn_list : latejoin ))
+
+	if(candidates.len)
+		G = pick(candidates)
+		new_ninja.key = G.key
+		new_ninja.mind.key = new_ninja.key
+		new_ninja.wear_suit:randomize_param()//Give them a random set of suit parameters.
+		new_ninja.internal = new_ninja.s_store //So the poor ninja has something to breath when they spawn in space.
+		new_ninja.internals.icon_state = "internal1"
+		del(G)
+	else
+		del(new_ninja)
+		return
+	//Now for the rest of the stuff.
+
+	var/datum/mind/ninja_mind = new_ninja.mind//For easier reference.
+	var/mission_set = 0//To determine if we need to do further processing.
+	//Xenos and deathsquads take precedence over everything else.
+
+	//Unless the xenos are hiding in a locker somewhere, this'll find em.
+	for(var/mob/living/carbon/alien/humanoid/xeno in world)
+		if(istype(xeno))
+			xeno_list += xeno
+
+	if(xeno_list.len>3)//If there are more than three humanoid xenos on the station, time to get dangerous.
+		//Here we want the ninja to murder all the queens. The other aliens don't really matter.
+		var/xeno_queen_list[] = list()
+		for(var/mob/living/carbon/alien/humanoid/queen/xeno_queen in xeno_list)
+			if(xeno_queen.mind&&xeno_queen.stat!=2)
+				xeno_queen_list += xeno_queen
+		if(xeno_queen_list.len&&side=="face")//If there are queen about and the probability is 50.
+			for(var/mob/living/carbon/alien/humanoid/queen/xeno_queen in xeno_queen_list)
+				var/datum/objective/assassinate/ninja_objective = new
+				//We'll do some manual overrides to properly set it up.
+				ninja_objective.owner = ninja_mind
+				ninja_objective.target = xeno_queen.mind
+				ninja_objective.explanation_text = "Kill \the [xeno_queen]."
+				ninja_mind.objectives += ninja_objective
+			mission_set = 1
+
+	if(sent_strike_team&&side=="heel"&&antagonist_list.len)//If a strike team was sent, murder them all like a champ.
+		for(current_mind in antagonist_list)//Search and destroy. Since we already have an antagonist list, they should appear there.
+			if(current_mind && current_mind.special_role=="Death Commando")
+				commando_list += current_mind
+		if(commando_list.len)//If there are living commandos still in play.
+			for(var/mob/living/carbon/human/commando in commando_list)
+				var/datum/objective/assassinate/ninja_objective = new
+				ninja_objective.owner = ninja_mind
+				ninja_objective.find_target_by_role(commando.mind.special_role,1)
+				ninja_mind.objectives += ninja_objective
+			mission_set = 1
+/*
+If there are no antogonists left it could mean one of two things:
+	A) The round is about to end. No harm in spawning the ninja here.
+	B) The round is still going and ghosts are probably rioting for something to happen.
+In either case, it's a good idea to spawn the ninja with a semi-random set of objectives.
+*/
+	if(!mission_set)//If mission was not set.
+
+		var/current_minds[]//List being looked on in the following code.
+		var/side_list = side=="face" ? 2 : 1//For logic gating.
+		var/hostile_targets[] = list()//The guys actually picked for the assassination or whatever.
+		var/friendly_targets[] = list()//The guys the ninja must protect.
+
+		for(var/i=2,i>0,i--)//Two lists.
+			current_minds = i==2 ? antagonist_list : protagonist_list//Which list are we looking at?
+			for(var/t=3,(current_minds.len&&t>0),t--)//While the list is not empty and targets remain. Also, 3 targets is good.
+				current_mind = pick(current_minds)//Pick a random person.
+				/*I'm creating a logic gate here based on the ninja affiliation that compares the list being
+				looked at to the affiliation. Affiliation is just a number used to compare. Meaning comes from the logic involved.
+				If the list being looked at is equal to the ninja's affiliation, add the mind to hostiles.
+				If not, add the mind to friendlies. Since it can't be both, it will be added only to one or the other.*/
+				hostile_targets += i==side_list ? current_mind : null//Adding null doesn't add anything.
+				friendly_targets += i!=side_list ? current_mind : null
+				current_minds -= current_mind//Remove the mind so it's not picked again.
+
+		var/objective_list[] = list(1,2,3,4,5,6)//To remove later.
+		for(var/i=rand(1,3),i>0,i--)//Want to get a few random objectives. Currently up to 3.
+			if(!hostile_targets.len)//Remove appropriate choices from switch list if the target lists are empty.
+				objective_list -= 1
+				objective_list -= 4
+			if(!friendly_targets.len)
+				objective_list -= 3
+			switch(pick(objective_list))
+				if(1)//kill
+					current_mind = pick(hostile_targets)
+
+					if(current_mind)
+						var/datum/objective/assassinate/ninja_objective = new
+						ninja_objective.owner = ninja_mind
+						ninja_objective.find_target_by_role((current_mind.special_role ? current_mind.special_role : current_mind.assigned_role),(current_mind.special_role?1:0))//If they have a special role, use that instead to find em.
+						ninja_mind.objectives += ninja_objective
+
+					else
+						i++
+
+					hostile_targets -= current_mind//Remove them from the list.
+				if(2)//Steal
+					var/list/datum/objective/theft = GenerateTheft(ninja_mind.assigned_role,ninja_mind)
+					var/datum/objective/steal/steal_objective = PickObjectiveFromList(theft)
+					ninja_mind.objectives += steal_objective
+
+					objective_list -= 2
+				if(3)//Protect. Keeping people alive can be pretty difficult.
+					current_mind = pick(friendly_targets)
+
+					if(current_mind)
+
+						var/datum/objective/protection/ninja_objective = new
+						ninja_objective.owner = ninja_mind
+						ninja_objective.find_target_by_role((current_mind.special_role ? current_mind.special_role : current_mind.assigned_role),(current_mind.special_role?1:0))
+						ninja_mind.objectives += ninja_objective
+
+					else
+						i++
+
+					friendly_targets -= current_mind
+				if(4)//Debrain
+					current_mind = pick(hostile_targets)
+
+					if(current_mind)
+
+						var/datum/objective/debrain/ninja_objective = new
+						ninja_objective.owner = ninja_mind
+						ninja_objective.find_target_by_role((current_mind.special_role ? current_mind.special_role : current_mind.assigned_role),(current_mind.special_role?1:0))
+						ninja_mind.objectives += ninja_objective
+
+					else
+						i++
+
+					hostile_targets -= current_mind//Remove them from the list.
+				if(5)//Download research
+					var/datum/objective/download/ninja_objective = new
+					ninja_objective.gen_amount_goal()
+					ninja_mind.objectives += ninja_objective
+
+					objective_list -= 5
+				if(6)//Capture
+					var/datum/objective/capture/ninja_objective = new
+					ninja_objective.gen_amount_goal()
+					ninja_mind.objectives += ninja_objective
+
+					objective_list -= 6
+
+		if(ninja_mind.objectives.len)//If they got some objectives out of that.
+			mission_set = 1
+
+	if(!ninja_mind.objectives.len||!mission_set)//If they somehow did not get an objective at this point, time to destroy the station.
+		var/nuke_code
+		var/temp_code
+		for(var/obj/machinery/nuclearbomb/N in world)
+			temp_code = text2num(N.r_code)
+			if(temp_code)//if it's actually a number. It won't convert any non-numericals.
+				nuke_code = N.r_code
+				break
+		if(nuke_code)//If there is a nuke device in world and we got the code.
+			var/datum/objective/nuclear/ninja_objective = new//Fun.
+			ninja_objective.owner = ninja_mind
+			ninja_objective.explanation_text = "Destroy the station with a nuclear device. The code is [nuke_code]." //Let them know what the code is.
+
+	//Finally add a survival objective since it's usually broad enough for any round type.
+	var/datum/objective/survive/ninja_objective = new
+	ninja_objective.owner = ninja_mind
+	ninja_mind.objectives += ninja_objective
+
+	var/directive = generate_ninja_directive(side)
+	new_ninja << "\blue \nYou are an elite mercenary assassin of the Spider Clan, [new_ninja.real_name]. The dreaded \red <B>SPACE NINJA</B>!\blue You have a variety of abilities at your disposal, thanks to your nano-enhanced cyber armor. Remember your training (initialize your suit by right clicking on it)! \nYour current directive is: \red <B>[directive]</B>"
+	new_ninja.mind.store_memory("<B>Directive:</B> \red [directive]<br>")
+
+	var/obj_count = 1
+	new_ninja << "\blue Your current objectives:"
+	for(var/datum/objective/objective in ninja_mind.objectives)
+		new_ninja << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
+		obj_count++
+
+	sent_ninja_to_station = 1//And we're done.
+	return new_ninja//Return the ninja in case we need to reference them later.
+
+/*
+This proc will give the ninja a directive to follow. They are not obligated to do so but it's a fun roleplay reminder.
+Making this random or semi-random will probably not work without it also being incredibly silly.
+As such, it's hard-coded for now. No reason for it not to be, really.
+*/
+/proc/generate_ninja_directive(side)
+	var/directive = "[side=="face"?"Nanotrasen":"The Syndicate"] is your employer. "//Let them know which side they're on.
+	switch(rand(1,13))
+		if(1)
+			directive += "The Spider Clan must not be linked to this operation. Remain as hidden and covert as possible."
+		if(2)
+			directive += "[station_name] is financed by an enemy of the Spider Clan. Cause as much structural damage as possible."
+		if(3)
+			directive += "A wealthy animal rights activist has made a request we cannot refuse. Prioritize saving animal lives whenever possible."
+		if(4)
+			directive += "The Spider Clan absolutely cannot be linked to this operation. Eliminate all witnesses using most extreme prejudice."
+		if(5)
+			directive += "We are currently negotiating with Nanotrasen command. Prioritize saving human lives over ending them."
+		if(6)
+			directive += "We are engaged in a legal dispute over [station_name]. If a laywer is present on board, force their cooperation in the matter."
+		if(7)
+			directive += "A financial backer has made an offer we cannot refuse. Implicate Syndicate involvement in the operation."
+		if(8)
+			directive += "Let no one question the mercy of the Spider Clan. Ensure the safety of all non-essential personnel you encounter."
+		if(9)
+			directive += "A free agent has proposed a lucrative business deal. Implicate Nanotrasen involvement in the operation."
+		if(10)
+			directive += "Our reputation is on the line. Harm as few civilians or innocents as possible."
+		if(11)
+			directive += "Our honor is on the line. Utilize only honorable tactics when dealing with opponents."
+		if(12)
+			directive += "We are currently negotiating with a Syndicate leader. Disguise assassinations as suicide or another natural cause."
+		else
+			directive += "There are no special supplemental instructions at this time."
+	return directive
+
+//=======//CURRENT PLAYER VERB//=======//
+
+/proc/create_space_ninja(obj/spawn_point)
+	var/mob/living/carbon/human/new_ninja = new(spawn_point.loc)
+	var/ninja_title = pick(ninja_titles)
+	var/ninja_name = pick(ninja_names)
+	new_ninja.gender = pick(MALE, FEMALE)
+
+	var/datum/preferences/A = new()//Randomize appearance for the ninja.
+	A.randomize_appearance_for(new_ninja)
+	new_ninja.real_name = "[ninja_title] [ninja_name]"
+	new_ninja.dna.ready_dna(new_ninja)
+	new_ninja.create_mind_space_ninja()
+	new_ninja.equip_space_ninja()
+	return new_ninja
+
+/proc/SpawnEvent()
+	if(!EventsOn || ActiveEvent || !config.allow_random_events)
+		return
+	if((world.time/10)>=3600 && toggle_space_ninja && !sent_ninja_to_station && !is_ninjad_yet)
+		EventTypes |= /datum/event/spaceninja
+		is_ninjad_yet = 1
+	var/Type = pick(EventTypes)
+	if(Type in OneTimeEvents)
+		EventTypes -= Type
+	ActiveEvent = new Type()
+	ActiveEvent.Announce()
+	if (!ActiveEvent)
+		return
+	spawn(0)
+		while (ActiveEvent.ActiveFor < ActiveEvent.Lifetime)
+			ActiveEvent.Tick()
+			ActiveEvent.ActiveFor++
+			sleep(10)
+		ActiveEvent.Die()
+		del ActiveEvent
+
+/proc/Force_Event(var/Type in typesof(/datum/event), var/args = null)
+	if(!EventsOn)
+		src << "Events are not enabled."
+		return
+	if(ActiveEvent)
+		src << "There is an active event."
+		return
+	src << "Started Event: [Type]"
+	ActiveEvent = new Type()
+	if(istype(ActiveEvent,/datum/event/viral_infection) && args && args != "virus2")
+		var/datum/event/viral_infection/V = ActiveEvent
+		V.virus = args
+		ActiveEvent = V
+	ActiveEvent.Announce()
+	if (!ActiveEvent)
+		return
+	spawn(0)
+		while (ActiveEvent.ActiveFor < ActiveEvent.Lifetime)
+			ActiveEvent.Tick()
+			ActiveEvent.ActiveFor++
+			sleep(10)
+		ActiveEvent.Die()
+		del ActiveEvent
+

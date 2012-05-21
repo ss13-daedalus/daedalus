@@ -460,5 +460,29 @@ var/const/maximum_age = 65
 #define AIRLOCK_WIRE_DOOR_BOLTS_2 16
 //#define AIRLOCK_WIRE_FINGERPRINT 17
 
+#define REGULATE_RATE 5
+
+#define TRANSMISSION_WIRE 0
+#define TRANSMISSION_RADIO 1
+
+/////////////////////////// DNA DATUM
+
+#define STRUCDNASIZE 27
+
+#define COMM_FREQ 1353 //command, colored gold in chat window
+#define SYND_FREQ 1213
+
+/* filters */
+#define RADIO_TO_AIRALARM "1"
+#define RADIO_FROM_AIRALARM "2"
+#define RADIO_CHAT "3"
+#define RADIO_ATMOSIA "4"
+#define RADIO_NAVBEACONS "5"
+#define RADIO_AIRLOCK "6"
+#define RADIO_SECBOT "7"
+#define RADIO_MULEBOT "8"
+#define RADIO_MAGNETS "9"
+
+
 // End the stupid preprocessor macro tricks.
 #endif

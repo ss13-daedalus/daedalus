@@ -513,3 +513,34 @@ Made a proc here so it's not repeated several times.*/
 //	else
 //		playsound(usr.loc, pick('sound/misc/null.ogg','sound/misc/null.ogg'), 100, 1)
 
+//Allows the mob to grab a stealth icon.
+/mob/proc/NinjaStealthActive(atom/A)//A is the atom which we are using as the overlay.
+	invisibility = 2//Set ninja invis to 2.
+	var/icon/opacity_icon = new(A.icon, A.icon_state)
+	var/icon/alpha_mask = getIconMask(src)
+	var/icon/alpha_mask_2 = new('icons/effects/effects.dmi', "at_shield1")
+	alpha_mask.AddAlphaMask(alpha_mask_2)
+	opacity_icon.AddAlphaMask(alpha_mask)
+	for(var/i=0,i<5,i++)//And now we add it as overlays. It's faster than creating an icon and then merging it.
+		var/image/I = image("icon" = opacity_icon, "icon_state" = A.icon_state, "layer" = layer+0.8)//So it's above other stuff but below weapons and the like.
+		switch(i)//Now to determine offset so the result is somewhat blurred.
+			if(1)
+				I.pixel_x -= 1
+			if(2)
+				I.pixel_x += 1
+			if(3)
+				I.pixel_y -= 1
+			if(4)
+				I.pixel_y += 1
+
+		overlays += I//And finally add the overlay.
+	overlays += image("icon"='icons/effects/effects.dmi',"icon_state" ="electricity","layer" = layer+0.9)
+
+//When ninja steal malfunctions.
+/mob/proc/NinjaStealthMalf()
+	invisibility = 0//Set ninja invis to 0.
+	overlays += image("icon"='icons/effects/effects.dmi',"icon_state" ="electricity","layer" = layer+0.9)
+	playsound(loc, 'sound/effects/stealthoff.ogg', 75, 1)
+
+//=======//GENERIC VERB MODIFIERS//=======//
+

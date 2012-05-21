@@ -2293,3 +2293,121 @@ client
 
 //BODY SWAP /N
 
+/client/proc/cmd_admin_ninjafy(var/mob/M in world)
+	set category = null
+	set name = "Make Space Ninja"
+
+	if(!ticker)
+		alert("Wait until the game starts")
+		return
+	if(!toggle_space_ninja)
+		alert("Space Ninjas spawning is disabled.")
+		return
+
+	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
+	if(confirm != "Yes") return
+
+	if(ishuman(M))
+		log_admin("[key_name(src)] turned [M.key] into a Space Ninja.")
+		spawn(10)
+			M:create_mind_space_ninja()
+			M:equip_space_ninja(1)
+			if(istype(M:wear_suit, /obj/item/clothing/suit/space/space_ninja))
+				M:wear_suit:randomize_param()
+				spawn(0)
+					M:wear_suit:ninitialize(10,M)
+	else
+		alert("Invalid mob")
+
+//=======//CURRENT GHOST VERB//=======//
+
+/client/proc/send_space_ninja()
+	set category = "Fun"
+	set name = "Spawn Space Ninja"
+	set desc = "Spawns a space ninja for when you need a teenager with attitude."
+	set popup_menu = 0
+
+	if(!holder)
+		src << "Only administrators may use this command."
+		return
+	if(!ticker.mode)
+		alert("The game hasn't started yet!")
+		return
+	if(!toggle_space_ninja)
+		alert("Space Ninjas spawning is disabled.")
+		return
+	if(alert("Are you sure you want to send in a space ninja?",,"Yes","No")=="No")
+		return
+
+	var/mission
+	while(!mission)
+		mission = input(src, "Please specify which mission the space ninja shall undertake.", "Specify Mission", "")
+		if(!mission)
+			if(alert("Error, no mission set. Do you want to exit the setup process?",,"Yes","No")=="Yes")
+				return
+
+	var/list/spawn_list = list()
+	for(var/obj/effect/landmark/L in world)
+		if (L.name == "ninjaspawn")
+			spawn_list.Add(L)
+
+
+	var/input = input("Pick character to spawn as the Space Ninja", "Key", "")
+	if(!input)
+		return
+
+	var/mob/dead/observer/G
+	for(var/mob/dead/observer/G_find in world)
+		if(G_find.client&&ckey(G_find.key)==ckey(input))
+			G = G_find
+			break
+
+	if(!G)//If a ghost was not found.
+		alert("There is no active key like that in the game or the person is not currently a ghost. Aborting command.")
+		return
+
+	var/admin_name = src
+	var/mob/living/carbon/human/new_ninja = create_space_ninja(pick(spawn_list.len ? spawn_list : latejoin ))
+	new_ninja.wear_suit:randomize_param()
+
+	new_ninja.mind.key = G.key
+	new_ninja.key = G.key
+	new_ninja.mind.store_memory("<B>Mission:</B> \red [mission].<br>")
+
+	new_ninja.internal = new_ninja.s_store //So the poor ninja has something to breath when they spawn in space.
+	new_ninja.internals.icon_state = "internal1"
+	spawn(0)//Parallel process. Will speed things up a bit.
+		new_ninja.wear_suit:ninitialize(10,new_ninja)//If you're wondering why I'm passing the argument to the proc when the default should suffice,
+		//I'm also wondering that same thing. This makes sure it does not run time error though.
+
+	new_ninja << "\blue \nYou are an elite mercenary assassin of the Spider Clan, [new_ninja.real_name]. The dreaded \red <B>SPACE NINJA</B>!\blue You have a variety of abilities at your disposal, thanks to your nano-enhanced cyber armor. Remember your training! \nYour current mission is: \red <B>[mission]</B>"
+
+	message_admins("\blue [admin_name] has spawned [new_ninja.key] as a Space Ninja. Hide yo children! \nTheir <b>mission</b> is: [mission]", 1)
+	log_admin("[admin_name] used Spawn Space Ninja.")
+
+	del(G)
+	return
+
+//=======//NINJA CREATION PROCS//=======//
+
+client/proc/Force_Event_admin(Type as null|anything in typesof(/datum/event))
+	set category = "Debug"
+	set name = "Force Event"
+	if(!EventsOn)
+		src << "Events are not enabled."
+		return
+	if(ActiveEvent)
+		src << "There is an active event."
+		return
+	if(istype(Type,/datum/event/viral_infection))
+		var/answer = alert("Do you want this to be a random disease or do you have something in mind?",,"Virus2","Choose")
+		if(answer == "Choose")
+			var/list/viruses = list("fake gbs","gbs","magnitis","wizarditis","brain rot","cold","retrovirus","flu","pierrot's throat","rhumba beat")
+			var/V = input("Choose the virus to spread", "BIOHAZARD") in viruses
+			Force_Event(/datum/event/viral_infection, V)
+		else
+			Force_Event(/datum/event/viral_infection, "virus2")
+	else
+		Force_Event(Type)
+	message_admins("[key_name_admin(usr)] has triggered an (non-viral) event.", 1)
+

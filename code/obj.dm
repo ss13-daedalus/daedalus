@@ -121,3 +121,7 @@
 		return "centcom"
 	else
 		return "Unknown"
+/obj/proc/process()
+	processing_objects.Remove(src)
+	return 0
+

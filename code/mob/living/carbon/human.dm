@@ -130,3 +130,48 @@
 		if (del_on_fail)
 			del(W)
 	return equipped
+/mob/living/carbon/human/proc/create_mind_space_ninja()
+	if(mind)
+		mind.assigned_role = "MODE"
+		mind.special_role = "Space Ninja"
+	else
+		mind = new
+		mind.current = src
+		mind.original = src
+		mind.assigned_role = "MODE"
+		mind.special_role = "Space Ninja"
+	if(!(mind in ticker.minds))
+		ticker.minds += mind//Adds them to regular mind list.
+	if(!(mind in ticker.mode.traitors))//If they weren't already an extra traitor.
+		ticker.mode.traitors += mind//Adds them to current traitor list. Which is really the extra antagonist list.
+	return 1
+
+/mob/living/carbon/human/proc/equip_space_ninja(safety=0)//Safety in case you need to unequip stuff for existing characters.
+	if(safety)
+		del(w_uniform)
+		del(wear_suit)
+		del(wear_mask)
+		del(head)
+		del(shoes)
+		del(gloves)
+
+	var/obj/item/device/radio/R = new /obj/item/device/radio/headset(src)
+	equip_if_possible(R, slot_ears)
+	if(gender==FEMALE)
+		equip_if_possible(new /obj/item/clothing/under/color/blackf(src), slot_w_uniform)
+	else
+		equip_if_possible(new /obj/item/clothing/under/color/black(src), slot_w_uniform)
+	equip_if_possible(new /obj/item/clothing/shoes/space_ninja(src), slot_shoes)
+	equip_if_possible(new /obj/item/clothing/suit/space/space_ninja(src), slot_wear_suit)
+	equip_if_possible(new /obj/item/clothing/gloves/space_ninja(src), slot_gloves)
+	equip_if_possible(new /obj/item/clothing/head/helmet/space/space_ninja(src), slot_head)
+	equip_if_possible(new /obj/item/clothing/mask/gas/voice/space_ninja(src), slot_wear_mask)
+	equip_if_possible(new /obj/item/device/flashlight(src), slot_belt)
+	equip_if_possible(new /obj/item/weapon/plastique(src), slot_r_store)
+	equip_if_possible(new /obj/item/weapon/plastique(src), slot_l_store)
+	equip_if_possible(new /obj/item/weapon/tank/emergency_oxygen(src), slot_s_store)
+	resistances += "alien_embryo"
+	return 1
+
+//=======//HELPER PROCS//=======//
+
