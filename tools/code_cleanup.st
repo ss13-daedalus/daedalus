@@ -73,15 +73,15 @@ state default
 		}
 
 		/* Check for const var definitions which go into code/var/const.dm as an indented block */
-		else if(regmatch(text, /^\/?var\/const/)) {
+		else if(regmatch(text, /^\/?var\/const\//)) {
 			type_name = "var/const";
-			text = regsub(text, /^\/?var\/const/, "\t");
+			text = regsub(text, /^\/?var\/const\//, "\t");
 		}
 
 		/* Check for global var definitions which go into code/var/global.dm as an indented block */
-		else if(regmatch(text, /^\/?var(\/global)?/)) {
+		else if(regmatch(text, /^\/?var(\/global)?\//)) {
 			type_name = "var/global";
-			text = regsub(text, /^\/?var(\/global)?/, "\t");
+			text = regsub(text, /^\/?var(\/global)?\//, "\t");
 		}
 
 		/* Remove leading slash from the type name to avoid a double // in the file path */
