@@ -868,7 +868,7 @@ var/list/plating_icons = list("plating","platingdmg1","platingdmg2","platingdmg3
 /turf/simulated/floor/engine/n20
 	New()
 		..()
-		var/datum/gas_mixture/adding = new
+		var/datum/FEA_gas_mixture/adding = new
 		var/datum/gas/sleeping_agent/trace_gas = new
 
 		trace_gas.moles = 2000
@@ -912,7 +912,7 @@ var/list/plating_icons = list("plating","platingdmg1","platingdmg2","platingdmg3
 	else
 		icon_regular_floor = icon_state
 
-//turf/simulated/floor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+//turf/simulated/floor/CanPass(atom/movable/mover, turf/target, height=0, FEA_airgroup=0)
 //	if ((istype(mover, /obj/machinery/vehicle) && !(src.burnt)))
 //		if (!( locate(/obj/machinery/mass_driver, src) ))
 //			return 0

@@ -1,5 +1,5 @@
 datum/pipeline
-	var/datum/gas_mixture/air
+	var/datum/FEA_gas_mixture/air
 
 	var/list/obj/machinery/atmospherics/pipe/members
 	var/list/obj/machinery/atmospherics/pipe/edges //Used for building networks
@@ -31,7 +31,7 @@ datum/pipeline
 		//air.react() //Should be handled by pipe_network now
 
 	proc/temporarily_store_air()
-		//Update individual gas_mixtures by volume ratio
+		//Update individual FEA_gas_mixtures by volume ratio
 
 		for(var/obj/machinery/atmospherics/pipe/member in members)
 			member.air_temporary = new
@@ -124,12 +124,12 @@ datum/pipeline
 		return network
 
 	proc/mingle_with_turf(turf/simulated/target, mingle_volume)
-		var/datum/gas_mixture/air_sample = air.remove_ratio(mingle_volume/air.volume)
+		var/datum/FEA_gas_mixture/air_sample = air.remove_ratio(mingle_volume/air.volume)
 		air_sample.volume = mingle_volume
 
 		if(istype(target) && target.parent && target.parent.group_processing)
 			//Have to consider preservation of group statuses
-			var/datum/gas_mixture/turf_copy = new
+			var/datum/FEA_gas_mixture/turf_copy = new
 
 			turf_copy.copy_from(target.parent.air)
 			turf_copy.volume = target.parent.air.volume //Copy a good representation of the turf from parent group
@@ -151,7 +151,7 @@ datum/pipeline
 				target.air.copy_from(turf_copy)
 
 		else
-			var/datum/gas_mixture/turf_air = target.return_air()
+			var/datum/FEA_gas_mixture/turf_air = target.return_air()
 
 			equalize_gases(list(air_sample, turf_air))
 			air.merge(air_sample)

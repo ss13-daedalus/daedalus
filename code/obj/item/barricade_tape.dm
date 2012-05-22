@@ -22,9 +22,9 @@
 		var/turf/T = get_turf(src)
 		M:loc = T
 
-/obj/item/barricade_tape/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/item/barricade_tape/CanPass(atom/movable/mover, turf/target, height=0, FEA_airgroup=0)
 	if(!density) return 1
-	if(air_group || (height==0)) return 1
+	if(FEA_airgroup || (height==0)) return 1
 
 	if ((mover.flags & 2 || mover.throwing == 1) )
 		return 1

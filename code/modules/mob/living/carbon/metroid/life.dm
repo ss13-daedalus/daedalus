@@ -7,7 +7,7 @@
 
 	..()
 
-	var/datum/gas_mixture/environment // Added to prevent null location errors-- TLE
+	var/datum/FEA_gas_mixture/environment // Added to prevent null location errors-- TLE
 	if(src.loc)
 		environment = loc.return_air()
 
@@ -316,7 +316,7 @@
 				mind.assigned_role = "Metroid"
 				mind.key = key
 
-		handle_environment(datum/gas_mixture/environment)
+		handle_environment(datum/FEA_gas_mixture/environment)
 			if(!environment)
 				adjustFireLoss(rand(10,20))
 				return

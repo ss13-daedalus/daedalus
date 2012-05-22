@@ -383,8 +383,8 @@
 
 		..()
 
-	CanPass(atom/movable/mover, turf/target, height, air_group)
-		if(!height || air_group) return 0
+	CanPass(atom/movable/mover, turf/target, height, FEA_airgroup)
+		if(!height || FEA_airgroup) return 0
 		else return ..()
 
 	proc/update_nearby_tiles(need_rebuild)
@@ -487,8 +487,8 @@
 
 
 
-/obj/machinery/shieldwall/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
+/obj/machinery/shieldwall/CanPass(atom/movable/mover, turf/target, height=0, FEA_airgroup=0)
+	if(FEA_airgroup || (height==0)) return 1
 
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return prob(20)

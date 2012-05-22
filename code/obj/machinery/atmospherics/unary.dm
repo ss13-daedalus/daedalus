@@ -3,7 +3,7 @@
 	initialize_directions = SOUTH
 	layer = TURF_LAYER+0.1
 
-	var/datum/gas_mixture/air_contents
+	var/datum/FEA_gas_mixture/air_contents
 
 	var/obj/machinery/atmospherics/node
 

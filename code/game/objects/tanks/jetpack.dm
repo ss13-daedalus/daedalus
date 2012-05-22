@@ -57,7 +57,7 @@
 			src.ion_trail.stop()
 			return 0
 
-		var/datum/gas_mixture/G = src.air_contents.remove(num)
+		var/datum/FEA_gas_mixture/G = src.air_contents.remove(num)
 
 		var/allgases = G.carbon_dioxide + G.nitrogen + G.oxygen + G.toxins	//fuck trace gases	-Pete
 		if(allgases >= 0.005)

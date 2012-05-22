@@ -66,7 +66,7 @@ var/const
 		Die()
 		return
 
-	temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	temperature_expose(datum/FEA_gas_mixture/air, exposed_temperature, exposed_volume)
 		if(exposed_temperature > 300)
 			Die()
 		return

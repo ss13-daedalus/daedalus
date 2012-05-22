@@ -45,7 +45,7 @@
 
 	life_tick++
 
-	var/datum/gas_mixture/environment = loc.return_air()
+	var/datum/FEA_gas_mixture/environment = loc.return_air()
 
 	// clean all symptoms, they must be set again in this cycle
 	src.disease_symptoms = 0
@@ -368,8 +368,8 @@
 			if(reagents.has_reagent("lexorin")) return
 			if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell)) return
 
-			var/datum/gas_mixture/environment = loc.return_air()
-			var/datum/air_group/breath
+			var/datum/FEA_gas_mixture/environment = loc.return_air()
+			var/datum/FEA_airgroup/breath
 
 			// HACK NEED CHANGING LATER
 			if(isbreathing && health < config.health_threshold_crit)
@@ -462,7 +462,7 @@
 			else
 				canmove = 1
 
-		handle_breath(datum/gas_mixture/breath)
+		handle_breath(datum/FEA_gas_mixture/breath)
 			if(nodamage || (mutations & mNobreath))
 				return
 
@@ -565,7 +565,7 @@
 
 			return 1
 
-		handle_environment(datum/gas_mixture/environment)
+		handle_environment(datum/FEA_gas_mixture/environment)
 			if(!environment)
 				return
 			var/environment_heat_capacity = environment.heat_capacity()
@@ -1226,7 +1226,7 @@
 					pressure.icon_state = "pressure0"
 
 				else
-					var/datum/gas_mixture/environment = loc.return_air()
+					var/datum/FEA_gas_mixture/environment = loc.return_air()
 					if(environment)
 						switch(environment.return_pressure())
 							if(HAZARD_HIGH_PRESSURE to INFINITY)

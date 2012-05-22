@@ -841,7 +841,7 @@
 		var/turf/simulated/T = get_turf(src)
 		if(!T)
 			return
-		var/datum/gas_mixture/GM = new
+		var/datum/FEA_gas_mixture/GM = new
 		if(prob(10))
 			GM.toxins += 100
 			GM.temperature = 1500+T0C //should be enough to start a fire

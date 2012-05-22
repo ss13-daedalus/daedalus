@@ -1,12 +1,12 @@
 datum/pipe_network
-	var/list/datum/gas_mixture/gases = list() //All of the gas_mixtures continuously connected in this network
+	var/list/datum/FEA_gas_mixture/gases = list() //All of the FEA_gas_mixtures continuously connected in this network
 
 	var/list/obj/machinery/atmospherics/normal_members = list()
 	var/list/datum/pipeline/line_members = list()
 		//membership roster to go through for updates and what not
 
 	var/update = 1
-	var/datum/gas_mixture/air_transient = null
+	var/datum/FEA_gas_mixture/air_transient = null
 
 	New()
 		air_transient = new()
@@ -88,7 +88,7 @@ datum/pipe_network
 
 		air_transient.trace_gases = list()
 
-		for(var/datum/gas_mixture/gas in gases)
+		for(var/datum/FEA_gas_mixture/gas in gases)
 			air_transient.volume += gas.volume
 			total_thermal_energy += gas.thermal_energy()
 			total_heat_capacity += gas.heat_capacity()
@@ -119,8 +119,8 @@ datum/pipe_network
 			else
 				air_transient.temperature = 0
 
-			//Update individual gas_mixtures by volume ratio
-			for(var/datum/gas_mixture/gas in gases)
+			//Update individual FEA_gas_mixtures by volume ratio
+			for(var/datum/FEA_gas_mixture/gas in gases)
 				gas.oxygen = air_transient.oxygen*gas.volume/air_transient.volume
 				gas.nitrogen = air_transient.nitrogen*gas.volume/air_transient.volume
 				gas.toxins = air_transient.toxins*gas.volume/air_transient.volume

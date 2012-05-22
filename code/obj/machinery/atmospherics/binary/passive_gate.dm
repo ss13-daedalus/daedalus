@@ -44,7 +44,7 @@ obj/machinery/atmospherics/binary/passive_gate
 			var/transfer_moles = pressure_delta*air2.volume/(air1.temperature * R_IDEAL_GAS_EQUATION)
 
 			//Actually transfer the gas
-			var/datum/gas_mixture/removed = air1.remove(transfer_moles)
+			var/datum/FEA_gas_mixture/removed = air1.remove(transfer_moles)
 			air2.merge(removed)
 
 			if(network1)

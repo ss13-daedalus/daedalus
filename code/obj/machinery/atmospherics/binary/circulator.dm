@@ -33,7 +33,7 @@
 			last_pressure_delta = pressure_delta
 
 			//Actually transfer the gas
-			var/datum/gas_mixture/removed = air1.remove(transfer_moles)
+			var/datum/FEA_gas_mixture/removed = air1.remove(transfer_moles)
 
 			if(network1)
 				network1.update = 1

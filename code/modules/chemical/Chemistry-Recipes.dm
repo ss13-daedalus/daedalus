@@ -353,7 +353,7 @@ datum
 					if(target_tile.parent && target_tile.parent.group_processing)
 						target_tile.parent.suspend_group_processing()
 
-					var/datum/gas_mixture/napalm = new
+					var/datum/FEA_gas_mixture/napalm = new
 
 					napalm.toxins = created_volume*10
 					napalm.temperature = 400+T0C

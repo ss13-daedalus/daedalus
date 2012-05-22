@@ -47,8 +47,8 @@
 			location.DblClick()
 		return ..()
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-		if((air_group && blobtype != "Shield") || (height==0))	return 1
+	CanPass(atom/movable/mover, turf/target, height=0, FEA_airgroup=0)
+		if((FEA_airgroup && blobtype != "Shield") || (height==0))	return 1
 		if(istype(mover) && mover.checkpass(PASSBLOB))	return 1
 		return 0
 
@@ -179,7 +179,7 @@
 		if(S.air.oxygen < 1 || S.air.toxins > 1) return 0
 		return 1
 
-	temperature_expose(datum/gas_mixture/air, temperature, volume)
+	temperature_expose(datum/FEA_gas_mixture/air, temperature, volume)
 		if(temperature > T0C+200)
 			health -= 0.01 * temperature
 			update()

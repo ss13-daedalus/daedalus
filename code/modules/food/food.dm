@@ -220,7 +220,7 @@
 
 /*	process()
 		var/turf/location = get_turf(src.loc)
-		var/datum/gas_mixture/environment = location.return_air()
+		var/datum/FEA_gas_mixture/environment = location.return_air()
 		switch(environment.temperature)
 			if(0 to T0C)
 			if(T0C to (T0C + 100))
@@ -238,7 +238,7 @@
 
 /*	process()
 		var/turf/location = get_turf(src.loc)
-		var/datum/gas_mixture/environment = location.return_air()
+		var/datum/FEA_gas_mixture/environment = location.return_air()
 		switch(environment.temperature)
 			if(0 to T0C)
 			if(T0C to (T0C + 100))
@@ -275,7 +275,7 @@
 
 /*	process()
 		var/turf/location = get_turf(src.loc)
-		var/datum/gas_mixture/environment = location.return_air()
+		var/datum/FEA_gas_mixture/environment = location.return_air()
 		switch(environment.temperature)
 			if(0 to T0C)
 			if(T0C to (T0C + 100))

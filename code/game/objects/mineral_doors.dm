@@ -45,8 +45,8 @@
 	attack_hand(mob/user as mob)
 		return TryToSwitchState(user)
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-		if(air_group) return 0
+	CanPass(atom/movable/mover, turf/target, height=0, FEA_airgroup=0)
+		if(FEA_airgroup) return 0
 		if(istype(mover, /obj/effect/beam))
 			return !opacity
 		return !density
@@ -219,7 +219,7 @@
 				TemperatureAct(100)
 		..()
 
-	temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	temperature_expose(datum/FEA_gas_mixture/air, exposed_temperature, exposed_volume)
 		if(exposed_temperature > 300)
 			TemperatureAct(exposed_temperature)
 
@@ -228,7 +228,7 @@
 			if(target_tile.parent && target_tile.parent.group_processing)
 				target_tile.parent.suspend_group_processing()
 
-			var/datum/gas_mixture/napalm = new
+			var/datum/FEA_gas_mixture/napalm = new
 
 			var/toxinsToDeduce = temperature/10
 

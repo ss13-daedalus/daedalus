@@ -397,7 +397,7 @@ MASS SPECTROMETER
 	if (!( istype(location, /turf) ))
 		return
 
-	var/datum/gas_mixture/environment = location.return_air()
+	var/datum/FEA_gas_mixture/environment = location.return_air()
 
 	var/pressure = environment.return_pressure()
 	var/total_moles = environment.total_moles()

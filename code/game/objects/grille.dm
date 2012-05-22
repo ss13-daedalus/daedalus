@@ -83,8 +83,8 @@
 		healthcheck()
 		return
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-		if(air_group || (height==0)) return 1
+	CanPass(atom/movable/mover, turf/target, height=0, FEA_airgroup=0)
+		if(FEA_airgroup || (height==0)) return 1
 		if(istype(mover) && mover.checkpass(PASSGRILLE))
 			return 1
 		else

@@ -69,7 +69,7 @@
 	return ..()
 
 
-/obj/machinery/coatrack/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/machinery/coatrack/CanPass(atom/movable/mover, turf/target, height=0, FEA_airgroup=0)
 	if ( istype(mover,/obj/item/clothing/head/det_hat) && !hat)
 		mover.loc = src
 		hat = mover

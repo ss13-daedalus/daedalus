@@ -68,7 +68,7 @@
 
 //	world << "[north_votes], [south_votes], [east_votes]"
 
-	var/datum/air_group/group_joined = null
+	var/datum/FEA_airgroup/group_joined = null
 
 	if(west)
 		if(west.parent)

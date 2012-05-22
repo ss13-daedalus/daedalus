@@ -47,11 +47,11 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging
 				if(loc:blocks_air)
 					environment_temperature = loc:temperature
 				else
-					var/datum/gas_mixture/environment = loc.return_air()
+					var/datum/FEA_gas_mixture/environment = loc.return_air()
 					environment_temperature = environment.temperature
 			else
 				environment_temperature = loc:temperature
-			var/datum/gas_mixture/pipe_air = return_air()
+			var/datum/FEA_gas_mixture/pipe_air = return_air()
 			if(abs(environment_temperature-pipe_air.temperature) > minimum_temperature_difference)
 				parent.temperature_interact(loc, volume, thermal_conductivity)
 

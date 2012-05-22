@@ -26,20 +26,20 @@ Important variables:
 		Turfs that are in this list have their border data updated before the next air calculations for a cycle.
 		Place turfs in this list rather than call the proc directly to prevent race conditions
 
-	turf/simulated.archive() and datum/air_group.archive()
+	turf/simulated.archive() and datum/FEA_airgroup.archive()
 		This stores all data for.
 		If you modify, make sure to update the archived_cycle to prevent race conditions and maintain symmetry
 
-	atom/CanPass(atom/movable/mover, turf/target, height, air_group)
+	atom/CanPass(atom/movable/mover, turf/target, height, FEA_airgroup)
 		returns 1 for allow pass and 0 for deny pass
 		Turfs automatically call this for all objects/mobs in its turf.
-		This is called both as source.CanPass(target, height, air_group)
-			and  target.CanPass(source, height, air_group)
+		This is called both as source.CanPass(target, height, FEA_airgroup)
+			and  target.CanPass(source, height, FEA_airgroup)
 
 		Cases for the parameters
-		1. This is called with args (mover, location, height>0, air_group=0) for normal objects.
-		2. This is called with args (null, location, height=0, air_group=0) for flowing air.
-		3. This is called with args (null, location, height=?, air_group=1) for determining group boundaries.
+		1. This is called with args (mover, location, height>0, FEA_airgroup=0) for normal objects.
+		2. This is called with args (null, location, height=0, FEA_airgroup=0) for flowing air.
+		3. This is called with args (null, location, height=?, FEA_airgroup=1) for determining group boundaries.
 
 		Cases 2 and 3 would be different for doors or other objects open and close fairly often.
 			(Case 3 would return 0 always while Case 2 would return 0 only when the door is open)
@@ -55,11 +55,11 @@ Important Procedures
 
 var/kill_air = 0
 
-atom/proc/CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
-	return (!density || !height || air_group)
+atom/proc/CanPass(atom/movable/mover, turf/target, height=1.5, FEA_airgroup = 0)
+	return (!density || !height || FEA_airgroup)
 
 turf
-	CanPass(atom/movable/mover, turf/target, height=1.5,air_group=0)
+	CanPass(atom/movable/mover, turf/target, height=1.5,FEA_airgroup=0)
 		if(!target) return 0
 
 		if(istype(mover)) // turf/Enter(...) will perform more advanced checks
@@ -70,10 +70,10 @@ turf
 				return 0
 
 			for(var/obj/obstacle in src)
-				if(!obstacle.CanPass(mover, target, height, air_group))
+				if(!obstacle.CanPass(mover, target, height, FEA_airgroup))
 					return 0
 			for(var/obj/obstacle in target)
-				if(!obstacle.CanPass(mover, src, height, air_group))
+				if(!obstacle.CanPass(mover, src, height, FEA_airgroup))
 					return 0
 
 			return 1
@@ -85,7 +85,7 @@ datum
 	controller
 		air_system
 			//Geoemetry lists
-			var/list/datum/air_group/air_groups = list()
+			var/list/datum/FEA_airgroup/FEA_airgroups = list()
 			var/list/turf/simulated/active_singletons = list()
 
 			//Special functions lists
@@ -136,7 +136,7 @@ datum
 					//Used by process()
 					//Warning: Do not call this
 
-				rebuild_group(datum/air_group)
+				rebuild_group(datum/FEA_airgroup)
 					//Used by process_rebuild_select_groups()
 					//Warning: Do not call this, add the group to air_master.groups_to_rebuild instead
 
@@ -158,13 +158,7 @@ datum
 					if(S.z > 4) // Skipping asteroids -- TLE
 						continue
 					S.update_air_properties()
-/*
-				for(var/obj/movable/floor/S in world)
-					if(!S.parent)
-						assemble_group_object(S)
-				for(var/obj/movable/floor/S in world) //Update all pathing and border information as well
-					S.update_air_properties()
-*/
+
 				world << "\red \b Geometry processed in [(world.timeofday-start_time)/10] seconds!"
 
 			assemble_group_turf(turf/simulated/base)
@@ -196,7 +190,7 @@ datum
 						possible_members -= test
 
 				if(members.len > 1)
-					var/datum/air_group/turf/group = new
+					var/datum/FEA_airgroup/turf/group = new
 					if(possible_borders.len>0)
 						group.borders = possible_borders
 					if(possible_space_borders.len>0)
@@ -209,7 +203,7 @@ datum
 						active_singletons -= test
 
 					group.members = members
-					air_groups += group
+					FEA_airgroups += group
 
 					group.update_group_from_tiles() //Initialize air group variables
 					return group
@@ -221,49 +215,7 @@ datum
 						base.update_visuals(base.air)
 
 				return null
-/*
-			assemble_group_object(obj/movable/floor/base)
 
-				var/list/obj/movable/floor/members = list(base) //Confirmed group members
-				var/list/obj/movable/floor/possible_members = list(base) //Possible places for group expansion
-				var/list/obj/movable/floor/possible_borders = list()
-
-				while(possible_members.len>0) //Keep expanding, looking for new members
-					for(var/obj/movable/floor/test in possible_members)
-						for(var/direction in list(NORTH, SOUTH, EAST, WEST))
-							var/turf/T = get_step(test.loc,direction)
-							if(T && test.loc.CanPass(null, T, null, 1))
-								var/obj/movable/floor/O = locate(/obj/movable/floor) in T
-								if(istype(O) && !O.parent)
-									if(!members.Find(O))
-										possible_members += O
-										members += O
-								else
-									possible_borders -= test
-									possible_borders += test
-						possible_members -= test
-
-				if(members.len > 1)
-					var/datum/air_group/object/group = new
-					if(possible_borders.len>0)
-						group.borders = possible_borders
-
-					for(var/obj/movable/floor/test in members)
-						test.parent = group
-						test.processing = 0
-						active_singletons -= test
-
-					group.members = members
-					air_groups += group
-
-					group.update_group_from_tiles() //Initialize air group variables
-					return group
-				else
-					base.processing = 0 //singletons at startup are technically unconnected anyway
-					base.parent = null
-
-				return null
-*/
 			process()
 				if(kill_air)
 					return 1
@@ -278,7 +230,7 @@ datum
 				process_high_pressure_delta()
 
 				if(current_cycle%10==5) //Check for groups of tiles to resume group processing every 10 cycles
-					for(var/datum/air_group/AG in air_groups)
+					for(var/datum/FEA_airgroup/AG in FEA_airgroups)
 						AG.check_regroup()
 
 				return 1
@@ -286,16 +238,13 @@ datum
 			process_update_tiles()
 				for(var/turf/simulated/T in tiles_to_update)
 					T.update_air_properties()
-/*
-				for(var/obj/movable/floor/O in tiles_to_update)
-					O.update_air_properties()
-*/
+
 				tiles_to_update.len = 0
 
 			process_rebuild_select_groups()
 				var/turf/list/turfs = list()
 
-				for(var/datum/air_group/turf/turf_AG in groups_to_rebuild) //Deconstruct groups, gathering their old members
+				for(var/datum/FEA_airgroup/turf/turf_AG in groups_to_rebuild) //Deconstruct groups, gathering their old members
 					for(var/turf/simulated/T in turf_AG.members)
 						T.parent = null
 						turfs += T
@@ -307,25 +256,12 @@ datum
 				for(var/turf/simulated/S in turfs)
 					S.update_air_properties()
 
-//				var/obj/movable/list/movable_objects = list()
+				for(var/datum/FEA_airgroup/object/object_AG in groups_to_rebuild) //Deconstruct groups, gathering their old members
 
-				for(var/datum/air_group/object/object_AG in groups_to_rebuild) //Deconstruct groups, gathering their old members
-/*
-					for(var/obj/movable/floor/OM in object_AG.members)
-						OM.parent = null
-						movable_objects += OM
-					del(object_AG)
-
-				for(var/obj/movable/floor/OM in movable_objects) //Have old members try to form new groups
-					if(!OM.parent)
-						assemble_group_object(OM)
-				for(var/obj/movable/floor/OM in movable_objects)
-					OM.update_air_properties()
-*/
 				groups_to_rebuild.len = 0
 
 			process_groups()
-				for(var/datum/air_group/AG in air_groups)
+				for(var/datum/FEA_airgroup/AG in FEA_airgroups)
 					AG.process_group()
 
 			process_singletons()

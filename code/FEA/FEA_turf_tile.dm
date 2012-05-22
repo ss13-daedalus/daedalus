@@ -11,13 +11,16 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 		return 1
 
 turf
-	assume_air(datum/gas_mixture/giver) //use this for machines to adjust air
+	assume_air(datum/FEA_gas_mixture/giver) //use this for machines to adjust air
+		// This proc takes a temporary FEA_gas_mixture object and adds its to the tile's contents.
+		// Called by several pieces of machinery that transfer air.
 		del(giver)
 		return 0
 
 	return_air()
 		//Create gas mixture to hold data for passing
-		var/datum/gas_mixture/GM = new
+		// Used for safely examining the air contents of a tile or object.
+		var/datum/FEA_gas_mixture/GM = new
 
 		GM.oxygen = oxygen
 		GM.carbon_dioxide = carbon_dioxide
@@ -29,7 +32,9 @@ turf
 		return GM
 
 	remove_air(amount as num)
-		var/datum/gas_mixture/GM = new
+		// The opposite of assume_air, removes air from the object and returns it as
+		// a FEA_gas_mixture datum.
+		var/datum/FEA_gas_mixture/GM = new
 
 		var/sum = oxygen + carbon_dioxide + nitrogen + toxins
 		if(sum>0)
@@ -59,6 +64,9 @@ turf
 			pressure_difference = 0
 
 		consider_pressure_difference(connection_difference, connection_direction)
+			// Used to store the strength and direction of air movement, which is
+			// used to push around objects.
+
 			if(connection_difference < 0)
 				connection_difference = -connection_difference
 				connection_direction = turn(connection_direction,180)
@@ -90,10 +98,10 @@ turf
 		var/current_graphic = null
 
 		var/tmp
-			datum/gas_mixture/air
+			datum/FEA_gas_mixture/air
 
 			processing = 1
-			datum/air_group/turf/parent
+			datum/FEA_airgroup/turf/parent
 			group_border = 0
 			length_space_border = 0
 
@@ -122,7 +130,7 @@ turf
 
 			super_conduct()
 
-			update_visuals(datum/gas_mixture/model)
+			update_visuals(datum/FEA_gas_mixture/model)
 				overlays = null
 
 				var/siding_icon_state = return_siding_icon_state()
@@ -155,8 +163,6 @@ turf
 
 					find_group()
 
-//				air.parent = src //TODO DEBUG REMOVE
-
 			else
 				if(air_master)
 					for(var/direction in cardinal)
@@ -180,9 +186,9 @@ turf
 						air_master.tiles_to_update.Add(tile)
 			..()
 
-		assume_air(datum/gas_mixture/giver)
+		assume_air(datum/FEA_gas_mixture/giver)
 			if(!giver)	return 0
-			var/datum/gas_mixture/receiver = air
+			var/datum/FEA_gas_mixture/receiver = air
 			if(istype(receiver))
 				if(parent&&parent.group_processing)
 					if(!parent.air.check_then_merge(giver))
@@ -226,7 +232,7 @@ turf
 
 		remove_air(amount as num)
 			if(air)
-				var/datum/gas_mixture/removed = null
+				var/datum/FEA_gas_mixture/removed = null
 
 				if(parent&&parent.group_processing)
 					removed = parent.air.check_then_remove(amount)
@@ -329,7 +335,7 @@ turf
 
 							if(enemy_tile.parent && enemy_tile.parent.group_processing) //apply tile to group sharing
 								if(enemy_tile.parent.current_cycle < current_cycle) //if the group hasn't been archived, it could just be out of date
-									if(enemy_tile.parent.air.check_gas_mixture(air))
+									if(enemy_tile.parent.air.check_FEA_gas_mixture(air))
 										connection_difference = air.share(enemy_tile.parent.air)
 									else
 										enemy_tile.parent.suspend_group_processing()
@@ -343,29 +349,6 @@ turf
 							if(active_hotspot)
 								possible_fire_spreads += enemy_tile
 						else
-/*							var/obj/movable/floor/movable_on_enemy = locate(/obj/movable/floor) in enemy_tile
-
-							if(movable_on_enemy)
-								if(movable_on_enemy.parent && movable_on_enemy.parent.group_processing) //apply tile to group sharing
-									if(movable_on_enemy.parent.current_cycle < current_cycle)
-										if(movable_on_enemy.parent.air.check_gas_mixture(air))
-											connection_difference = air.share(movable_on_enemy.parent.air)
-
-										else
-											movable_on_enemy.parent.suspend_group_processing()
-
-											if(movable_on_enemy.archived_cycle < archived_cycle) //archive bordering tile information if not already done
-												movable_on_enemy.archive()
-											connection_difference = air.share(movable_on_enemy.air)
-											//group processing failed so interact with individual tile
-								else
-									if(movable_on_enemy.archived_cycle < archived_cycle) //archive bordering tile information if not already done
-										movable_on_enemy.archive()
-
-									if(movable_on_enemy.current_cycle < current_cycle)
-										connection_difference = share_air_with_tile(movable_on_enemy)
-
-							else*/
 							connection_difference = mimic_air_with_tile(enemy_tile)
 								//bordering a tile with fixed air properties
 
@@ -399,6 +382,9 @@ turf
 			return 1
 
 		super_conduct()
+			// This seems to be about exchanging and radiating heat at a fast rate.
+			// May  need a better name. May have to be removed altogether.
+
 			var/conductivity_directions = 0
 			if(blocks_air)
 				//Does not participate in air exchange, so will conduct heat across all four borders at this time
@@ -429,7 +415,7 @@ turf
 									if(modeled_neighbor.parent && modeled_neighbor.parent.group_processing)
 										if(parent && parent.group_processing)
 											//both are acting as a group
-											//modified using construct developed in datum/air_group/share_air_with_group(...)
+											//modified using construct developed in datum/FEA_airgroup/share_air_with_group(...)
 
 											var/result = parent.air.check_both_then_temperature_share(modeled_neighbor.parent.air, WINDOW_HEAT_TRANSFER_COEFFICIENT)
 											if(result==0)
@@ -458,7 +444,6 @@ turf
 
 										else
 											air.temperature_share(modeled_neighbor.air, WINDOW_HEAT_TRANSFER_COEFFICIENT)
-						//			world << "OPEN, OPEN"
 
 								else //Solid but neighbor is open
 									if(modeled_neighbor.parent && modeled_neighbor.parent.group_processing)
