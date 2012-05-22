@@ -32,9 +32,11 @@ for line in dme:
       includefile_name = includefile_name.replace('\\', '/')
       include_list.append(includefile_name)
 
-# Now get a list of all of the sourcefiles.
+# Now get a list of all of the sourcefiles.  Only include files that
+# end in .dm.
 sourcefile_output = subprocess.check_output(["find", "code/", "-type", "f"]).decode("utf-8")
-sourcefile_list = [x for x in sourcefile_output.split('\n') if len(x) > 0]
+sourcefile_list = [x for x in sourcefile_output.split('\n')
+                   if ((len(x) > 3) and (x[-3:] == ".dm"))]
 
 # Now, compare!  If there's something in the sourcefile list that isn't
 # in the include list, it's not included.
