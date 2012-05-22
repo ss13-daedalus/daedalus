@@ -2471,3 +2471,16 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 		ActiveEvent.Die()
 		del ActiveEvent
 
+proc
+	sd_get_approx_dir(atom/ref,atom/target)
+	/* returns the approximate direction from ref to target.
+		Code by Lummox JR
+		http://www.byond.com/forum/forum.cgi?action=message_list&query=Post+ID%3A153964#153964
+		*/
+		var/d=get_dir(ref,target)
+		if(d&d-1)        // diagonal
+			var/ax=abs(ref.x-target.x)
+			var/ay=abs(ref.y-target.y)
+			if(ax>=ay<<1) return d&12     // keep east/west (4 and 8)
+			else if(ay>=ax<<1) return d&3 // keep north/south (1 and 2)
+		return d
