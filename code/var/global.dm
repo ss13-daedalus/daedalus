@@ -297,6 +297,8 @@ var/global
 		/area/turret_protected/ai,
 	)
 
+	company_name = "Nanotrasen"
+
 // It turns out that /var/const can't handle lists, because lists use
 // an initializer.  Sigh.  That's no reason that we shouldn't make
 // actual "constant" lists explicit via naming convention and a
@@ -496,4 +498,3 @@ When I already created about 4 new objectives, this doesn't seem terribly import
 	datum/event/ActiveEvent = null
 	datum/event/LongTermEvent = null
 	is_ninjad_yet = 0
-
