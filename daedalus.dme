@@ -927,6 +927,7 @@
 #include "code\obj\structure\closet\secure_closet\engineering.dm"
 #include "code\obj\structure\closet\secure_closet\security.dm"
 #include "code\obj\vehicle\airtight.dm"
+#include "code\var\const.dm"
 #include "code\var\global.dm"
 #include "code\WorkInProgress\AI_Visibility.dm"
 #include "code\WorkInProgress\buildmode.dm"
