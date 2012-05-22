@@ -55,7 +55,7 @@
 						R.cell.charge = R.cell.maxcharge
 						return
 					else
-						R.cell.charge += 200
+						R.cell.charge += 350
 						return
 
 		go_out()
