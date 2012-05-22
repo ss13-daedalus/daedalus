@@ -2472,7 +2472,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 		del ActiveEvent
 
 proc
-	sd_get_approx_dir(atom/ref,atom/target)
+	get_approximate_direction(atom/ref,atom/target)
 	/* returns the approximate direction from ref to target.
 		Code by Lummox JR
 		http://www.byond.com/forum/forum.cgi?action=message_list&query=Post+ID%3A153964#153964

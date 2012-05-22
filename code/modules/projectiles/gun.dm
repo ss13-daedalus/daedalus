@@ -260,7 +260,7 @@
 			usr.visible_message("*click click*", "\red <b>*click*</b>")
 			for(var/mob/K in viewers(usr))
 				K << 'sound/weapons/empty.ogg'
-		var/dir_to_fire = sd_get_approx_dir(M,T)
+		var/dir_to_fire = get_approximate_direction(M,T)
 		if(dir_to_fire != M.dir)
 			M.dir = dir_to_fire
 
@@ -303,7 +303,7 @@
 				//Fire(A,2)
 			//else
 				//Fire(A)
-		var/dir_to_fire = sd_get_approx_dir(usr,A) //Turn them to face their target.
+		var/dir_to_fire = get_approximate_direction(usr,A) //Turn them to face their target.
 		if(dir_to_fire != usr.dir)
 			usr.dir = dir_to_fire
 
