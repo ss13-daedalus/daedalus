@@ -365,7 +365,3 @@ var/datum/cameranet/cameranet = new()
 			continue
 		return 1
 	return 0
-
-/mob/living/silicon/ai/switchCamera(atom/A)
-	eyeobj.loc = A.loc
-	return
