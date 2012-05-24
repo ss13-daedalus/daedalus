@@ -33,7 +33,7 @@
 			if(target.parent)
 				target.parent.suspend_group_processing()
 
-			var/datum/gas_mixture/payload = new
+			var/datum/FEA_gas_mixture/payload = new
 			var/datum/gas/sleeping_agent/trace_gas = new
 
 			trace_gas.moles = 30
@@ -50,7 +50,7 @@
 			if(target.parent)
 				target.parent.suspend_group_processing()
 
-			var/datum/gas_mixture/payload = new
+			var/datum/FEA_gas_mixture/payload = new
 
 			payload.toxins = 30
 

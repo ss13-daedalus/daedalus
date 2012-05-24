@@ -425,7 +425,7 @@
 	throw_speed = 1
 	throw_range = 15
 	var/state
-	var/datum/gas_mixture/air_contents = null
+	var/datum/FEA_gas_mixture/air_contents = null
 
 /obj/item/latexballon/proc/blow(obj/item/weapon/tank/tank)
 	if (icon_state == "latexballon_bursted")
@@ -454,7 +454,7 @@
 /obj/item/latexballon/bullet_act()
 	burst()
 
-/obj/item/latexballon/temperature_expose(datum/gas_mixture/air, temperature, volume)
+/obj/item/latexballon/temperature_expose(datum/FEA_gas_mixture/air, temperature, volume)
 	if(temperature > T0C+100)
 		burst()
 	return
@@ -510,7 +510,7 @@
 		istype(W,/obj/item/projectile/beam)\
 	)
 
-/obj/item/weapon/paper/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/item/weapon/paper/temperature_expose(datum/FEA_gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature >= 373.15)
 		for(var/mob/M in viewers(5, src))
 			M << "\red \the [src] burns up."

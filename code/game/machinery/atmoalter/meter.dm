@@ -20,7 +20,7 @@
 
 	use_power(5)
 
-	var/datum/gas_mixture/environment = target.return_air()
+	var/datum/FEA_gas_mixture/environment = target.return_air()
 	if(!environment)
 		icon_state = "meterX"
 		return 0
@@ -61,7 +61,7 @@
 
 	var/t = "A gas flow meter. "
 	if (src.target)
-		var/datum/gas_mixture/environment = target.return_air()
+		var/datum/FEA_gas_mixture/environment = target.return_air()
 		if(environment)
 			t += "The pressure gauge reads [round(environment.return_pressure(), 0.01)] kPa; [round(environment.temperature,0.01)]&deg;K ([round(environment.temperature-T0C,0.01)]&deg;C)"
 		else
@@ -84,7 +84,7 @@
 	var/t = null
 	if (get_dist(user, src) <= 3 || istype(user, /mob/living/silicon/ai) || istype(user, /mob/dead))
 		if (src.target)
-			var/datum/gas_mixture/environment = target.return_air()
+			var/datum/FEA_gas_mixture/environment = target.return_air()
 			if(environment)
 				t = "<B>Pressure:</B> [round(environment.return_pressure(), 0.01)] kPa; <B>Temperature:</B> [round(environment.temperature,0.01)]&deg;K ([round(environment.temperature-T0C,0.01)]&deg;C)"
 			else

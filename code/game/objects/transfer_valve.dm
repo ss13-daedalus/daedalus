@@ -150,7 +150,7 @@
 	proc
 		merge_gases()
 			tank_two.air_contents.volume += tank_one.air_contents.volume
-			var/datum/gas_mixture/temp
+			var/datum/FEA_gas_mixture/temp
 			temp = tank_one.air_contents.remove_ratio(1)
 			tank_two.air_contents.merge(temp)
 
@@ -158,7 +158,7 @@
 			if (!valve_open || !tank_one || !tank_two)
 				return
 			var/ratio1 = tank_one.air_contents.volume/tank_two.air_contents.volume
-			var/datum/gas_mixture/temp
+			var/datum/FEA_gas_mixture/temp
 			temp = tank_two.air_contents.remove_ratio(ratio1)
 			tank_one.air_contents.merge(temp)
 			tank_two.air_contents.volume -=  tank_one.air_contents.volume

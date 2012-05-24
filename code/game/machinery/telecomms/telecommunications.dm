@@ -182,7 +182,7 @@
 
 	proc/checkheat()
 		// Checks heat from the environment and applies any integrity damage
-		var/datum/gas_mixture/environment = loc.return_air()
+		var/datum/FEA_gas_mixture/environment = loc.return_air()
 		switch(environment.temperature)
 			if(T0C to (T20C + 20))
 				integrity = between(0, integrity, 100)
@@ -203,12 +203,12 @@
 		if(!(stat & (NOPOWER|BROKEN))) //Blatently stolen from space heater.
 			var/turf/simulated/L = loc
 			if(istype(L))
-				var/datum/gas_mixture/env = L.return_air()
+				var/datum/FEA_gas_mixture/env = L.return_air()
 				if(env.temperature < (heat_amt+T0C))
 
 					var/transfer_moles = 0.25 * env.total_moles()
 
-					var/datum/gas_mixture/removed = env.remove(transfer_moles)
+					var/datum/FEA_gas_mixture/removed = env.remove(transfer_moles)
 
 					if(removed)
 

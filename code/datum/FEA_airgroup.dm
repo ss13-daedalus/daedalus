@@ -1,8 +1,11 @@
+// FEA-specific grouping of tiles and other gas networks
+// =====================================================
+
 datum
-	air_group
+	FEA_airgroup
 		var/tmp/group_processing = 1 //Processing all tiles as one large tile if 1
 
-		var/tmp/datum/gas_mixture/air = new
+		var/tmp/datum/FEA_gas_mixture/air = new
 
 		var/tmp/current_cycle = 0 //cycle that oxygen value represents
 		var/tmp/archived_cycle = 0 //cycle that oxygen_archived value represents
@@ -48,7 +51,7 @@ datum
 
 		update_group_from_tiles()
 			var/sample_member = pick(members)
-			var/datum/gas_mixture/sample_air = sample_member:air
+			var/datum/FEA_gas_mixture/sample_air = sample_member:air
 
 			air.copy_from(sample_air)
 			air.group_multiplier = members.len
@@ -96,7 +99,7 @@ datum
 				check_delay++
 
 				var/turf/simulated/list/border_individual = list()
-				var/datum/air_group/list/border_group = list()
+				var/datum/FEA_airgroup/list/border_group = list()
 
 				var/turf/simulated/list/enemies = list() //used to send the appropriate border tile of a group to the group proc
 				var/turf/simulated/list/self_group_borders = list()
@@ -136,7 +139,7 @@ datum
 
 				// Process connections to adjacent groups
 				var/border_index = 1
-				for(var/datum/air_group/AG in border_group)
+				for(var/datum/FEA_airgroup/AG in border_group)
 					if(AG.archived_cycle < archived_cycle) //archive other groups information if it has not been archived yet this cycle
 						AG.archive()
 					if(AG.current_cycle < current_cycle)
@@ -147,7 +150,7 @@ datum
 						var/turf/simulated/floor/self_border = self_group_borders[border_index]
 						var/turf/simulated/floor/enemy_border = enemies[border_index]
 
-						var/result = air.check_gas_mixture(AG.air)
+						var/result = air.check_FEA_gas_mixture(AG.air)
 						if(result == 1)
 							connection_difference = air.share(AG.air)
 						else if(result == -1)
@@ -179,7 +182,7 @@ datum
 							if(enemy_tile:archived_cycle < archived_cycle) //archive tile information if not already done
 								enemy_tile:archive()
 							if(enemy_tile:current_cycle < current_cycle)
-								if(air.check_gas_mixture(enemy_tile:air))
+								if(air.check_FEA_gas_mixture(enemy_tile:air))
 									connection_difference = air.share(enemy_tile:air)
 								else
 									abort_group = 1
@@ -241,7 +244,7 @@ datum
 			if(group_processing) //See if processing this group as a group
 
 				var/turf/simulated/list/border_individual = list()
-				var/datum/air_group/list/border_group = list()
+				var/datum/FEA_airgroup/list/border_group = list()
 
 				var/turf/simulated/list/enemies = list() //used to send the appropriate border tile of a group to the group proc
 				var/enemy_index = 1
@@ -250,38 +253,17 @@ datum
 					archive()
 						//Archive air data for use in calculations
 						//But only if another group didn't store it for us
-/*
-				for(var/obj/movable/floor/border_tile in src.borders)
-					for(var/direction in list(NORTH,SOUTH,EAST,WEST)) //Go through all border tiles and get bordering groups and individuals
-						if(border_tile.group_border&direction)
-							var/turf/simulated/enemy_tile = get_step(border_tile, direction) //Add found tile to appropriate category
-							var/obj/movable/floor/movable_on_enemy = locate(/obj/movable/floor) in enemy_tile
-							if(movable_on_enemy)
-								if(movable_on_enemy.parent && movable_on_enemy.parent.group_processing)
-									border_group += movable_on_enemy.parent
-									enemies += movable_on_enemy
-									enemy_index++
-								else
-									border_individual += movable_on_enemy
 
-							else
-								if(istype(enemy_tile) && enemy_tile.parent && enemy_tile.parent.group_processing)
-									border_group += enemy_tile.parent
-									enemies += enemy_tile
-									enemy_index++
-								else
-									border_individual += enemy_tile
-*/
 				enemy_index = 1
 				var/abort_group = 0
-				for(var/datum/air_group/AG in border_group)
+				for(var/datum/FEA_airgroup/AG in border_group)
 					if(AG.archived_cycle < archived_cycle) //archive other groups information if it has not been archived yet this cycle
 						AG.archive()
 					if(AG.current_cycle < current_cycle)
 						//This if statement makes sure two groups only process their individual connections once!
 						//Without it, each connection would be processed a second time as the second group is evaluated
 
-						var/result = air.check_gas_mixture(AG.air)
+						var/result = air.check_FEA_gas_mixture(AG.air)
 						if(result == 1)
 							air.share(AG.air)
 						else if(result == -1)
@@ -299,7 +281,7 @@ datum
 							if(enemy_tile:archived_cycle < archived_cycle) //archive tile information if not already done
 								enemy_tile:archive()
 							if(enemy_tile:current_cycle < current_cycle)
-								if(air.check_gas_mixture(enemy_tile:air))
+								if(air.check_FEA_gas_mixture(enemy_tile:air))
 									air.share(enemy_tile:air)
 								else
 									abort_group = 1

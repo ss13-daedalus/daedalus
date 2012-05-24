@@ -6,7 +6,7 @@
 
 		..()
 
-		var/datum/gas_mixture/environment // Added to prevent null location errors-- TLE
+		var/datum/FEA_gas_mixture/environment // Added to prevent null location errors-- TLE
 		if(loc)
 			environment = loc.return_air()
 
@@ -94,7 +94,7 @@
 				canmove = 0
 			return
 
-		handle_environment(datum/gas_mixture/environment)
+		handle_environment(datum/FEA_gas_mixture/environment)
 			if(!environment)
 				return
 			var/environment_heat_capacity = environment.heat_capacity()

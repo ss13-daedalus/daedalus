@@ -64,11 +64,11 @@ obj/machinery/atmospherics/trinary/mixer
 		//Actually transfer the gas
 
 		if(transfer_moles1 > 0)
-			var/datum/gas_mixture/removed1 = air1.remove(transfer_moles1)
+			var/datum/FEA_gas_mixture/removed1 = air1.remove(transfer_moles1)
 			air3.merge(removed1)
 
 		if(transfer_moles2 > 0)
-			var/datum/gas_mixture/removed2 = air2.remove(transfer_moles2)
+			var/datum/FEA_gas_mixture/removed2 = air2.remove(transfer_moles2)
 			air3.merge(removed2)
 
 		if(network1 && transfer_moles1)
@@ -89,8 +89,8 @@ obj/machinery/atmospherics/trinary/mixer
 		if (level==1 && isturf(T) && T.intact)
 			user << "\red You must remove the plating first."
 			return 1
-		var/datum/gas_mixture/int_air = return_air()
-		var/datum/gas_mixture/env_air = loc.return_air()
+		var/datum/FEA_gas_mixture/int_air = return_air()
+		var/datum/FEA_gas_mixture/env_air = loc.return_air()
 		if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
 			user << "\red You cannot unwrench this [src], it too exerted due to internal pressure."
 			add_fingerprint(user)

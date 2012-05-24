@@ -13,7 +13,7 @@ THERMAL GLASSES
 
 
 /*
-/obj/item/clothing/fire_burn(obj/fire/raging_fire, datum/air_group/environment)
+/obj/item/clothing/fire_burn(obj/fire/raging_fire, datum/FEA_airgroup/environment)
 	if(raging_fire.internal_temperature > src.s_fire)
 		spawn( 0 )
 			var/t = src.icon_state

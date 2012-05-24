@@ -316,8 +316,8 @@ steam.start() -- spawns the effect
 	return
 
 
-/obj/effect/effect/bad_smoke/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
+/obj/effect/effect/bad_smoke/CanPass(atom/movable/mover, turf/target, height=0, FEA_airgroup=0)
+	if(FEA_airgroup || (height==0)) return 1
 	if(istype(mover, /obj/item/projectile/beam))
 		var/obj/item/projectile/beam/B = mover
 		B.damage = (B.damage/2)
@@ -881,7 +881,7 @@ steam.start() -- spawns the effect
 
 // foam disolves when heated
 // except metal foams
-/obj/effect/effect/foam/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/effect/effect/foam/temperature_expose(datum/FEA_gas_mixture/air, exposed_temperature, exposed_volume)
 	if(!metal && prob(max(0, exposed_temperature - 475)))
 		flick("[icon_state]-disolve", src)
 
@@ -1032,8 +1032,8 @@ steam.start() -- spawns the effect
 		else
 			user << "\blue You hit the metal foam to no effect."
 
-	CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
-		if(air_group) return 0
+	CanPass(atom/movable/mover, turf/target, height=1.5, FEA_airgroup = 0)
+		if(FEA_airgroup) return 0
 		return !density
 
 

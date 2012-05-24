@@ -3,7 +3,7 @@
 	name = "tank"
 	icon = 'icons/obj/tank.dmi'
 
-	var/datum/gas_mixture/air_contents = null
+	var/datum/FEA_gas_mixture/air_contents = null
 	var/distribute_pressure = ONE_ATMOSPHERE
 	flags = FPRINT | TABLEPASS | CONDUCT | ONBACK
 
@@ -125,7 +125,7 @@
 	return_air()
 		return air_contents
 
-	assume_air(datum/gas_mixture/giver)
+	assume_air(datum/FEA_gas_mixture/giver)
 		air_contents.merge(giver)
 
 		check_status()
@@ -189,7 +189,7 @@
 		else if(pressure > TANK_LEAK_PRESSURE)
 			//world << "\blue[x],[y] tank is leaking: [pressure] kPa, integrity [integrity]"
 			if(integrity <= 0)
-				var/datum/gas_mixture/leaked_gas = air_contents.remove_ratio(0.25)
+				var/datum/FEA_gas_mixture/leaked_gas = air_contents.remove_ratio(0.25)
 				loc.assume_air(leaked_gas)
 			else
 				integrity--
@@ -241,7 +241,7 @@
 /obj/item/weapon/tank/New()
 	..()
 
-	src.air_contents = new /datum/gas_mixture()
+	src.air_contents = new /datum/FEA_gas_mixture()
 	src.air_contents.volume = volume //liters
 	src.air_contents.temperature = T20C
 
@@ -312,7 +312,7 @@
 
 
 /obj/item/weapon/tank/phoron/proc/release()
-	var/datum/gas_mixture/removed = air_contents.remove(air_contents.total_moles())
+	var/datum/FEA_gas_mixture/removed = air_contents.remove(air_contents.total_moles())
 
 	loc.assume_air(removed)
 

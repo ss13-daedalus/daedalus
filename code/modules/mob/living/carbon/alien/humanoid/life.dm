@@ -182,8 +182,8 @@
 				if(src.reagents.has_reagent("lexorin")) return
 			if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell)) return
 
-			var/datum/gas_mixture/environment = loc.return_air()
-			var/datum/air_group/breath
+			var/datum/FEA_gas_mixture/environment = loc.return_air()
+			var/datum/FEA_airgroup/breath
 			// HACK NEED CHANGING LATER
 			if(src.health < 0)
 				src.losebreath++
@@ -255,7 +255,7 @@
 			if(paralysis || stunned || weakened || buckled) canmove = 0
 			else canmove = 1
 
-		handle_breath(datum/gas_mixture/breath)
+		handle_breath(datum/FEA_gas_mixture/breath)
 			if(src.nodamage)
 				return
 

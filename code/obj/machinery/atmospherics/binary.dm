@@ -2,8 +2,8 @@ obj/machinery/atmospherics/binary
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH
 
-	var/datum/gas_mixture/air1
-	var/datum/gas_mixture/air2
+	var/datum/FEA_gas_mixture/air1
+	var/datum/FEA_gas_mixture/air2
 
 	var/obj/machinery/atmospherics/node1
 	var/obj/machinery/atmospherics/node2

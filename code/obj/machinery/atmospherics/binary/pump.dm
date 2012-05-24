@@ -70,7 +70,7 @@ obj/machinery/atmospherics/binary/pump
 			var/transfer_moles = pressure_delta*air2.volume/(air1.temperature * R_IDEAL_GAS_EQUATION)
 
 			//Actually transfer the gas
-			var/datum/gas_mixture/removed = air1.remove(transfer_moles)
+			var/datum/FEA_gas_mixture/removed = air1.remove(transfer_moles)
 			air2.merge(removed)
 
 			if(network1)
@@ -188,8 +188,8 @@ obj/machinery/atmospherics/binary/pump
 		if (level==1 && isturf(T) && T.intact)
 			user << "\red You must remove the plating first."
 			return 1
-		var/datum/gas_mixture/int_air = return_air()
-		var/datum/gas_mixture/env_air = loc.return_air()
+		var/datum/FEA_gas_mixture/int_air = return_air()
+		var/datum/FEA_gas_mixture/env_air = loc.return_air()
 		if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
 			user << "\red You cannot unwrench this [src], it too exerted due to internal pressure."
 			add_fingerprint(user)

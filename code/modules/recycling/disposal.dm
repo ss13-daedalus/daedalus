@@ -14,7 +14,7 @@
 	icon_state = "disposal"
 	anchored = 1
 	density = 1
-	var/datum/gas_mixture/air_contents	// internal reservoir
+	var/datum/FEA_gas_mixture/air_contents	// internal reservoir
 	var/mode = 1	// item mode 0=off 1=charging 2=charged
 	var/flush = 0	// true if flush handle is pulled
 	var/obj/structure/disposalpipe/trunk/trunk = null // the attached pipe trunk
@@ -35,7 +35,7 @@
 			else
 				trunk.linked = src	// link the pipe trunk to self
 
-			air_contents = new/datum/gas_mixture()
+			air_contents = new/datum/FEA_gas_mixture()
 			//gas.volume = 1.05 * CELLSTANDARD
 			update()
 
@@ -400,14 +400,14 @@
 
 		var/atom/L = loc						// recharging from loc turf
 
-		var/datum/gas_mixture/env = L.return_air()
+		var/datum/FEA_gas_mixture/env = L.return_air()
 		var/pressure_delta = (SEND_PRESSURE*1.01) - air_contents.return_pressure()
 
 		if(env.temperature > 0)
 			var/transfer_moles = 0.1 * pressure_delta*air_contents.volume/(env.temperature * R_IDEAL_GAS_EQUATION)
 
 			//Actually transfer the gas
-			var/datum/gas_mixture/removed = env.remove(transfer_moles)
+			var/datum/FEA_gas_mixture/removed = env.remove(transfer_moles)
 			air_contents.merge(removed)
 
 
@@ -476,7 +476,7 @@
 			H.vent_gas(loc)
 			del(H)
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/movable/mover, turf/target, height=0, FEA_airgroup=0)
 		if (istype(mover,/obj/item) && mover.throwing)
 			var/obj/item/I = mover
 			if(istype(I, /obj/item/weapon/dummy) || istype(I, /obj/item/projectile))
@@ -589,7 +589,7 @@
 
 /obj/structure/disposalholder
 	invisibility = 101
-	var/datum/gas_mixture/gas = null	// gas used to flush, will appear at exit point
+	var/datum/FEA_gas_mixture/gas = null	// gas used to flush, will appear at exit point
 	var/active = 0	// true if the holder is moving, otherwise inactive
 	dir = 0
 	var/count = 1000	//*** can travel 1000 steps before going to the mail room (in case of loops)

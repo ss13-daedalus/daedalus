@@ -744,7 +744,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				T.air.temperature = T.temperature
 
 				// make things update properly
-				T.assume_air(new /datum/gas_mixture())
+				T.assume_air(new /datum/FEA_gas_mixture())
 
 /client/proc/toggle_view_range()
 	set category = "Special Verbs"

@@ -74,11 +74,11 @@ Filter types:
 		//Actually transfer the gas
 
 		if(transfer_moles > 0)
-			var/datum/gas_mixture/removed = air1.remove(transfer_moles)
+			var/datum/FEA_gas_mixture/removed = air1.remove(transfer_moles)
 
 			if(!removed)
 				return
-			var/datum/gas_mixture/filtered_out = new
+			var/datum/FEA_gas_mixture/filtered_out = new
 			filtered_out.temperature = removed.temperature
 
 			switch(filter_type)
@@ -140,8 +140,8 @@ Filter types:
 		if (level==1 && isturf(T) && T.intact)
 			user << "\red You must remove the plating first."
 			return 1
-		var/datum/gas_mixture/int_air = return_air()
-		var/datum/gas_mixture/env_air = loc.return_air()
+		var/datum/FEA_gas_mixture/int_air = return_air()
+		var/datum/FEA_gas_mixture/env_air = loc.return_air()
 		if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
 			user << "\red You cannot unwrench this [src], it too exerted due to internal pressure."
 			add_fingerprint(user)

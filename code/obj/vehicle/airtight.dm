@@ -3,7 +3,7 @@
 	var/use_internal_tank = 0
 	var/internal_tank_valve = ONE_ATMOSPHERE
 	var/obj/machinery/portable_atmospherics/canister/internal_tank
-	var/datum/gas_mixture/cabin_air
+	var/datum/FEA_gas_mixture/cabin_air
 	var/obj/machinery/atmospherics/portables_connector/connected_port = null
 
 	var/datum/global_iterator/pr_int_temp_processor //normalizes internal air mixture temperature
@@ -56,8 +56,8 @@
 
 	process(var/obj/vehicle/airtight/V)
 		if(V.internal_tank)
-			var/datum/gas_mixture/tank_air = V.internal_tank.return_air()
-			var/datum/gas_mixture/cabin_air = V.cabin_air
+			var/datum/FEA_gas_mixture/tank_air = V.internal_tank.return_air()
+			var/datum/FEA_gas_mixture/cabin_air = V.cabin_air
 
 			var/release_pressure = V.internal_tank_valve
 			var/cabin_pressure = cabin_air.return_pressure()
@@ -66,16 +66,16 @@
 			if(pressure_delta > 0) //cabin pressure lower than release pressure
 				if(tank_air.return_temperature() > 0)
 					transfer_moles = pressure_delta*cabin_air.return_volume()/(cabin_air.return_temperature() * R_IDEAL_GAS_EQUATION)
-					var/datum/gas_mixture/removed = tank_air.remove(transfer_moles)
+					var/datum/FEA_gas_mixture/removed = tank_air.remove(transfer_moles)
 					cabin_air.merge(removed)
 			else if(pressure_delta < 0) //cabin pressure higher than release pressure
-				var/datum/gas_mixture/t_air = V.get_turf_air()
+				var/datum/FEA_gas_mixture/t_air = V.get_turf_air()
 				pressure_delta = cabin_pressure - release_pressure
 				if(t_air)
 					pressure_delta = min(cabin_pressure - t_air.return_pressure(), pressure_delta)
 				if(pressure_delta > 0) //if location pressure is lower than cabin pressure
 					transfer_moles = pressure_delta*cabin_air.return_volume()/(cabin_air.return_temperature() * R_IDEAL_GAS_EQUATION)
-					var/datum/gas_mixture/removed = cabin_air.remove(transfer_moles)
+					var/datum/FEA_gas_mixture/removed = cabin_air.remove(transfer_moles)
 					if(t_air)
 						t_air.merge(removed)
 					else //just delete the cabin gas, we're in space or some shit
@@ -113,7 +113,7 @@
 	if(use_internal_tank)
 		. =  cabin_air.return_pressure()
 	else
-		var/datum/gas_mixture/t_air = get_turf_air()
+		var/datum/FEA_gas_mixture/t_air = get_turf_air()
 		if(t_air)
 			. = t_air.return_pressure()
 	return
@@ -124,7 +124,7 @@
 	if(use_internal_tank)
 		. = cabin_air.return_temperature()
 	else
-		var/datum/gas_mixture/t_air = get_turf_air()
+		var/datum/FEA_gas_mixture/t_air = get_turf_air()
 		if(t_air)
 			. = t_air.return_temperature()
 	return

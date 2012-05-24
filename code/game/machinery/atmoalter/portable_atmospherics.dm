@@ -1,6 +1,6 @@
 /obj/machinery/portable_atmospherics
 	name = "atmoalter"
-	var/datum/gas_mixture/air_contents = new
+	var/datum/FEA_gas_mixture/air_contents = new
 
 	var/obj/machinery/atmospherics/portables_connector/connected_port
 	var/obj/item/weapon/tank/holding

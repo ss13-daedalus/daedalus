@@ -76,7 +76,7 @@
 		if(welded)
 			return 0
 
-		var/datum/gas_mixture/environment = loc.return_air()
+		var/datum/FEA_gas_mixture/environment = loc.return_air()
 		var/environment_pressure = environment.return_pressure()
 
 		if(pump_direction) //internal -> external
@@ -91,7 +91,7 @@
 				if(air_contents.temperature > 0)
 					var/transfer_moles = pressure_delta*environment.volume/(air_contents.temperature * R_IDEAL_GAS_EQUATION)
 
-					var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
+					var/datum/FEA_gas_mixture/removed = air_contents.remove(transfer_moles)
 
 					loc.assume_air(removed)
 
@@ -109,7 +109,7 @@
 				if(environment.temperature > 0)
 					var/transfer_moles = pressure_delta*air_contents.volume/(environment.temperature * R_IDEAL_GAS_EQUATION)
 
-					var/datum/gas_mixture/removed = loc.remove_air(transfer_moles)
+					var/datum/FEA_gas_mixture/removed = loc.remove_air(transfer_moles)
 					if (isnull(removed)) //in space
 						return
 
@@ -293,8 +293,8 @@
 		if (level==1 && isturf(T) && T.intact)
 			user << "\red You must remove the plating first."
 			return 1
-		var/datum/gas_mixture/int_air = return_air()
-		var/datum/gas_mixture/env_air = loc.return_air()
+		var/datum/FEA_gas_mixture/int_air = return_air()
+		var/datum/FEA_gas_mixture/env_air = loc.return_air()
 		if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
 			user << "\red You cannot unwrench this [src], it too exerted due to internal pressure."
 			add_fingerprint(user)

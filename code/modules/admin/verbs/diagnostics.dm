@@ -33,7 +33,7 @@
 		var/active_groups = 0
 		var/inactive_groups = 0
 		var/active_tiles = 0
-		for(var/datum/air_group/group in air_master.air_groups)
+		for(var/datum/FEA_airgroup/group in air_master.FEA_airgroups)
 			if(group.group_processing)
 				active_groups++
 			else
@@ -46,7 +46,7 @@
 
 		var/output = {"<B>AIR SYSTEMS REPORT</B><HR>
 <B>General Processing Data</B><BR>
-<B># of Groups:</B> [air_master.air_groups.len]<BR>
+<B># of Groups:</B> [air_master.FEA_airgroups.len]<BR>
 ---- <I>Active:</I> [active_groups]<BR>
 ---- <I>Inactive:</I> [inactive_groups]<BR>
 -------- <I>Tiles:</I> [active_tiles]<BR>
@@ -72,7 +72,7 @@
 		if(!isturf(target))
 			return
 
-		var/datum/gas_mixture/GM = target.return_air()
+		var/datum/FEA_gas_mixture/GM = target.return_air()
 		var/burning = 0
 		if(istype(target, /turf/simulated))
 			var/turf/simulated/T = target
@@ -193,11 +193,11 @@
 		if(!air_master)
 			usr << "Cannot find air_system"
 			return
-		var/datum/air_group/dead_groups = list()
-		for(var/datum/air_group/group in air_master.air_groups)
+		var/datum/FEA_airgroup/dead_groups = list()
+		for(var/datum/FEA_airgroup/group in air_master.FEA_airgroups)
 			if (!group.group_processing)
 				dead_groups += group
-		var/datum/air_group/dest_group = pick(dead_groups)
+		var/datum/FEA_airgroup/dest_group = pick(dead_groups)
 		usr.loc = pick(dest_group.members)
 		//feedback_add_details("admin_verb","JDAG") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		return
@@ -216,7 +216,7 @@
 
 		var/turf/T = get_turf(usr)
 		if(istype(T, /turf/simulated))
-			var/datum/air_group/AG = T:parent
+			var/datum/FEA_airgroup/AG = T:parent
 			AG.next_check = 30
 			AG.group_processing = 0
 		else

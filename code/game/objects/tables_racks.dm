@@ -124,8 +124,8 @@ TABLE AND RACK OBJECT INTERATIONS
 	return
 
 
-/obj/structure/table/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
+/obj/structure/table/CanPass(atom/movable/mover, turf/target, height=0, FEA_airgroup=0)
+	if(FEA_airgroup || (height==0)) return 1
 
 	if(istype(mover) && (mover.checkpass(PASSTABLE) || (mover.flags & TABLEPASS) || mover.throwing)) //WTF do things hit tables like that?  Jeez.
 		return 1
@@ -324,8 +324,8 @@ TABLE AND RACK OBJECT INTERATIONS
 		del(src)
 		return
 
-/obj/structure/rack/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
+/obj/structure/rack/CanPass(atom/movable/mover, turf/target, height=0, FEA_airgroup=0)
+	if(FEA_airgroup || (height==0)) return 1
 	if(src.density == 0) //Because broken racks -Agouri |TODO: SPRITE!|
 		return 1
 	if(istype(mover) && (mover.checkpass(PASSTABLE) || mover.flags & TABLEPASS || mover.throwing))

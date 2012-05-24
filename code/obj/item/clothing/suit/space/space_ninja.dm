@@ -738,7 +738,7 @@ ________________________________________________________________________________
 			if (isnull(T))
 				dat += "Unable to obtain a reading."
 			else
-				var/datum/gas_mixture/environment = T.return_air()
+				var/datum/FEA_gas_mixture/environment = T.return_air()
 
 				var/pressure = environment.return_pressure()
 				var/total_moles = environment.total_moles()

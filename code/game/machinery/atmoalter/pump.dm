@@ -30,7 +30,7 @@
 /obj/machinery/portable_atmospherics/pump/process()
 	..()
 	if(on)
-		var/datum/gas_mixture/environment
+		var/datum/FEA_gas_mixture/environment
 		if(holding)
 			environment = holding.air_contents
 		else
@@ -44,7 +44,7 @@
 				transfer_moles = pressure_delta*environment.volume/(air_contents.temperature * R_IDEAL_GAS_EQUATION)
 
 				//Actually transfer the gas
-				var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
+				var/datum/FEA_gas_mixture/removed = air_contents.remove(transfer_moles)
 
 				if(holding)
 					environment.merge(removed)
@@ -59,7 +59,7 @@
 				transfer_moles = pressure_delta*air_contents.volume/(environment.temperature * R_IDEAL_GAS_EQUATION)
 
 				//Actually transfer the gas
-				var/datum/gas_mixture/removed
+				var/datum/FEA_gas_mixture/removed
 				if(holding)
 					removed = environment.remove(transfer_moles)
 				else

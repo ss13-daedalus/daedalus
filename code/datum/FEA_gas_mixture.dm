@@ -30,7 +30,7 @@ datum
 
 			moles_archived = 0
 
-	gas_mixture
+	FEA_gas_mixture
 		var
 			oxygen = 0
 			carbon_dioxide = 0
@@ -42,7 +42,7 @@ datum
 			temperature = 0 //in Kelvin, use calculate_temperature() to modify
 
 			group_multiplier = 1
-				//Size of the group this gas_mixture is representing.
+				//Size of the group this FEA_gas_mixture is representing.
 				//=1 for singletons
 
 			graphic
@@ -61,7 +61,15 @@ datum
 				fuel_burnt = 0
 
 		proc //PV=nRT - related procedures
+
 			heat_capacity()
+				// This proc is insane. It is used to determine how fast heat is transferred to and from tiles.
+
+				// Example usage:
+				// 	handle_temperature_damage(HEAD, environment.temperature,
+				// 							  environment_heat_capacity*transfer_coefficient)
+				//
+				// Occurences: 31
 				var/heat_capacity = HEAT_CAPACITY_CALCULATION(oxygen,carbon_dioxide,nitrogen,toxins)
 
 				if(trace_gases.len)
@@ -80,6 +88,8 @@ datum
 				return heat_capacity_archived
 
 			total_moles()
+				// The weight of the gas in moles. Yes, this doesn't equal pressure, pressure is calculated
+				// using the "ideal gas equation". See return_pressure() below.
 				var/moles = oxygen + carbon_dioxide + nitrogen + toxins
 
 				if(trace_gases.len)
@@ -97,6 +107,7 @@ datum
 				return temperature
 
 			return_volume()
+				// The volume of a FEA_gas_mixture is set by the container that holds it.
 				return max(0, volume)
 
 			thermal_energy()
@@ -118,8 +129,14 @@ datum
 				return graphic != graphic_archived
 
 			react(atom/dump_location)
+				// Handle possible trace gas reactions and fire
+				//
+				// Occurences: 14
+
 				var/reacting = 0 //set to 1 if a notable reaction occured (used by pipe_network)
 
+				// Apparently this creates some trace gases in the air,
+				// though I've never seen such a thing in the game.
 				if(trace_gases.len > 0)
 					if(temperature > 900)
 						if(toxins > MINIMUM_HEAT_CAPACITY && carbon_dioxide > MINIMUM_HEAT_CAPACITY)
@@ -136,6 +153,7 @@ datum
 
 								reacting = 1
 
+				// Attempt to continue a fire if the temperature is high enough.
 				fuel_burnt = 0
 				if(temperature > FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
 					//world << "pre [temperature], [oxygen], [toxins]"
@@ -146,6 +164,19 @@ datum
 				return reacting
 
 			fire()
+				// This proc does not actually set or create any visual fire. It merely handles internal gas reactions,
+				// and it needs to be called periodically on every tick.
+				//
+				// This proc implements two forms of burning:
+				// - "volatile gas burning", which seems to rely on trace gases and oxygen to produce carbon dioxide
+				// - "phoron burning", which consumes toxins and oxygen and produces carbon dioxide
+				// Both forms of burning generate heat, which can be adjusted with FIRE_CARBON_ENERGY_RELEASED
+				//
+				// ISSUE: This doesn't seem to be interacting at all with object/effect/hotspot/process(), which
+				// might mean that a fire can burn without fuel, and also that fuel can be consumed without visible
+				// fire.
+
+
 				var/energy_released = 0
 				var/old_heat_capacity = heat_capacity()
 
@@ -203,80 +234,100 @@ datum
 				//Update archived versions of variables
 				//Returns: 1 in all cases
 
-			merge(datum/gas_mixture/giver)
+			merge(datum/FEA_gas_mixture/giver)
 				//Merges all air from giver into self. Deletes giver.
 				//Returns: 1 on success (no failure cases yet)
+				//
+				// This proc is used in many places to simulate gas exchange, e.g.
+				// by pipes and canisters.
+				// Occurences: 50
 
-			check_then_merge(datum/gas_mixture/giver)
+
+			check_then_merge(datum/FEA_gas_mixture/giver)
 				//Similar to merge(...) but first checks to see if the amount of air assumed is small enough
 				//	that group processing is still accurate for source (aborts if not)
 				//Returns: 1 on successful merge, 0 if the check failed
+				// Occurrences: 3
 
 			remove(amount)
-				//Proportionally removes amount of gas from the gas_mixture
-				//Returns: gas_mixture with the gases removed
+				//Proportionally removes amount of gas from the FEA_gas_mixture
+				//Returns: FEA_gas_mixture with the gases removed
+				//
+				// Like merge, this proc is used mostly to transfer gas between
+				// containers. However, the telecomms code also uses this proc to
+				// heat its environment(could probably be done better).
+				// Occurrences: 50
 
 			remove_ratio(ratio)
-				//Proportionally removes amount of gas from the gas_mixture
-				//Returns: gas_mixture with the gases removed
+				//Proportionally removes amount of gas from the FEA_gas_mixture
+				//Returns: FEA_gas_mixture with the gases removed
+				// Occurrences: 10
 
-			subtract(datum/gas_mixture/right_side)
+			subtract(datum/FEA_gas_mixture/right_side)
 				//Subtracts right_side from air_mixture. Used to help turfs mingle
+				// Occurrences: 3, why is this public?
 
 			check_then_remove(amount)
 				//Similar to remove(...) but first checks to see if the amount of air removed is small enough
 				//	that group processing is still accurate for source (aborts if not)
-				//Returns: gas_mixture with the gases removed or null
+				//Returns: FEA_gas_mixture with the gases removed or null
+				// Occurences: 3
 
-			copy_from(datum/gas_mixture/sample)
+			copy_from(datum/FEA_gas_mixture/sample)
 				//Copies variables from sample
+				// This is used solely for the purpose of linking individual tiles with their air groups.
+				// Occurences: 3
 
-			share(datum/gas_mixture/sharer)
-				//Performs air sharing calculations between two gas_mixtures assuming only 1 boundary length
-				//Return: amount of gas exchanged (+ if sharer received)
+			share(datum/FEA_gas_mixture/sharer)
+				//Performs air sharing calculations between two FEA_gas_mixtures assuming only 1 boundary length
+				//Return: pressure of gas exchanged (positive if sharer received, negative if src received)
+				//
+				// This is the actual simulation proc used for nearly all gas exchange in FEA. It works not just
+				// on tiles, but also on pipes and entire groups. Called by the FEA_airgroup code only.
 
 			mimic(turf/model)
 				//Similar to share(...), except the model is not modified
 				//Return: amount of gas exchanged
+				//
+				// Not very sure what this is for. It seems to be used on turfs that are not
+				// /turf/simulated, but not on space, so I'm not sure what kinds of turfs these
+				// are.
+				//
+				// What happens here is that the entire simulation is run, but no gas will moved to
+				// or from the target turf. Only the local gas mixture will be modified.
 
-			check_gas_mixture(datum/gas_mixture/sharer)
+			check_FEA_gas_mixture(datum/FEA_gas_mixture/sharer)
+				// This proc checks how much air would be shared with sharer.
+				// If too much air is shared, group processing must be suspended, and this proc returns 1.
+				// If the amount is small enough to be covered by group processing, this proc returns 0.
+
+				// Used by group processing only.
+
 				//Returns: 0 if the self-check failed then -1 if sharer-check failed then 1 if both checks pass
 
 			check_turf(turf/model)
+				// Same as check_FEA_gas_mixture, but uses a turf instead of another gas mixture.
+				//
+				// Used by group processing only.
+				//
 				//Returns: 0 if self-check failed or 1 if check passes
-
-		//	check_me_then_share(datum/gas_mixture/sharer)
-				//Similar to share(...) but first checks to see if amount of air moved is small enough
-				//	that group processing is still accurate for source (aborts if not)
-				//Returns: 1 on successful share, 0 if the check failed
-
-		//	check_me_then_mimic(turf/model)
-				//Similar to mimic(...) but first checks to see if amount of air moved is small enough
-				//	that group processing is still accurate (aborts if not)
-				//Returns: 1 on successful mimic, 0 if the check failed
-
-		//	check_both_then_share(datum/gas_mixture/sharer)
-				//Similar to check_me_then_share(...) but also checks to see if amount of air moved is small enough
-				//	that group processing is still accurate for the sharer (aborts if not)
-				//Returns: 0 if the self-check failed then -1 if sharer-check failed then 1 if successful share
-
 
 			temperature_mimic(turf/model, conduction_coefficient)
 
-			temperature_share(datum/gas_mixture/sharer, conduction_coefficient)
+			temperature_share(datum/FEA_gas_mixture/sharer, conduction_coefficient)
 
 			temperature_turf_share(turf/simulated/sharer, conduction_coefficient)
 
 
 			check_me_then_temperature_mimic(turf/model, conduction_coefficient)
 
-			check_me_then_temperature_share(datum/gas_mixture/sharer, conduction_coefficient)
+			check_me_then_temperature_share(datum/FEA_gas_mixture/sharer, conduction_coefficient)
 
-			check_both_then_temperature_share(datum/gas_mixture/sharer, conduction_coefficient)
+			check_both_then_temperature_share(datum/FEA_gas_mixture/sharer, conduction_coefficient)
 
 			check_me_then_temperature_turf_share(turf/simulated/sharer, conduction_coefficient)
 
-			compare(datum/gas_mixture/sample)
+			compare(datum/FEA_gas_mixture/sample)
 				//Compares sample to self to see if within acceptable ranges that group processing may be enabled
 
 		archive()
@@ -295,7 +346,7 @@ datum
 
 			return 1
 
-		check_then_merge(datum/gas_mixture/giver)
+		check_then_merge(datum/FEA_gas_mixture/giver)
 			if(!giver)
 				return 0
 			if(((giver.oxygen > MINIMUM_AIR_TO_SUSPEND) && (giver.oxygen >= oxygen*MINIMUM_AIR_RATIO_TO_SUSPEND)) \
@@ -314,7 +365,7 @@ datum
 
 			return merge(giver)
 
-		merge(datum/gas_mixture/giver)
+		merge(datum/FEA_gas_mixture/giver)
 			if(!giver)
 				return 0
 
@@ -354,7 +405,7 @@ datum
 			if(amount <= 0)
 				return null
 
-			var/datum/gas_mixture/removed = new
+			var/datum/FEA_gas_mixture/removed = new
 
 
 			removed.oxygen = QUANTIZE((oxygen/sum)*amount)
@@ -386,7 +437,7 @@ datum
 
 			ratio = min(ratio, 1)
 
-			var/datum/gas_mixture/removed = new
+			var/datum/FEA_gas_mixture/removed = new
 
 			removed.oxygen = QUANTIZE(oxygen*ratio)
 			removed.nitrogen = QUANTIZE(nitrogen*ratio)
@@ -421,7 +472,7 @@ datum
 
 			return remove(amount)
 
-		copy_from(datum/gas_mixture/sample)
+		copy_from(datum/FEA_gas_mixture/sample)
 			oxygen = sample.oxygen
 			carbon_dioxide = sample.carbon_dioxide
 			nitrogen = sample.nitrogen
@@ -439,7 +490,7 @@ datum
 
 			return 1
 
-		subtract(datum/gas_mixture/right_side)
+		subtract(datum/FEA_gas_mixture/right_side)
 			oxygen -= right_side.oxygen
 			carbon_dioxide -= right_side.carbon_dioxide
 			nitrogen -= right_side.nitrogen
@@ -456,25 +507,7 @@ datum
 
 			return 1
 
-	/*	check_me_then_share(datum/gas_mixture/sharer)
-			var/delta_oxygen = (oxygen_archived - sharer.oxygen_archived)/5
-			var/delta_carbon_dioxide = (carbon_dioxide_archived - sharer.carbon_dioxide_archived)/5
-			var/delta_nitrogen = (nitrogen_archived - sharer.nitrogen_archived)/5
-			var/delta_toxins = (toxins_archived - sharer.toxins_archived)/5
-
-			var/delta_temperature = (temperature_archived - sharer.temperature_archived)
-
-			if(((abs(delta_oxygen) > MINIMUM_AIR_TO_SUSPEND) && (abs(delta_oxygen) >= oxygen_archived*MINIMUM_AIR_RATIO_TO_SUSPEND)) \
-				|| ((abs(delta_carbon_dioxide) > MINIMUM_AIR_TO_SUSPEND) && (abs(delta_carbon_dioxide) >= carbon_dioxide_archived*MINIMUM_AIR_RATIO_TO_SUSPEND)) \
-				|| ((abs(delta_nitrogen) > MINIMUM_AIR_TO_SUSPEND) && (abs(delta_nitrogen) >= nitrogen_archived*MINIMUM_AIR_RATIO_TO_SUSPEND)) \
-				|| ((abs(delta_toxins) > MINIMUM_AIR_TO_SUSPEND) && (abs(delta_toxins) >= toxins_archived*MINIMUM_AIR_RATIO_TO_SUSPEND)))
-				return 0
-			if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_SUSPEND)
-				return 0
-
-			return share(sharer)*/
-
-		check_gas_mixture(datum/gas_mixture/sharer)
+		check_FEA_gas_mixture(datum/FEA_gas_mixture/sharer)
 			var/delta_oxygen = (oxygen_archived - sharer.oxygen_archived)/5
 			var/delta_carbon_dioxide = (carbon_dioxide_archived - sharer.carbon_dioxide_archived)/5
 			var/delta_nitrogen = (nitrogen_archived - sharer.nitrogen_archived)/5
@@ -548,7 +581,7 @@ datum
 
 			return 1
 
-		share(datum/gas_mixture/sharer)
+		share(datum/FEA_gas_mixture/sharer)
 			if(!sharer)	return 0
 			var/delta_oxygen = QUANTIZE(oxygen_archived - sharer.oxygen_archived)/5
 			var/delta_carbon_dioxide = QUANTIZE(carbon_dioxide_archived - sharer.carbon_dioxide_archived)/5
@@ -765,7 +798,7 @@ datum
 			else
 				return 0
 
-		check_both_then_temperature_share(datum/gas_mixture/sharer, conduction_coefficient)
+		check_both_then_temperature_share(datum/FEA_gas_mixture/sharer, conduction_coefficient)
 			var/delta_temperature = (temperature_archived - sharer.temperature_archived)
 
 			var/self_heat_capacity = heat_capacity_archived()
@@ -797,7 +830,7 @@ datum
 			return 1
 			//Logic integrated from: temperature_share(sharer, conduction_coefficient) for efficiency
 
-		check_me_then_temperature_share(datum/gas_mixture/sharer, conduction_coefficient)
+		check_me_then_temperature_share(datum/FEA_gas_mixture/sharer, conduction_coefficient)
 			var/delta_temperature = (temperature_archived - sharer.temperature_archived)
 
 			var/self_heat_capacity = heat_capacity_archived()
@@ -875,7 +908,7 @@ datum
 			return 1
 			//Logic integrated from: temperature_mimic(model, conduction_coefficient) for efficiency
 
-		temperature_share(datum/gas_mixture/sharer, conduction_coefficient)
+		temperature_share(datum/FEA_gas_mixture/sharer, conduction_coefficient)
 
 			var/delta_temperature = (temperature_archived - sharer.temperature_archived)
 			if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
@@ -917,7 +950,7 @@ datum
 					temperature -= heat/(self_heat_capacity*group_multiplier)
 					sharer.temperature += heat/sharer.heat_capacity
 
-		compare(datum/gas_mixture/sample)
+		compare(datum/FEA_gas_mixture/sample)
 			if((abs(oxygen-sample.oxygen) > MINIMUM_AIR_TO_SUSPEND) && \
 				((oxygen < (1-MINIMUM_AIR_RATIO_TO_SUSPEND)*sample.oxygen) || (oxygen > (1+MINIMUM_AIR_RATIO_TO_SUSPEND)*sample.oxygen)))
 				return 0

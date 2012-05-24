@@ -25,7 +25,7 @@
 
 	..()
 
-	var/datum/gas_mixture/environment // Added to prevent null location errors-- TLE
+	var/datum/FEA_gas_mixture/environment // Added to prevent null location errors-- TLE
 	if(src.loc)
 		environment = loc.return_air()
 
@@ -186,8 +186,8 @@
 
 			if(!loc) return //probably ought to make a proper fix for this, but :effort: --NeoFite
 
-			var/datum/gas_mixture/environment = loc.return_air()
-			var/datum/air_group/breath
+			var/datum/FEA_gas_mixture/environment = loc.return_air()
+			var/datum/FEA_airgroup/breath
 
 			if(losebreath>0) //Suffocating so do not take a breath
 				src.losebreath--
@@ -256,7 +256,7 @@
 			if(paralysis || stunned || weakened || buckled || (changeling && changeling.changeling_fakedeath)) canmove = 0
 			else canmove = 1
 
-		handle_breath(datum/gas_mixture/breath)
+		handle_breath(datum/FEA_gas_mixture/breath)
 			if(src.nodamage)
 				return
 
@@ -351,7 +351,7 @@
 
 			return 1
 
-		handle_environment(datum/gas_mixture/environment)
+		handle_environment(datum/FEA_gas_mixture/environment)
 			if(!environment)
 				return
 			var/environment_heat_capacity = environment.heat_capacity()
@@ -567,7 +567,7 @@
 				else
 					src.healths.icon_state = "health7"
 			if (pressure)
-				var/datum/gas_mixture/environment = loc.return_air()
+				var/datum/FEA_gas_mixture/environment = loc.return_air()
 				if(environment)
 					switch(environment.return_pressure())
 

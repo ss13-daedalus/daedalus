@@ -35,8 +35,8 @@
 	if(!circ1 || !circ2)
 		return
 
-	var/datum/gas_mixture/hot_air = circ1.return_transfer_air()
-	var/datum/gas_mixture/cold_air = circ2.return_transfer_air()
+	var/datum/FEA_gas_mixture/hot_air = circ1.return_transfer_air()
+	var/datum/FEA_gas_mixture/cold_air = circ2.return_transfer_air()
 
 	lastgen = 0
 

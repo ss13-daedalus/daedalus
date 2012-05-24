@@ -480,7 +480,7 @@
 
 /obj/machinery/alarm/proc/return_status()
 	var/turf/location = src.loc
-	var/datum/gas_mixture/environment = location.return_air()
+	var/datum/FEA_gas_mixture/environment = location.return_air()
 	var/total = environment.oxygen + environment.carbon_dioxide + environment.toxins + environment.nitrogen
 	var/output = "<b>Air Status:</b><br>"
 
@@ -920,7 +920,7 @@ table tr:first-child th:first-child { border: none;}
 	if (!istype(location))
 		return 0
 
-	var/datum/gas_mixture/environment = location.return_air()
+	var/datum/FEA_gas_mixture/environment = location.return_air()
 
 	var/datum/tlv/cur_tlv
 	var/GET_PP = R_IDEAL_GAS_EQUATION*environment.temperature/environment.volume
@@ -1054,7 +1054,7 @@ table tr:first-child th:first-child { border: none;}
 	spawn(rand(0,15))
 		update_icon()
 
-/obj/machinery/firealarm/temperature_expose(datum/gas_mixture/air, temperature, volume)
+/obj/machinery/firealarm/temperature_expose(datum/FEA_gas_mixture/air, temperature, volume)
 	if(src.detecting)
 		if(temperature > T0C+200)
 			src.alarm()			// added check of detector status here

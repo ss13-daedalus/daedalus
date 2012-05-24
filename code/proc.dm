@@ -140,7 +140,7 @@ proc/countJob(rank)
 
 	return capitalize(name)
 
-proc/equalize_gases(datum/gas_mixture/list/gases)
+proc/equalize_gases(datum/FEA_gas_mixture/list/gases)
 	//Perfectly equalize all gases members instantly
 
 	//Calculate totals from individual components
@@ -155,7 +155,7 @@ proc/equalize_gases(datum/gas_mixture/list/gases)
 
 	var/list/total_trace_gases = list()
 
-	for(var/datum/gas_mixture/gas in gases)
+	for(var/datum/FEA_gas_mixture/gas in gases)
 		total_volume += gas.volume
 		total_thermal_energy += gas.thermal_energy()
 		total_heat_capacity += gas.heat_capacity()
@@ -182,8 +182,8 @@ proc/equalize_gases(datum/gas_mixture/list/gases)
 		if(total_heat_capacity > 0)
 			temperature = total_thermal_energy/total_heat_capacity
 
-		//Update individual gas_mixtures by volume ratio
-		for(var/datum/gas_mixture/gas in gases)
+		//Update individual FEA_gas_mixtures by volume ratio
+		for(var/datum/FEA_gas_mixture/gas in gases)
 			gas.oxygen = total_oxygen*gas.volume/total_volume
 			gas.nitrogen = total_nitrogen*gas.volume/total_volume
 			gas.toxins = total_toxins*gas.volume/total_volume

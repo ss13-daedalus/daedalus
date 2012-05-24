@@ -1,6 +1,6 @@
 obj/machinery/atmospherics/pipe
 
-	var/datum/gas_mixture/air_temporary //used when reconstructing a pipeline that broke
+	var/datum/FEA_gas_mixture/air_temporary //used when reconstructing a pipeline that broke
 	var/datum/pipeline/parent
 
 	var/volume = 0
@@ -130,20 +130,20 @@ obj/machinery/atmospherics/pipe
 					if(loc:blocks_air)
 						environment_temperature = loc:temperature
 					else
-						var/datum/gas_mixture/environment = loc.return_air()
+						var/datum/FEA_gas_mixture/environment = loc.return_air()
 						environment_temperature = environment.temperature
 
 				else
 					environment_temperature = loc:temperature
 
-				var/datum/gas_mixture/pipe_air = return_air()
+				var/datum/FEA_gas_mixture/pipe_air = return_air()
 
 				if(abs(environment_temperature-pipe_air.temperature) > minimum_temperature_difference)
 					parent.temperature_interact(loc, volume, thermal_conductivity)
 			*/  //Screw you heat lag
 
 		check_pressure(pressure)
-			var/datum/gas_mixture/environment = loc.return_air()
+			var/datum/FEA_gas_mixture/environment = loc.return_air()
 
 			var/pressure_difference = pressure - environment.return_pressure()
 
@@ -1232,8 +1232,8 @@ obj/machinery/atmospherics/pipe/attackby(var/obj/item/weapon/W as obj, var/mob/u
 	if (level==1 && isturf(T) && T.intact)
 		user << "\red You must remove the plating first."
 		return 1
-	var/datum/gas_mixture/int_air = return_air()
-	var/datum/gas_mixture/env_air = loc.return_air()
+	var/datum/FEA_gas_mixture/int_air = return_air()
+	var/datum/FEA_gas_mixture/env_air = loc.return_air()
 	if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
 		user << "\red You cannot unwrench this [src], it too exerted due to internal pressure."
 		add_fingerprint(user)

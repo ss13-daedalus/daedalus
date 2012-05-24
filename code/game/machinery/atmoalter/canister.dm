@@ -75,7 +75,7 @@
 			overlays += image('icons/obj/atmos.dmi', "can-o3")
 	return
 
-/obj/machinery/portable_atmospherics/canister/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/machinery/portable_atmospherics/canister/temperature_expose(datum/FEA_gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > temperature_resistance)
 		health -= 5
 		healthcheck()
@@ -108,7 +108,7 @@
 	..()
 
 	if(valve_open)
-		var/datum/gas_mixture/environment
+		var/datum/FEA_gas_mixture/environment
 		if(holding)
 			environment = holding.air_contents
 		else
@@ -123,7 +123,7 @@
 			transfer_moles = pressure_delta*environment.volume/(air_contents.temperature * R_IDEAL_GAS_EQUATION)
 
 			//Actually transfer the gas
-			var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
+			var/datum/FEA_gas_mixture/removed = air_contents.remove(transfer_moles)
 
 			if(holding)
 				environment.merge(removed)
@@ -143,13 +143,13 @@
 	return air_contents
 
 /obj/machinery/portable_atmospherics/canister/proc/return_temperature()
-	var/datum/gas_mixture/GM = src.return_air()
+	var/datum/FEA_gas_mixture/GM = src.return_air()
 	if(GM && GM.volume>0)
 		return GM.temperature
 	return 0
 
 /obj/machinery/portable_atmospherics/canister/proc/return_pressure()
-	var/datum/gas_mixture/GM = src.return_air()
+	var/datum/FEA_gas_mixture/GM = src.return_air()
 	if(GM && GM.volume>0)
 		return GM.return_pressure()
 	return 0

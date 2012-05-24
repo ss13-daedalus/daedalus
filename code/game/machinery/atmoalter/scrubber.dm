@@ -51,7 +51,7 @@
 	..()
 
 	if(on)
-		var/datum/gas_mixture/environment
+		var/datum/FEA_gas_mixture/environment
 		if(holding)
 			environment = holding.air_contents
 		else
@@ -59,7 +59,7 @@
 		var/transfer_moles = min(1, volume_rate/environment.volume)*environment.total_moles()
 
 		//Take a gas sample
-		var/datum/gas_mixture/removed
+		var/datum/FEA_gas_mixture/removed
 		if(holding)
 			removed = environment.remove(transfer_moles)
 		else
@@ -67,7 +67,7 @@
 
 		//Filter it
 		if (removed)
-			var/datum/gas_mixture/filtered_out = new
+			var/datum/FEA_gas_mixture/filtered_out = new
 
 			filtered_out.temperature = removed.temperature
 
