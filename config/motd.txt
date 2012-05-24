@@ -9,7 +9,7 @@ This server is running <b>Daedalus</b>, a cleanup and modification of Baystation
 <strong>Join us on IRC!</strong> <tt>#daedalus</tt> on the <a href="http://www.freenode.net">Freenode</a> IRC network.  
 Click <a href="http://webchat.freenode.net/?channels=#daedalus">here</a> if you are not familiar with IRC, to join us instantly.
 <br>
-<strong>Join our community!</strong> We do have some <a href="http://alpha.nss-icarus.net">forums</a>, though we are still wokring on the cosmetics.
+<strong>Join our community!</strong> We do have some <a href="http://fora.nss-icarus.net">forums</a>, though we are still wokring on the cosmetics.
 <br><br>
 <strong>Read the rules of the road:</strong> via the "Rules" command.  Ignorance is no excuse!
 <!-- vi: set filetype=html : -->
