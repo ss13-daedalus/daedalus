@@ -859,6 +859,7 @@
 #include "code\obj\item\weapon\cure_implanter.dm"
 #include "code\obj\item\weapon\disease_disk.dm"
 #include "code\obj\item\weapon\disk.dm"
+#include "code\obj\item\weapon\dummy.dm"
 #include "code\obj\item\weapon\folder.dm"
 #include "code\obj\item\weapon\melee.dm"
 #include "code\obj\item\weapon\mustardbomb.dm"

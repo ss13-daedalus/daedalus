@@ -544,3 +544,7 @@ Made a proc here so it's not repeated several times.*/
 
 //=======//GENERIC VERB MODIFIERS//=======//
 
+
+mob/proc/flash_weak_pain()
+	flick("weak_pain",pain)
+
