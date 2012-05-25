@@ -143,9 +143,7 @@ Today, these people were mean:
 		F << "traitor" // Default mode, in case of errors
 
 /world/proc/load_motd()
-	join_motd = file2text("config/motd.txt")
-	auth_motd = file2text("config/motd-auth.txt")
-	no_auth_motd = file2text("config/motd-noauth.txt")
+	join_motd = file2text("config/motd.html")
 
 /world/proc/load_rules()
 	rules = file2text("config/rules.html")
