@@ -1,0 +1,11 @@
+all: dmsqlite.so
+
+clean:
+	rm -f dmsqlite.o dmsqlite.so
+
+dmsqlite.so: dmsqlite.o
+	g++ -m32 -shared -o dmsqlite.so dmsqlite.o -lsqlite3
+
+dmsqlite.o: dmsqlite.cpp
+	g++ -m32 -fPIC -Wall -ansi -pedantic -c dmsqlite.cpp
+
