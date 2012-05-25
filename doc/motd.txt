@@ -1,0 +1,4 @@
+The contents of the config/motd.html file are shown to all players
+at the time they connect to the game server.
+
+Most valid html will work in motd.html (excluding imgs)
