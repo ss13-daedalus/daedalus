@@ -7,6 +7,12 @@
 	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 1000
+
+	// charge_rate_per_cycle controls how much of a charge (in percent)
+	// that a recharge station refills per call to process().  This
+	// could potentially be increased with mods/tech/etc.
+	var/charge_rate_per_cycle = 0.03
+
 	var/mob/occupant = null
 
 	New()
@@ -49,12 +55,12 @@
 					restock_modules()
 					if(!R.cell)
 						return
-					else if(R.cell.charge >= R.cell.maxcharge)
-						R.cell.charge = R.cell.maxcharge
-						return
-					else
-						R.cell.charge += 200
-						return
+
+					// Calculate just how much of an increase we should make.
+					var/charge_amount = R.cell.maxcharge * charge_rate_per_cycle
+
+					// Don't overcharge; thanks, max()!
+					R.cell.charge = max(R.cell.maxcharge, R.cell.charge + charge_amount)
 
 		go_out()
 			if(!( src.occupant ))
