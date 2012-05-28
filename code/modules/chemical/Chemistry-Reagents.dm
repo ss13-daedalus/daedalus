@@ -98,6 +98,12 @@ datum
 			reagent_state = LIQUID
 			color = "#C80000" // rgb: 200, 0, 0
 			on_mob_life(var/mob/living/M)
+				if(!(data) || !(data["blood_type"]))
+
+					// We should perhaps be doing more than returning, but
+					// seeing as we get runtimes due to the above variables
+					// not being set, this is better than nothing.
+					return
 				if(istype(M, /mob/living/carbon/human) && blood_incompatible(data["blood_type"],M.dna.b_type))
 					M.adjustToxLoss(rand(0.5,1.5))
 					M.adjustOxyLoss(rand(1,1.5))
