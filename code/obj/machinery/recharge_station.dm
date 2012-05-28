@@ -59,8 +59,8 @@
 					// Calculate just how much of an increase we should make.
 					var/charge_amount = R.cell.maxcharge * charge_rate_per_cycle
 
-					// Don't overcharge; thanks, max()!
-					R.cell.charge = max(R.cell.maxcharge, R.cell.charge + charge_amount)
+					// Don't overcharge; thanks, min()!
+					R.cell.charge = min(R.cell.maxcharge, R.cell.charge + charge_amount)
 
 		go_out()
 			if(!( src.occupant ))
