@@ -9,8 +9,6 @@
 	active_power_usage = 1000
 	var/mob/occupant = null
 
-
-
 	New()
 		..()
 		build_icon()
@@ -150,8 +148,3 @@
 			build_icon()
 			src.use_power = 2
 			return
-
-
-
-
-
