@@ -865,7 +865,6 @@
 #include "code\obj\item\weapon\smokebomb.dm"
 #include "code\obj\item\weapon\spellbook.dm"
 #include "code\obj\item\weapon\stamp_eraser.dm"
-#include "code\obj\item\weapon\SWF_uplink.dm"
 #include "code\obj\item\weapon\tank.dm"
 #include "code\obj\item\weapon\veilrender.dm"
 #include "code\obj\item\weapon\virus_dish.dm"

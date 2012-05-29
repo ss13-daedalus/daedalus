@@ -1086,25 +1086,6 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 	item_state = "shard-glass"
 	g_amt = 3750
 
-/obj/item/weapon/SWF_uplink
-	name = "station-bounced radio"
-	desc = "used to comunicate it appears."
-	icon = 'icons/obj/radio.dmi'
-	icon_state = "radio"
-	var/temp = null
-	var/uses = 4.0
-	var/selfdestruct = 0.0
-	var/traitor_frequency = 0.0
-	var/obj/item/device/radio/origradio = null
-	flags = FPRINT | TABLEPASS| CONDUCT | ONBELT
-	item_state = "radio"
-	throwforce = 5
-	w_class = 2.0
-	throw_speed = 4
-	throw_range = 20
-	m_amt = 100
-	origin_tech = "magnets=1"
-
 /obj/item/weapon/spellbook
 	name = "spell book"
 	desc = "The legendary book of spells of a wizard."
