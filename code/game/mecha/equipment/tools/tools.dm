@@ -1133,7 +1133,7 @@
 		if(!S.chassis.has_charge(S.energy_drain))
 			S.set_ready_state(1)
 			S.log_message("Deactivated.")
-			S.occupant_message("[src] deactivated - no power.")
+			S.occupant_message("[S.name] deactivated - no power.")
 			return stop()
 		var/mob/living/carbon/M = S.occupant
 		if(!M)
