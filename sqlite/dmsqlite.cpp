@@ -17,15 +17,20 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 //
 
+// TODO DELETE ME
+#include <iostream>
+
 #include <sstream>
 #include <string>
+#include <set>
 #include "sqlite3.h"
 
-// The maximum number of concurrently open SQLite database connections
-// that are supported by this wrapper library. This limit is just an
-// arbitrary number to limit memory usage.
-#define HANDLE_MAX 256
+typedef std::set<void *> pointer_set_t;
 
+pointer_set_t dbconn_set;
+pointer_set_t stmt_set;
+
+/*
 // Used in handle_list to track open connections and running SQL statements
 typedef struct {
 	// The database connection handle returned by sqlite3_open() or NULL if
@@ -39,13 +44,14 @@ typedef struct {
 	// returning its final result row.
 	sqlite3_stmt* stmt;
 } handle_t;
+*/
 
 // For safety purposes, this wrapper library never returns handles to the
 // SQLite objects directly. Instead it returns an index into the array
 // below which in turn maps it to the real connection/statement handle.
 // Since global data is always initialized to NULL, this marks all handle_t
 // array elements as being free.
-static handle_t handle_list[HANDLE_MAX];
+//static handle_t handle_list[HANDLE_MAX];
 
 // A placeholder for the last result string returned to the BYOND server
 // by one of the dm_db_xxx() methods. This ensures the returned char pointer
@@ -62,39 +68,27 @@ static const char *error_string = NULL;
 // to most dm_db_xxx() methods. If the handle index is valid and its associated
 // database connection is open, then returns the index as an integer. If the
 // index is invalid, then returns a -1.
-int get_handle(int argc, char *argv[])
+static void *get_handle(int argc, char *argv[], int argn, const pointer_set_t &set)
 {
 	// Check for usage: a single filename argument is required
-	if(argc < 1) {
-		error_string = "Database handle is required in 1st argument";
-		return -1;
+	if(argc < (argn + 1)) {
+		error_string = "Database or query handle argument is required";
+		return NULL;
 	}
 
-	// Convert the string argument into a numeric handle
-	std::istringstream handle(argv[0]);
-	int index;
-	handle >> index;
+	// Convert the string argument into a numeric pointer value
+	std::istringstream buffer(argv[argn]);
+	void *pointer;
+	buffer >> pointer;
 
-	// Check if the argument was parsable as a valid integer
-	if(handle.fail()) {
-		error_string = "Database handle argument is not an integer";
-		return -1;
+	// Check if argument was parsable and is in the set of valid pointers
+	if(buffer.fail() || set.find(pointer) == set.end()) {
+		error_string = "Database or query handle argument is not valid";
+		return NULL;
 	}
 
-	// Check if the index is out of range
-	if(index < 0 || index >= HANDLE_MAX) {
-		error_string = "Database handle argument is not a valid handle";
-		return -1;
-	}
-
-	// Check if the database connection is open */
-	if(handle_list[index].dbconn == NULL) {
-		error_string = "Database handle is not currently open";
-		return -1;
-	}
-	
 	// Return the real open SQLite database handle if it was found
-	return index;
+	return pointer;
 }
 
 // Return a human readable message if the last call to one of the dm_db_xxx()
@@ -117,20 +111,6 @@ extern "C" const char *dm_db_open(int argc, char *argv[])
 		return NULL;
 	}
 
-	// Search the handle_list for the lowest free index (dbconn == NULL)
-	int index;
-	for(index = 0; index < HANDLE_MAX; index++) {
-		if(handle_list[index].dbconn == NULL) {
-			break;
-		}
-	}
-	
-	// Check if the maximum number of database connections is already open
-	if(index == HANDLE_MAX) {
-		error_string = "Maximum database connection limit reached";
-		return NULL;
-	}
-
 	// Attempt to open a SQLite database and check for library errors
 	sqlite3 *dbconn;
 	int rc = sqlite3_open(argv[0], &dbconn);
@@ -142,10 +122,10 @@ extern "C" const char *dm_db_open(int argc, char *argv[])
 		return NULL;
 	}
 
-	// Connection succeeded so store then handle and convert index to string
-	handle_list[index].dbconn = dbconn;
+	// Add dbconn handle to set of valid pointers and convert it to a string
+	dbconn_set.insert(dbconn);
 	std::ostringstream result;
-	result << index;
+	result << dbconn;
 
 	// Convert ostringstream to a persistant C string that can be returned
 	error_string = NULL;
@@ -160,43 +140,67 @@ extern "C" const char *dm_db_open(int argc, char *argv[])
 extern "C" const char *dm_db_close(int argc, char *argv[])
 {
 	// Decode the database handle from the first argument
-	int index = get_handle(argc, argv);
-	if(index == -1) {
+	sqlite3 *dbconn = (sqlite3 *) get_handle(argc, argv, 0, dbconn_set);
+	if(dbconn == NULL) {
 		return NULL;
 	}
-	handle_t *handle = &handle_list[index];
 
 	// Finalize any exisitng prepared statement the connection may still have
-	if(handle->stmt != NULL) {
+	sqlite3_stmt* stmt = sqlite3_next_stmt(dbconn, NULL);
+	while(stmt != NULL) {
+		sqlite3_stmt* prev = stmt;
+		stmt = sqlite3_next_stmt(dbconn, stmt);
+
 		// Finalize can only return previous statment error so ignore it here
-		sqlite3_finalize(handle->stmt);
-		handle->stmt = NULL;
+		// TODO: Check returns here?
+		if(sqlite3_finalize(prev) != SQLITE_OK) {
+			std::cerr << "FINALIZE ERROR" << std::endl;
+		}
+
+		// Remove prepared statement handle from set of valid pointers
+		stmt_set.erase(prev);
 	}
 
 	// Close the database itself and check for any errors on close
-	int rc = sqlite3_close(handle->dbconn);
+	int rc = sqlite3_close(dbconn);
 	if(rc != SQLITE_OK) {
-		error_string = sqlite3_errmsg(handle->dbconn);
+		error_string = sqlite3_errmsg(dbconn);
 		return NULL;
 	}
 
-	// Free entry in handle_list and return empty string to indicate success
+	// Remove handle from pointer set; return empty string indicating success
+	dbconn_set.erase(dbconn);
 	error_string = NULL;
-	handle->dbconn = NULL;
+	return "";
+}
+
+extern "C" const char *dm_db_finalize(int argc, char *argv[])
+{
+	// Decode the prepared statement handle from the first argument
+	sqlite3_stmt *stmt = (sqlite3_stmt *) get_handle(argc, argv, 0, stmt_set);
+	if(stmt == NULL) {
+		return NULL;
+	}
+
+	// Finalize can only return previous error so ignote it here;
+	sqlite3_finalize(stmt);
+
+	// Remove handle from pointer set; return empty string indicating success
+	stmt_set.erase(stmt);
+	error_string = NULL;
 	return "";
 }
 
 // Prepare a SQL statement for execution on a previously opened database
 // connection. The statement is not actually executed until dm_db_step() is
 // called. Returns an empty "" string on success and NULL on error.
-extern "C" const char *dm_db_prepare(int argc, char *argv[])
+extern "C" const char *dm_db_execute(int argc, char *argv[])
 {
 	// Decode the database handle from the first argument
-	int index = get_handle(argc, argv);
-	if(index == -1) {
+	sqlite3 *dbconn = (sqlite3 *) get_handle(argc, argv, 0, dbconn_set);
+	if(dbconn == NULL) {
 		return NULL;
 	}
-	handle_t *handle = &handle_list[index];
 
 	// Check that a second argument was passed in with the SQL string
 	if(argc < 2) {
@@ -204,23 +208,33 @@ extern "C" const char *dm_db_prepare(int argc, char *argv[])
 		return NULL;
 	}
 
-	// Finalize any exisitng prepared statement the connection may still have
-	if(handle->stmt != NULL) {
-		// Finalize can only return previous statment error so ignore it here
-		sqlite3_finalize(handle->stmt);
-		handle->stmt = NULL;
-	}
-
 	// Compile the SQL statement, check for errors, and save its handle
-	int rc = sqlite3_prepare_v2(handle->dbconn, argv[1], -1, &handle->stmt, NULL);
+	sqlite3_stmt *stmt;
+	int rc = sqlite3_prepare_v2(dbconn, argv[1], -1, &stmt, NULL);
 	if(rc != SQLITE_OK) {
-		error_string = sqlite3_errmsg(handle->dbconn);
+		// The stmt is set to NULL on error so no need to finalize here
+		error_string = sqlite3_errmsg(dbconn);
 		return NULL;
 	}
-	
-	// Return empty string to indicate success
+
+	// Actually run the query and check for execution errors
+	rc = sqlite3_step(stmt);
+	if(rc != SQLITE_DONE && rc != SQLITE_ROW) {
+		// Finalize the statement on error since its handle won't be returned
+		sqlite3_finalize(stmt);
+		error_string = sqlite3_errmsg(dbconn);
+		return NULL;
+	}
+
+	// Add stmt handle to set of valid pointers and convert it to a string
+	stmt_set.insert(stmt);
+	std::ostringstream result;
+	result << stmt;
+
+	// Convert ostringstream to a persistant C string that can be returned
 	error_string = NULL;
-	return "";
+	result_string = result.str();
+	return result_string.c_str();
 }
 
 // Execute the SQL statement previously prepared on this database connection
@@ -260,69 +274,50 @@ extern "C" const char *dm_db_prepare(int argc, char *argv[])
 // holder for any columns with a binary BLOB data type, as in "1,X,2,". In
 // the future, the biaray data could be returned using the SQL hexadecimal
 // literal syntax.
-extern "C" const char *dm_db_step(int argc, char *argv[])
+extern "C" const char *dm_db_next_row(int argc, char *argv[])
 {
 	// Decode the database handle from the first argument
-	int index = get_handle(argc, argv);
-	if(index == -1) {
-		return NULL;
-	}
-	handle_t *handle = &handle_list[index];
-
-	// Check if a SQL statement was prepared with dm_db_prepare()
-	if(handle->stmt == NULL) {
-		error_string = "No SQL statement has been prepared";
+	sqlite3 *dbconn = (sqlite3 *) get_handle(argc, argv, 0, dbconn_set);
+	if(dbconn == NULL) {
 		return NULL;
 	}
 
-	// Obtain next row and finalize statement if completed with no more data
-	int rc = sqlite3_step(handle->stmt);
-	if(rc == SQLITE_DONE) {
-		// Finalize can only return previous statment error so ignore it here
-		sqlite3_finalize(handle->stmt);
-		handle->stmt = NULL;
+	// Decode the prepared statement handle from the second argument
+	sqlite3_stmt *stmt = (sqlite3_stmt *) get_handle(argc, argv, 1, stmt_set);
+	if(stmt == NULL) {
+		return NULL;
+	}
+
+	// Check if statement has finished executing and has no more result data
+	int rc = sqlite3_stmt_busy(stmt);
+	if(!rc) {
+		// Return empty string indicating successful execution of statement
 		error_string = NULL;
 		return "";
 	}
 
-	// Check for execution errors and return without finalizing on error
-	if(rc != SQLITE_ROW) {
-		error_string = sqlite3_errmsg(handle->dbconn);
-		return NULL;
-	}
-
-	// Encode every column value in the row into a string format
+	// Encode every column value in current result row into a string format
 	std::ostringstream result;
-	int columns = sqlite3_data_count(handle->stmt);
-	for(index = 0; index < columns; index++) {
-		// Convert each column value to a string based on its underlying type
-		int type = sqlite3_column_type(handle->stmt, index);
+	int columns = sqlite3_data_count(stmt);
+	for(int index = 0; index < columns; index++) {
+
+		// Emit a unique character code for each column data type
+		int type = sqlite3_column_type(stmt, index);
 		switch(type) {
-			// Let SQLite convert any numeric type to a string
 			case SQLITE_INTEGER:
+				result << 'I';
+				break;
 			case SQLITE_FLOAT:
-				result << sqlite3_column_text(handle->stmt, index);
+				result << 'F';
 				break;
-
-			// Convert TEXT values to netstring form with explicit length
-			case SQLITE_TEXT: {
-				// Must convert text is in UTF-8 before obtaining length
-				const unsigned char *text;
-				text = sqlite3_column_text(handle->stmt, index);
-
-				// SQLite's byte count does not include terminating NULL
-				int bytes = sqlite3_column_bytes(handle->stmt, index);
-				result << bytes << ':' << text;
+			case SQLITE_TEXT:
+				result << 'T';
 				break;
-			}
-
-			// Binary BLOBs are not supported so return dummy "X" placeholder
 			case SQLITE_BLOB:
 				result << 'X';
 				break;
-
-			// Output nothing for a NULL column value
 			case SQLITE_NULL:
+				result << 'N';
 				break;
 
 			// Unknown SQLite column type; should never happen
@@ -331,8 +326,27 @@ extern "C" const char *dm_db_step(int argc, char *argv[])
 				return NULL;
 		}
 
-		// Append the required comma "," to separate columns from each other
-		result << ',';
+		// The NULL and BLOB types return no data so emit a zero length for them
+		if(type == SQLITE_BLOB || type == SQLITE_NULL) {
+			result << "0:";
+		}
+
+		// Emit all other types as a string (SQLite will convert numeric types)
+		else {
+			// Must perform text conversion before obtaining byte count
+			const unsigned char *text = sqlite3_column_text(stmt, index);
+			int length = sqlite3_column_bytes(stmt, index);
+
+			result << length << ':' << text;
+		}
+	}
+
+	// Prepare the next row of result data for a future call to dm_db_next_row()
+	rc = sqlite3_step(stmt);
+	if(rc != SQLITE_DONE && rc != SQLITE_ROW) {
+		// Return NULL to indicate error instead of current result row
+		error_string = sqlite3_errmsg(dbconn);
+		return NULL;
 	}
 
 	// Convert ostringstream to a persistant C string that can be returned
