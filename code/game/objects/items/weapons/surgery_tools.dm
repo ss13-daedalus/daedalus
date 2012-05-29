@@ -1230,8 +1230,8 @@ CIRCULAR SAW
 				if(M != user)
 					for(var/mob/O in (viewers(M) - user - M))
 						O.show_message("\red [M] has \his connections to the brain delicately severed with [src] by [user].", 1)
-					M << "\red [user] delicately severes your brain with [src]!"
-					user << "\red You severe [M]'s brain with [src]!"
+					M << "\red [user] delicately severs your brain with [src]!"
+					user << "\red You sever [M]'s brain with [src]!"
 				else
 					user.visible_message( \
 						"\red [user] begins to delicately remove the connections to \his brain with [src]!", \
