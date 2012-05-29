@@ -51,6 +51,8 @@ datum/objective/steal
 			return 20
 
 		check_completion()
+			if(!owner)
+				return 0 // Can't succeed if there's no one to.
 			var/list/all_items = owner.current.get_contents()
 			for(var/obj/item/I in all_items)
 				if(!istype(I, steal_target))	continue//If it's not actually that item.
@@ -375,6 +377,8 @@ datum/objective/steal
 			return 2
 
 		check_completion()
+			if(!owner)
+				return 0
 			var/target_amount = 10
 			var/found_amount = 0.0//Always starts as zero.
 			for(var/obj/item/I in owner.current.get_contents())
@@ -404,6 +408,8 @@ datum/objective/steal
 			return 2
 
 		check_completion()
+			if(!owner)
+				return 0
 			var/target_amount = 50
 			var/found_amount = 0.0//Always starts as zero.
 			for(var/obj/item/I in owner.current.get_contents())
@@ -433,6 +439,8 @@ datum/objective/steal
 			return 2
 
 		check_completion()
+			if(!owner)
+				return 0
 			var/target_amount = 25
 			var/found_amount = 0.0//Always starts as zero.
 			for(var/obj/item/I in owner.current.get_contents())
@@ -480,6 +488,8 @@ datum/objective/steal
 
 		check_completion()
 			if(steal_target)
+				if (!owner)
+					return 0
 				for(var/obj/item/robot_parts/robot_suit/objective in owner.current.get_contents())
 					if(istype(objective,/obj/item/robot_parts/robot_suit) && objective.check_completion())
 						return 1
@@ -510,6 +520,8 @@ datum/objective/steal
 
 		check_completion()
 			if(steal_target)
+				if(!owner)
+					return 0
 				for(var/obj/item/device/aicard/C in owner.current.get_contents())
 					for(var/mob/living/silicon/ai/M in C)
 						if(istype(M, /mob/living/silicon/ai) && M.stat != 2)
@@ -544,6 +556,8 @@ datum/objective/steal
 
 		check_completion()
 			if(steal_target)
+				if(!owner)
+					return 0
 				if(owner.current.check_contents_for_reagent(steal_target))
 					return 1
 				else
@@ -573,6 +587,8 @@ datum/objective/steal
 
 		check_completion()
 			if(steal_target)
+				if(!owner)
+					return 0
 				if(owner.current.check_contents_for_reagent(steal_target))
 					return 1
 				else
@@ -631,6 +647,8 @@ datum/objective/steal
 
 		check_completion()
 			if(steal_target)
+				if(!owner)
+					return 0
 				if(owner.current.check_contents_for_reagent(steal_target))
 					return 1
 				else
