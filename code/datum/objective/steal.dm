@@ -3,6 +3,9 @@ datum/objective/steal
 
 	check_completion()
 		if(steal_target)
+			if(!owner)
+				// An objective without an owner cannot be complete.
+				return 0
 			if(owner.current.check_contents_for(steal_target))
 				return 1
 			else
