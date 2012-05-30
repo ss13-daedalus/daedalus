@@ -104,7 +104,7 @@
 	..()
 	return
 
-/obj/item/weapon/storage/fcard_kit/New()
+/obj/item/weapon/storage/fingerprint_card_kit/New()
 
 	new /obj/item/weapon/fingerprint_card(src)
 	new /obj/item/weapon/fingerprint_card(src)

@@ -282,7 +282,7 @@
 
 /obj/item/weapon/storage/disk_kit/disks2
 
-/obj/item/weapon/storage/fcard_kit
+/obj/item/weapon/storage/fingerprint_card_kit
 	name = "box of fingerprint cards"
 	desc = "It has a picture of a fingerprint on each of its faces."
 	icon_state = "id"
