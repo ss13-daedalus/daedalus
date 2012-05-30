@@ -854,7 +854,7 @@
 #include "code\obj\item\weapon\camera_film.dm"
 #include "code\obj\item\weapon\cartridge.dm"
 #include "code\obj\item\weapon\cigbutt.dm"
-#include "code\obj\item\weapon\cigpacket.dm"
+#include "code\obj\item\weapon\cigarette_pack.dm"
 #include "code\obj\item\weapon\cure_implanter.dm"
 #include "code\obj\item\weapon\disease_disk.dm"
 #include "code\obj\item\weapon\disk.dm"

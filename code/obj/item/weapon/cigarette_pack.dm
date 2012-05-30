@@ -1,7 +1,7 @@
 ////////////
 //CIG PACK//
 ////////////
-/obj/item/weapon/cigpacket
+/obj/item/weapon/cigarette_pack
 	name = "Cigarette packet"
 	desc = "The most popular brand of Space Cigarettes, sponsors of the Space Olympics."
 	icon = 'icons/obj/cigarettes.dmi'

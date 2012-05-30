@@ -153,7 +153,7 @@
 	name = "cigarette machine"
 	desc = "If you want to get cancer, might as well do it in style"
 	icon_state = "cigs"
-	product_paths = "/obj/item/weapon/cigpacket;/obj/item/weapon/matchbox;/obj/item/weapon/lighter/random"
+	product_paths = "/obj/item/weapon/cigarette_pack;/obj/item/weapon/matchbox;/obj/item/weapon/lighter/random"
 //	product_amounts = "10;10;4"
 	product_prices = "1;1;2"
 	product_slogans = "Space cigs taste good like a cigarette should.;I'd rather toolbox than switch.;Smoke!;Don't believe the reports - smoke today!"
