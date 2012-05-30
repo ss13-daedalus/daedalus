@@ -98,7 +98,7 @@
 		//Fuck that thing.  --SkyMarshal
 		H.equip_if_possible(new /obj/item/clothing/gloves/detective(H), H.slot_gloves)
 		H.equip_if_possible(new /obj/item/weapon/storage/box/evidence(H.back), H.slot_in_backpack)
-		H.equip_if_possible(new /obj/item/weapon/fcardholder(H), H.slot_in_backpack)
+		H.equip_if_possible(new /obj/item/weapon/fingerprint_card_holder(H), H.slot_in_backpack)
 		H.equip_if_possible(new /obj/item/device/detective_scanner(H), H.slot_in_backpack)
 		H.equip_if_possible(new /obj/item/weapon/reagent_containers/food/drinks/dflask(H.back), H.slot_in_backpack)
 		H.equip_if_possible(new /obj/item/weapon/lighter/zippo(H), H.slot_l_store)

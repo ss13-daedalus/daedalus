@@ -418,7 +418,7 @@
 		..()
 		var/obj/item/weapon/storage/backpack/security/BPK = new /obj/item/weapon/storage/backpack/security(src)
 		new /obj/item/weapon/storage/box(BPK)
-		new /obj/item/weapon/fcardholder(src)
+		new /obj/item/weapon/fingerprint_card_holder(src)
 		new /obj/item/weapon/clipboard(src)
 		new /obj/item/weapon/clipboard/notebook(src)
 		new /obj/item/device/detective_scanner(src)

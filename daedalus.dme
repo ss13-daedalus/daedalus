@@ -857,7 +857,7 @@
 #include "code\obj\item\weapon\disk.dm"
 #include "code\obj\item\weapon\dummy.dm"
 #include "code\obj\item\weapon\fingerprint_card.dm"
-#include "code\obj\item\weapon\fcardholder.dm"
+#include "code\obj\item\weapon\fingerprint_card_holder.dm"
 #include "code\obj\item\weapon\folder.dm"
 #include "code\obj\item\weapon\melee.dm"
 #include "code\obj\item\weapon\mustardbomb.dm"

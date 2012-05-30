@@ -1,14 +1,14 @@
 // FINGERPRINT HOLDER
 
-/obj/item/weapon/fcardholder/attack_self(mob/user as mob)
+/obj/item/weapon/fingerprint_card_holder/attack_self(mob/user as mob)
 	var/dat = "<B>Clipboard</B><BR>"
 	for(var/obj/item/weapon/fingerprint_card/P in src)
 		dat += text("<A href='?src=\ref[];read=\ref[]'>[]</A> <A href='?src=\ref[];remove=\ref[]'>Remove</A><BR>", src, P, P.name, src, P)
-	user << browse(dat, "window=fcardholder")
-	onclose(user, "fcardholder")
+	user << browse(dat, "window=fingerprint_card_holder")
+	onclose(user, "fingerprint_card_holder")
 	return
 
-/obj/item/weapon/fcardholder/Topic(href, href_list)
+/obj/item/weapon/fingerprint_card_holder/Topic(href, href_list)
 	..()
 	if ((usr.stat || usr.restrained()))
 		return
@@ -49,10 +49,10 @@
 					return
 	return
 
-/obj/item/weapon/fcardholder/attack_paw(mob/user as mob)
+/obj/item/weapon/fingerprint_card_holder/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/item/weapon/fcardholder/attack_hand(mob/user as mob)
+/obj/item/weapon/fingerprint_card_holder/attack_hand(mob/user as mob)
 	if (user.contents.Find(src))
 		spawn( 0 )
 			src.attack_self(user)
@@ -62,7 +62,7 @@
 		return ..()
 	return
 
-/obj/item/weapon/fcardholder/attackby(obj/item/weapon/P as obj, mob/user as mob)
+/obj/item/weapon/fingerprint_card_holder/attackby(obj/item/weapon/P as obj, mob/user as mob)
 	..()
 	if (istype(P, /obj/item/weapon/fingerprint_card))
 		if (src.contents.len < 30)
@@ -92,7 +92,7 @@
 		return
 	return
 
-/obj/item/weapon/fcardholder/proc/update()
+/obj/item/weapon/fingerprint_card_holder/proc/update()
 	var/i = 0
 	for(var/obj/item/weapon/fingerprint_card/F in src)
 		i = 1

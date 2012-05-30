@@ -772,7 +772,7 @@
 	item_state = "fire_extinguisher"
 	m_amt = 90
 
-/obj/item/weapon/fcardholder
+/obj/item/weapon/fingerprint_card_holder
 	name = "fingerprint card case"
 	desc = "Holds fingerprint cards."
 	icon = 'icons/obj/items.dmi'
