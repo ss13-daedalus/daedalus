@@ -1,6 +1,18 @@
 // FINGERPRINT CARD
 
-/obj/item/weapon/f_card/examine()
+/obj/item/weapon/fingerprint_card
+	name = "fingerprint card"
+	desc = "Used to take fingerprints."
+	icon = 'icons/obj/card.dmi'
+	icon_state = "fingerprint0"
+	var/amount = 10.0
+	item_state = "paper"
+	throwforce = 1
+	w_class = 1.0
+	throw_speed = 3
+	throw_range = 5
+
+/obj/item/weapon/fingerprint_card/examine()
 	set src in view(2)
 
 	..()
@@ -9,7 +21,7 @@
 	onclose(usr, "[src.name]")
 	return
 
-/obj/item/weapon/f_card/proc/display()
+/obj/item/weapon/fingerprint_card/proc/display()
 	if(!fingerprints)	return
 	if (!istype(src.fingerprints, /list))
 		src.fingerprints = params2list(src.fingerprints)
@@ -24,9 +36,9 @@
 		return "<B>There are no fingerprints on this card.</B>"
 	return
 
-/obj/item/weapon/f_card/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/fingerprint_card/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
-	if (istype(W, /obj/item/weapon/f_card))
+	if (istype(W, /obj/item/weapon/fingerprint_card))
 		if ((src.fingerprints || W.fingerprints))
 			return
 		if (src.amount == 10)
@@ -57,13 +69,13 @@
 			src.add_fingerprint(user)
 	return
 
-/obj/item/weapon/f_card/add_fingerprint()
+/obj/item/weapon/fingerprint_card/add_fingerprint()
 
 	..()
 	if (!istype(usr, /mob/living/silicon))
 		if (fingerprints)
 			if (src.amount > 1)
-				var/obj/item/weapon/f_card/F = new /obj/item/weapon/f_card(get_turf(src))
+				var/obj/item/weapon/fingerprint_card/F = new /obj/item/weapon/fingerprint_card(get_turf(src))
 				F.amount = --src.amount
 				amount = 1
 			icon_state = "fingerprint1"

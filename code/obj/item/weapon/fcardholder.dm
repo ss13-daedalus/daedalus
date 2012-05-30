@@ -2,7 +2,7 @@
 
 /obj/item/weapon/fcardholder/attack_self(mob/user as mob)
 	var/dat = "<B>Clipboard</B><BR>"
-	for(var/obj/item/weapon/f_card/P in src)
+	for(var/obj/item/weapon/fingerprint_card/P in src)
 		dat += text("<A href='?src=\ref[];read=\ref[]'>[]</A> <A href='?src=\ref[];remove=\ref[]'>Remove</A><BR>", src, P, P.name, src, P)
 	user << browse(dat, "window=fcardholder")
 	onclose(user, "fcardholder")
@@ -32,7 +32,7 @@
 				P.add_fingerprint(usr)
 			src.update()
 		if (href_list["read"])
-			var/obj/item/weapon/f_card/P = locate(href_list["read"])
+			var/obj/item/weapon/fingerprint_card/P = locate(href_list["read"])
 			if ((P && P.loc == src))
 				if (!( istype(usr, /mob/living/carbon/human) ))
 					usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", P.name, P.display()), text("window=[]", P.name))
@@ -64,7 +64,7 @@
 
 /obj/item/weapon/fcardholder/attackby(obj/item/weapon/P as obj, mob/user as mob)
 	..()
-	if (istype(P, /obj/item/weapon/f_card))
+	if (istype(P, /obj/item/weapon/fingerprint_card))
 		if (src.contents.len < 30)
 			user.drop_item()
 			P.loc = src
@@ -94,7 +94,7 @@
 
 /obj/item/weapon/fcardholder/proc/update()
 	var/i = 0
-	for(var/obj/item/weapon/f_card/F in src)
+	for(var/obj/item/weapon/fingerprint_card/F in src)
 		i = 1
 		break
 	src.icon_state = text("fcardholder[]", (i ? "1" : "0"))

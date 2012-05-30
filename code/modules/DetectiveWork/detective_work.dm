@@ -85,7 +85,7 @@ obj/machinery/computer/forensic_scanning
 		list/files
 //This holds objects (1) without prints, and their fibers(2) and blood(3).
 		list/misc
-		obj/item/weapon/f_card/card
+		obj/item/weapon/fingerprint_card/card
 
 		scan_data = ""
 		scan_name = ""
@@ -184,9 +184,9 @@ obj/machinery/computer/forensic_scanning
 			if("card")
 				var/mob/M = usr
 				var/obj/item/I = M.equipped()
-				if(!(I && istype(I,/obj/item/weapon/f_card)))
+				if(!(I && istype(I,/obj/item/weapon/fingerprint_card)))
 					I = card
-				if(I && istype(I,/obj/item/weapon/f_card))
+				if(I && istype(I,/obj/item/weapon/fingerprint_card))
 					card = I
 					if(!card.fingerprints)
 						card.fingerprints = list()
@@ -349,7 +349,7 @@ obj/machinery/computer/forensic_scanning
 				else
 					usr << "ERROR.  Database not found!<br>"
 			if("scan")
-				if(istype(scanning,/obj/item/weapon/f_card))
+				if(istype(scanning,/obj/item/weapon/fingerprint_card))
 					card = scanning
 					scanning = initial(scanning)
 					process_card()

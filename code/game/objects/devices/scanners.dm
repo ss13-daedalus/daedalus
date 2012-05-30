@@ -71,9 +71,9 @@ MASS SPECTROMETER
 	flags = FPRINT | TABLEPASS | ONBELT | CONDUCT | USEDELAY
 
 
-	attackby(obj/item/weapon/f_card/W as obj, mob/user as mob)
+	attackby(obj/item/weapon/fingerprint_card/W as obj, mob/user as mob)
 		..()
-		if (istype(W, /obj/item/weapon/f_card))
+		if (istype(W, /obj/item/weapon/fingerprint_card))
 			if (W.fingerprints)
 				return
 			if (src.amount == 20)
@@ -115,7 +115,7 @@ MASS SPECTROMETER
 //			if (src.printing)
 			else
 				src.amount--
-				var/obj/item/weapon/f_card/F = new /obj/item/weapon/f_card( user.loc )
+				var/obj/item/weapon/fingerprint_card/F = new /obj/item/weapon/fingerprint_card( user.loc )
 				F.amount = 1
 				F.add_fingerprint(M)
 				F.icon_state = "fingerprint1"
@@ -142,7 +142,7 @@ MASS SPECTROMETER
 			return 0
 		if(istype(A,/obj/machinery/computer/forensic_scanning)) //breaks shit.
 			return
-		if(istype(A,/obj/item/weapon/f_card))
+		if(istype(A,/obj/item/weapon/fingerprint_card))
 			user << "Haha, nice try.  Cheater.  (It would break stuff anyways.)"
 			return
 		if(!A.fingerprints)
@@ -199,7 +199,7 @@ MASS SPECTROMETER
 	//	src.icon_state = text("forensic[]", src.printing)
 	//	if (src.printing)
 	//		src.amount--
-	//		var/obj/item/weapon/f_card/F = new /obj/item/weapon/f_card( user.loc )
+	//		var/obj/item/weapon/fingerprint_card/F = new /obj/item/weapon/fingerprint_card( user.loc )
 	//		F.amount = 1
 	//		F.fingerprints = A.fingerprints
 	//		F.icon_state = "fingerprint1"

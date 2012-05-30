@@ -68,6 +68,6 @@
 		new /obj/item/weapon/evidencebag(src)
 		new /obj/item/weapon/evidencebag(src)
 		new /obj/item/weapon/evidencebag(src)
-		new /obj/item/weapon/f_card(src)
+		new /obj/item/weapon/fingerprint_card(src)
 		..()
 		return
