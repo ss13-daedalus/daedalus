@@ -1,4 +1,4 @@
-/obj/item/weapon/cigbutt
+/obj/item/weapon/cigarette_butt
 	name = "cigarette butt"
 	desc = "A manky old cigarette butt."
 	icon = 'icons/obj/clothing/masks.dmi'
@@ -6,7 +6,7 @@
 	w_class = 1
 	throwforce = 1
 
-/obj/item/weapon/cigbutt/cigarbutt
+/obj/item/weapon/cigarette_butt/cigar_butt
 	name = "cigar butt"
 	desc = "A manky old cigar butt."
 	icon_state = "cigarbutt"
