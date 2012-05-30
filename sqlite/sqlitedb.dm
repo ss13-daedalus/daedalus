@@ -10,8 +10,7 @@ SQLiteDB
 
 		// The name of the SQLite database file opened by this SQLiteDB.
 		// Set by New() and used as a default if no file name is passed to the
-		// Connect() procedure, and set by Connect() if a new filename is
-		// passed in.
+		// Connect() procedure.
 		_file_name
 
 		// Handle for the current SQLite database. Returned by dm_db_open()
@@ -46,8 +45,7 @@ SQLiteDB
 		// argument to Connect() or the name previously passed in to New().
 		// Returns 0 on error and 1 on success.
 		Connect(file_name=_file_name)
-			src._file_name=file_name
-			src._handle = call(_native_lib, "dm_db_open")(_file_name)
+			src._handle = call(_native_lib, "dm_db_open")(file_name)
 			if(_handle == null)
 				_log_error()
 			return (_handle == null) ? 0 : 1;
@@ -72,14 +70,18 @@ SQLiteDB
 		// prevents data injections attacks or just random incorrect
 		// behavior if the string happens to have an embedded quote (').
 		Quote(str)
-			return call(_native_lib, "dm_db_quote")(str)
+			//return call(_native_lib, "dm_db_quote")(str)
+			str = call(_native_lib, "dm_db_quote")(str)
+			if(str == null)
+				_log_error()
+			return str
 
 		// If any operation on this database file returned 0 due to an error,
 		// this proc can be called to return a description of that error.
 		// However, if the last operation on this database file succeeded and
 		// returned a 1, then the result of this proc is undefined.
 		ErrorMsg()
-			return call(_native_lib, "dm_db_error_msg")(_handle)
+			return call(_native_lib, "dm_db_error_msg")()
 
 		// A convenience proc to quickly switch the database file in use by
 		// first closing the existing file (if it is currently open) and then
@@ -169,8 +171,10 @@ SQLiteDB
 					_log_error()
 					return 0
 
-				// Need at least two characters in the _result buffer to
-				// begin parsing: type code and at least one length digit
+				// Separate the individual column data out from the encoded
+				// form in the result string and store in item list. See
+				// the native wrapper library dmsqlite.cpp code for exact
+				// format of the data encoding.
 				while(result)
 					// Single character type code for this column
 					var/type = copytext(result, 1, 2)
@@ -195,26 +199,32 @@ SQLiteDB
 
 				// Return true if a new data row is available
 				return (src.item.len) ? 1 : 0;				
-/*
-			RowsAffected() return _dm_db_rows_affected(_db_query)
 
 			GetRowData()
-				var/list/columns = Columns()
+				// Obtain column names corresponding to item
+				var/names = call(_native_lib, "dm_db_col_names")(_handle, _stmt)
+				if(names == null)
+					_log_error()
+					return null
+
+/*
 				var/list/results
-				if(columns.len)
+
+				if(names.len)
 					results = list()
-					for(var/C in columns)
-						results+=C
-						var/DBColumn/cur_col = columns[C]
+					for(var/column in names)
+						results += column
 						results[C] = src.item[(cur_col.position+1)]
 				return results
 */
 			// Close the currently executing query if one exists. This proc
 			// does not have to be called manually since both Execute() and
 			// Del() will call it automatically as needed. This proc always
-			// succeeds and doesn't return any status indicator.
+			// succeeds and return 1.
 			Close()
 				src.item.len = 0
 				if(_stmt)
 					call(_native_lib, "dm_db_finalize")(_stmt)
 					_stmt = null
+
+//			_split

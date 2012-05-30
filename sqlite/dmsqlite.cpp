@@ -23,35 +23,20 @@
 #include <sstream>
 #include <string>
 #include <set>
+#include <string.h>
 #include "sqlite3.h"
 
+// Any pointer value returned by this wrapper library is added into one of the
+// pointer_set_t sets. For safety purposes, when that handle is returned by
+// the BYOND script as an argument, it will be checked against the appropriate
+// set to verify that it is indeed one of the handle values returned before.
 typedef std::set<void *> pointer_set_t;
 
+// The set of all handles to open database files
 pointer_set_t dbconn_set;
+
+// The set of all handles to prepared SQL statements
 pointer_set_t stmt_set;
-
-/*
-// Used in handle_list to track open connections and running SQL statements
-typedef struct {
-	// The database connection handle returned by sqlite3_open() or NULL if
-	// this entry is not currently in use.
-	sqlite3 *dbconn;
-
-	// Prepared statement currently executing for this connection. This
-	// wrapper library allows each DB conneciton to have only one
-	// prepared SQL statement at a time. Set to NULL on initial database
-	// connection, and when a prepared statement has been finilized after
-	// returning its final result row.
-	sqlite3_stmt* stmt;
-} handle_t;
-*/
-
-// For safety purposes, this wrapper library never returns handles to the
-// SQLite objects directly. Instead it returns an index into the array
-// below which in turn maps it to the real connection/statement handle.
-// Since global data is always initialized to NULL, this marks all handle_t
-// array elements as being free.
-//static handle_t handle_list[HANDLE_MAX];
 
 // A placeholder for the last result string returned to the BYOND server
 // by one of the dm_db_xxx() methods. This ensures the returned char pointer
@@ -64,13 +49,22 @@ static std::string result_string;
 // no error, then this variable will be set to NULL.
 static const char *error_string = NULL;
 
-// Helper function to decode the database index passed as the first arguemnt
-// to most dm_db_xxx() methods. If the handle index is valid and its associated
-// database connection is open, then returns the index as an integer. If the
-// index is invalid, then returns a -1.
+// Helper function to decode the database or statement handle passed as the
+// first or second arguemnts in most dm_db_xxx() methods. The handle is just
+// a numeric encoding of the pointer values returned by SQLite functions. For
+// safety, this function verifies that the handle has been previously seen by
+// this native library.
+//
+// argc: Number of arguments passed in by BYOND script
+// argv[argn]: The handle to parse and verify
+// argn: The argument number which should be read
+// set: Handle is considered valid if it exists inside this set
+//
+// Return: the handle value converted to a pointer if the handle was valid,
+// and NULL otherwise.
 static void *get_handle(int argc, char *argv[], int argn, const pointer_set_t &set)
 {
-	// Check for usage: a single filename argument is required
+	// Check for usage: a handle argument is required
 	if(argc < (argn + 1)) {
 		error_string = "Database or query handle argument is required";
 		return NULL;
@@ -91,18 +85,28 @@ static void *get_handle(int argc, char *argv[], int argn, const pointer_set_t &s
 	return pointer;
 }
 
-// Return a human readable message if the last call to one of the dm_db_xxx()
-// methods failed. If the last operation caused no errors, then returns
-// NULL.
+// Return a human readable message with a description of the error if the last
+// call to one of the dm_db_xxx() functions failed and in turn returned NULL.
+// If the last call to the library succeeded, then this function returns NULL
+// since there is no error to report.
+//
+// argc, argv: Ignored.
+// Return: The error message string or NULL if there was no error
 extern "C" const char *dm_db_error_msg(int argc, char *argv[])
 {
 	return error_string;
 }
 
 // Open a new database connection to the filename specified in argv[0]. If
-// the connection is successful, returns a string encoded integer index into
-// the handle_list which holds the handle to this connection. Returns NULL
-// if an error occured.
+// the connection is successful, returns a handle (pointer value encoded to
+// a string) to the open connection. Most other dm_db_xxx() functions require
+// the BYOND script to pass this handle value back in, so the function can
+// operate on the appropriate database faile.
+//
+// argc: Number of arguments passed in by BYOND script
+// argv[0]: The filename of the database file to open (and maybe create)
+//
+// Return: The handle to the open database connection or NULL on error.
 extern "C" const char *dm_db_open(int argc, char *argv[])
 {
 	// Check for usage: a single filename argument is required
@@ -133,10 +137,12 @@ extern "C" const char *dm_db_open(int argc, char *argv[])
 	return result_string.c_str();
 }
 
-// Close a database connection previously opened with dm_db_open(). Takes the
-// numeric index of the database connection (which was returnd by dm_db_open)
-// as the single argument. Returns an empty "" string on success and NULL
-// on error.
+// Close a database connection that was previously opened with dm_db_open().
+//
+// argc: Number of arguments passed in by BYOND script
+// argv[0]: Database handle to close; returned by previous dm_db_open() call
+//
+// Return: An empty "" string on success and NULL on error.
 extern "C" const char *dm_db_close(int argc, char *argv[])
 {
 	// Decode the database handle from the first argument
@@ -174,26 +180,21 @@ extern "C" const char *dm_db_close(int argc, char *argv[])
 	return "";
 }
 
-extern "C" const char *dm_db_finalize(int argc, char *argv[])
-{
-	// Decode the prepared statement handle from the first argument
-	sqlite3_stmt *stmt = (sqlite3_stmt *) get_handle(argc, argv, 0, stmt_set);
-	if(stmt == NULL) {
-		return NULL;
-	}
-
-	// Finalize can only return previous error so ignote it here;
-	sqlite3_finalize(stmt);
-
-	// Remove handle from pointer set; return empty string indicating success
-	stmt_set.erase(stmt);
-	error_string = NULL;
-	return "";
-}
-
-// Prepare a SQL statement for execution on a previously opened database
-// connection. The statement is not actually executed until dm_db_step() is
-// called. Returns an empty "" string on success and NULL on error.
+// Prepare and execute SQL statement on previously opened database connection.
+// This function uses sqlite3_prepate_v2() to prepare and compile the SQL
+// statement, followed by a single sqlite3_step() call to actually execute it.
+// If the statement returned any data, it will be later retrieved with the
+// BYOND script calling dm_db_next_row(). The statement handle returned by
+// this function must also be closed later on with dm_db_finalize() before
+// closing the database connection itself.
+//
+// argc: Number of arguments passed in by BYOND script
+// argv[0]: Database handle in which to execute SQL statement
+// argv[1]: The SQL statement itself
+//
+// Return: A handle to the prepared SQL statement which is needed laster to
+// retrieve any data produced by the statement, or NULL if an error occurred
+// with either the prepare/compile step or the actual execution.
 extern "C" const char *dm_db_execute(int argc, char *argv[])
 {
 	// Decode the database handle from the first argument
@@ -237,43 +238,70 @@ extern "C" const char *dm_db_execute(int argc, char *argv[])
 	return result_string.c_str();
 }
 
-// Execute the SQL statement previously prepared on this database connection
-// and return the first row in its result set. Alternately, if the statement
-// has already been executed with a dm_db_step() call, return the next row
-// in its result set. Returns NULL when an error occurs. Returns an empty ""
-// string to indicate the prepared statement has finished execution, either
-// with no results or after a previous dm_db_step() call has already returned
-// the last row of the result set. When returning an actual row in the result
-// set, the entire row is encoded into a single string as follows:
+// Finalize (or close) SQL statement previously created with dm_db_execute().
+// All statements must be finalized before the database file itself can be
+// closed.
 //
-// A comman character "," is appended after every column value in the string,
-// including the last, to ensure that NULL column values can be encoded
-// unambiguously (see below).
+// argc: Number of arguments passed in by BYOND script
+// argv[0]: Statement handle to finalize; returned by previous dm_db_execute()
+//
+// Return: An empty "" string on success and NULL on error.
+extern "C" const char *dm_db_finalize(int argc, char *argv[])
+{
+	// Decode the prepared statement handle from the first argument
+	sqlite3_stmt *stmt = (sqlite3_stmt *) get_handle(argc, argv, 0, stmt_set);
+	if(stmt == NULL) {
+		return NULL;
+	}
+
+	// Finalize can only return previous error so ignote it here;
+	sqlite3_finalize(stmt);
+
+	// Remove handle from pointer set; return empty string indicating success
+	stmt_set.erase(stmt);
+	error_string = NULL;
+	return "";
+}
+
+// Return the next row of data from a SQL statement previously created and
+// started by dm_db_execute().
+//
+// argc: Number of arguments passed in by BYOND script
+// argv[0]: Database handle in which the statement was executed
+// argv[1]: Statement handle for which to retrieve the next row of data
+//
+// Return: An empty "" string to prepared statement has finished execution,
+// either with no results or after a previous dm_db_next_row() call has
+// already returned the last row of the result set. When returning actual
+// result set data, the entire row is encoded into a single string as follows:
+//
+// Each column in encoded into the form "TN:D". The T is a single character
+// designating the data type of this column. The N is an explicit length
+// (encoded as an ASCII string) of the column data that follows. Finally the
+// D is the column data itself. The colon (:) character serves to separate
+// the length from the data in case the data itself is numeric. There are no
+// other delimiters between individual columns in the result string, and the
+// the explicit length makes it easy to parse result in a BYOND script.
 //
 // An integer or floating point column value is encoded as a simple ASCII
-// string plus the aforementioned comma. An example result set with three
-// columns might look like "1,2.5,3,"
+// string, similar to how the length itself is encoded. They respectively use
+// the 'I' and 'F' type codes, and their length N is simply the length of the
+// string that contains the numeric column value. An example result set with
+// three columns might look like "I1:1F3:2.5I2:42"
 //
-// A TEXT column is encoded as a "netstring". In other words, an explicit
-// string length (using ASCII digits) and a colon ":" character are prepended
-// to the actual string value. Note that the string contents are *not* escaped
-// in any way and may contain a comma, colon, space, or any other character
-// short of a '\0' byte. Therefore it is not safe to simply split the string
-// returned by this function on every comma "," character; it must be parsed
-// left to right. An example row with three columns and a combination of text
-// and integer values might look like "13:Hello, world!,42,3:foo,". Notice
-// that in the previous example, the string contents 
+// A TEXT column uses the 'T' type code, and the column data is output using
+// UTF-8 encoding, with length N simply the length of the UTF-8 string. An
+// example row with a combination of text and integer values might look like
+// "T13:Hello, world!I2:42T7:foo:bar". Note that the colon (:) (or any other
+// character) will not be escaped in any way.
 //
-// If any column contains a NULL, its value is simply encoded as an empty
-// string between the separating comma "," characters. For example, a NULL in
-// the first and last column of this 4 column result set would look like
-// ",1,2,,".
+// If any column contains a NULL, then its value is encoded as "N0:" with a
+// zero length and the data portion missing.
 //
-// Because BYOND DreamMaker scripts have no meaningful datatype which could
-// represent binary data directly, the "X" character is returned as a place
-// holder for any columns with a binary BLOB data type, as in "1,X,2,". In
-// the future, the biaray data could be returned using the SQL hexadecimal
-// literal syntax.
+// Finally, because BYOND DreamMaker scripts have no meaningful datatype which
+// could represent binary data directly, BLOB column types are encoded as
+// "B0:" with the data portion once again missing. In the future, the binary
+// data could be encoded into hexadecimal or base64.
 extern "C" const char *dm_db_next_row(int argc, char *argv[])
 {
 	// Decode the database handle from the first argument
@@ -314,7 +342,7 @@ extern "C" const char *dm_db_next_row(int argc, char *argv[])
 				result << 'T';
 				break;
 			case SQLITE_BLOB:
-				result << 'X';
+				result << 'B';
 				break;
 			case SQLITE_NULL:
 				result << 'N';
@@ -337,6 +365,12 @@ extern "C" const char *dm_db_next_row(int argc, char *argv[])
 			const unsigned char *text = sqlite3_column_text(stmt, index);
 			int length = sqlite3_column_bytes(stmt, index);
 
+			// Check for memory allocation failure in SQLite
+			if(text == NULL) {
+				error_string = "Out of memory";
+				return NULL;
+			}
+
 			result << length << ':' << text;
 		}
 	}
@@ -352,5 +386,100 @@ extern "C" const char *dm_db_next_row(int argc, char *argv[])
 	// Convert ostringstream to a persistant C string that can be returned
 	error_string = NULL;
 	result_string = result.str();
+	return result_string.c_str();
+}
+
+// Return a list of the names assigned to each column in the result set of a
+// statement previously started with dm_db_execute(). This will be either the
+// name assigned in the statement with the "AS" clause, or the column's name
+// from the table schema. Note that the SQLite library linked by this wrapper
+// must have been compiled with the SQLITE_ENABLE_COLUMN_METADATA option for
+// this function to work properly.
+//
+// argc: Number of arguments passed in by BYOND script
+// argv[0]: Database handle in which the statement was executed
+// argv[1]: Statement handle for which to retrieve the column names
+//
+// Return: A string with the list of column names encoded in exactly the same
+// format as used by dm_db_next_row() to encode TEXT columns, or NULL if an
+// error occurred.
+extern "C" const char *dm_db_col_names(int argc, char *argv[])
+{
+	// Decode the database handle from the first argument
+	sqlite3 *dbconn = (sqlite3 *) get_handle(argc, argv, 0, dbconn_set);
+	if(dbconn == NULL) {
+		return NULL;
+	}
+
+	// Decode the prepared statement handle from the second argument
+	sqlite3_stmt *stmt = (sqlite3_stmt *) get_handle(argc, argv, 1, stmt_set);
+	if(stmt == NULL) {
+		return NULL;
+	}
+
+	// Encode every result column name in the statement into a string format
+	std::ostringstream result;
+	int columns = sqlite3_data_count(stmt);
+	for(int index = 0; index < columns; index++) {
+
+		// Must perform text conversion before obtaining byte count
+		const char *text = sqlite3_column_name(stmt, index);
+
+		// Check for memory allocation failure in SQLite
+		if(text == NULL) {
+			error_string = "Out of memory";
+			return NULL;
+		}
+
+		// Encode names in the same format text data in as dm_db_next_row()
+		int length = strlen(text);
+		result << 'T' << length << ':' << text;
+	}
+
+	// Convert ostringstream to a persistant C string that can be returned
+	error_string = NULL;
+	result_string = result.str();
+	return result_string.c_str();
+}
+
+// Quote the string by escaping single quotes so that the string can be safely
+// used as a literal value in a SQL statement. This prevents data injections
+// attacks or just random incorrect behavior if the string happens to have an
+// embedded quote (').
+//
+// argn: Number of arguments passed in by BYOND script
+// argv[0]: The string to be escaped
+//
+// Return: The input string with ' replaced by '' or NULL on error.
+extern "C" const char *dm_db_quote(int argc, char *argv[])
+{
+	// Check for usage: a single filename argument is required
+	if(argc < 1) {
+		error_string = "Database or query handle argument is required";
+		return NULL;
+	}
+
+	// Empty result string so it can accumulate the quoted string
+	result_string.clear();
+
+	// Repeatedly search the string for any occurance of single quote (') char
+	char *match, *pos = argv[0];
+	while((match = strchr(pos, '\''))) {
+
+		// Append portion of input string up to but not including single quote
+		result_string.append(pos, match - pos);
+
+		// The single quote in original string is replaced with two quotes
+		result_string.append("''");
+
+		// The next char search must start at the next char after the quote
+		pos = match + 1;
+	}
+
+	// If no more matches found, append remaining input string to result
+	result_string.append(pos);
+
+	// Convert the result to a C string and return
+	error_string = NULL;
 	return result_string.c_str();
 }
