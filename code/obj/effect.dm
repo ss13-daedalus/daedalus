@@ -48,3 +48,10 @@
 			S.direction = spawndir
 			spawn()
 				S.startmove()
+
+// from the mop definition file.
+
+/obj/effect/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/mop))
+		return
+	..()
