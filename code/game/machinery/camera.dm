@@ -287,7 +287,7 @@
 	user.reset_view(src)
 
 /obj/machinery/camera/attackby(W as obj, user as mob)
-	if (istype(W, /obj/item/weapon/wirecutters))
+	if (istype(W, /obj/item/weapon/wire_cutters))
 		deactivate(user)
 		..()
 	else if (istype(W, /obj/item/weapon/paper))

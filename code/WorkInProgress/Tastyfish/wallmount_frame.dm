@@ -75,7 +75,7 @@
 					user << desc
 				else
 					user << "\red This frame does not accept circuit boards of this type!"
-			if(istype(P, /obj/item/weapon/wirecutters))
+			if(istype(P, /obj/item/weapon/wire_cutters))
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 				user << "\blue You remove the cables."
 				state = 1

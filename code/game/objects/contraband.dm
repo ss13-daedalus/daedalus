@@ -140,7 +140,7 @@ obj/effect/decal/poster/New(var/serial)
 	..()
 
 obj/effect/decal/poster/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if( istype(W, /obj/item/weapon/wirecutters) )
+	if( istype(W, /obj/item/weapon/wire_cutters) )
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		if(src.ruined)
 			user << "<FONT COLOR='BLUE'>You remove the remnants of the poster.</FONT>"

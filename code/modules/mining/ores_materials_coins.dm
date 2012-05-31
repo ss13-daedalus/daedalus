@@ -151,7 +151,7 @@
 		string_attached = 1
 		user << "\blue You attach a string to the coin."
 		CC.use(1)
-	else if(istype(W,/obj/item/weapon/wirecutters) )
+	else if(istype(W,/obj/item/weapon/wire_cutters) )
 		if(!string_attached)
 			..()
 			return

@@ -15,7 +15,7 @@
 	else if(istype(used_atom, /obj/item/weapon/screwdriver))
 		playsound(holder, 'sound/items/Screwdriver.ogg', 50, 1)
 
-	else if(istype(used_atom, /obj/item/weapon/wirecutters))
+	else if(istype(used_atom, /obj/item/weapon/wire_cutters))
 		playsound(holder, 'sound/items/Wirecutter.ogg', 50, 1)
 
 	else if(istype(used_atom, /obj/item/weapon/cable_coil))
@@ -48,7 +48,7 @@
 	else if(istype(used_atom, /obj/item/weapon/screwdriver))
 		playsound(holder, 'sound/items/Screwdriver.ogg', 50, 1)
 
-	else if(istype(used_atom, /obj/item/weapon/wirecutters))
+	else if(istype(used_atom, /obj/item/weapon/wire_cutters))
 		playsound(holder, 'sound/items/Wirecutter.ogg', 50, 1)
 
 	else if(istype(used_atom, /obj/item/weapon/cable_coil))
@@ -142,7 +142,7 @@
 					 		"backkey"=/obj/item/weapon/screwdriver,
 					 		"desc"="The wiring is adjusted"),
 					 //11
-					 list("key"=/obj/item/weapon/wirecutters,
+					 list("key"=/obj/item/weapon/wire_cutters,
 					 		"backkey"=/obj/item/weapon/screwdriver,
 					 		"desc"="The wiring is added"),
 					 //12
@@ -372,7 +372,7 @@
 					 		"backkey"=/obj/item/weapon/screwdriver,
 					 		"desc"="The wiring is adjusted"),
 					 //17
-					 list("key"=/obj/item/weapon/wirecutters,
+					 list("key"=/obj/item/weapon/wire_cutters,
 					 		"backkey"=/obj/item/weapon/screwdriver,
 					 		"desc"="The wiring is added"),
 					 //18
@@ -594,7 +594,7 @@
 					 		"backkey"=/obj/item/weapon/screwdriver,
 					 		"desc"="The wiring is adjusted"),
 					 //12
-					 list("key"=/obj/item/weapon/wirecutters,
+					 list("key"=/obj/item/weapon/wire_cutters,
 					 		"backkey"=/obj/item/weapon/screwdriver,
 					 		"desc"="The wiring is added"),
 					 //13
@@ -834,7 +834,7 @@
 					 list("key"=/obj/item/weapon/circuitboard/mecha/durand/peripherals),//14
 					 list("key"=/obj/item/weapon/screwdriver),//15
 					 list("key"=/obj/item/weapon/circuitboard/mecha/durand/main),//16
-					 list("key"=/obj/item/weapon/wirecutters),//17
+					 list("key"=/obj/item/weapon/wire_cutters),//17
 					 list("key"=/obj/item/weapon/cable_coil),//18
 					 list("key"=/obj/item/weapon/screwdriver),//19
 					 list("key"=/obj/item/weapon/wrench)//20
@@ -997,7 +997,7 @@
 					 		"backkey"=/obj/item/weapon/screwdriver,
 					 		"desc"="The wiring is adjusted"),
 					 //11
-					 list("key"=/obj/item/weapon/wirecutters,
+					 list("key"=/obj/item/weapon/wire_cutters,
 					 		"backkey"=/obj/item/weapon/screwdriver,
 					 		"desc"="The wiring is added"),
 					 //12

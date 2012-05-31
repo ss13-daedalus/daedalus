@@ -8,7 +8,7 @@ var/global/list/autolathe_recipes = list( \
 		new /obj/item/device/t_scanner(), \
 		new /obj/item/weapon/welding_tool(), \
 		new /obj/item/weapon/screwdriver(), \
-		new /obj/item/weapon/wirecutters(), \
+		new /obj/item/weapon/wire_cutters(), \
 		new /obj/item/weapon/wrench(), \
 		new /obj/item/clothing/head/helmet/welding(), \
 		new /obj/item/weapon/stock_parts/console_screen(), \
@@ -318,8 +318,8 @@ var/global/list/autolathe_recipes_hidden = list( \
 								src.shock(usr,50)
 								spawn(100) src.shocked = !src.shocked
 				if(href_list["act"] == "wire")
-					if (!istype(usr.equipped(), /obj/item/weapon/wirecutters))
-						usr << "You need wirecutters!"
+					if (!istype(usr.equipped(), /obj/item/weapon/wire_cutters))
+						usr << "You need wire_cutters!"
 					else
 						wires[temp_wire] = !wires[temp_wire]
 						if(src.hack_wire == temp_wire)

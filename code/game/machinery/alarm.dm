@@ -380,8 +380,8 @@
 
 	if (href_list["AAlarmwires"])
 		var/t1 = text2num(href_list["AAlarmwires"])
-		if (!( istype(usr.equipped(), /obj/item/weapon/wirecutters) ))
-			usr << "You need wirecutters!"
+		if (!( istype(usr.equipped(), /obj/item/weapon/wire_cutters) ))
+			usr << "You need wire_cutters!"
 			return
 		if (src.isWireColorCut(t1))
 			src.mend(t1)
@@ -1014,7 +1014,7 @@ table tr:first-child th:first-child { border: none;}
 	update_icon()
 
 /obj/machinery/alarm/attackby(obj/item/W as obj, mob/user as mob)
-/*	if (istype(W, /obj/item/weapon/wirecutters))
+/*	if (istype(W, /obj/item/weapon/wire_cutters))
 		stat ^= BROKEN
 		src.add_fingerprint(user)
 		for(var/mob/O in viewers(user, null))
@@ -1029,7 +1029,7 @@ table tr:first-child th:first-child { border: none;}
 		update_icon()
 		return
 
-	if (wiresexposed && ((istype(W, /obj/item/device/multitool) || istype(W, /obj/item/weapon/wirecutters))))
+	if (wiresexposed && ((istype(W, /obj/item/device/multitool) || istype(W, /obj/item/weapon/wire_cutters))))
 		return src.attack_hand(user)
 
 
@@ -1074,7 +1074,7 @@ table tr:first-child th:first-child { border: none;}
 	..()
 
 /obj/machinery/firealarm/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/wirecutters))
+	if (istype(W, /obj/item/weapon/wire_cutters))
 		src.detecting = !( src.detecting )
 		if (src.detecting)
 			user.visible_message("\red [user] has reconnected [src]'s detecting unit!", "You have reconnected [src]'s detecting unit.")

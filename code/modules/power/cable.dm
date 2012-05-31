@@ -124,7 +124,7 @@
 	if(T.intact)
 		return
 
-	if(istype(W, /obj/item/weapon/wirecutters))
+	if(istype(W, /obj/item/weapon/wire_cutters))
 
 		if(power_switch)
 			user << "\red This piece of cable is tied to a power switch. Flip the switch to remove it."
@@ -244,7 +244,7 @@
 
 /obj/item/weapon/cable_coil/attackby(obj/item/weapon/W, mob/user)
 	..()
-	if( istype(W, /obj/item/weapon/wirecutters) && src.amount > 1)
+	if( istype(W, /obj/item/weapon/wire_cutters) && src.amount > 1)
 		src.amount--
 		new/obj/item/weapon/cable_coil(user.loc, 1,color)
 		user << "You cut a piece off the cable coil."

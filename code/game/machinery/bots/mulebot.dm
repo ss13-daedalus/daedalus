@@ -411,17 +411,17 @@
 
 
 			if("wirecut")
-				if(istype(usr.equipped(), /obj/item/weapon/wirecutters))
+				if(istype(usr.equipped(), /obj/item/weapon/wire_cutters))
 					var/wirebit = text2num(href_list["wire"])
 					wires &= ~wirebit
 				else
-					usr << "\blue You need wirecutters!"
+					usr << "\blue You need wire cutters!"
 			if("wiremend")
-				if(istype(usr.equipped(), /obj/item/weapon/wirecutters))
+				if(istype(usr.equipped(), /obj/item/weapon/wire_cutters))
 					var/wirebit = text2num(href_list["wire"])
 					wires |= wirebit
 				else
-					usr << "\blue You need wirecutters!"
+					usr << "\blue You need wire cutters!"
 
 			if("wirepulse")
 				if(istype(usr.equipped(), /obj/item/device/multitool))

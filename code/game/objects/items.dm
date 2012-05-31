@@ -471,7 +471,7 @@
 		istype(W, /obj/item/weapon/lighter/zippo)            && W:lit     || \
 		istype(W, /obj/item/weapon/match)            && W:lit     || \
 		istype(W, /obj/item/clothing/mask/cigarette) && W:lit     || \
-		istype(W, /obj/item/weapon/wirecutters)                   || \
+		istype(W, /obj/item/weapon/wire_cutters)                   || \
 		istype(W, /obj/item/weapon/circular_saw)                  || \
 		istype(W, /obj/item/weapon/melee/energy/sword)            && W:active  || \
 		istype(W, /obj/item/weapon/melee/energy/blade)                         || \
@@ -488,7 +488,7 @@
 
 /proc/is_cut(obj/item/W as obj)
 	return ( \
-		istype(W, /obj/item/weapon/wirecutters)                   || \
+		istype(W, /obj/item/weapon/wire_cutters)                   || \
 		istype(W, /obj/item/weapon/circular_saw)                  || \
 		istype(W, /obj/item/weapon/melee/energy/sword)            && W:active  || \
 		istype(W, /obj/item/weapon/melee/energy/blade)                         || \

@@ -1357,7 +1357,7 @@
 
 	attackby(var/obj/item/O as obj, var/mob/user as mob)
 		..()
-		if(istype(O,/obj/item/weapon/wirecutters))
+		if(istype(O,/obj/item/weapon/wire_cutters))
 			var/obj/item/weapon/cable_coil/CC = new/obj/item/weapon/cable_coil(user.loc)
 			CC.amount = 5
 			amount--

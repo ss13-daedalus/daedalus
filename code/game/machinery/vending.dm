@@ -350,7 +350,7 @@ To combat this, I changed the window name. -- Doohl
 			src.overlays += image(src.icon, "[initial(icon_state)]-panel")
 		src.updateUsrDialog()
 		return
-	else if(istype(W, /obj/item/device/multitool)||istype(W, /obj/item/weapon/wirecutters))
+	else if(istype(W, /obj/item/device/multitool)||istype(W, /obj/item/weapon/wire_cutters))
 		if(src.panel_open)
 			attack_hand(user)
 		return
@@ -524,8 +524,8 @@ To combat this, I changed the window name. -- Doohl
 
 		else if ((href_list["cutwire"]) && (src.panel_open))
 			var/twire = text2num(href_list["cutwire"])
-			if (!( istype(usr.equipped(), /obj/item/weapon/wirecutters) ))
-				usr << "You need wirecutters!"
+			if (!( istype(usr.equipped(), /obj/item/weapon/wire_cutters) ))
+				usr << "You need wire cutters!"
 				return
 			if (src.isWireColorCut(twire))
 				src.mend(twire)

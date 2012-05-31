@@ -11,7 +11,7 @@
 	anchored = 0
 	opacity = 0
 	var/list/welder_salvage = list(/obj/item/stack/sheet/plasteel,/obj/item/stack/sheet/metal,/obj/item/stack/rods)
-	var/list/wirecutters_salvage = list(/obj/item/weapon/cable_coil)
+	var/list/wire_cutters_salvage = list(/obj/item/weapon/cable_coil)
 	var/list/crowbar_salvage
 	var/salvage_num = 5
 
@@ -48,12 +48,12 @@
 		else
 			user << "\blue You need more welding fuel to complete this task."
 			return
-	if(istype(W, /obj/item/weapon/wirecutters))
+	if(istype(W, /obj/item/weapon/wire_cutters))
 		if(salvage_num <= 0)
 			user << "You don't see anything that can be cut with [W]."
 			return
-		else if(!isemptylist(wirecutters_salvage))
-			var/type = prob(70)?pick(wirecutters_salvage):null
+		else if(!isemptylist(wire_cutters_salvage))
+			var/type = prob(70)?pick(wire_cutters_salvage):null
 			if(type)
 				var/N = new type(get_turf(user))
 				user.visible_message("[user] cuts [N] from [src].", "You cut [N] from [src].")

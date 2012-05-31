@@ -249,7 +249,7 @@ NOTEBOOK
 					src.burn(1800000.0)
 					return
 			else
-				if (istype(P, /obj/item/weapon/wirecutters))
+				if (istype(P, /obj/item/weapon/wire_cutters))
 					for(var/mob/O in viewers(user, null))
 						O.show_message(text("\red [] starts cutting []!", user, src), 1)
 						//Foreach goto(489)
@@ -380,7 +380,7 @@ NOTEBOOK
 	if (!( locate(/obj/structure/table, src.loc) ))
 		user << "\blue You MUST put the paper on a table!"
 	if (W.w_class < 4)
-		if ((istype(user.l_hand, /obj/item/weapon/wirecutters) || istype(user.r_hand, /obj/item/weapon/wirecutters)))
+		if ((istype(user.l_hand, /obj/item/weapon/wire_cutters) || istype(user.r_hand, /obj/item/weapon/wire_cutters)))
 			var/a_used = 2 ** (src.w_class - 1)
 			if (src.amount < a_used)
 				user << "\blue You need more paper!"
@@ -472,8 +472,8 @@ NOTEBOOK
 /obj/effect/spresent/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 
-	if (!istype(W, /obj/item/weapon/wirecutters))
-		user << "/blue I need wirecutters for that."
+	if (!istype(W, /obj/item/weapon/wire_cutters))
+		user << "/blue I need wire cutters for that."
 		return
 
 	user << "\blue You cut open the present."

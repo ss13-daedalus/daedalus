@@ -126,7 +126,7 @@
 				<b>Step ten:</b> Check if the <b>singularity field generators</b> withstood the down-time - if they didn't, continue with step 15.<br>
 				<b>Step eleven:</b> Since disaster was averted you now have to ensure it doesn't repeat. If it was a powersink which caused it and if the engineering apc is wired to the same powernet, which the powersink is on, you have to remove the piece of wire which links the apc to the powernet. If it wasn't a powersink which caused it, then skip to step 14.<br>
 				<b>Step twelve:</b> Grab your crowbar and pry away the tile closest to the APC.<br>
-				<b>Step thirteen:</b> Use the wirecutters to cut the wire which is conecting the grid to the terminal. <br>
+				<b>Step thirteen:</b> Use the wire cutters to cut the wire which is conecting the grid to the terminal. <br>
 				<b>Step fourteen:</b> Go to the bar and tell the guys how you saved them all. Stop reading this guide here.<br>
 				<b>Step fifteen:</b> <b>GET THE FUCK OUT OF THERE!!!</b><br>
 				</p>
@@ -295,7 +295,7 @@ It is caused by the unexpected circumstances after awakening in cryo (if cloned 
 				<li>Connect all hydraulic fittings and tighten them up with a wrench</li>
 				<li>Adjust the servohydraulics with a screwdriver</li>
 				<li>Wire the chassis. (Cable is not included.)</li>
-				<li>Use the wirecutters to remove the excess cable if needed.</li>
+				<li>Use the wire cutters to remove the excess cable if needed.</li>
 				<li>Install the central control module (Not included. Use supplied datadisk to create one).</li>
 				<li>Secure the mainboard with a screwdriver.</li>
 				<li>Install the peripherals control module (Not included. Use supplied datadisk to create one).</li>

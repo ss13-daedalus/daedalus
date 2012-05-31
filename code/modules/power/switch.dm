@@ -1,6 +1,6 @@
 //This is a power switch. When turned on it looks at the cables around the tile that it's on and notes which cables are trying to connect to it.
 //After it knows this it creates the number of cables from the center to each of the cables attempting to conenct. These cables cannot be removed
-//with wirecutters. When the switch is turned off it removes all the cables on the tile it's on.
+//with wire cutters. When the switch is turned off it removes all the cables on the tile it's on.
 //The switch uses a 5s delay to prevent powernet change spamming.
 
 /obj/structure/powerswitch

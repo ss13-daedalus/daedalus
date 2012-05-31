@@ -555,7 +555,7 @@
 	//DECONSTRUCTION
 	switch(d_state)
 		if(0)
-			if (istype(W, /obj/item/weapon/wirecutters))
+			if (istype(W, /obj/item/weapon/wire_cutters))
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 				src.d_state = 1
 				src.icon_state = "r_wall-1"

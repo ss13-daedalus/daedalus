@@ -25,7 +25,7 @@
 		else
 			user << "[src] already have a cell."
 
-	else if(istype(W, /obj/item/weapon/wirecutters))
+	else if(istype(W, /obj/item/weapon/wire_cutters))
 		if(cell)
 			cell.loc = get_turf(src.loc)
 			cell = 0

@@ -204,7 +204,7 @@ obj/structure/door_assembly
 			src.state = 1
 			user << "\blue You wire the Airlock!"
 			src.name = "Wired Airlock Assembly"
-	else if(istype(W, /obj/item/weapon/wirecutters) && state == 1 )
+	else if(istype(W, /obj/item/weapon/wire_cutters) && state == 1 )
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		var/turf/T = get_turf(user)
 		user.visible_message("[user] cuts the wires from the airlock assembly.", "You start to cut the wires from airlock assembly.")

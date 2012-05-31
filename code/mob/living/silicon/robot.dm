@@ -455,7 +455,7 @@
 //			chargecount = 0
 		updateicon()
 
-	else if (istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/device/multitool))
+	else if (istype(W, /obj/item/weapon/wire_cutters) || istype(W, /obj/item/device/multitool))
 		if (wiresexposed)
 			interact(user)
 		else

@@ -198,7 +198,7 @@
 				return
 
 	// attempt to take light apart
-	else if(istype(W, /obj/item/weapon/wirecutters))
+	else if(istype(W, /obj/item/weapon/wire_cutters))
 		if(status == LIGHT_EMPTY)
 			playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 			var/turf/T = get_turf(user)

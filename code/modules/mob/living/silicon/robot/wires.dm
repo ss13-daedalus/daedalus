@@ -115,8 +115,8 @@
 		usr.machine = src
 		if (href_list["borgwires"])
 			var/t1 = text2num(href_list["borgwires"])
-			if (!( istype(usr.equipped(), /obj/item/weapon/wirecutters) ))
-				usr << "You need wirecutters!"
+			if (!( istype(usr.equipped(), /obj/item/weapon/wire_cutters) ))
+				usr << "You need wire cutters!"
 				return
 			if (src.isWireColorCut(t1))
 				src.mend(t1)

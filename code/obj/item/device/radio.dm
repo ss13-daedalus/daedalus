@@ -211,7 +211,7 @@
 				channels[chan_name] |= FREQ_LISTENING
 	else if (href_list["wires"])
 		var/t1 = text2num(href_list["wires"])
-		if (!( istype(usr.equipped(), /obj/item/weapon/wirecutters) ))
+		if (!( istype(usr.equipped(), /obj/item/weapon/wire_cutters) ))
 			return
 		if (wires & t1)
 			wires &= ~t1

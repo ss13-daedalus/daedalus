@@ -367,7 +367,7 @@
 				"You add cables to the APC frame.")
 			make_terminal()
 			terminal.connect_to_network()
-	else if (istype(W, /obj/item/weapon/wirecutters) && terminal && opened && has_electronics!=2)
+	else if (istype(W, /obj/item/weapon/wire_cutters) && terminal && opened && has_electronics!=2)
 		if (src.loc:intact)
 			user << "\red You must remove the floor plating in front of the APC first."
 			return
@@ -461,7 +461,7 @@
 				return src.attack_hand(user)
 			if (!opened && wiresexposed && \
 				(istype(W, /obj/item/device/multitool) || \
-				istype(W, /obj/item/weapon/wirecutters)))
+				istype(W, /obj/item/weapon/wire_cutters)))
 				return src.attack_hand(user)
 			user.visible_message("\red The [src.name] has been hit with the [W.name] by [user.name]!", \
 				"\red You hit the [src.name] with your [W.name]!", \
@@ -796,8 +796,8 @@
 	usr.machine = src
 	if (href_list["apcwires"])
 		var/t1 = text2num(href_list["apcwires"])
-		if (!( istype(usr.equipped(), /obj/item/weapon/wirecutters) ))
-			usr << "You need wirecutters!"
+		if (!( istype(usr.equipped(), /obj/item/weapon/wire_cutters) ))
+			usr << "You need wire cutters!"
 			return
 		if (src.isWireColorCut(t1))
 			src.mend(t1)

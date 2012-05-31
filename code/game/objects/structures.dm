@@ -50,7 +50,7 @@ obj/structure
 				user << "\blue You unsecured the support struts!"
 				state = 1
 
-		else if(istype(W, /obj/item/weapon/wirecutters) && istype(src,/obj/structure/girder/reinforced) && state == 1)
+		else if(istype(W, /obj/item/weapon/wire_cutters) && istype(src,/obj/structure/girder/reinforced) && state == 1)
 			playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 			user << "\blue Now removing support struts"
 			if(do_after(user,40))

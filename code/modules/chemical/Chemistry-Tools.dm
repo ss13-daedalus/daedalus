@@ -142,7 +142,7 @@
 									user << "\blue You add cabling to the canister."
 									src.state = 3
 					if(3)
-						if(istype(W, /obj/item/weapon/wirecutters))
+						if(istype(W, /obj/item/weapon/wire_cutters))
 							playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 							user << "\blue You remove the cabling."
 							src.state = 2

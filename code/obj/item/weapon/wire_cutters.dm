@@ -1,5 +1,5 @@
-/obj/item/weapon/wirecutters
-	name = "wirecutters"
+/obj/item/weapon/wire_cutters
+	name = "wire cutters"
 	desc = "This cuts wires."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "cutters"

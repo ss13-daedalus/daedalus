@@ -30,7 +30,7 @@
 			if(/obj/item/weapon/melee/energy) del src
 
 			//less effective weapons
-			if(/obj/item/weapon/wirecutters)
+			if(/obj/item/weapon/wire_cutters)
 				if(prob(25)) del src
 			if(/obj/item/weapon/shard)
 				if(prob(25)) del src

@@ -367,7 +367,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 		else if (istype(C, /obj/item/weapon/screwdriver))
 			src.p_open = !( src.p_open )
 			src.update_icon()
-		else if (istype(C, /obj/item/weapon/wirecutters))
+		else if (istype(C, /obj/item/weapon/wire_cutters))
 			return src.attack_hand(user)
 		else if (istype(C, /obj/item/device/multitool))
 			return src.attack_hand(user)
@@ -818,7 +818,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 
 /*
 About the new airlock wires panel:
-*	An airlock wire dialog can be accessed by the normal way or by using wirecutters or a multitool on the door while the wire-panel is open. This would show the following wires, which you can either wirecut/mend or send a multitool pulse through. There are 9 wires.
+*	An airlock wire dialog can be accessed by the normal way or by using wire cutters or a multitool on the door while the wire-panel is open. This would show the following wires, which you can either wirecut/mend or send a multitool pulse through. There are 9 wires.
 *		one wire from the ID scanner. Sending a pulse through this flashes the red light on the door (if the door has power). If you cut this wire, the door will stop recognizing valid IDs. (If the door has 0000 access, it still opens and closes, though)
 *		two wires for power. Sending a pulse through either one causes a breaker to trip, disabling the door for 10 seconds if backup power is connected, or 1 minute if not (or until backup power comes back on, whichever is shorter). Cutting either one disables the main door power, but unless backup power is also cut, the backup power re-powers the door in 10 seconds. While unpowered, the door may be \red open, but bolts-raising will not work. Cutting these wires may electrocute the user.
 *		one wire for door bolts. Sending a pulse through this drops door bolts (whether the door is powered or not) or raises them (if it is). Cutting this wire also drops the door bolts, and mending it does not raise them. If the wire is cut, trying to raise the door bolts will not work.
@@ -1071,10 +1071,10 @@ About the new airlock wires panel:
 		usr.machine = src
 		if (href_list["wires"])
 			var/t1 = text2num(href_list["wires"])
-			if (!(istype(usr.equipped(), /obj/item/weapon/wirecutters) || istype(usr.equipped(),/obj/item/weapon/shard)))
-				usr << "You need wirecutters!"
+			if (!(istype(usr.equipped(), /obj/item/weapon/wire_cutters) || istype(usr.equipped(),/obj/item/weapon/shard)))
+				usr << "You need wire cutters!"
 				return
-			if (src.isWireColorCut(t1) && istype(usr.equipped(), /obj/item/weapon/wirecutters))
+			if (src.isWireColorCut(t1) && istype(usr.equipped(), /obj/item/weapon/wire_cutters))
 				src.mend(t1)
 			else
 				src.cut(t1)

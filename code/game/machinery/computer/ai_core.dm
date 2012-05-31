@@ -69,7 +69,7 @@
 						state = 3
 						icon_state = "3"
 		if(3)
-			if(istype(P, /obj/item/weapon/wirecutters))
+			if(istype(P, /obj/item/weapon/wire_cutters))
 				if (brain)
 					user << "Get that brain out of there first"
 				else

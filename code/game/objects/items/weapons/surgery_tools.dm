@@ -628,7 +628,7 @@ CIRCULAR SAW
 			if(prob(50 + W.hits * 10 + W.damage))
 				W.pretend_weapon = W.weapon
 			else
-				W.pretend_weapon = pick("mechanical toolbox", "wirecutters", "revolver", "crowbar", "fire extinguisher", "tomato soup", "oxygen tank", "emergency oxygen tank", "laser", "bullet")
+				W.pretend_weapon = pick("mechanical toolbox", "wire cutters", "revolver", "crowbar", "fire extinguisher", "tomato soup", "oxygen tank", "emergency oxygen tank", "laser", "bullet")
 
 
 		var/datum/autopsy_data_data/D = wdata[V]

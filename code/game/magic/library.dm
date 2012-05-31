@@ -373,7 +373,7 @@
 								return
 						scanner.computer.inventory.Add(src)
 						user << "[W]'s screen flashes: 'Book stored in buffer. Title added to general inventory.'"
-		else if(istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/weapon/scalpel))
+		else if(istype(W, /obj/item/weapon/wire_cutters) || istype(W, /obj/item/weapon/scalpel))
 			if(unique)
 				user << "These pages seem to be made of a very robust paper. Looks like you can't carve it."
 				return

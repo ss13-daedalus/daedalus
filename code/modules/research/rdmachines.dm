@@ -89,8 +89,8 @@
 						src.shock(usr,50)
 						spawn(100) src.shocked = !src.shocked
 		if(href_list["cut"])
-			if (!istype(usr.equipped(), /obj/item/weapon/wirecutters))
-				usr << "You need wirecutters!"
+			if (!istype(usr.equipped(), /obj/item/weapon/wire_cutters))
+				usr << "You need wire cutters!"
 			else
 				var/temp_wire = href_list["wire"]
 				wires[temp_wire] = !wires[temp_wire]

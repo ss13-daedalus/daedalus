@@ -38,7 +38,7 @@
 					user << "You secure the external plating."
 					playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 					construct_op --
-				if(istype(P, /obj/item/weapon/wirecutters))
+				if(istype(P, /obj/item/weapon/wire_cutters))
 					playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 					user << "You remove the cables."
 					construct_op ++
