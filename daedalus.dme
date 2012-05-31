@@ -868,7 +868,7 @@
 #include "code\obj\item\weapon\melee.dm"
 #include "code\obj\item\weapon\mop.dm"
 #include "code\obj\item\weapon\mustardbomb.dm"
-#include "code\obj\item\weapon\pepperspray.dm"
+#include "code\obj\item\weapon\pepper_spray.dm"
 #include "code\obj\item\weapon\photo.dm"
 #include "code\obj\item\weapon\pinpointer.dm"
 #include "code\obj\item\weapon\screwdriver.dm"

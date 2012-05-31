@@ -1,8 +1,8 @@
 //Pepper spray, set up to make the 2 different types
-/obj/item/weapon/pepperspray //This is riot control
+/obj/item/weapon/pepper_spray //This is riot control
 	desc = "Manufactured by UhangInc., used to blind and down an opponent quickly."
 	icon = 'icons/obj/weapons.dmi'
-	name = "pepperspray"
+	name = "pepper spray"
 	icon_state = "pepperspray"
 	item_state = "pepperspray"
 	flags = ONBELT|TABLEPASS|FPRINT|USEDELAY
@@ -14,7 +14,7 @@
 	var/BottleSize = 1
 	var/ReagentAmount = 45
 
-/obj/item/weapon/pepperspray/small //And this is for personal defense.
+/obj/item/weapon/pepper_spray/small //And this is for personal defense.
 	desc = "This appears to be a small, nonlethal, single use personal defense weapon.  Hurts like a bitch, though."
 	icon = 'icons/obj/weapons.dmi'
 	name = "mace"
@@ -29,16 +29,16 @@
 	BottleSize = 0
 	ReagentAmount = 1
 
-/obj/item/weapon/pepperspray/New()
+/obj/item/weapon/pepper_spray/New()
 	var/datum/reagents/R = new/datum/reagents(ReagentAmount)
 	reagents = R
 	R.my_atom = src
 	R.add_reagent("condensedcapsaicin", ReagentAmount)
 
-/obj/item/weapon/pepperspray/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/weapon/pepper_spray/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	return
 
-/obj/item/weapon/pepperspray/attack_self(var/mob/user as mob)
+/obj/item/weapon/pepper_spray/attack_self(var/mob/user as mob)
 	if(catch)
 		user << "\blue You flip the safety off."
 		catch = 0
@@ -48,7 +48,7 @@
 		catch = 1
 		return
 
-/obj/item/weapon/pepperspray/afterattack(atom/A as mob|obj, mob/user as mob)
+/obj/item/weapon/pepper_spray/afterattack(atom/A as mob|obj, mob/user as mob)
 	if ( A == src )
 		return
 	if (istype(A, /obj/item/weapon/storage ))
@@ -148,10 +148,10 @@
 	return
 
 
-/obj/item/weapon/pepperspray/examine()
+/obj/item/weapon/pepper_spray/examine()
 	set src in usr
 	if(BottleSize)
-		usr << text("\icon[] [] units of pepperspray left!", src, src.reagents.total_volume)
+		usr << text("\icon[] [] units of pepper spray left!", src, src.reagents.total_volume)
 		..()
 		return
 	else

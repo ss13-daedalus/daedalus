@@ -1,5 +1,5 @@
 /obj/item/clothing/suit/armor
-	allowed = list(/obj/item/weapon/gun/energy,/obj/item/weapon/pepperspray,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/barricade_tape_roll/police)
+	allowed = list(/obj/item/weapon/gun/energy,/obj/item/weapon/pepper_spray,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/barricade_tape_roll/police)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	flags = FPRINT | TABLEPASS
 	flags_inv = HIDEJUMPSUIT

@@ -1895,7 +1895,7 @@ datum
 		condensedcapsaicin
 			name = "Condensed Capsaicin"
 			id = "condensedcapsaicin"
-			description = "This shit goes in pepperspray."
+			description = "This shit goes in pepper spray."
 			reagent_state = LIQUID
 			color = "#B31008" // rgb: 179, 16, 8
 
@@ -1927,23 +1927,23 @@ datum
 							if ( !safe_thing )
 								safe_thing = victim.glasses
 						if ( eyes_covered && mouth_covered )
-							victim << "\red Your [safe_thing] protects you from the pepperspray!"
+							victim << "\red Your [safe_thing] protects you from the pepper spray!"
 							return
 						else if ( mouth_covered )	// Reduced effects if partially protected
-							victim << "\red Your [safe_thing] protect you from most of the pepperspray!"
+							victim << "\red Your [safe_thing] protect you from most of the pepper spray!"
 							victim.eye_blurry = max(M.eye_blurry, 3)
 							victim.eye_blind = max(M.eye_blind, 1)
 							victim.Paralyse(1)
 							victim.drop_item()
 							return
 						else if ( eyes_covered ) // Eye cover is better than mouth cover
-							victim << "\red Your [safe_thing] protects your eyes from the pepperspray!"
+							victim << "\red Your [safe_thing] protects your eyes from the pepper spray!"
 							victim.emote("scream")
 							victim.eye_blurry = max(M.eye_blurry, 1)
 							return
 						else // Oh dear :D
 							victim.emote("scream")
-							victim << "\red You're sprayed directly in the eyes with pepperspray!"
+							victim << "\red You're sprayed directly in the eyes with pepper spray!"
 							victim.eye_blurry = max(M.eye_blurry, 5)
 							victim.eye_blind = max(M.eye_blind, 2)
 							victim.Paralyse(1)

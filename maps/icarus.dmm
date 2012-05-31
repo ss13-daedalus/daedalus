@@ -30,7 +30,7 @@
 "aaD" = (/obj/machinery/deployable/barrier,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor{icon_state = "delivery"; name = "floor"},/area/security/warden{name = "Armory"})
 "aaE" = (/obj/structure/rack,/obj/item/weapon/gun/energy/taser,/obj/item/weapon/gun/energy/taser,/obj/item/weapon/gun/energy/taser,/obj/item/weapon/storage/body_bag_box,/turf/simulated/floor{dir = 8; icon_state = "warning"},/area/security/warden{name = "Armory"})
 "aaF" = (/obj/structure/rack,/obj/item/weapon/melee/baton,/obj/item/weapon/melee/baton,/obj/item/weapon/storage/handcuff_kit,/turf/simulated/floor,/area/security/warden{name = "Armory"})
-"aaG" = (/obj/structure/table/reinforced,/obj/item/weapon/pepperspray,/obj/item/weapon/pepperspray,/obj/item/weapon/pepperspray,/turf/simulated/floor,/area/security/warden{name = "Armory"})
+"aaG" = (/obj/structure/table/reinforced,/obj/item/weapon/pepper_spray,/obj/item/weapon/pepper_spray,/obj/item/weapon/pepper_spray,/turf/simulated/floor,/area/security/warden{name = "Armory"})
 "aaH" = (/obj/structure/table/reinforced,/obj/item/ammo_casing/shotgun/beanbag,/obj/item/ammo_casing/shotgun/beanbag,/obj/item/ammo_casing/shotgun/beanbag,/obj/item/ammo_casing/shotgun/beanbag,/turf/simulated/floor,/area/security/warden{name = "Armory"})
 "aaI" = (/obj/machinery/camera{c_tag = "Armoury Secure Section"; dir = 8; network = "Security"},/turf/simulated/floor,/area/security/warden{name = "Armory"})
 "aaJ" = (/turf/simulated/floor/plating,/area/security/range)

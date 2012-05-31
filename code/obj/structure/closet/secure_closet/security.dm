@@ -145,7 +145,7 @@
 		new /obj/item/device/radio/headset/headset_sec(src)
 		new /obj/item/weapon/storage/belt/security(src)
 		new /obj/item/weapon/flashbang(src)
-		new /obj/item/weapon/pepperspray(src)
+		new /obj/item/weapon/pepper_spray(src)
 		new /obj/item/device/flash(src)
 		new /obj/item/weapon/melee/baton(src)
 		new /obj/item/clothing/glasses/sunglasses/sechud(src)
@@ -182,7 +182,7 @@
 		//
 		new /obj/item/weapon/reagent_containers/food/drinks/dflask(src)
 		new /obj/item/weapon/lighter/zippo(B)
-		new /obj/item/weapon/pepperspray/small(src)
+		new /obj/item/weapon/pepper_spray/small(src)
 		return
 
 

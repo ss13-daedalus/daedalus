@@ -90,7 +90,7 @@
 /obj/item/weapon/storage/belt/security/full/New()
 	..()
 	new /obj/item/weapon/melee/baton(src)
-	new /obj/item/weapon/pepperspray(src)
+	new /obj/item/weapon/pepper_spray(src)
 	new /obj/item/weapon/flashbang(src)
 	new /obj/item/weapon/handcuffs(src)
 	new /obj/item/weapon/handcuffs(src)
@@ -129,7 +129,7 @@
 	//storage_slots = 6
 	can_hold = list(
 		"/obj/item/weapon/flashbang",
-		"/obj/item/weapon/pepperspray",
+		"/obj/item/weapon/pepper_spray",
 		"/obj/item/weapon/handcuffs",
 		"/obj/item/device/flash",
 		"/obj/item/clothing/glasses",

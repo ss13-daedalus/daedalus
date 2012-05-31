@@ -442,7 +442,7 @@
 		var/obj/item/weapon/storage/backpack/security/BPK = new /obj/item/weapon/storage/backpack/security(src)
 		new /obj/item/weapon/storage/box(BPK)
 		new /obj/item/weapon/pen(src)
-		new /obj/item/weapon/pepperspray(src)
+		new /obj/item/weapon/pepper_spray(src)
 		new /obj/item/device/flash(src)
 		new /obj/item/weapon/melee/baton(src)
 		new /obj/item/barricade_tape_roll/police(src)
