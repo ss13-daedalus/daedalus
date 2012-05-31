@@ -49,6 +49,18 @@ static std::string result_string;
 // no error, then this variable will be set to NULL.
 static const char *error_string = NULL;
 
+// Static error messages used by get_handle() when verifying database handles
+static const char *DBCONN[] = {
+	"Database handle is required",
+	"Database handle is not valid or is already closed"
+};
+
+// Static error messages used by get_handle() when verifying statement handles
+static const char *STMT[] = {
+	"Query handle is required",
+	"Query handle is not valid or is already closed"
+};
+
 // Helper function to decode the database or statement handle passed as the
 // first or second arguemnts in most dm_db_xxx() methods. The handle is just
 // a numeric encoding of the pointer values returned by SQLite functions. For
@@ -59,14 +71,16 @@ static const char *error_string = NULL;
 // argv[argn]: The handle to parse and verify
 // argn: The argument number which should be read
 // set: Handle is considered valid if it exists inside this set
+// errors: Array of error messages specific to the handle set used
 //
 // Return: the handle value converted to a pointer if the handle was valid,
 // and NULL otherwise.
-static void *get_handle(int argc, char *argv[], int argn, const pointer_set_t &set)
+static void *get_handle(int argc, char *argv[], int argn,
+	const pointer_set_t &set, const char *errors[])
 {
 	// Check for usage: a handle argument is required
 	if(argc < (argn + 1)) {
-		error_string = "Database or query handle argument is required";
+		error_string = errors[0];
 		return NULL;
 	}
 
@@ -77,7 +91,7 @@ static void *get_handle(int argc, char *argv[], int argn, const pointer_set_t &s
 
 	// Check if argument was parsable and is in the set of valid pointers
 	if(buffer.fail() || set.find(pointer) == set.end()) {
-		error_string = "Database or query handle argument is not valid";
+		error_string = errors[1];
 		return NULL;
 	}
 
@@ -146,13 +160,14 @@ extern "C" const char *dm_db_open(int argc, char *argv[])
 extern "C" const char *dm_db_close(int argc, char *argv[])
 {
 	// Decode the database handle from the first argument
-	sqlite3 *dbconn = (sqlite3 *) get_handle(argc, argv, 0, dbconn_set);
+	sqlite3 *dbconn;
+	dbconn = (sqlite3 *) get_handle(argc, argv, 0, dbconn_set, DBCONN);
 	if(dbconn == NULL) {
 		return NULL;
 	}
 
 	// Finalize any exisitng prepared statement the connection may still have
-	sqlite3_stmt* stmt = sqlite3_next_stmt(dbconn, NULL);
+	sqlite3_stmt *stmt = sqlite3_next_stmt(dbconn, NULL);
 	while(stmt != NULL) {
 		sqlite3_stmt* prev = stmt;
 		stmt = sqlite3_next_stmt(dbconn, stmt);
@@ -198,7 +213,8 @@ extern "C" const char *dm_db_close(int argc, char *argv[])
 extern "C" const char *dm_db_execute(int argc, char *argv[])
 {
 	// Decode the database handle from the first argument
-	sqlite3 *dbconn = (sqlite3 *) get_handle(argc, argv, 0, dbconn_set);
+	sqlite3 *dbconn;
+	dbconn = (sqlite3 *) get_handle(argc, argv, 0, dbconn_set, DBCONN);
 	if(dbconn == NULL) {
 		return NULL;
 	}
@@ -249,7 +265,8 @@ extern "C" const char *dm_db_execute(int argc, char *argv[])
 extern "C" const char *dm_db_finalize(int argc, char *argv[])
 {
 	// Decode the prepared statement handle from the first argument
-	sqlite3_stmt *stmt = (sqlite3_stmt *) get_handle(argc, argv, 0, stmt_set);
+	sqlite3_stmt *stmt;
+	stmt = (sqlite3_stmt *) get_handle(argc, argv, 0, stmt_set, STMT);
 	if(stmt == NULL) {
 		return NULL;
 	}
@@ -305,13 +322,15 @@ extern "C" const char *dm_db_finalize(int argc, char *argv[])
 extern "C" const char *dm_db_next_row(int argc, char *argv[])
 {
 	// Decode the database handle from the first argument
-	sqlite3 *dbconn = (sqlite3 *) get_handle(argc, argv, 0, dbconn_set);
+	sqlite3 *dbconn;
+	dbconn = (sqlite3 *) get_handle(argc, argv, 0, dbconn_set, DBCONN);
 	if(dbconn == NULL) {
 		return NULL;
 	}
 
 	// Decode the prepared statement handle from the second argument
-	sqlite3_stmt *stmt = (sqlite3_stmt *) get_handle(argc, argv, 1, stmt_set);
+	sqlite3_stmt *stmt;
+	stmt = (sqlite3_stmt *) get_handle(argc, argv, 1, stmt_set, STMT);
 	if(stmt == NULL) {
 		return NULL;
 	}
@@ -406,13 +425,15 @@ extern "C" const char *dm_db_next_row(int argc, char *argv[])
 extern "C" const char *dm_db_col_names(int argc, char *argv[])
 {
 	// Decode the database handle from the first argument
-	sqlite3 *dbconn = (sqlite3 *) get_handle(argc, argv, 0, dbconn_set);
+	sqlite3 *dbconn;
+	dbconn = (sqlite3 *) get_handle(argc, argv, 0, dbconn_set, DBCONN);
 	if(dbconn == NULL) {
 		return NULL;
 	}
 
 	// Decode the prepared statement handle from the second argument
-	sqlite3_stmt *stmt = (sqlite3_stmt *) get_handle(argc, argv, 1, stmt_set);
+	sqlite3_stmt *stmt;
+	stmt = (sqlite3_stmt *) get_handle(argc, argv, 1, stmt_set, STMT);
 	if(stmt == NULL) {
 		return NULL;
 	}

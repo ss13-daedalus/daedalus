@@ -1,14 +1,27 @@
-// The SQLiteDB class interfaces to the SQLite library. A separate SQLiteDB
+// If the BYOND project is compiled in DEBUG mode, then any SQLite error
+// will call CRASH() and display both a stack trace and the error message
+// to world.log. Otherwise, database errors are silent and have to be
+// checked for by the caller of the various procs defined here.
+#ifdef DEBUG
+#define RETURN_ERROR(i) . = (i); CRASH(_error)
+#else
+#define RETURN_ERROR(i) return (i)
+#endif
+
+// The SQLite class interfaces to the SQLite library. A separate SQLite
 // object should be created for each database file that the application
 // intends to use.
-SQLiteDB
+//
+// The variables and procs that begin with an underscode (_) are intended
+// for internal use only and may change in newer versions of this library.
+SQLite
 	var
 		// The platform dependant name of the SQLite wrapper library. The
-		// first SQLiteDB object will initialize this to either "dmsqlite.dll"
+		// first SQLite object will initialize this to either "dmsqlite.dll"
 		// on Windows or "dmsqlite.so" on Linux and Mac OSX.
 		global/_native_lib
 
-		// The name of the SQLite database file opened by this SQLiteDB.
+		// The name of the SQLite database file opened by this SQLite object.
 		// Set by New() and used as a default if no file name is passed to the
 		// Connect() procedure.
 		_file_name
@@ -18,10 +31,13 @@ SQLiteDB
 		// in the dmsqlite native code library.
 		_handle
 
-	// Create a new SQLiteDB object for a specified database file. Note that
+		// Error message for the last error tha
+		_error
+
+	// Create a new SQLite object for a specified database file. Note that
 	// the database is not actually opened until the Connect() proc is called.
 	New(file_name)
-		// The first SQLiteDB object initializes platform specific name of the
+		// The first SQLite object initializes platform specific name of the
 		// native code SQLite wrapper library
 		if(_native_lib == null)
 			if(world.system_type == MS_WINDOWS)
@@ -29,11 +45,11 @@ SQLiteDB
 			else
 				src._native_lib = "dmsqlite.so"
 
-		// Set default file name for this SQLiteDB for use in Connect()
+		// Set default file name for this SQLite object for use in Connect()
 		src._file_name = file_name
 		return ..()
 
-	// Close the database file when deleting the SQLiteDB object to avoid any
+	// Close the database file when deleting the SQLite object to avoid any
 	// resource leaks.
 	Del()
 		if(_handle)
@@ -41,14 +57,15 @@ SQLiteDB
 		..()
 
 	proc
-		// Open the database file using either the name passed in as an 
+		// Open the database file using either the name passed in as an
 		// argument to Connect() or the name previously passed in to New().
 		// Returns 0 on error and 1 on success.
 		Connect(file_name=_file_name)
 			src._handle = call(_native_lib, "dm_db_open")(file_name)
 			if(_handle == null)
 				_log_error()
-			return (_handle == null) ? 0 : 1;
+				RETURN_ERROR(0)
+			return 1;
 
 		// Close the database file that was previously opened with Connect()
 		// Any open queries for this database connection are automatically
@@ -57,10 +74,11 @@ SQLiteDB
 			src._handle = call(_native_lib, "dm_db_close")(_handle)
 			if(_handle == null)
 				_log_error()
-			return (_handle == null) ? 0 : 1;
+				RETURN_ERROR(0)
+			return 1;
 
-		// Return 1 if this SQLiteDB has a database file open from a previous
-		// call to Connect(), and return 0 otherwise.
+		// Return 1 if this SQLite object has a database file open from a
+		// previous call to Connect(), and return 0 otherwise.
 		IsConnected()
 			// The _handle is null or an empty string when file not open
 			return (_handle) ? 1 : 0;
@@ -69,11 +87,13 @@ SQLiteDB
 		// can be safely used as a literal value in a SQL statement. This
 		// prevents data injections attacks or just random incorrect
 		// behavior if the string happens to have an embedded quote (').
+		// Returns null if an error occurs.
 		Quote(str)
 			//return call(_native_lib, "dm_db_quote")(str)
 			str = call(_native_lib, "dm_db_quote")(str)
 			if(str == null)
 				_log_error()
+				RETURN_ERROR(null)
 			return str
 
 		// If any operation on this database file returned 0 due to an error,
@@ -81,7 +101,7 @@ SQLiteDB
 		// However, if the last operation on this database file succeeded and
 		// returned a 1, then the result of this proc is undefined.
 		ErrorMsg()
-			return call(_native_lib, "dm_db_error_msg")()
+			return _error
 
 		// A convenience proc to quickly switch the database file in use by
 		// first closing the existing file (if it is currently open) and then
@@ -93,24 +113,23 @@ SQLiteDB
 					return 0;
 			return Connect(file_name)
 
-		// Create a new SQLiteQuery object associated with this database file.
+		// Create a new Query object associated with this database file.
 		// The query passed in will be the default if another query is not
-		// passed to the Execute() proc in the SQLiteQuery object.
+		// passed to the Execute() proc in the Query object.
 		NewQuery(sql)
-			return new/SQLiteDB/SQLiteQuery(sql,src)
+			return new/SQLite/Query(sql,src)
 
-		// This proc is called if SQLite reports any kind of error. If DEBUG
-		// is defined, the proc will rerieve the error from the wrapper
-		// library and will send it to world.log. If DEBUG is not defined,
-		// this method does nothing.
+		// This proc is called if SQLite reports any kind of error. It obtains
+		// the error message from the native wrapper library and saves it
+		// in the _error variable for later retrieval by ErrorMsg()
 		_log_error()
-			world.log << "ERROR"
-			world.log << call(_native_lib, "dm_db_error_msg")(_handle)
+			_error = call(_native_lib, "dm_db_error_msg")()
 
 	// This class encapsulates a single SQL query along with any result data
 	// produced by that query. Instances of this class should be created using the
-	// NewQuery() proc in SQLiteDB rather than directly by the user.
-	SQLiteQuery
+	// NewQuery() proc in the SQLite class rather than directly by the user. A single
+	// query object can be used multiple times to execute different queries.
+	Query
 		var
 			// The default SQL query set by NewQuery() and used if no other
 			// query is passed to Execute().
@@ -119,15 +138,18 @@ SQLiteDB
 			// List containing the column values from the current row of results.
 			// Each call to NextRow() will allocate a new list to hold the column
 			// values for that row.
-			list/item[0]
-			
+			list/item
+
 			// Handle to prepared statement created by sqlite3_prepare_v2() in
 			// the native wrapper library.
 			_stmt
 
-		// Copy the internal fields from parent object when this SQLiteQuery
+			// A list of column names obtained by the first call to GetRowData()
+			_names
+
+		// Copy the internal fields from parent object when this Query
 		// is created by the parent object with NewQuery().
-		New(sql,SQLiteDB/dbconn)
+		New(sql,SQLite/dbconn)
 			src.sql = sql
 			src._file_name = dbconn._file_name
 			src._handle = dbconn._handle
@@ -139,7 +161,7 @@ SQLiteDB
 			Close()
 
 			// Don't let inherited Del() delete the database handle. Only the
-			// original SQLiteDB object should do that.
+			// original SQLite object should do that.
 			_handle = null
 			..()
 
@@ -156,75 +178,101 @@ SQLiteDB
 				src._stmt = call(_native_lib, "dm_db_execute")(_handle, sql)
 				if(_stmt == null)
 					_log_error()
-					return 0
-
-				// Return 1 if the statement has executed successfully
+					RETURN_ERROR(0)
 				return 1
 
+			// Obtain the next for of column data for a running query. If
+			// more data is available, return and set the item var to a new
+			// list containing the column data. If the SQL query finished
+			// and has no more data, return 0 and set item var to a zero
+			// length list. If an error occurs, return 0 and set item to null.
 			NextRow()
-				// Allocate new list to hold column data of the next row
-				src.item = new/list
+				// Set item to null in case any error occurs
+				src.item = null
 
 				// Call sqlite3_step() to obtain the next row of results
-				var/result = call(_native_lib, "dm_db_next_row")(_handle, _stmt)
-				if(result == null)
+				var/data = call(_native_lib, "dm_db_next_row")(_handle, _stmt)
+				if(data == null)
 					_log_error()
-					return 0
+					RETURN_ERROR(0)
 
-				// Separate the individual column data out from the encoded
-				// form in the result string and store in item list. See
-				// the native wrapper library dmsqlite.cpp code for exact
-				// format of the data encoding.
-				while(result)
-					// Single character type code for this column
-					var/type = copytext(result, 1, 2)
-
-					// Length of the data in this column
-					var/len = text2num(copytext(result, 2))
-
-					// Column data starts immediately after the ":"
-					var/pos = findtext(result, ":")
-					var/col = copytext(result, pos + 1, pos + 1 + len)
-
-					// Parse the column data based on its type code
-					if(type == "I" || type == "F")
-						src.item += text2num(col)
-					else if(type == "T")
-						src.item += col
-					else
-						src.item += null
-
-					// Shift remaining text to the left for next column
-					result = copytext(result, pos + 1 + len)
+				// Decode the column data into item list
+				src.item = _split(data)
 
 				// Return true if a new data row is available
-				return (src.item.len) ? 1 : 0;				
+				return (src.item.len) ? 1 : 0;
 
+			// Return an associative list containing the column data from the
+			// last result row, indexed by the names of each column. This proc
+			// must be called only after NextRow() returned a 1 to indicate more
+			// data was available.
 			GetRowData()
-				// Obtain column names corresponding to item
-				var/names = call(_native_lib, "dm_db_col_names")(_handle, _stmt)
-				if(names == null)
-					_log_error()
-					return null
+				// First call to GetRowData() must obtain column names
+				if(_names == null)
+					var/data = call(_native_lib, "dm_db_col_names")(_handle, _stmt)
+					if(data == null)
+						_log_error()
+						RETURN_ERROR(null)
 
-/*
-				var/list/results
+					// Split encoded column names into a proper list
+					src._names = _split(data)
 
-				if(names.len)
-					results = list()
-					for(var/column in names)
-						results += column
-						results[C] = src.item[(cur_col.position+1)]
-				return results
-*/
+				// Allocate new output list for returning row data
+				var/result = new/list
+
+				// Make associative list of column data indexed by column name.
+				// The names list is in the same column order as item list.
+				var/index = 1
+				for(var/col in _names)
+					result += col
+					result[col] = item[index]
+					index++
+
+				return result
+
 			// Close the currently executing query if one exists. This proc
 			// does not have to be called manually since both Execute() and
 			// Del() will call it automatically as needed. This proc always
 			// succeeds and return 1.
 			Close()
-				src.item.len = 0
+				src.item = null
+				src._names = null
 				if(_stmt)
 					call(_native_lib, "dm_db_finalize")(_stmt)
-					_stmt = null
+					src._stmt = null
 
-//			_split
+			// Separate individual column data from a single encoded string
+			// and return them as a list. Also perform type conversion on
+			// columns with a numeric data type. See the native wrapper library
+			// dmsqlite.cpp for the exact format of the data encoding.
+			_split(row)
+				// Allocate new list to hold the decoded column data
+				var/list/result = new/list
+
+				// Each iteration decodes the first column in the remaining
+				// string and then shifts the string to the next column.
+				while(row)
+					// Single character type code for this column
+					var/type = copytext(row, 1, 2)
+
+					// Length of the data in this column
+					var/len = text2num(copytext(row, 2))
+
+					// Column data starts immediately after the ":"
+					var/pos = findtext(row, ":")
+					var/col = copytext(row, pos + 1, pos + 1 + len)
+
+					// Parse the column data based on its type code
+					if(type == "I" || type == "F")
+						result += text2num(col)
+					else if(type == "T")
+						result += col
+					else
+						result += null
+
+					// Shift remaining text to the left for next column
+					row = copytext(row, pos + 1 + len)
+
+				return result
+
+#undef RETURN_ERROR
