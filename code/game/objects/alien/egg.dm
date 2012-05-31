@@ -79,8 +79,8 @@
 	src.visible_message("\red <B>\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]")
 	var/damage = W.force / 4.0
 
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(istype(W, /obj/item/weapon/welding_tool))
+		var/obj/item/weapon/welding_tool/WT = W
 
 		if(WT.welding)
 			damage = 15

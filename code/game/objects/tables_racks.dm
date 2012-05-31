@@ -247,7 +247,7 @@ TABLE AND RACK OBJECT INTERATIONS
 		del(W)
 		return
 
-	if (istype(W, /obj/item/weapon/weldingtool))
+	if (istype(W, /obj/item/weapon/welding_tool))
 		if(W:welding == 1)
 			if(src.status == 2)
 				W:welding = 2

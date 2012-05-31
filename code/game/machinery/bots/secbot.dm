@@ -730,7 +730,7 @@ Auto Patrol: []"},
 
 /obj/item/weapon/secbot_assembly/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
-	if((istype(W, /obj/item/weapon/weldingtool) && W:welding) && (!src.build_step))
+	if((istype(W, /obj/item/weapon/welding_tool) && W:welding) && (!src.build_step))
 		if(W:remove_fuel(0,user))
 			src.build_step++
 			src.overlays += image('icons/obj/aibots.dmi', "hs_hole")

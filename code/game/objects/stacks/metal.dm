@@ -12,7 +12,7 @@ FLOOR TILES
 
 /obj/item/stack/rods/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if (istype(W, /obj/item/weapon/weldingtool) && W:welding)
+	if (istype(W, /obj/item/weapon/welding_tool) && W:welding)
 		if(amount < 2)
 			user << "\red You need at least two rods to do this."
 			return
@@ -20,7 +20,7 @@ FLOOR TILES
 			var/obj/item/stack/sheet/metal/new_item = new(usr.loc)
 			new_item.add_to_stacks(usr)
 			for (var/mob/M in viewers(src))
-				M.show_message("\red [src] is shaped into metal by [user.name] with the weldingtool.", 3, "\red You hear welding.", 2)
+				M.show_message("\red [src] is shaped into metal by [user.name] with the welding_tool.", 3, "\red You hear welding.", 2)
 			var/obj/item/stack/rods/R = src
 			src = null
 			var/replace = (user.get_inactive_hand()==R)

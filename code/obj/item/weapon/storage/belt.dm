@@ -57,7 +57,7 @@
 	can_hold = list(
 		"/obj/item/weapon/crowbar",
 		"/obj/item/weapon/screwdriver",
-		"/obj/item/weapon/weldingtool",
+		"/obj/item/weapon/welding_tool",
 		"/obj/item/weapon/wirecutters",
 		"/obj/item/weapon/wrench",
 		"/obj/item/device/multitool",
@@ -72,7 +72,7 @@
 	..()
 	new /obj/item/weapon/screwdriver(src)
 	new /obj/item/weapon/wrench(src)
-	new /obj/item/weapon/weldingtool(src)
+	new /obj/item/weapon/welding_tool(src)
 	new /obj/item/weapon/crowbar(src)
 	new /obj/item/weapon/wirecutters(src)
 	new /obj/item/weapon/cable_coil(src,30,pick("red","yellow"))
@@ -82,7 +82,7 @@
 	..()
 	new /obj/item/weapon/screwdriver(src)
 	new /obj/item/weapon/wrench(src)
-	new /obj/item/weapon/weldingtool(src)
+	new /obj/item/weapon/welding_tool(src)
 	new /obj/item/weapon/crowbar(src)
 	new /obj/item/weapon/wirecutters(src)
 	new /obj/item/device/analyzer(src)

@@ -353,8 +353,8 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 					return
 
 		src.add_fingerprint(user)
-		if ((istype(C, /obj/item/weapon/weldingtool) && !( src.operating ) && src.density))
-			var/obj/item/weapon/weldingtool/W = C
+		if ((istype(C, /obj/item/weapon/welding_tool) && !( src.operating ) && src.density))
+			var/obj/item/weapon/welding_tool/W = C
 			if(W.remove_fuel(0,user))
 				if (!src.welded)
 					src.welded = 1
@@ -1518,8 +1518,8 @@ About the new airlock wires panel:
 			src.add_fingerprint(user)
 			switch(removal_step)
 				if(0)
-					if ((istype(C, /obj/item/weapon/weldingtool) && !( src.operating ) && src.density))
-						var/obj/item/weapon/weldingtool/W = C
+					if ((istype(C, /obj/item/weapon/welding_tool) && !( src.operating ) && src.density))
+						var/obj/item/weapon/welding_tool/W = C
 						if(W.remove_fuel(0,user))
 							if (!src.welded)
 								src.welded = 1
@@ -1533,8 +1533,8 @@ About the new airlock wires panel:
 							user << "Bolts removed"
 							src.removal_step = 1
 				if(1)
-					if ((istype(C, /obj/item/weapon/weldingtool) && !( src.operating ) && src.density))
-						var/obj/item/weapon/weldingtool/W = C
+					if ((istype(C, /obj/item/weapon/welding_tool) && !( src.operating ) && src.density))
+						var/obj/item/weapon/welding_tool/W = C
 						if(W.remove_fuel(0,user))
 							user << "You start to slice the armor..."
 							if(do_after(user,20))
@@ -1547,8 +1547,8 @@ About the new airlock wires panel:
 							user << "Bolts secured."
 							src.removal_step = 0
 				if(2)
-					if ((istype(C, /obj/item/weapon/weldingtool) && !( src.operating ) && src.density))
-						var/obj/item/weapon/weldingtool/W = C
+					if ((istype(C, /obj/item/weapon/welding_tool) && !( src.operating ) && src.density))
+						var/obj/item/weapon/welding_tool/W = C
 						if(W.remove_fuel(0,user))
 							user << "You start to fuse together the armor..."
 							if(do_after(user,20))

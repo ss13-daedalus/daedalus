@@ -107,7 +107,7 @@
 
 	// attackby item
 	// wrench: (un)anchor
-	// weldingtool: convert to real pipe
+	// welding_tool: convert to real pipe
 
 	attackby(var/obj/item/I, var/mob/user)
 		var/turf/T = src.loc
@@ -138,8 +138,8 @@
 				user << "You attach the pipe to the underfloor."
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 
-		else if(istype(I, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/W = I
+		else if(istype(I, /obj/item/weapon/welding_tool))
+			var/obj/item/weapon/welding_tool/W = I
 			if(W.remove_fuel(0,user))
 				playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
 				user << "Welding the pipe in place."

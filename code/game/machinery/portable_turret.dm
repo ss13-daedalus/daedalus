@@ -643,7 +643,7 @@ Neutralize All Unidentified Life Signs: []<BR>"},
 				build_step = 3
 				return
 
-			else if(istype(W, /obj/item/weapon/weldingtool))
+			else if(istype(W, /obj/item/weapon/welding_tool))
 				if (W:remove_fuel(5,user)) // uses up 5 fuel.
 					playsound(src.loc, pick('sound/items/Welder.ogg', 'sound/items/Welder2.ogg'), 50, 1)
 					if(do_after(user, 20))
@@ -705,7 +705,7 @@ Neutralize All Unidentified Life Signs: []<BR>"},
 				return
 
 		if(7)
-			if(istype(W, /obj/item/weapon/weldingtool))
+			if(istype(W, /obj/item/weapon/welding_tool))
 				if (W:remove_fuel(5,user))
 					playsound(src.loc, pick('sound/items/Welder.ogg', 'sound/items/Welder2.ogg'), 50, 1)
 					if(do_after(user, 30))

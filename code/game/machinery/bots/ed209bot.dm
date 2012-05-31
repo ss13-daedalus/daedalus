@@ -813,7 +813,7 @@ Auto Patrol: []"},
 		src.item_state = "ed209_shell"
 		src.icon_state = "ed209_shell"
 		del(W)
-	else if((istype(W, /obj/item/weapon/weldingtool) && W:welding) && (src.build_step == 3))
+	else if((istype(W, /obj/item/weapon/welding_tool) && W:welding) && (src.build_step == 3))
 		if (W:remove_fuel(0,user))
 			src.build_step++
 			src.name = "shielded frame assembly"

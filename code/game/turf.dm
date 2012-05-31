@@ -413,8 +413,8 @@
 
 	//THERMITE related stuff. Calls src.thermitemelt() which handles melting simulated walls and the relevant effects
 	if( thermite )
-		if( istype(W, /obj/item/weapon/weldingtool) )
-			var/obj/item/weapon/weldingtool/WT = W
+		if( istype(W, /obj/item/weapon/welding_tool) )
+			var/obj/item/weapon/welding_tool/WT = W
 			if( WT.remove_fuel(0,user) )
 				thermitemelt(user)
 				return
@@ -437,8 +437,8 @@
 	var/turf/T = user.loc	//get user's location for delay checks
 
 	//DECONSTRUCTION
-	if( istype(W, /obj/item/weapon/weldingtool) )
-		var/obj/item/weapon/weldingtool/WT = W
+	if( istype(W, /obj/item/weapon/welding_tool) )
+		var/obj/item/weapon/welding_tool/WT = W
 		if( WT.remove_fuel(0,user) )
 			WT.welding = 2
 
@@ -525,8 +525,8 @@
 
 	//THERMITE related stuff. Calls src.thermitemelt() which handles melting simulated walls and the relevant effects
 	if( thermite )
-		if( istype(W, /obj/item/weapon/weldingtool) )
-			var/obj/item/weapon/weldingtool/WT = W
+		if( istype(W, /obj/item/weapon/welding_tool) )
+			var/obj/item/weapon/welding_tool/WT = W
 			if( WT.remove_fuel(0,user) )
 				thermitemelt(user)
 				return
@@ -591,8 +591,8 @@
 				return
 
 		if(2)
-			if( istype(W, /obj/item/weapon/weldingtool) )
-				var/obj/item/weapon/weldingtool/WT = W
+			if( istype(W, /obj/item/weapon/welding_tool) )
+				var/obj/item/weapon/welding_tool/WT = W
 				if( WT.remove_fuel(0,user) )
 					WT.welding = 2
 
@@ -656,8 +656,8 @@
 				return
 
 		if(5)
-			if( istype(W, /obj/item/weapon/weldingtool) )
-				var/obj/item/weapon/weldingtool/WT = W
+			if( istype(W, /obj/item/weapon/welding_tool) )
+				var/obj/item/weapon/welding_tool/WT = W
 				if( WT.remove_fuel(0,user) )
 					WT.welding = 2
 
@@ -1277,8 +1277,8 @@ turf/simulated/floor/return_siding_icon_state()
 		else
 			user << "\red You cannot shovel this."
 
-	if(istype(C, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/welder = C
+	if(istype(C, /obj/item/weapon/welding_tool))
+		var/obj/item/weapon/welding_tool/welder = C
 		if(welder.welding && (is_plating()))
 			if(broken || burnt)
 				if(welder.remove_fuel(0,user))

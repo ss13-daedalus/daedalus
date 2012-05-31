@@ -75,7 +75,7 @@
 var/global/list/common_tools = list(
 /obj/item/weapon/cable_coil,
 /obj/item/weapon/wrench,
-/obj/item/weapon/weldingtool,
+/obj/item/weapon/welding_tool,
 /obj/item/weapon/screwdriver,
 /obj/item/weapon/wirecutters,
 /obj/item/device/multitool,
@@ -92,7 +92,7 @@ var/global/list/common_tools = list(
 	return 0
 
 /proc/iswelder(O)
-	if(istype(O, /obj/item/weapon/weldingtool))
+	if(istype(O, /obj/item/weapon/welding_tool))
 		return 1
 	return 0
 

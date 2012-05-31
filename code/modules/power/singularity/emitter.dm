@@ -143,7 +143,7 @@
 					user << "\red The [src.name] needs to be unwelded from the floor."
 			return
 
-		if(istype(W, /obj/item/weapon/weldingtool) && W:welding)
+		if(istype(W, /obj/item/weapon/welding_tool) && W:welding)
 			if(active)
 				user << "Turn off the [src] first."
 				return

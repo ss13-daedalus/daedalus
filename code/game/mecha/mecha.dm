@@ -752,7 +752,7 @@
 				user << "There's already a powercell installed."
 		return
 
-	else if(istype(W, /obj/item/weapon/weldingtool) && W:welding && user.a_intent != "hurt")
+	else if(istype(W, /obj/item/weapon/welding_tool) && W:welding && user.a_intent != "hurt")
 		if (W:remove_fuel(0,user))
 			if (hasInternalDamage(MECHA_INT_TANK_BREACH))
 				clearInternalDamage(MECHA_INT_TANK_BREACH)

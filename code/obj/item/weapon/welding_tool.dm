@@ -1,5 +1,5 @@
 // WELDING TOOL
-/obj/item/weapon/weldingtool
+/obj/item/weapon/welding_tool
 	name = "Welding Tool"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "welder"
@@ -240,14 +240,14 @@
 			return ..()
 
 
-/obj/item/weapon/weldingtool/largetank
+/obj/item/weapon/welding_tool/largetank
 	name = "Industrial Welding Tool"
 	max_fuel = 40
 	m_amt = 70
 	g_amt = 60
 	origin_tech = "engineering=2"
 
-/obj/item/weapon/weldingtool/hugetank
+/obj/item/weapon/welding_tool/hugetank
 	name = "Upgraded Welding Tool"
 	max_fuel = 80
 	w_class = 3.0
@@ -255,7 +255,7 @@
 	g_amt = 120
 	origin_tech = "engineering=3"
 
-/obj/item/weapon/weldingtool/experimental
+/obj/item/weapon/welding_tool/experimental
 	name = "Experimental Welding Tool"
 	max_fuel = 80
 	w_class = 3.0

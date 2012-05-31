@@ -214,7 +214,7 @@
 	mineralType = "phoron"
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(istype(W,/obj/item/weapon/weldingtool))
+		if(istype(W,/obj/item/weapon/welding_tool))
 			if(W:welding)
 				TemperatureAct(100)
 		..()

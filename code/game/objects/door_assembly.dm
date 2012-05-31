@@ -161,7 +161,7 @@ obj/structure/door_assembly
 		glass = 1
 
 /obj/structure/door_assembly/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/weldingtool) && W:welding && !anchored )
+	if(istype(W, /obj/item/weapon/welding_tool) && W:welding && !anchored )
 		if (W:remove_fuel(0,user))
 			W:welding = 2
 			user.visible_message("[user] dissassembles the airlock assembly.", "You start to dissassemble the airlock assembly.")

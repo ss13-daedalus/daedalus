@@ -94,7 +94,7 @@
 
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if (istype(W, /obj/item/weapon/weldingtool))
+		if (istype(W, /obj/item/weapon/welding_tool))
 			if(W:welding == 1)
 				overlays = null
 				usr << "You slice off [src]'s uneven chunks of aluminum and scorch marks."

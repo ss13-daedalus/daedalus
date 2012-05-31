@@ -3,8 +3,8 @@
 ////////////////////////////////
 
 /datum/construction/mecha/custom_action(step, atom/used_atom, mob/user)
-	if(istype(used_atom, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/W = used_atom
+	if(istype(used_atom, /obj/item/weapon/welding_tool))
+		var/obj/item/weapon/welding_tool/W = used_atom
 		if (W:remove_fuel(0, user))
 			playsound(holder, 'sound/items/Welder2.ogg', 50, 1)
 		else
@@ -36,8 +36,8 @@
 	return 1
 
 /datum/construction/reversible/mecha/custom_action(index as num, diff as num, atom/used_atom, mob/user as mob)
-	if(istype(used_atom, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/W = used_atom
+	if(istype(used_atom, /obj/item/weapon/welding_tool))
+		var/obj/item/weapon/welding_tool/W = used_atom
 		if (W:remove_fuel(0, user))
 			playsound(holder, 'sound/items/Welder2.ogg', 50, 1)
 		else
@@ -102,7 +102,7 @@
 	result = "/obj/mecha/working/ripley"
 	steps = list(
 					//1
-					list("key"=/obj/item/weapon/weldingtool,
+					list("key"=/obj/item/weapon/welding_tool,
 							"backkey"=/obj/item/weapon/wrench,
 							"desc"="External armor is wrenched."),
 					//2
@@ -111,10 +111,10 @@
 					 		"desc"="External armor is installed."),
 					 //3
 					 list("key"=/obj/item/stack/sheet/plasteel,
-					 		"backkey"=/obj/item/weapon/weldingtool,
+					 		"backkey"=/obj/item/weapon/welding_tool,
 					 		"desc"="Internal armor is welded."),
 					 //4
-					 list("key"=/obj/item/weapon/weldingtool,
+					 list("key"=/obj/item/weapon/welding_tool,
 					 		"backkey"=/obj/item/weapon/wrench,
 					 		"desc"="Internal armor is wrenched"),
 					 //5
@@ -308,7 +308,7 @@
 	result = "/obj/mecha/combat/gygax"
 	steps = list(
 					//1
-					list("key"=/obj/item/weapon/weldingtool,
+					list("key"=/obj/item/weapon/welding_tool,
 							"backkey"=/obj/item/weapon/wrench,
 							"desc"="External armor is wrenched."),
 					 //2
@@ -317,10 +317,10 @@
 					 		"desc"="External armor is installed."),
 					 //3
 					 list("key"=/obj/item/mecha_parts/part/gygax_armour,
-					 		"backkey"=/obj/item/weapon/weldingtool,
+					 		"backkey"=/obj/item/weapon/welding_tool,
 					 		"desc"="Internal armor is welded."),
 					 //4
-					 list("key"=/obj/item/weapon/weldingtool,
+					 list("key"=/obj/item/weapon/welding_tool,
 					 		"backkey"=/obj/item/weapon/wrench,
 					 		"desc"="Internal armor is wrenched"),
 					 //5
@@ -549,7 +549,7 @@
 	result = "/obj/mecha/working/ripley/firefighter"
 	steps = list(
 					//1
-					list("key"=/obj/item/weapon/weldingtool,
+					list("key"=/obj/item/weapon/welding_tool,
 							"backkey"=/obj/item/weapon/wrench,
 							"desc"="External armor is wrenched."),
 					//2
@@ -562,10 +562,10 @@
 					 		"desc"="External armor is being installed."),
 					 //4
 					 list("key"=/obj/item/stack/sheet/plasteel,
-					 		"backkey"=/obj/item/weapon/weldingtool,
+					 		"backkey"=/obj/item/weapon/welding_tool,
 					 		"desc"="Internal armor is welded."),
 					 //5
-					 list("key"=/obj/item/weapon/weldingtool,
+					 list("key"=/obj/item/weapon/welding_tool,
 					 		"backkey"=/obj/item/weapon/wrench,
 					 		"desc"="Internal armor is wrenched"),
 					 //6
@@ -818,10 +818,10 @@
 
 /datum/construction/mecha/durand
 	result = "/obj/mecha/combat/durand"
-	steps = list(list("key"=/obj/item/weapon/weldingtool),//1
+	steps = list(list("key"=/obj/item/weapon/welding_tool),//1
 					 list("key"=/obj/item/weapon/wrench),//2
 					 list("key"=/obj/item/mecha_parts/part/durand_armour),//3
-					 list("key"=/obj/item/weapon/weldingtool),//4
+					 list("key"=/obj/item/weapon/welding_tool),//4
 					 list("key"=/obj/item/weapon/wrench),//5
 					 list("key"=/obj/item/stack/sheet/metal),//6
 					 list("key"=/obj/item/weapon/screwdriver),//7
@@ -957,7 +957,7 @@
 	result = "/obj/mecha/medical/odysseus"
 	steps = list(
 					//1
-					list("key"=/obj/item/weapon/weldingtool,
+					list("key"=/obj/item/weapon/welding_tool,
 							"backkey"=/obj/item/weapon/wrench,
 							"desc"="External armor is wrenched."),
 					//2
@@ -966,10 +966,10 @@
 					 		"desc"="External armor is installed."),
 					 //3
 					 list("key"=/obj/item/mecha_parts/part/odysseus_armour,
-					 		"backkey"=/obj/item/weapon/weldingtool,
+					 		"backkey"=/obj/item/weapon/welding_tool,
 					 		"desc"="Internal armor is welded."),
 					 //4
-					 list("key"=/obj/item/weapon/weldingtool,
+					 list("key"=/obj/item/weapon/welding_tool,
 					 		"backkey"=/obj/item/weapon/wrench,
 					 		"desc"="Internal armor is wrenched"),
 					 //5

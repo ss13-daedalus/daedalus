@@ -19,7 +19,7 @@
 					user << "\blue You wrench the frame into place."
 					anchored = 1
 					state = 1
-			if(istype(P, /obj/item/weapon/weldingtool))
+			if(istype(P, /obj/item/weapon/welding_tool))
 				playsound(loc, 'sound/items/Welder.ogg', 50, 1)
 				P:welding = 2
 				if(do_after(user, 20))

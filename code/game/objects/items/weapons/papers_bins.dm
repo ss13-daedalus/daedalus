@@ -231,8 +231,8 @@ NOTEBOOK
 
 	/*
 	else
-		if (istype(P, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/W = P
+		if (istype(P, /obj/item/weapon/welding_tool))
+			var/obj/item/weapon/welding_tool/W = P
 			if ((W.welding && W.weldfuel > 0))
 				for(var/mob/O in viewers(user, null))
 					O.show_message(text("\red [] burns [] with the welding tool!", user, src), 1, "\red You hear a small burning noise", 2)
@@ -352,8 +352,8 @@ NOTEBOOK
 		user.drop_item()
 		W.loc = src
 	else
-		if (istype(W, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/T = W
+		if (istype(W, /obj/item/weapon/welding_tool))
+			var/obj/item/weapon/welding_tool/T = W
 			if ((T.welding && T.weldfuel > 0))
 				viewers(user, null) << text("[] burns the paper with the welding tool!", user)
 				spawn( 0 )

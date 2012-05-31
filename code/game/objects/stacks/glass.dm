@@ -188,7 +188,7 @@ SHARDS
 
 /obj/item/weapon/shard/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
-	if ( istype(W, /obj/item/weapon/weldingtool) && W:welding )
+	if ( istype(W, /obj/item/weapon/welding_tool) && W:welding )
 		W:eyecheck(user)
 		var/obj/item/stack/sheet/glass/NG = new (user.loc)
 		for (var/obj/item/stack/sheet/glass/G in user.loc)

@@ -186,7 +186,7 @@ obj/structure
 		var/turf/T = get_turf(src)
 		T.attackby(C, user) //BubbleWrap - hand this off to the underlying turf instead
 		return
-	if (istype(C, /obj/item/weapon/weldingtool) && C:welding)
+	if (istype(C, /obj/item/weapon/welding_tool) && C:welding)
 		user << "\blue Slicing lattice joints ..."
 		C:eyecheck(user)
 		new /obj/item/stack/rods(src.loc)

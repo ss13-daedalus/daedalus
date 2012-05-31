@@ -30,8 +30,8 @@
 	attackby(obj/item/weapon/C as obj, mob/user as mob)
 		src.add_fingerprint(user)
 		if(operating)	return//Already doing something.
-		if(istype(C, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/W = C
+		if(istype(C, /obj/item/weapon/welding_tool))
+			var/obj/item/weapon/welding_tool/W = C
 			if(W.remove_fuel(0, user))
 				src.blocked = !src.blocked
 				user << text("\red You [blocked?"welded":"unwelded"] the [src]")

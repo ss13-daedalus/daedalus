@@ -876,7 +876,7 @@
 #include "code\obj\item\weapon\veilrender.dm"
 #include "code\obj\item\weapon\virus_dish.dm"
 #include "code\obj\item\weapon\welding_pack.dm"
-#include "code\obj\item\weapon\weldingtool.dm"
+#include "code\obj\item\weapon\welding_tool.dm"
 #include "code\obj\item\weapon\wirecutters.dm"
 #include "code\obj\item\weapon\wrench.dm"
 #include "code\obj\item\weapon\card\data.dm"

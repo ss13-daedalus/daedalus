@@ -37,7 +37,7 @@
 
 			else //weapons with subtypes
 				if(istype(W, /obj/item/weapon/melee/energy/sword)) del src
-				else if(istype(W, /obj/item/weapon/weldingtool))
+				else if(istype(W, /obj/item/weapon/welding_tool))
 					if(W:welding) del src
 			//TODO: add plant-b-gone
 		..()

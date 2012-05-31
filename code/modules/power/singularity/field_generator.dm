@@ -126,7 +126,7 @@ field_generator power level display
 				if(2)
 					user << "\red The [src.name] needs to be unwelded from the floor."
 					return
-		else if(istype(W, /obj/item/weapon/weldingtool) && W:welding)
+		else if(istype(W, /obj/item/weapon/welding_tool) && W:welding)
 			switch(state)
 				if(0)
 					user << "\red The [src.name] needs to be wrenched to the floor."

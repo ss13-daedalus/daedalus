@@ -70,8 +70,8 @@
 			update()
 			return
 
-		if(istype(I, /obj/item/weapon/weldingtool) && I:welding)
-			var/obj/item/weapon/weldingtool/W = I
+		if(istype(I, /obj/item/weapon/welding_tool) && I:welding)
+			var/obj/item/weapon/welding_tool/W = I
 			playsound(src.loc, 'sound/items/Welder.ogg', 100, 1)
 			var/turf/T = get_turf(user)
 			user.visible_message("[user] welds apart the disposal.", "You start to weld apart the disposal.")
@@ -967,7 +967,7 @@
 		return
 
 	//attack by item
-	//weldingtool: unfasten and convert to obj/disposalconstruct
+	//welding_tool: unfasten and convert to obj/disposalconstruct
 
 	attackby(var/obj/item/I, var/mob/user)
 
@@ -975,8 +975,8 @@
 		if(T.intact)
 			return		// prevent interaction with T-scanner revealed pipes
 
-		if(istype(I, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/W = I
+		if(istype(I, /obj/item/weapon/welding_tool))
+			var/obj/item/weapon/welding_tool/W = I
 
 			if(W.welding)
 				if(W.remove_fuel(0,user))

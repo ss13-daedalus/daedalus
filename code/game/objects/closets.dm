@@ -128,13 +128,13 @@
 		if(istype(W, /obj/item/weapon/grab))
 			src.MouseDrop_T(W:affecting, user)      //act like they were dragged onto the closet
 
-		if(istype(W, /obj/item/weapon/weldingtool) && W:welding )
+		if(istype(W, /obj/item/weapon/welding_tool) && W:welding )
 			if(!W:remove_fuel(0,user))
 				user << "\blue You need more welding fuel to complete this task."
 				return
 			new /obj/item/stack/sheet/metal(src.loc)
 			for(var/mob/M in viewers(src))
-				M.show_message("\red [src] has been cut apart by [user.name] with the weldingtool.", 3, "\red You hear welding.", 2)
+				M.show_message("\red [src] has been cut apart by [user.name] with the welding_tool.", 3, "\red You hear welding.", 2)
 			del(src)
 			return
 
@@ -151,7 +151,7 @@
 
 	else if(istype(W, /obj/item/weapon/packageWrap))
 		return
-	else if(istype(W, /obj/item/weapon/weldingtool) && W:welding )
+	else if(istype(W, /obj/item/weapon/welding_tool) && W:welding )
 		if(!W:remove_fuel(0,user))
 			user << "\blue You need more welding fuel to complete this task."
 			return

@@ -252,7 +252,7 @@
 		return
 
 	attackby(obj/item/W, mob/user)
-		if(istype(W, /obj/item/weapon/weldingtool) && W:welding)
+		if(istype(W, /obj/item/weapon/welding_tool) && W:welding)
 			if (W:remove_fuel(0,user))
 				W:welding = 2
 				user << "\blue Now welding the vent."

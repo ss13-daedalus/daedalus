@@ -26,7 +26,7 @@
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		..()
-		if(istype(W, /obj/item/weapon/weldingtool)  && W:welding)
+		if(istype(W, /obj/item/weapon/welding_tool)  && W:welding)
 			light("\red [user] casually lights the [name] with [W], what a badass.")
 		else if(istype(W, /obj/item/weapon/lighter) && W:lit)
 			light()

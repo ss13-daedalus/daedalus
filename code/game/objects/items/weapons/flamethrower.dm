@@ -1,6 +1,6 @@
 /obj/item/weapon/flamethrower/full/New(var/loc)
 	..()
-	weldtool = new/obj/item/weapon/weldingtool(src)
+	weldtool = new/obj/item/weapon/welding_tool(src)
 	weldtool.status = 0
 	igniter = new/obj/item/device/assembly/igniter(src)
 	igniter.secured = 0
@@ -30,7 +30,7 @@
 		lit = 0	//on or off
 		operating = 0//cooldown
 		turf/previousturf = null
-		obj/item/weapon/weldingtool/weldtool = null
+		obj/item/weapon/welding_tool/weldtool = null
 		obj/item/device/assembly/igniter/igniter = null
 		obj/item/weapon/tank/phoron/ptank = null
 

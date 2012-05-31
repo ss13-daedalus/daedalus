@@ -402,7 +402,7 @@
 	if (istype(W, /obj/item/weapon/handcuffs)) // fuck i don't even know why isrobot() in handcuff code isn't working so this will have to do
 		return
 
-	if (istype(W, /obj/item/weapon/weldingtool) && W:welding)
+	if (istype(W, /obj/item/weapon/welding_tool) && W:welding)
 		if(getBruteLoss() == 0)
 			user << "There are no dents to fix here!"
 			return
