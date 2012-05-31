@@ -1,4 +1,4 @@
-/obj/item/weapon/chemsprayer//Another copy paste with a tiny change it seems
+/obj/item/weapon/chemical_sprayer//Another copy paste with a tiny change it seems
 	desc = "A utility used to spray large amounts of reagent in a given area."
 	icon = 'icons/obj/gun.dmi'
 	name = "chem sprayer"
@@ -11,16 +11,16 @@
 	throw_range = 10
 	origin_tech = "combat=3;materials=3;engineering=3"
 
-/obj/item/weapon/chemsprayer/New()
+/obj/item/weapon/chemical_sprayer/New()
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
 	R.add_reagent("cleaner", 10)
 
-/obj/item/weapon/chemsprayer/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/weapon/chemical_sprayer/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	return
 
-/obj/item/weapon/chemsprayer/afterattack(atom/A as mob|obj, mob/user as mob)
+/obj/item/weapon/chemical_sprayer/afterattack(atom/A as mob|obj, mob/user as mob)
 	if (istype(A, /obj/item/weapon/storage ))
 		return
 	if (istype(A, /obj/effect/proc_holder/spell ))

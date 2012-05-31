@@ -851,7 +851,7 @@
 #include "code\obj\item\weapon\camera.dm"
 #include "code\obj\item\weapon\camera_film.dm"
 #include "code\obj\item\weapon\cartridge.dm"
-#include "code\obj\item\weapon\chemsprayer.dm"
+#include "code\obj\item\weapon\chemical_sprayer.dm"
 #include "code\obj\item\weapon\cigarette_butt.dm"
 #include "code\obj\item\weapon\cigarette_pack.dm"
 #include "code\obj\item\weapon\cleaner.dm"

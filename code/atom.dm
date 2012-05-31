@@ -112,7 +112,7 @@
 			if ((O.client && !( O.blinded )))
 				O << "\red [src] has been scanned by [user] with the [W]"
 	else
-		if (!( istype(W, /obj/item/weapon/grab) ) && !(istype(W, /obj/item/weapon/plastique)) &&!(istype(W, /obj/item/weapon/cleaner)) &&!(istype(W, /obj/item/weapon/chemsprayer)) &&!(istype(W, /obj/item/weapon/pepper_spray)) && !(istype(W, /obj/item/weapon/plantbgone)) )
+		if (!( istype(W, /obj/item/weapon/grab) ) && !(istype(W, /obj/item/weapon/plastique)) &&!(istype(W, /obj/item/weapon/cleaner)) &&!(istype(W, /obj/item/weapon/chemical_sprayer)) &&!(istype(W, /obj/item/weapon/pepper_spray)) && !(istype(W, /obj/item/weapon/plantbgone)) )
 			for(var/mob/O in viewers(src, null))
 				if ((O.client && !( O.blinded )))
 					O << "\red <B>[src] has been hit by [user] with [W]</B>"
