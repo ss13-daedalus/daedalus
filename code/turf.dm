@@ -57,3 +57,22 @@ turf
 				pressure_direction = connection_direction
 
 	proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
+
+	can_pass(atom/movable/mover, turf/target, height=1.5,air_group=0)
+		if(!target) return 0
+
+		if(istype(mover)) // turf/Enter(...) will perform more advanced checks
+			return !density
+
+		else // Now, doing more detailed checks for air movement and air group formation
+			if(target.blocks_air||blocks_air)
+				return 0
+
+			for(var/obj/obstacle in src)
+				if(!obstacle.can_pass(mover, target, height, air_group))
+					return 0
+			for(var/obj/obstacle in target)
+				if(!obstacle.can_pass(mover, src, height, air_group))
+					return 0
+
+			return 1
