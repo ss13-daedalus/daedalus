@@ -53,8 +53,6 @@ Important Procedures
 
 */
 
-var/global/datum/controller/air_system/air_master
-
 datum
 	controller
 		air_system

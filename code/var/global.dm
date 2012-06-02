@@ -498,3 +498,5 @@ When I already created about 4 new objectives, this doesn't seem terribly import
 	is_ninjad_yet = 0
 
 	kill_air = 0
+
+	datum/controller/air_system/air_master
