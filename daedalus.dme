@@ -717,7 +717,6 @@
 #include "code\modules\power\smes.dm"
 #include "code\modules\power\solar.dm"
 #include "code\modules\power\tracker.dm"
-#include "code\modules\power\turbine.dm"
 #include "code\modules\power\singularity\collector.dm"
 #include "code\modules\power\singularity\containment_field.dm"
 #include "code\modules\power\singularity\emitter.dm"
