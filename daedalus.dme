@@ -716,7 +716,6 @@
 #include "code\modules\power\sd_DynamicAreaLighting.dm"
 #include "code\modules\power\smes.dm"
 #include "code\modules\power\solar.dm"
-#include "code\modules\power\switch.dm"
 #include "code\modules\power\tracker.dm"
 #include "code\modules\power\turbine.dm"
 #include "code\modules\power\singularity\collector.dm"
