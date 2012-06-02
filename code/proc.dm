@@ -2498,3 +2498,22 @@ proc
 	return list(((hi1>= 65 ? hi1-55 : hi1-48)<<4) | (lo1 >= 65 ? lo1-55 : lo1-48),
 		((hi2 >= 65 ? hi2-55 : hi2-48)<<4) | (lo2 >= 65 ? lo2-55 : lo2-48),
 		((hi3 >= 65 ? hi3-55 : hi3-48)<<4) | (lo3 >= 65 ? lo3-55 : lo3-48))
+
+/proc/randomize_apc_wires()
+	var/list/apcwires = list(0, 0, 0, 0)
+	APCIndexToFlag = list(0, 0, 0, 0)
+	APCIndexToWireColor = list(0, 0, 0, 0)
+	APCWireColorToIndex = list(0, 0, 0, 0)
+	var/flagIndex = 1
+	for (var/flag=1, flag<16, flag+=flag)
+		var/valid = 0
+		while (!valid)
+			var/colorIndex = rand(1, 4)
+			if (apcwires[colorIndex]==0)
+				valid = 1
+				apcwires[colorIndex] = flag
+				APCIndexToFlag[flagIndex] = flag
+				APCIndexToWireColor[flagIndex] = colorIndex
+				APCWireColorToIndex[colorIndex] = flagIndex
+		flagIndex+=1
+	return apcwires
