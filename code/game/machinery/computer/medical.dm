@@ -3,7 +3,7 @@
 	desc = "This can be used to check medical records."
 	icon_state = "medcomp"
 	req_access = list(ACCESS_MEDICAL)
-	circuit = "/obj/item/weapon/circuitboard/med_data"
+	circuit = "/obj/item/weapon/circuit_board/med_data"
 	var
 		obj/item/weapon/card/id/scan = null
 		obj/item/weapon/disk/records/disk = null

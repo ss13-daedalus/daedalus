@@ -146,7 +146,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					user << "\blue The broken glass falls out."
 					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 					new /obj/item/weapon/shard( src.loc )
-					var/obj/item/weapon/circuitboard/rdconsole/M = new /obj/item/weapon/circuitboard/rdconsole( A )
+					var/obj/item/weapon/circuit_board/rdconsole/M = new /obj/item/weapon/circuit_board/rdconsole( A )
 					for (var/obj/C in src)
 						C.loc = src.loc
 					A.circuit = M
@@ -157,7 +157,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				else
 					user << "\blue You disconnect the monitor."
 					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-					var/obj/item/weapon/circuitboard/rdconsole/M = new /obj/item/weapon/circuitboard/rdconsole( A )
+					var/obj/item/weapon/circuit_board/rdconsole/M = new /obj/item/weapon/circuit_board/rdconsole( A )
 					for (var/obj/C in src)
 						C.loc = src.loc
 					A.circuit = M

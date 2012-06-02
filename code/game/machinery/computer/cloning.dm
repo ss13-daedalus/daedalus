@@ -45,7 +45,7 @@
 				user << "\blue The broken glass falls out."
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				new /obj/item/weapon/shard( src.loc )
-				var/obj/item/weapon/circuitboard/scan_consolenew/M = new /obj/item/weapon/circuitboard/scan_consolenew( A )
+				var/obj/item/weapon/circuit_board/scan_consolenew/M = new /obj/item/weapon/circuit_board/scan_consolenew( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
@@ -56,7 +56,7 @@
 			else
 				user << "\blue You disconnect the monitor."
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				var/obj/item/weapon/circuitboard/scan_consolenew/M = new /obj/item/weapon/circuitboard/scan_consolenew( A )
+				var/obj/item/weapon/circuit_board/scan_consolenew/M = new /obj/item/weapon/circuit_board/scan_consolenew( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
@@ -80,7 +80,7 @@
 	name = "Cloning console"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "dna"
-	circuit = "/obj/item/weapon/circuitboard/cloning"
+	circuit = "/obj/item/weapon/circuit_board/cloning"
 	req_access = list(ACCESS_HEADS) //Only used for record deletion right now.
 	var/obj/machinery/dna_scannernew/scanner = null //Linked scanner. For scanning.
 	var/obj/machinery/clonepod/pod1 = null //Linked cloning pod.

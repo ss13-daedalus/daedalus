@@ -4,7 +4,7 @@
 	anchored = 1.0
 	desc = "Used to monitor status of people being operated on."
 	icon_state = "operating"
-	circuit = "/obj/item/weapon/circuitboard/operating"
+	circuit = "/obj/item/weapon/circuit_board/operating"
 	var/mob/living/carbon/human/victim = null
 	var/obj/machinery/optable/table = null
 	var/id = 0.0

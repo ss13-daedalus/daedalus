@@ -5,7 +5,7 @@
 	name = "Lockdown Control"
 	desc = "Used to control blast doors."
 	icon_state = "lockdown"
-	circuit = "/obj/item/weapon/circuitboard/lockdown"
+	circuit = "/obj/item/weapon/circuit_board/lockdown"
 	var/connectedDoorIds[0][0]
 	var/department = ""
 	var/connected_doors[0][0]

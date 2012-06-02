@@ -29,7 +29,7 @@
 		delay = 10 // how many process() ticks to delay per heat
 		heating_power = 40000
 
-		circuitboard = null // string pointing to a circuitboard type
+		circuit_board = null // string pointing to a circuit_board type
 
 
 
@@ -237,7 +237,7 @@
 	idle_power_usage = 30
 	machinetype = 1
 	heatgen = 10
-	circuitboard = "/obj/item/weapon/circuitboard/telecomms/receiver"
+	circuit_board = "/obj/item/weapon/circuit_board/telecomms/receiver"
 
 	receive_signal(datum/signal/signal)
 
@@ -278,7 +278,7 @@
 	idle_power_usage = 50
 	machinetype = 2
 	heatgen = 20
-	circuitboard = "/obj/item/weapon/circuitboard/telecomms/bus"
+	circuit_board = "/obj/item/weapon/circuit_board/telecomms/bus"
 	netspeed = 40
 
 	receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
@@ -325,7 +325,7 @@
 	machinetype = 3
 	heatgen = 100
 	delay = 5
-	circuitboard = "/obj/item/weapon/circuitboard/telecomms/processor"
+	circuit_board = "/obj/item/weapon/circuit_board/telecomms/processor"
 
 	receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 
@@ -360,7 +360,7 @@
 	idle_power_usage = 15
 	machinetype = 4
 	heatgen = 50
-	circuitboard = "/obj/item/weapon/circuitboard/telecomms/server"
+	circuit_board = "/obj/item/weapon/circuit_board/telecomms/server"
 	var
 		list/log_entries = list()
 		list/stored_names = list()

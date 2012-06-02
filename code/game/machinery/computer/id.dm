@@ -2,7 +2,7 @@
 	name = "Identification Computer"
 	desc = "A computer used to modify ID cards."
 	icon_state = "id"
-	circuit = "/obj/item/weapon/circuitboard/card"
+	circuit = "/obj/item/weapon/circuit_board/card"
 	var/obj/item/weapon/card/id/scan = null
 	var/obj/item/weapon/card/id/modify = null
 	var/authenticated = 0.0
@@ -13,7 +13,7 @@
 
 /obj/machinery/computer/card/centcom
 	name = "CentCom Identification Computer"
-	circuit = "/obj/item/weapon/circuitboard/card/centcom"
+	circuit = "/obj/item/weapon/circuit_board/card/centcom"
 	req_access = list(ACCESS_CENT_CAPTAIN)
 
 

@@ -397,7 +397,7 @@
 
 ///////// Circuitboards
 
-/obj/item/weapon/circuitboard/mecha
+/obj/item/weapon/circuit_board/mecha
 	name = "Exosuit Circuit board"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_mod"

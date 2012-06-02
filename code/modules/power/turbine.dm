@@ -245,7 +245,7 @@
 				user << "\blue The broken glass falls out."
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				new /obj/item/weapon/shard( src.loc )
-				var/obj/item/weapon/circuitboard/turbine_control/M = new /obj/item/weapon/circuitboard/turbine_control( A )
+				var/obj/item/weapon/circuit_board/turbine_control/M = new /obj/item/weapon/circuit_board/turbine_control( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				M.id = src.id
@@ -257,7 +257,7 @@
 			else
 				user << "\blue You disconnect the monitor."
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				var/obj/item/weapon/circuitboard/turbine_control/M = new /obj/item/weapon/circuitboard/turbine_control( A )
+				var/obj/item/weapon/circuit_board/turbine_control/M = new /obj/item/weapon/circuit_board/turbine_control( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				M.id = src.id

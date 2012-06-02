@@ -23,7 +23,7 @@
 	var/path = 0
 	var/motion = 0
 	var/direct = "SOUTH"
-	var/obj/item/weapon/circuitboard/circuit = null
+	var/obj/item/weapon/circuit_board/circuit = null
 	var/list/allowed_containers = list("/obj/item/weapon/reagent_containers/glass/beaker", "/obj/item/weapon/reagent_containers/glass/dispenser", "/obj/item/weapon/reagent_containers/glass/bottle")
 	var/affected_area = 3
 	var/mob/attacher = "Unknown"

@@ -2,7 +2,7 @@
 	name = "Teleporter"
 	desc = "Used to control a linked teleportation Hub and Station."
 	icon_state = "teleport"
-	circuit = "/obj/item/weapon/circuitboard/teleporter"
+	circuit = "/obj/item/weapon/circuit_board/teleporter"
 	var/obj/item/locked = null
 	var/id = null
 

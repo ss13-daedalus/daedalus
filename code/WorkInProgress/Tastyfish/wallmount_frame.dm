@@ -49,8 +49,8 @@
 				new /obj/item/stack/sheet/metal(src.loc, 2)
 				del(src)
 		if(2)
-			if(istype(P, /obj/item/weapon/circuitboard))
-				var/obj/item/weapon/circuitboard/B = P
+			if(istype(P, /obj/item/weapon/circuit_board))
+				var/obj/item/weapon/circuit_board/B = P
 				if(B.board_type == "wallmount")
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 					user << "\blue You add the circuit board to the frame."
@@ -110,7 +110,7 @@
 					playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 					var/obj/machinery/new_machine = new src.circuit.build_path(src.loc)
 					new_machine.dir = dir
-					if(istype(circuit, /obj/item/weapon/circuitboard/status_display))
+					if(istype(circuit, /obj/item/weapon/circuit_board/status_display))
 						new_machine.pixel_x = pixel_x * 1.33
 						new_machine.pixel_y = pixel_y * 1.33
 					else
@@ -158,7 +158,7 @@
 				if(P.loc != src && !istype(P, /obj/item/weapon/cable_coil))
 					user << "\red You cannot add that component to the machine!"
 
-/obj/item/weapon/circuitboard/firealarm
+/obj/item/weapon/circuit_board/firealarm
 	name = "Circuit board (Fire Alarm)"
 	build_path = "/obj/machinery/firealarm"
 	board_type = "wallmount"
@@ -170,7 +170,7 @@
 							"/obj/item/weapon/stock_parts/capacitor" = 1,
 							"/obj/item/weapon/cable_coil" = 2)
 
-/obj/item/weapon/circuitboard/alarm
+/obj/item/weapon/circuit_board/alarm
 	name = "Circuit board (Atmospheric Alarm)"
 	build_path = "/obj/machinery/alarm"
 	board_type = "wallmount"
@@ -183,7 +183,7 @@
 							"/obj/item/weapon/cable_coil" = 2)
 
 /* oh right, not a machine :(
-/obj/item/weapon/circuitboard/intercom
+/obj/item/weapon/circuit_board/intercom
 	name = "Circuit board (Intercom)"
 	build_path = "/obj/item/device/radio/intercom"
 	board_type = "wallmount"
@@ -196,7 +196,7 @@
 */
 
 /* too complex to set up the dept for an RC in a way intuitive for the user
-/obj/item/weapon/circuitboard/requests_console
+/obj/item/weapon/circuit_board/requests_console
 	name = "Circuit board (Requests Console)"
 	build_path = "/obj/machinery/requests_console"
 	board_type = "wallmount"
@@ -209,7 +209,7 @@
 							"/obj/item/weapon/cable_coil" = 1)
 */
 
-/obj/item/weapon/circuitboard/status_display
+/obj/item/weapon/circuit_board/status_display
 	name = "Circuit board (Status Display)"
 	build_path = "/obj/machinery/status_display"
 	board_type = "wallmount"
@@ -220,7 +220,7 @@
 							"/obj/item/weapon/stock_parts/console_screen" = 2,
 							"/obj/item/weapon/cable_coil" = 1)
 
-/obj/item/weapon/circuitboard/light_switch
+/obj/item/weapon/circuit_board/light_switch
 	name = "Circuit board (Light Switch)"
 	build_path = "/obj/machinery/light_switch"
 	board_type = "wallmount"

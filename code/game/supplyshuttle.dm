@@ -92,7 +92,7 @@ var/list/supply_groups = new()
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "supply"
 	req_access = list(ACCESS_CARGO)
-	circuit = "/obj/item/weapon/circuitboard/supplycomp"
+	circuit = "/obj/item/weapon/circuit_board/supplycomp"
 	var/temp = null
 	var/hacked = 0
 
@@ -108,7 +108,7 @@ var/list/supply_groups = new()
 	name = "Supply ordering console"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "request"
-	circuit = "/obj/item/weapon/circuitboard/ordercomp"
+	circuit = "/obj/item/weapon/circuit_board/ordercomp"
 	var/temp = null
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
 /obj/machinery/computer/ordercomp/New()
@@ -478,7 +478,7 @@ This method wont take into account storage items developed in the future and doe
 				user << "\blue The broken glass falls out."
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				new /obj/item/weapon/shard( src.loc )
-				var/obj/item/weapon/circuitboard/supplycomp/M = new /obj/item/weapon/circuitboard/supplycomp( A )
+				var/obj/item/weapon/circuit_board/supplycomp/M = new /obj/item/weapon/circuit_board/supplycomp( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
@@ -489,7 +489,7 @@ This method wont take into account storage items developed in the future and doe
 			else
 				user << "\blue You disconnect the monitor."
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				var/obj/item/weapon/circuitboard/supplycomp/M = new /obj/item/weapon/circuitboard/supplycomp( A )
+				var/obj/item/weapon/circuit_board/supplycomp/M = new /obj/item/weapon/circuit_board/supplycomp( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M

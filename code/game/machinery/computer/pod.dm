@@ -59,16 +59,16 @@
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( loc )
 				new /obj/item/weapon/shard( loc )
 
-				//generate appropriate circuitboard. Accounts for /pod/old computer types
-				var/obj/item/weapon/circuitboard/pod/M = null
+				//generate appropriate circuit_board. Accounts for /pod/old computer types
+				var/obj/item/weapon/circuit_board/pod/M = null
 				if(istype(src, /obj/machinery/computer/pod/old))
-					M = new /obj/item/weapon/circuitboard/olddoor( A )
+					M = new /obj/item/weapon/circuit_board/olddoor( A )
 					if(istype(src, /obj/machinery/computer/pod/old/syndicate))
-						M = new /obj/item/weapon/circuitboard/syndicatedoor( A )
+						M = new /obj/item/weapon/circuit_board/syndicatedoor( A )
 					if(istype(src, /obj/machinery/computer/pod/old/swf))
-						M = new /obj/item/weapon/circuitboard/swfdoor( A )
-				else //it's not an old computer. Generate standard pod circuitboard.
-					M = new /obj/item/weapon/circuitboard/pod( A )
+						M = new /obj/item/weapon/circuit_board/swfdoor( A )
+				else //it's not an old computer. Generate standard pod circuit_board.
+					M = new /obj/item/weapon/circuit_board/pod( A )
 
 				for (var/obj/C in src)
 					C.loc = loc
@@ -82,16 +82,16 @@
 				user << "\blue You disconnect the monitor."
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( loc )
 
-				//generate appropriate circuitboard. Accounts for /pod/old computer types
-				var/obj/item/weapon/circuitboard/pod/M = null
+				//generate appropriate circuit_board. Accounts for /pod/old computer types
+				var/obj/item/weapon/circuit_board/pod/M = null
 				if(istype(src, /obj/machinery/computer/pod/old))
-					M = new /obj/item/weapon/circuitboard/olddoor( A )
+					M = new /obj/item/weapon/circuit_board/olddoor( A )
 					if(istype(src, /obj/machinery/computer/pod/old/syndicate))
-						M = new /obj/item/weapon/circuitboard/syndicatedoor( A )
+						M = new /obj/item/weapon/circuit_board/syndicatedoor( A )
 					if(istype(src, /obj/machinery/computer/pod/old/swf))
-						M = new /obj/item/weapon/circuitboard/swfdoor( A )
-				else //it's not an old computer. Generate standard pod circuitboard.
-					M = new /obj/item/weapon/circuitboard/pod( A )
+						M = new /obj/item/weapon/circuit_board/swfdoor( A )
+				else //it's not an old computer. Generate standard pod circuit_board.
+					M = new /obj/item/weapon/circuit_board/pod( A )
 
 				for (var/obj/C in src)
 					C.loc = loc

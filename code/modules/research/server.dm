@@ -18,7 +18,7 @@
 	New()
 		..()
 		component_parts = list()
-		component_parts += new /obj/item/weapon/circuitboard/rdserver(src)
+		component_parts += new /obj/item/weapon/circuit_board/rdserver(src)
 		component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 		component_parts += new /obj/item/weapon/cable_coil(src)
 		component_parts += new /obj/item/weapon/cable_coil(src)
@@ -307,7 +307,7 @@
 					user << "\blue The broken glass falls out."
 					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 					new /obj/item/weapon/shard( src.loc )
-					var/obj/item/weapon/circuitboard/rdservercontrol/M = new /obj/item/weapon/circuitboard/rdservercontrol( A )
+					var/obj/item/weapon/circuit_board/rdservercontrol/M = new /obj/item/weapon/circuit_board/rdservercontrol( A )
 					for (var/obj/C in src)
 						C.loc = src.loc
 					A.circuit = M
@@ -318,7 +318,7 @@
 				else
 					user << "\blue You disconnect the monitor."
 					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-					var/obj/item/weapon/circuitboard/rdservercontrol/M = new /obj/item/weapon/circuitboard/rdservercontrol( A )
+					var/obj/item/weapon/circuit_board/rdservercontrol/M = new /obj/item/weapon/circuit_board/rdservercontrol( A )
 					for (var/obj/C in src)
 						C.loc = src.loc
 					A.circuit = M

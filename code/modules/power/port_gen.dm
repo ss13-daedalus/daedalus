@@ -102,7 +102,7 @@ display round(lastgen) and phorontank amount
 		sheets = 0
 		max_sheets = 100
 		sheet_path = /obj/item/stack/sheet/phoron
-		board_path = "/obj/item/weapon/circuitboard/pacman"
+		board_path = "/obj/item/weapon/circuit_board/pacman"
 		sheet_left = 0 // How much is left of the sheet
 		time_per_sheet = 10
 		heat = 0
@@ -300,7 +300,7 @@ display round(lastgen) and phorontank amount
 	sheet_path = /obj/item/stack/sheet/uranium
 	power_gen = 15000
 	time_per_sheet = 25
-	board_path = "/obj/item/weapon/circuitboard/pacman/super"
+	board_path = "/obj/item/weapon/circuit_board/pacman/super"
 	overheat()
 		explosion(src.loc, 3, 3, 3, -1)
 
@@ -310,6 +310,6 @@ display round(lastgen) and phorontank amount
 	sheet_path = /obj/item/stack/sheet/diamond
 	power_gen = 40000
 	time_per_sheet = 30
-	board_path = "/obj/item/weapon/circuitboard/pacman/mrs"
+	board_path = "/obj/item/weapon/circuit_board/pacman/mrs"
 	overheat()
 		explosion(src.loc, 4, 4, 4, -1)

@@ -130,7 +130,7 @@
 					 		"backkey"=/obj/item/weapon/crowbar,
 					 		"desc"="Peripherals control module is installed"),
 					 //8
-					 list("key"=/obj/item/weapon/circuitboard/mecha/ripley/peripherals,
+					 list("key"=/obj/item/weapon/circuit_board/mecha/ripley/peripherals,
 					 		"backkey"=/obj/item/weapon/screwdriver,
 					 		"desc"="Central control module is secured"),
 					 //9
@@ -138,7 +138,7 @@
 					 		"backkey"=/obj/item/weapon/crowbar,
 					 		"desc"="Central control module is installed"),
 					 //10
-					 list("key"=/obj/item/weapon/circuitboard/mecha/ripley/main,
+					 list("key"=/obj/item/weapon/circuit_board/mecha/ripley/main,
 					 		"backkey"=/obj/item/weapon/screwdriver,
 					 		"desc"="The wiring is adjusted"),
 					 //11
@@ -207,7 +207,7 @@
 					holder.icon_state = "ripley_step_8"
 				else
 					user.visible_message("[user] removes the central control module from [holder].", "You remove the central computer mainboard from [holder].")
-					new /obj/item/weapon/circuitboard/mecha/ripley/main(get_turf(holder))
+					new /obj/item/weapon/circuit_board/mecha/ripley/main(get_turf(holder))
 					holder.icon_state = "ripley_step_10"
 			if(8)
 				if(diff==FORWARD)
@@ -223,7 +223,7 @@
 					holder.icon_state = "ripley_step_6"
 				else
 					user.visible_message("[user] removes the peripherals control module from [holder].", "You remove the peripherals control module from [holder].")
-					new /obj/item/weapon/circuitboard/mecha/ripley/peripherals(get_turf(holder))
+					new /obj/item/weapon/circuit_board/mecha/ripley/peripherals(get_turf(holder))
 					holder.icon_state = "ripley_step_8"
 			if(6)
 				if(diff==FORWARD)
@@ -352,7 +352,7 @@
 					 		"backkey"=/obj/item/weapon/crowbar,
 					 		"desc"="Targeting module is installed"),
 					 //12
-					 list("key"=/obj/item/weapon/circuitboard/mecha/gygax/targeting,
+					 list("key"=/obj/item/weapon/circuit_board/mecha/gygax/targeting,
 					 		"backkey"=/obj/item/weapon/screwdriver,
 					 		"desc"="Peripherals control module is secured"),
 					 //13
@@ -360,7 +360,7 @@
 					 		"backkey"=/obj/item/weapon/crowbar,
 					 		"desc"="Peripherals control module is installed"),
 					 //14
-					 list("key"=/obj/item/weapon/circuitboard/mecha/gygax/peripherals,
+					 list("key"=/obj/item/weapon/circuit_board/mecha/gygax/peripherals,
 					 		"backkey"=/obj/item/weapon/screwdriver,
 					 		"desc"="Central control module is secured"),
 					 //15
@@ -368,7 +368,7 @@
 					 		"backkey"=/obj/item/weapon/crowbar,
 					 		"desc"="Central control module is installed"),
 					 //16
-					 list("key"=/obj/item/weapon/circuitboard/mecha/gygax/main,
+					 list("key"=/obj/item/weapon/circuit_board/mecha/gygax/main,
 					 		"backkey"=/obj/item/weapon/screwdriver,
 					 		"desc"="The wiring is adjusted"),
 					 //17
@@ -427,7 +427,7 @@
 					user.visible_message("[user] secures the mainboard.", "You secure the mainboard.")
 				else
 					user.visible_message("[user] removes the central control module from [holder].", "You remove the central computer mainboard from [holder].")
-					new /obj/item/weapon/circuitboard/mecha/gygax/main(get_turf(holder))
+					new /obj/item/weapon/circuit_board/mecha/gygax/main(get_turf(holder))
 			if(14)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs the peripherals control module into [holder].", "You install the peripherals control module into [holder].")
@@ -439,7 +439,7 @@
 					user.visible_message("[user] secures the peripherals control module.", "You secure the peripherals control module.")
 				else
 					user.visible_message("[user] removes the peripherals control module from [holder].", "You remove the peripherals control module from [holder].")
-					new /obj/item/weapon/circuitboard/mecha/gygax/peripherals(get_turf(holder))
+					new /obj/item/weapon/circuit_board/mecha/gygax/peripherals(get_turf(holder))
 			if(12)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs the weapon control module into [holder].", "You install the weapon control module into [holder].")
@@ -451,7 +451,7 @@
 					user.visible_message("[user] secures the weapon control module.", "You secure the weapon control module.")
 				else
 					user.visible_message("[user] removes the weapon control module from [holder].", "You remove the weapon control module from [holder].")
-					new /obj/item/weapon/circuitboard/mecha/gygax/targeting(get_turf(holder))
+					new /obj/item/weapon/circuit_board/mecha/gygax/targeting(get_turf(holder))
 			if(10)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs advanced scanning module to [holder].", "You install advanced scanning module to [holder].")
@@ -582,7 +582,7 @@
 					 		"backkey"=/obj/item/weapon/crowbar,
 					 		"desc"="Peripherals control module is installed"),
 					 //9
-					 list("key"=/obj/item/weapon/circuitboard/mecha/ripley/peripherals,
+					 list("key"=/obj/item/weapon/circuit_board/mecha/ripley/peripherals,
 					 		"backkey"=/obj/item/weapon/screwdriver,
 					 		"desc"="Central control module is secured"),
 					 //10
@@ -590,7 +590,7 @@
 					 		"backkey"=/obj/item/weapon/crowbar,
 					 		"desc"="Central control module is installed"),
 					 //11
-					 list("key"=/obj/item/weapon/circuitboard/mecha/ripley/main,
+					 list("key"=/obj/item/weapon/circuit_board/mecha/ripley/main,
 					 		"backkey"=/obj/item/weapon/screwdriver,
 					 		"desc"="The wiring is adjusted"),
 					 //12
@@ -649,7 +649,7 @@
 					user.visible_message("[user] secures the mainboard.", "You secure the mainboard.")
 				else
 					user.visible_message("[user] removes the central control module from [holder].", "You remove the central computer mainboard from [holder].")
-					new /obj/item/weapon/circuitboard/mecha/ripley/main(get_turf(holder))
+					new /obj/item/weapon/circuit_board/mecha/ripley/main(get_turf(holder))
 			if(9)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs the peripherals control module into [holder].", "You install the peripherals control module into [holder].")
@@ -661,7 +661,7 @@
 					user.visible_message("[user] secures the peripherals control module.", "You secure the peripherals control module.")
 				else
 					user.visible_message("[user] removes the peripherals control module from [holder].", "You remove the peripherals control module from [holder].")
-					new /obj/item/weapon/circuitboard/mecha/ripley/peripherals(get_turf(holder))
+					new /obj/item/weapon/circuit_board/mecha/ripley/peripherals(get_turf(holder))
 			if(7)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs internal armor layer to [holder].", "You install internal armor layer to [holder].")
@@ -747,11 +747,11 @@
 					 list("key"=/obj/item/weapon/bikehorn),//3
 					 list("key"=/obj/item/clothing/mask/gas/clown_hat),//4
 					 list("key"=/obj/item/weapon/bikehorn),//5
-					 list("key"=/obj/item/weapon/circuitboard/mecha/honker/targeting),//6
+					 list("key"=/obj/item/weapon/circuit_board/mecha/honker/targeting),//6
 					 list("key"=/obj/item/weapon/bikehorn),//7
-					 list("key"=/obj/item/weapon/circuitboard/mecha/honker/peripherals),//8
+					 list("key"=/obj/item/weapon/circuit_board/mecha/honker/peripherals),//8
 					 list("key"=/obj/item/weapon/bikehorn),//9
-					 list("key"=/obj/item/weapon/circuitboard/mecha/honker/main),//10
+					 list("key"=/obj/item/weapon/circuit_board/mecha/honker/main),//10
 					 list("key"=/obj/item/weapon/bikehorn),//11
 					 )
 
@@ -829,11 +829,11 @@
 					 list("key"=/obj/item/weapon/screwdriver),//9
 					 list("key"=/obj/item/weapon/stock_parts/scanning_module/adv),//10
 					 list("key"=/obj/item/weapon/screwdriver),//11
-					 list("key"=/obj/item/weapon/circuitboard/mecha/durand/targeting),//12
+					 list("key"=/obj/item/weapon/circuit_board/mecha/durand/targeting),//12
 					 list("key"=/obj/item/weapon/screwdriver),//13
-					 list("key"=/obj/item/weapon/circuitboard/mecha/durand/peripherals),//14
+					 list("key"=/obj/item/weapon/circuit_board/mecha/durand/peripherals),//14
 					 list("key"=/obj/item/weapon/screwdriver),//15
-					 list("key"=/obj/item/weapon/circuitboard/mecha/durand/main),//16
+					 list("key"=/obj/item/weapon/circuit_board/mecha/durand/main),//16
 					 list("key"=/obj/item/weapon/wire_cutters),//17
 					 list("key"=/obj/item/weapon/cable_coil),//18
 					 list("key"=/obj/item/weapon/screwdriver),//19
@@ -985,7 +985,7 @@
 					 		"backkey"=/obj/item/weapon/crowbar,
 					 		"desc"="Peripherals control module is installed"),
 					 //8
-					 list("key"=/obj/item/weapon/circuitboard/mecha/odysseus/peripherals,
+					 list("key"=/obj/item/weapon/circuit_board/mecha/odysseus/peripherals,
 					 		"backkey"=/obj/item/weapon/screwdriver,
 					 		"desc"="Central control module is secured"),
 					 //9
@@ -993,7 +993,7 @@
 					 		"backkey"=/obj/item/weapon/crowbar,
 					 		"desc"="Central control module is installed"),
 					 //10
-					 list("key"=/obj/item/weapon/circuitboard/mecha/odysseus/main,
+					 list("key"=/obj/item/weapon/circuit_board/mecha/odysseus/main,
 					 		"backkey"=/obj/item/weapon/screwdriver,
 					 		"desc"="The wiring is adjusted"),
 					 //11
@@ -1052,7 +1052,7 @@
 					user.visible_message("[user] secures the mainboard.", "You secure the mainboard.")
 				else
 					user.visible_message("[user] removes the central control module from [holder].", "You remove the central computer mainboard from [holder].")
-					new /obj/item/weapon/circuitboard/mecha/odysseus/main(get_turf(holder))
+					new /obj/item/weapon/circuit_board/mecha/odysseus/main(get_turf(holder))
 			if(8)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs the peripherals control module into [holder].", "You install the peripherals control module into [holder].")
@@ -1064,7 +1064,7 @@
 					user.visible_message("[user] secures the peripherals control module.", "You secure the peripherals control module.")
 				else
 					user.visible_message("[user] removes the peripherals control module from [holder].", "You remove the peripherals control module from [holder].")
-					new /obj/item/weapon/circuitboard/mecha/odysseus/peripherals(get_turf(holder))
+					new /obj/item/weapon/circuit_board/mecha/odysseus/peripherals(get_turf(holder))
 			if(6)
 				if(diff==FORWARD)
 					user.visible_message("[user] installs internal armor layer to [holder].", "You install internal armor layer to [holder].")

@@ -14,7 +14,7 @@ var/global/list/autolathe_recipes = list( \
 		new /obj/item/weapon/stock_parts/console_screen(), \
 		new /obj/item/weapon/airlock_electronics(), \
 		new /obj/item/weapon/module/power_control(), \
-		new /obj/item/weapon/circuitboard/disposal(), \
+		new /obj/item/weapon/circuit_board/disposal(), \
 		new /obj/item/stack/sheet/metal(), \
 		new /obj/item/stack/sheet/glass(), \
 		new /obj/item/stack/sheet/rglass(), \
@@ -348,7 +348,7 @@ var/global/list/autolathe_recipes_hidden = list( \
 	New()
 		..()
 		component_parts = list()
-		component_parts += new /obj/item/weapon/circuitboard/autolathe(src)
+		component_parts += new /obj/item/weapon/circuit_board/autolathe(src)
 		component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 		component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 		component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)

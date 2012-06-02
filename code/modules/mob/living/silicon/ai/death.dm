@@ -17,7 +17,7 @@
 			break
 		callshuttle++
 
-	for(var/obj/item/weapon/circuitboard/communications/commboard in world)
+	for(var/obj/item/weapon/circuit_board/communications/commboard in world)
 		if(istype(commboard.loc,/turf) || istype(commboard.loc,/obj/item/weapon/storage))
 			break
 		callshuttle++

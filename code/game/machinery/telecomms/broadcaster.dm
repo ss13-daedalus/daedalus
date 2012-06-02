@@ -21,7 +21,7 @@ var
 	machinetype = 5
 	heatgen = 60
 	delay = 7
-	circuitboard = "/obj/item/weapon/circuitboard/telecomms/broadcaster"
+	circuit_board = "/obj/item/weapon/circuit_board/telecomms/broadcaster"
 
 	receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 

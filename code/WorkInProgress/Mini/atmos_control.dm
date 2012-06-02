@@ -1,4 +1,4 @@
-/obj/item/weapon/circuitboard/central_atmospherics
+/obj/item/weapon/circuit_board/central_atmospherics
 	name = "Central Atmospherics Computer Circuitboard"
 	build_path = "/obj/machinery/computer/central_atmospherics"
 
@@ -8,7 +8,7 @@
 	icon_state = "computer_generic"
 	density = 1
 	anchored = 1.0
-	circuit = "/obj/item/weapon/circuitboard/central_atmospherics"
+	circuit = "/obj/item/weapon/circuit_board/central_atmospherics"
 	var/obj/machinery/alarm/current = ""
 	var/overridden = 0 //not set yet, can't think of a good way to do it
 

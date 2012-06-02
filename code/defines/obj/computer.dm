@@ -3,7 +3,7 @@
 	icon = 'icons/obj/computer.dmi'
 	density = 1
 	anchored = 1.0
-	var/obj/item/weapon/circuitboard/circuit = null //if circuit==null, computer can't disassemble
+	var/obj/item/weapon/circuit_board/circuit = null //if circuit==null, computer can't disassemble
 
 
 /obj/machinery/computer/arcade
@@ -11,7 +11,7 @@
 	desc = "Does not support Pinball."
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "arcade"
-	circuit = "/obj/item/weapon/circuitboard/arcade"
+	circuit = "/obj/item/weapon/circuit_board/arcade"
 	var/enemy_name = "Space Villian"
 	var/temp = "Winners Don't Use Spacedrugs" //Temporary message, for attack messages, etc
 	var/player_hp = 30 //Player health/attack points
@@ -26,7 +26,7 @@
 	name = "Station Alert Computer"
 	desc = "Used to access the station's automated alert system."
 	icon_state = "alert:0"
-	circuit = "/obj/item/weapon/circuitboard/stationalert"
+	circuit = "/obj/item/weapon/circuit_board/stationalert"
 	var/alarms = list("Fire"=list(), "Atmosphere"=list(), "Power"=list())
 
 
@@ -76,7 +76,7 @@
 	desc = "Used to view and edit personnel's security records"
 	icon_state = "security"
 	req_access = list(ACCESS_SECURITY)
-	circuit = "/obj/item/weapon/circuitboard/secure_data"
+	circuit = "/obj/item/weapon/circuit_board/secure_data"
 	var/obj/item/weapon/card/id/scan = null
 	var/obj/item/weapon/disk/records/disk = null
 	var/authenticated = null
@@ -101,7 +101,7 @@
 	name = "Security Cameras"
 	desc = "Used to access the various cameras on the station."
 	icon_state = "cameras"
-	circuit = "/obj/item/weapon/circuitboard/securitycam"
+	circuit = "/obj/item/weapon/circuit_board/securitycam"
 	var/department = "Security"
 	var/network = ""
 	var/obj/machinery/camera/current = null
@@ -114,35 +114,35 @@
 	desc = "Used to access the various cameras on the outpost."
 	icon_state = "miningcameras"
 	department = "Mining"
-	circuit = "/obj/item/weapon/circuitboard/miningcam"
+	circuit = "/obj/item/weapon/circuit_board/miningcam"
 
 /obj/machinery/computer/security/cargo
 	name = "Cargo Cameras"
 	desc = "Used to access the cargo department cameras."
 	icon_state = "miningcameras"
 	department = "Cargo"
-	circuit = "/obj/item/weapon/circuitboard/cargocam"
+	circuit = "/obj/item/weapon/circuit_board/cargocam"
 
 /obj/machinery/computer/security/engineering
 	name = "Engineering Cameras"
 	desc = "Used to access the various cameras in engineering."
 	icon_state = "engineeringcameras"
 	department = "Engineering"
-	circuit = "/obj/item/weapon/circuitboard/engineeringcam"
+	circuit = "/obj/item/weapon/circuit_board/engineeringcam"
 
 /obj/machinery/computer/security/research
 	name = "Research Cameras"
 	desc = "Used to access the various cameras in the research division."
 	icon_state = "researchcameras"
 	department = "Research"
-	circuit = "/obj/item/weapon/circuitboard/researchcam"
+	circuit = "/obj/item/weapon/circuit_board/researchcam"
 
 /obj/machinery/computer/security/medbay
 	name = "Medbay Cameras"
 	desc = "Used to access the various cameras in the research division."
 	icon_state = "medbaycameras"
 	department = "Medbay"
-	circuit = "/obj/item/weapon/circuitboard/medbaycam"
+	circuit = "/obj/item/weapon/circuit_board/medbaycam"
 
 
 /obj/machinery/computer/security/telescreen
@@ -166,7 +166,7 @@
 	name = "Lockdown Control"
 	desc = "Used to control blast doors."
 	icon_state = "lockdown"
-	circuit = "/obj/item/weapon/circuitboard/lockdown"
+	circuit = "/obj/item/weapon/circuit_board/lockdown"
 	var/connectedDoorIds[0]
 	var/department = ""
 	var/connected_doors[0][0]
@@ -179,7 +179,7 @@
 	use_power = 1
 	idle_power_usage = 250
 	active_power_usage = 500
-	circuit = "/obj/item/weapon/circuitboard/crew"
+	circuit = "/obj/item/weapon/circuit_board/crew"
 	var/list/tracked =	list(  )
 
 /*/obj/machinery/computer/scan_consolenew    //Coming Soon, I highly doubt this but Ill leave it here anyways

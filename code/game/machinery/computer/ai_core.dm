@@ -6,7 +6,7 @@
 	icon_state = "0"
 	var/state = 0
 	var/datum/ai_laws/laws = new /datum/ai_laws/nanotrasen
-	var/obj/item/weapon/circuitboard/circuit = null
+	var/obj/item/weapon/circuit_board/circuit = null
 	var/obj/item/device/mmi/brain = null
 
 
@@ -34,7 +34,7 @@
 					user << "\blue You unfasten the frame."
 					anchored = 0
 					state = 0
-			if(istype(P, /obj/item/weapon/circuitboard/aicore) && !circuit)
+			if(istype(P, /obj/item/weapon/circuit_board/aicore) && !circuit)
 				playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				user << "\blue You place the circuit board inside the frame."
 				icon_state = "1"

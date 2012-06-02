@@ -103,7 +103,7 @@ obj/machinery/computer/general_air_control
 					user << "\blue The broken glass falls out."
 					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 					new /obj/item/weapon/shard( src.loc )
-					var/obj/item/weapon/circuitboard/air_management/M = new /obj/item/weapon/circuitboard/air_management( A )
+					var/obj/item/weapon/circuit_board/air_management/M = new /obj/item/weapon/circuit_board/air_management( A )
 					for (var/obj/C in src)
 						C.loc = src.loc
 					M.frequency = src.frequency
@@ -115,7 +115,7 @@ obj/machinery/computer/general_air_control
 				else
 					user << "\blue You disconnect the monitor."
 					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-					var/obj/item/weapon/circuitboard/air_management/M = new /obj/item/weapon/circuitboard/air_management( A )
+					var/obj/item/weapon/circuit_board/air_management/M = new /obj/item/weapon/circuit_board/air_management( A )
 					for (var/obj/C in src)
 						C.loc = src.loc
 					M.frequency = src.frequency
@@ -302,7 +302,7 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 						user << "\blue The broken glass falls out."
 						var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 						new /obj/item/weapon/shard( src.loc )
-						var/obj/item/weapon/circuitboard/injector_control/M = new /obj/item/weapon/circuitboard/injector_control( A )
+						var/obj/item/weapon/circuit_board/injector_control/M = new /obj/item/weapon/circuit_board/injector_control( A )
 						for (var/obj/C in src)
 							C.loc = src.loc
 						M.frequency = src.frequency
@@ -314,7 +314,7 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 					else
 						user << "\blue You disconnect the monitor."
 						var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-						var/obj/item/weapon/circuitboard/injector_control/M = new /obj/item/weapon/circuitboard/injector_control( A )
+						var/obj/item/weapon/circuit_board/injector_control/M = new /obj/item/weapon/circuit_board/injector_control( A )
 						for (var/obj/C in src)
 							C.loc = src.loc
 						M.frequency = src.frequency

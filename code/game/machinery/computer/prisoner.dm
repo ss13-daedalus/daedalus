@@ -3,7 +3,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "explosive"
 	req_access = list(ACCESS_ARMORY)
-	circuit = "/obj/item/weapon/circuitboard/prisoner"
+	circuit = "/obj/item/weapon/circuit_board/prisoner"
 	var
 		id = 0.0
 		temp = null
