@@ -246,7 +246,7 @@ move an amendment</a> to the drawing.</p>
 
 /proc/fuckingfreemachinery()
 	for(var/obj/machinery/machine in machines)
-		if (istype(machine,/obj/machinery/power/solar))
+		if (istype(machine,/obj/machinery/power/solar_panel))
 			continue
 		var/area/A = machine.loc.loc		// make sure it's in an area
 		if (istype(A,/area/tdome))

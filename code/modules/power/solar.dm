@@ -1,4 +1,4 @@
-/obj/machinery/power/solar
+/obj/machinery/power/solar_panel
 	name = "solar panel"
 	desc = "A solar electrical generator."
 	icon = 'icons/obj/power.dmi'
@@ -136,7 +136,7 @@
 			src.density = 0
 
 
-/obj/machinery/power/solar/fake/process()
+/obj/machinery/power/solar_panel/fake/process()
 	machines.Remove(src)
 	return
 
@@ -175,7 +175,7 @@
 		..()
 		spawn(15)
 			if(!powernet) return
-			for(var/obj/machinery/power/solar/S in powernet.nodes)
+			for(var/obj/machinery/power/solar_panel/S in powernet.nodes)
 				if(S.id != id) continue
 				cdir = S.adir//The hell is this even doing?
 				S.control = src
@@ -342,7 +342,7 @@
 
 	set_panels(var/cdir)
 		if(!powernet) return
-		for(var/obj/machinery/power/solar/S in powernet.nodes)
+		for(var/obj/machinery/power/solar_panel/S in powernet.nodes)
 			if(S.id != id) continue
 			if(!S.control)
 				S.control = src

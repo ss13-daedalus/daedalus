@@ -44,14 +44,14 @@
 	for(var/obj/machinery/power/tracker/T in machines)
 		T.set_angle(angle)
 
-	for(var/obj/machinery/power/solar/S in machines)
+	for(var/obj/machinery/power/solar_panel/S in machines)
 		if(S.control)
 			occlusion(S)
 
 
 // for a solar panel, trace towards sun to see if we're in shadow
 
-/datum/sun/proc/occlusion(var/obj/machinery/power/solar/S)
+/datum/sun/proc/occlusion(var/obj/machinery/power/solar_panel/S)
 
 	var/ax = S.x		// start at the solar panel
 	var/ay = S.y
