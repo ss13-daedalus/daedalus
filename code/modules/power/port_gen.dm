@@ -17,7 +17,7 @@
 		power_output = 1
 
 	proc
-		HasFuel() //Placeholder for fuel check.
+		has_fuel() //Placeholder for fuel check.
 			return 1
 
 		UseFuel() //Placeholder for fuel use.
@@ -27,7 +27,7 @@
 			return
 
 	process()
-		if(active && HasFuel() && !crit_fail && anchored)
+		if(active && has_fuel() && !crit_fail && anchored)
 			if(prob(reliability))
 				add_avail(power_gen * power_output)
 			else if(!recent_fault)
@@ -96,7 +96,7 @@
 		usr << "\blue The generator has [sheets] units of fuel left, producing [power_gen] per cycle."
 		if(crit_fail) usr << "\red The generator seems to have broken down."
 
-	HasFuel()
+	has_fuel()
 		if(sheets >= 1 / (time_per_sheet / power_output) - sheet_left)
 			return 1
 		return 0
@@ -233,7 +233,7 @@
 		src.add_fingerprint(usr)
 		if(href_list["action"])
 			if(href_list["action"] == "enable")
-				if(!active && HasFuel() && !crit_fail)
+				if(!active && has_fuel() && !crit_fail)
 					active = 1
 					icon_state = "portgen1"
 					src.updateUsrDialog()
