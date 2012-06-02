@@ -523,7 +523,6 @@
 #include "code\modules\clothing\costume.dm"
 #include "code\modules\clothing\ears.dm"
 #include "code\modules\clothing\gimmick.dm"
-#include "code\modules\clothing\glasses.dm"
 #include "code\modules\clothing\gloves.dm"
 #include "code\modules\clothing\jumpsuit.dm"
 #include "code\modules\clothing\mask.dm"
