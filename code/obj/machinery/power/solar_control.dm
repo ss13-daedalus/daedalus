@@ -185,7 +185,7 @@
 			if(src.trackrate) nexttime = world.timeofday + 3600/abs(trackrate)
 			track = text2num(href_list["track"])
 			if(track == 2)
-				var/obj/machinery/power/tracker/T = locate() in world
+				var/obj/machinery/power/solar_tracker/T = locate() in world
 				if(T)
 					cdir = T.sun_angle
 

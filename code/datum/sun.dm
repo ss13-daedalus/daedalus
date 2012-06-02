@@ -41,7 +41,7 @@
 		dy = c / abs(s)
 
 
-	for(var/obj/machinery/power/tracker/T in machines)
+	for(var/obj/machinery/power/solar_tracker/T in machines)
 		T.set_angle(angle)
 
 	for(var/obj/machinery/power/solar_panel/S in machines)

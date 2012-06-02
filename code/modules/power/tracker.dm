@@ -3,7 +3,7 @@
 //Machine that tracks the sun and reports it's direction to the solar controllers
 //As long as this is working, solar panels on same powernet will track automatically
 
-/obj/machinery/power/tracker
+/obj/machinery/power/solar_tracker
 	name = "solar tracker"
 	desc = "A solar directional tracker."
 	icon = 'icons/obj/power.dmi'
