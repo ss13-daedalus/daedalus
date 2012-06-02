@@ -20,7 +20,7 @@
 		has_fuel() //Placeholder for fuel check.
 			return 1
 
-		UseFuel() //Placeholder for fuel use.
+		use_fuel() //Placeholder for fuel use.
 			return
 
 		handleInactive()
@@ -33,7 +33,7 @@
 			else if(!recent_fault)
 				recent_fault = 1
 			else crit_fail = 1
-			UseFuel()
+			use_fuel()
 			for(var/mob/M in viewers(1, src))
 				if (M.client && M.machine == src)
 					src.updateUsrDialog()
@@ -101,7 +101,7 @@
 			return 1
 		return 0
 
-	UseFuel()
+	use_fuel()
 		var/needed_sheets = 1 / (time_per_sheet / power_output)
 		var/temp = min(needed_sheets, sheet_left)
 		needed_sheets -= temp
