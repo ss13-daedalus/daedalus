@@ -13,7 +13,7 @@
 		else
 			user << "[src] are already wired."
 
-	else if(istype(W, /obj/item/weapon/cell))
+	else if(istype(W, /obj/item/weapon/power_cell))
 		if(!wired)
 			user << "[src] need to be wired first."
 		else if(!cell)

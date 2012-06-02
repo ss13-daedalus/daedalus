@@ -48,7 +48,7 @@
 	var/auto_pickup = 1 // true if auto-pickup at beacon
 
 	var/open = 0		// true if maint hatch is open
-	var/obj/item/weapon/cell/cell
+	var/obj/item/weapon/power_cell/cell
 						// the installed power cell
 
 	// constants for internal wiring bitflags
@@ -132,8 +132,8 @@
 		user << "\blue You [locked ? "lock" : "unlock"] the mulebot's controls!"
 		flick("mulebot-emagged", src)
 		playsound(src.loc, 'sound/effects/sparks1.ogg', 100, 0)
-	else if(istype(I,/obj/item/weapon/cell) && open && !cell)
-		var/obj/item/weapon/cell/C = I
+	else if(istype(I,/obj/item/weapon/power_cell) && open && !cell)
+		var/obj/item/weapon/power_cell/C = I
 		user.drop_item()
 		C.loc = src
 		cell = C
@@ -341,7 +341,7 @@
 
 			if("cellinsert")
 				if(open && !cell)
-					var/obj/item/weapon/cell/C = usr.equipped()
+					var/obj/item/weapon/power_cell/C = usr.equipped()
 					if(istype(C))
 						usr.drop_item()
 						cell = C

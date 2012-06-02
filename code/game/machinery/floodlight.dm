@@ -4,7 +4,7 @@
 	icon_state = "flood00"
 	density = 1
 	var/on = 0
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/weapon/power_cell/cell = null
 	var/use = 1
 	var/unlocked = 0
 	var/open = 0
@@ -89,7 +89,7 @@
 					open = 1
 					user << "You remove the battery panel."
 
-	if (istype(W, /obj/item/weapon/cell))
+	if (istype(W, /obj/item/weapon/power_cell))
 		if(open)
 			if(cell)
 				user << "There is a power cell already installed."
@@ -101,7 +101,7 @@
 	updateicon()
 
 /obj/machinery/floodlight/New()
-	src.cell = new/obj/item/weapon/cell(src)
+	src.cell = new/obj/item/weapon/power_cell(src)
 	cell.maxcharge = 1000
 	cell.charge = 1000
 	..()

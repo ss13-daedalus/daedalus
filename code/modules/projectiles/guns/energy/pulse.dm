@@ -6,7 +6,7 @@
 	fire_sound = 'sound/weapons/pulse.ogg'
 	charge_cost = 200
 	projectile_type = "/obj/item/projectile/beam/pulse"
-	cell_type = "/obj/item/weapon/cell/super"
+	cell_type = "/obj/item/weapon/power_cell/super"
 	automatic = 1
 	var/mode = 2
 
@@ -38,7 +38,7 @@
 /obj/item/weapon/gun/energy/pulse_rifle/destroyer
 	name = "\improper Pulse Destroyer"
 	desc = "A heavy-duty, pulse-based energy weapon."
-	cell_type = "/obj/item/weapon/cell/infinite"
+	cell_type = "/obj/item/weapon/power_cell/infinite"
 
 	attack_self(mob/living/user as mob)
 		if(..())
@@ -50,6 +50,6 @@
 	name = "\improper M1911-P"
 	desc = "It's not the size of the gun, it's the size of the hole it puts through people."
 	icon_state = "m1911-p"
-	cell_type = "/obj/item/weapon/cell/infinite"
+	cell_type = "/obj/item/weapon/power_cell/infinite"
 
 

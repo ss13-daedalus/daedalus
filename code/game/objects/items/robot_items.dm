@@ -235,7 +235,7 @@
 		if(!(istype(A, /turf) || istype(A, /obj/machinery/door/airlock)))	return
 
 		var/mob/living/silicon/robot/R = user
-		var/obj/item/weapon/cell/cell = R.cell
+		var/obj/item/weapon/power_cell/cell = R.cell
 		if(!cell)	return
 
 		if(istype(A, /turf))

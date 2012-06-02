@@ -187,7 +187,7 @@
 				var/obj/item/weapon/cable_coil/P = new /obj/item/weapon/cable_coil(B2,30,color)
 				P.loc = B2
 			if(i >= 4)
-				var/obj/item/weapon/cell/P = new /obj/item/weapon/cell(B2)
+				var/obj/item/weapon/power_cell/P = new /obj/item/weapon/power_cell(B2)
 				P.maxcharge = 15000
 				P.charge = 15000
 				P.updateicon()

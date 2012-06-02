@@ -1146,7 +1146,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 	icon_state = "wrap_paper"
 	var/amount = 20.0
 
-/obj/item/weapon/cell
+/obj/item/weapon/power_cell
 	name = "power cell"
 	desc = "A rechargable electrochemical power cell."
 	icon = 'icons/obj/power.dmi'
@@ -1167,38 +1167,38 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 	var/rigged = 0		// true if rigged to explode
 	var/minor_fault = 0 //If not 100% reliable, it will build up faults.
 
-/obj/item/weapon/cell/crap
+/obj/item/weapon/power_cell/crap
 	name = "\improper NanoTrasen Brand Rechargable AA Battery"
 	desc = "You can't top the phoron top." //TOTALLY TRADEMARK INFRINGEMENT
 	origin_tech = "powerstorage=0"
 	maxcharge = 500
 	g_amt = 40
 
-/obj/item/weapon/cell/secborg
+/obj/item/weapon/power_cell/secborg
 	name = "\improper Security borg rechargable D battery"
 	origin_tech = "powerstorage=0"
 	maxcharge = 600	//600 max charge / 100 charge per shot = six shots
 	g_amt = 40
 
-/obj/item/weapon/cell/high
+/obj/item/weapon/power_cell/high
 	name = "high-capacity power cell"
 	origin_tech = "powerstorage=2"
 	maxcharge = 10000
 	g_amt = 60
 
-/obj/item/weapon/cell/super
+/obj/item/weapon/power_cell/super
 	name = "super-capacity power cell"
 	origin_tech = "powerstorage=5"
 	maxcharge = 20000
 	g_amt = 70
 
-/obj/item/weapon/cell/hyper
+/obj/item/weapon/power_cell/hyper
 	name = "hyper-capacity power cell"
 	origin_tech = "powerstorage=6"
 	maxcharge = 30000
 	g_amt = 80
 
-/obj/item/weapon/cell/infinite
+/obj/item/weapon/power_cell/infinite
 	name = "infinite-capacity power cell!"
 	origin_tech =  null
 	maxcharge = 30000
@@ -1206,7 +1206,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 	use()
 		return 1
 
-/obj/item/weapon/cell/potato
+/obj/item/weapon/power_cell/potato
 	name = "potato battery"
 	desc = "A rechargable starch based power cell."
 	origin_tech = "powerstorage=1"

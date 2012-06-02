@@ -7,7 +7,7 @@
 	fire_sound = 'sound/weapons/Taser.ogg'
 	charge_cost = 100
 	projectile_type = "/obj/item/projectile/energy/electrode"
-	cell_type = "/obj/item/weapon/cell/crap"
+	cell_type = "/obj/item/weapon/power_cell/crap"
 	force = 10
 
 /*	special_check(var/mob/living/carbon/human/M)
@@ -26,7 +26,7 @@
 	fire_sound = 'sound/weapons/Taser.ogg'
 	charge_cost = 100
 	projectile_type = "/obj/item/projectile/energy/electrode"
-	cell_type = "/obj/item/weapon/cell/secborg"
+	cell_type = "/obj/item/weapon/power_cell/secborg"
 	var/charge_tick = 0
 	var/recharge_time = 10 //Time it takes for shots to recharge (in seconds)
 
@@ -63,7 +63,7 @@
 	origin_tech = "combat=3;materials=3;powerstorage=2"
 	charge_cost = 125
 	projectile_type = "/obj/item/projectile/energy/electrode"
-	cell_type = "/obj/item/weapon/cell"
+	cell_type = "/obj/item/weapon/power_cell"
 
 
 
@@ -78,7 +78,7 @@
 	silenced = 1
 	fire_sound = 'sound/weapons/Genhit.ogg'
 	projectile_type = "/obj/item/projectile/energy/bolt"
-	cell_type = "/obj/item/weapon/cell/crap"
+	cell_type = "/obj/item/weapon/power_cell/crap"
 	var/charge_tick = 0
 
 

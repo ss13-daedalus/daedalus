@@ -473,10 +473,10 @@
 					"/obj/item/weapon/storage/toolbox/electrical",
 					"/obj/item/clothing/gloves/yellow",
 					"/obj/item/clothing/gloves/yellow",
-					"/obj/item/weapon/cell",
-					"/obj/item/weapon/cell",
-					"/obj/item/weapon/cell/high",
-					"/obj/item/weapon/cell/high")
+					"/obj/item/weapon/power_cell",
+					"/obj/item/weapon/power_cell",
+					"/obj/item/weapon/power_cell/high",
+					"/obj/item/weapon/power_cell/high")
 	cost = 15
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Electrical maintenance crate"
@@ -601,8 +601,8 @@
 					"/obj/item/device/flash",
 					"/obj/item/device/flash",
 					"/obj/item/device/flash",
-					"/obj/item/weapon/cell/high",
-					"/obj/item/weapon/cell/high")
+					"/obj/item/weapon/power_cell/high",
+					"/obj/item/weapon/power_cell/high")
 	cost = 10
 	containertype = "/obj/structure/closet/crate/secure/gear"
 	containername = "Robotics Assembly"

@@ -335,7 +335,7 @@ datum/objective/steal
 			return 2
 
 	hyper_cell
-		steal_target = /obj/item/weapon/cell/hyper
+		steal_target = /obj/item/weapon/power_cell/hyper
 		explanation_text = "Steal a hyper capacity power cell."
 		weight = 20
 

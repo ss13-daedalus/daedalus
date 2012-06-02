@@ -26,7 +26,7 @@
 
 	var/obj/item/device/radio/radio = null
 	var/mob/living/silicon/ai/connected_ai = null
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/weapon/power_cell/cell = null
 	var/obj/machinery/camera/camera = null
 
 	var/obj/item/device/mmi/mmi = null

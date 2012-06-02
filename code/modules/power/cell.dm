@@ -2,7 +2,7 @@
 // charge from 0 to 100%
 // fits in APC to provide backup power
 
-/obj/item/weapon/cell/New()
+/obj/item/weapon/power_cell/New()
 	..()
 
 	charge = charge * maxcharge/100.0		// map obj has charge as percentage, convert to real value here
@@ -10,7 +10,7 @@
 	spawn(5)
 		updateicon()
 
-/obj/item/weapon/cell/proc/updateicon()
+/obj/item/weapon/power_cell/proc/updateicon()
 
 	if(maxcharge <= 2500)
 		icon_state = "cell"
@@ -26,11 +26,11 @@
 	else
 		overlays += image('icons/obj/power.dmi', "cell-o1")
 
-/obj/item/weapon/cell/proc/percent()		// return % charge of cell
+/obj/item/weapon/power_cell/proc/percent()		// return % charge of cell
 	return 100.0*charge/maxcharge
 
 // use power from a cell
-/obj/item/weapon/cell/proc/use(var/amount)
+/obj/item/weapon/power_cell/proc/use(var/amount)
 	if(rigged && amount > 0)
 		explode()
 		return 0
@@ -40,7 +40,7 @@
 	return 1
 
 // recharge the cell
-/obj/item/weapon/cell/proc/give(var/amount)
+/obj/item/weapon/power_cell/proc/give(var/amount)
 	if(rigged && amount > 0)
 		explode()
 		return 0
@@ -57,7 +57,7 @@
 	return power_used
 
 
-/obj/item/weapon/cell/examine()
+/obj/item/weapon/power_cell/examine()
 	set src in view(1)
 	if(usr /*&& !usr.stat*/)
 		if(maxcharge <= 2500)
@@ -67,7 +67,7 @@
 	if(crit_fail)
 		usr << "\red This power cell seems to be faulty"
 
-/obj/item/weapon/cell/attack_self(mob/user as mob)
+/obj/item/weapon/power_cell/attack_self(mob/user as mob)
 	src.add_fingerprint(user)
 	if(ishuman(user))
 		if(istype(user:gloves, /obj/item/clothing/gloves/space_ninja)&&user:gloves:candrain&&!user:gloves:draining)
@@ -75,7 +75,7 @@
 	return
 
 //Just because someone gets you occasionally with stun gloves doesn't mean you can put in code to kill everyone who tries to make some.
-/obj/item/weapon/cell/attackby(obj/item/W, mob/user)
+/obj/item/weapon/power_cell/attackby(obj/item/W, mob/user)
 	..()
 //HONK HONK GLOVES NERF -Pete
 /*
@@ -118,7 +118,7 @@
 		S.reagents.clear_reagents()
 
 
-/obj/item/weapon/cell/proc/explode()
+/obj/item/weapon/power_cell/proc/explode()
 	var/turf/T = get_turf(src.loc)
 /*
  * 1000-cell	explosion(T, -1, 0, 1, 1)
@@ -142,13 +142,13 @@
 	spawn(1)
 		del(src)
 
-/obj/item/weapon/cell/proc/corrupt()
+/obj/item/weapon/power_cell/proc/corrupt()
 	charge /= 2
 	maxcharge /= 2
 	if (prob(10))
 		rigged = 1 //broken batterys are dangerous
 
-/obj/item/weapon/cell/emp_act(severity)
+/obj/item/weapon/power_cell/emp_act(severity)
 	charge -= 1000 / severity
 	if (charge < 0)
 		charge = 0
@@ -156,7 +156,7 @@
 		reliability -= 10 / severity
 	..()
 
-/obj/item/weapon/cell/ex_act(severity)
+/obj/item/weapon/power_cell/ex_act(severity)
 
 	switch(severity)
 		if(1.0)
@@ -176,11 +176,11 @@
 				corrupt()
 	return
 
-/obj/item/weapon/cell/blob_act()
+/obj/item/weapon/power_cell/blob_act()
 	if(prob(75))
 		explode()
 
-/obj/item/weapon/cell/proc/get_electrocute_damage()
+/obj/item/weapon/power_cell/proc/get_electrocute_damage()
 	switch (charge)
 /*		if (9000 to INFINITY)
 			return min(rand(90,150),rand(90,150))

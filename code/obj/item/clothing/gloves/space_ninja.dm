@@ -67,7 +67,7 @@
 				U << "\red This SMES cell has run dry of power. You must find another source."
 
 		if("CELL")
-			var/obj/item/weapon/cell/A = target
+			var/obj/item/weapon/power_cell/A = target
 			if(A.charge)
 				if (G.candrain&&do_after(U,30))
 					U << "\blue Gained <B>[A.charge]</B> energy from the cell."

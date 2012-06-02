@@ -5,7 +5,7 @@
 	icon_state = "sheater0"
 	name = "space heater"
 	desc = "Made by Space Amish using traditional space techniques, this heater is guaranteed not to set the station on fire."
-	var/obj/item/weapon/cell/cell
+	var/obj/item/weapon/power_cell/cell
 	var/on = 0
 	var/open = 0
 	var/set_temperature = 50		// in celcius, add T0C for kelvin
@@ -45,14 +45,14 @@
 
 
 	attackby(obj/item/I, mob/user)
-		if(istype(I, /obj/item/weapon/cell))
+		if(istype(I, /obj/item/weapon/power_cell))
 			if(open)
 				if(cell)
 					user << "There is already a power cell inside."
 					return
 				else
 					// insert cell
-					var/obj/item/weapon/cell/C = usr.equipped()
+					var/obj/item/weapon/power_cell/C = usr.equipped()
 					if(istype(C))
 						user.drop_item()
 						cell = C
@@ -140,7 +140,7 @@
 
 				if("cellinstall")
 					if(open && !cell)
-						var/obj/item/weapon/cell/C = usr.equipped()
+						var/obj/item/weapon/power_cell/C = usr.equipped()
 						if(istype(C))
 							usr.drop_item()
 							cell = C

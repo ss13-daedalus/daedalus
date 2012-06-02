@@ -10,7 +10,7 @@
 	siemens_coefficient = 0.50
 	var/siemens_coefficient_archived = 0
 	var/wired = 0
-	var/obj/item/weapon/cell/cell = 0
+	var/obj/item/weapon/power_cell/cell = 0
 	body_parts_covered = HANDS
 
 

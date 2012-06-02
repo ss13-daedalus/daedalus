@@ -1093,7 +1093,7 @@ datum
 			req_tech = list("powerstorage" = 1)
 			build_type = PROTOLATHE | AUTOLATHE
 			materials = list("$metal" = 700, "$glass" = 50)
-			build_path = "/obj/item/weapon/cell"
+			build_path = "/obj/item/weapon/power_cell"
 
 		high_cell
 			name = "High-Capacity Power Cell"
@@ -1102,7 +1102,7 @@ datum
 			req_tech = list("powerstorage" = 2)
 			build_type = PROTOLATHE | AUTOLATHE
 			materials = list("$metal" = 700, "$glass" = 60)
-			build_path = "/obj/item/weapon/cell/high"
+			build_path = "/obj/item/weapon/power_cell/high"
 
 		super_cell
 			name = "Super-Capacity Power Cell"
@@ -1112,7 +1112,7 @@ datum
 			reliability_base = 90 //Else these things just fail all the time, goddamn. - Erthilo
 			build_type = PROTOLATHE
 			materials = list("$metal" = 700, "$glass" = 70)
-			build_path = "/obj/item/weapon/cell/super"
+			build_path = "/obj/item/weapon/power_cell/super"
 
 		hyper_cell
 			name = "Hyper-Capacity Power Cell"
@@ -1122,7 +1122,7 @@ datum
 			reliability_base = 85
 			build_type = PROTOLATHE
 			materials = list("$metal" = 400, "$gold" = 150, "$silver" = 150, "$glass" = 70)
-			build_path = "/obj/item/weapon/cell/hyper"
+			build_path = "/obj/item/weapon/power_cell/hyper"
 
 ////////////////////////////////////////
 //////////////MISC Boards///////////////

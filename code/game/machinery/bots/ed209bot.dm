@@ -858,7 +858,7 @@ Auto Patrol: []"},
 			src.build_step++
 			src.name = "Armed ED-209 Assembly"
 			user << "\blue Taser gun attached!"
-	else if((istype(W, /obj/item/weapon/cell)) && (src.build_step >= 9))
+	else if((istype(W, /obj/item/weapon/power_cell)) && (src.build_step >= 9))
 		src.build_step++
 		user << "You complete the ED-209!"
 		var/obj/machinery/bot/ed209/S = new /obj/machinery/bot/ed209

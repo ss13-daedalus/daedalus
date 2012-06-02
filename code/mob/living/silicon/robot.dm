@@ -46,7 +46,7 @@
 		camera.c_tag = real_name
 		camera.network = "SS13"
 	if(!cell)
-		var/obj/item/weapon/cell/C = new(src)
+		var/obj/item/weapon/power_cell/C = new(src)
 		C.charge = 1500
 		cell = C
 	if(src.mind)
@@ -442,7 +442,7 @@
 				opened = 1
 				updateicon()
 
-	else if (istype(W, /obj/item/weapon/cell) && opened)	// trying to put a cell inside
+	else if (istype(W, /obj/item/weapon/power_cell) && opened)	// trying to put a cell inside
 		if(wiresexposed)
 			user << "Close the panel first."
 		else if(cell)
