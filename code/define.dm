@@ -504,5 +504,7 @@ var/const/maximum_age = 65
 #define MINIMUM_HEAT_CAPACITY 0.0003
 #define QUANTIZE(variable)    (round(variable,0.0001))
 
+#define SOLAR_GEN_RATE 1500
+
 // End the stupid preprocessor macro tricks.
 #endif

@@ -1,4 +1,3 @@
-#define SOLARGENRATE 1500
 /obj/machinery/power/solar
 	name = "solar panel"
 	desc = "A solar electrical generator."
@@ -92,7 +91,7 @@
 		if(!control)	return
 		if(obscured)	return
 
-		var/sgen = SOLARGENRATE * sunfrac
+		var/sgen = SOLAR_GEN_RATE * sunfrac
 		add_avail(sgen)
 		if(powernet && control)
 			if(control in powernet.nodes) //this line right here...
