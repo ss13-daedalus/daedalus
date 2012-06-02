@@ -1,18 +1,18 @@
-/obj/item/weapon/circuitboard/atmoscontrol
+/obj/item/weapon/circuitboard/central_atmospherics
 	name = "Central Atmospherics Computer Circuitboard"
-	build_path = "/obj/machinery/computer/atmoscontrol"
+	build_path = "/obj/machinery/computer/central_atmospherics"
 
-/obj/machinery/computer/atmoscontrol
+/obj/machinery/computer/central_atmospherics
 	name = "Central Atmospherics Computer"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "computer_generic"
 	density = 1
 	anchored = 1.0
-	circuit = "/obj/item/weapon/circuitboard/atmoscontrol"
+	circuit = "/obj/item/weapon/circuitboard/central_atmospherics"
 	var/obj/machinery/alarm/current = ""
 	var/overridden = 0 //not set yet, can't think of a good way to do it
 
-/obj/machinery/computer/atmoscontrol/attack_hand(mob/user)
+/obj/machinery/computer/central_atmospherics/attack_hand(mob/user)
 	if(..())
 		return
 	user.machine = src
@@ -30,9 +30,9 @@
 				if (2)
 					dat += "<font color=red>"
 			dat += "[alarm]</font></a><br/>"
-	user << browse(dat, "window=atmoscontrol")
+	user << browse(dat, "window=central_atmospherics")
 
-/obj/machinery/computer/atmoscontrol/proc/specific()
+/obj/machinery/computer/central_atmospherics/proc/specific()
 	if(!current)
 		return ""
 	var/dat = "<h3>[current.name]</h3><hr>"
@@ -42,7 +42,7 @@
 	return dat
 
 //a bunch of this is copied from atmos alarms
-/obj/machinery/computer/atmoscontrol/Topic(href, href_list)
+/obj/machinery/computer/central_atmospherics/Topic(href, href_list)
 	if(..())
 		return
 	if(href_list["reset"])
@@ -122,7 +122,7 @@
 //copypasta from alarm code, changed to work with this without derping hard
 //---START COPYPASTA----
 
-/obj/machinery/computer/atmoscontrol/proc/return_controls()
+/obj/machinery/computer/central_atmospherics/proc/return_controls()
 	var/output = ""//"<B>[alarm_zone] Air [name]</B><HR>"
 
 	switch(current.screen)
