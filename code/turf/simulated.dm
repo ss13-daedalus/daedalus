@@ -495,3 +495,40 @@ turf
 			//if this turf has a parent air group, suspend its processing
 			if (parent && parent.group_processing)
 				parent.suspend_group_processing()
+
+		hotspot_expose(exposed_temperature, exposed_volume, soh)
+			var/datum/gas_mixture/air_contents = return_air()
+			if(!air_contents)
+				return 0
+			if(active_hotspot)
+				if(soh)
+					if(air_contents.toxins > 0.5 && air_contents.oxygen > 0.5)
+						if(active_hotspot.temperature < exposed_temperature)
+							active_hotspot.temperature = exposed_temperature
+						if(active_hotspot.volume < exposed_volume)
+							active_hotspot.volume = exposed_volume
+				return 1
+
+			var/igniting = 0
+
+			if((exposed_temperature > PHORON_MINIMUM_BURN_TEMPERATURE) && air_contents.toxins > 0.5)
+				igniting = 1
+
+			if(igniting)
+				if(air_contents.oxygen < 0.5 || air_contents.toxins < 0.5)
+					return 0
+
+				if(parent&&parent.group_processing)
+					parent.suspend_group_processing()
+
+				active_hotspot = new(src)
+				active_hotspot.temperature = exposed_temperature
+				active_hotspot.volume = exposed_volume
+
+				active_hotspot.just_spawned = (current_cycle < air_master.current_cycle)
+					//remove just_spawned protection if no longer processing this cell
+
+				//start processing quickly if we aren't already
+				reset_delay()
+
+			return igniting
