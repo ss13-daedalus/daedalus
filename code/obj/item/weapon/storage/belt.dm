@@ -89,7 +89,7 @@
 
 /obj/item/weapon/storage/belt/security/full/New()
 	..()
-	new /obj/item/weapon/melee/baton(src)
+	new /obj/item/weapon/melee/stun_baton(src)
 	new /obj/item/weapon/pepper_spray(src)
 	new /obj/item/weapon/flashbang(src)
 	new /obj/item/weapon/handcuffs(src)
@@ -146,7 +146,7 @@
 		"/obj/item/weapon/gun/energy/laser",
 		"/obj/item/weapon/gun/energy",
 		"/obj/item/weapon/gun/projectile",
-		"/obj/item/weapon/melee/baton",
+		"/obj/item/weapon/melee/stun_baton",
 		"/obj/item/weapon/melee/classic_baton",
 		"/obj/item/weapon/camera_test",
 		"/obj/item/weapon/cigarette_pack",

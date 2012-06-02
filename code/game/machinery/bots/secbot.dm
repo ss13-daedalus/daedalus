@@ -676,7 +676,7 @@ Auto Patrol: []"},
 	Sa.created_name = src.name
 	new /obj/item/device/assembly/proximity_sensor(Tsec)
 
-	var/obj/item/weapon/melee/baton/B = new /obj/item/weapon/melee/baton(Tsec)
+	var/obj/item/weapon/melee/stun_baton/B = new /obj/item/weapon/melee/stun_baton(Tsec)
 	B.charges = 0
 
 	if(prob(50))
@@ -750,7 +750,7 @@ Auto Patrol: []"},
 		src.overlays += image('icons/obj/aibots.dmi', "hs_arm")
 		del(W)
 
-	else if((istype(W, /obj/item/weapon/melee/baton)) && (src.build_step >= 3))
+	else if((istype(W, /obj/item/weapon/melee/stun_baton)) && (src.build_step >= 3))
 		src.build_step++
 		user << "You complete the Securitron! Beep boop."
 		var/obj/machinery/bot/secbot/S = new /obj/machinery/bot/secbot

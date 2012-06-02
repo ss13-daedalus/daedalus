@@ -105,8 +105,8 @@
 				else
 					user << "\The [O] is empty."
 			return
-		else if (istype(O, /obj/item/weapon/melee/baton))
-			var/obj/item/weapon/melee/baton/B = O
+		else if (istype(O, /obj/item/weapon/melee/stun_baton))
+			var/obj/item/weapon/melee/stun_baton/B = O
 			if (B.charges > 0 && B.status == 1)
 				flick("baton_active", src)
 				user.Stun(10)

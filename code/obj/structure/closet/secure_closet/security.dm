@@ -81,7 +81,7 @@
 		new /obj/item/clothing/glasses/sunglasses/sechud(src)
 		new /obj/item/weapon/storage/flashbang_kit(src)
 		new /obj/item/weapon/storage/lockbox/loyalty(src)
-		new /obj/item/weapon/melee/baton(src)
+		new /obj/item/weapon/melee/stun_baton(src)
 		new /obj/item/weapon/gun/energy/gun(src)
 		return
 
@@ -110,7 +110,7 @@
 		new /obj/item/weapon/cartridge/security(src)
 		new /obj/item/device/radio/headset/headset_sec(src)
 		new /obj/item/weapon/storage/flashbang_kit(src)
-		new /obj/item/weapon/melee/baton(src)
+		new /obj/item/weapon/melee/stun_baton(src)
 		new /obj/item/weapon/gun/energy/taser(src)
 		new /obj/item/clothing/glasses/sunglasses/sechud(src)
 		return
@@ -147,7 +147,7 @@
 		new /obj/item/weapon/flashbang(src)
 		new /obj/item/weapon/pepper_spray(src)
 		new /obj/item/device/flash(src)
-		new /obj/item/weapon/melee/baton(src)
+		new /obj/item/weapon/melee/stun_baton(src)
 		new /obj/item/clothing/glasses/sunglasses/sechud(src)
 		return
 

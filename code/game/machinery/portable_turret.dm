@@ -420,13 +420,13 @@ Neutralize All Unidentified Life Signs: []<BR>"},
 			if(src.allowed(perp)) // if the perp has security access, return 0
 				return 0
 
-			if((istype(perp.l_hand, /obj/item/weapon/gun) && !istype(perp.l_hand, /obj/item/weapon/gun/projectile/shotgun)) || istype(perp.l_hand, /obj/item/weapon/melee/baton))
+			if((istype(perp.l_hand, /obj/item/weapon/gun) && !istype(perp.l_hand, /obj/item/weapon/gun/projectile/shotgun)) || istype(perp.l_hand, /obj/item/weapon/melee/stun_baton))
 				threatcount += 4
 
-			if((istype(perp.r_hand, /obj/item/weapon/gun) && !istype(perp.r_hand, /obj/item/weapon/gun/projectile/shotgun)) || istype(perp.r_hand, /obj/item/weapon/melee/baton))
+			if((istype(perp.r_hand, /obj/item/weapon/gun) && !istype(perp.r_hand, /obj/item/weapon/gun/projectile/shotgun)) || istype(perp.r_hand, /obj/item/weapon/melee/stun_baton))
 				threatcount += 4
 
-			if(istype(perp:belt, /obj/item/weapon/gun) || istype(perp:belt, /obj/item/weapon/melee/baton))
+			if(istype(perp:belt, /obj/item/weapon/gun) || istype(perp:belt, /obj/item/weapon/melee/stun_baton))
 				threatcount += 2
 
 	if (src.check_records) // if the turret can check the records, check if they are set to *Arrest* on records

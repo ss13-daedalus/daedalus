@@ -1,14 +1,27 @@
 // STUN BATON
 
-// TODO: Rename to stun_baton
+/obj/item/weapon/melee/stun_baton
+	name = "stun baton"
+	desc = "The police baton of the future."
+	icon_state = "stunbaton"
+	item_state = "baton"
+	flags = FPRINT | ONBELT | TABLEPASS
+	force = 15
+	throwforce = 7
+	w_class = 3
+	var/charges = 10.0
+	var/maximum_charges = 10.0
+	var/status = 0
+	origin_tech = "combat=2"
 
-/obj/item/weapon/melee/baton/update_icon()
+
+/obj/item/weapon/melee/stun_baton/update_icon()
 	if(src.status)
 		icon_state = "stunbaton_active"
 	else
 		icon_state = "stunbaton"
 
-/obj/item/weapon/melee/baton/attack_self(mob/user as mob)
+/obj/item/weapon/melee/stun_baton/attack_self(mob/user as mob)
 	src.status = !( src.status )
 	if ((usr.mutations & CLUMSY) && prob(50))
 		usr << "\red You grab the stunbaton on the wrong side."
@@ -25,7 +38,7 @@
 	src.add_fingerprint(user)
 	return
 
-/obj/item/weapon/melee/baton/attack(mob/M as mob, mob/user as mob)
+/obj/item/weapon/melee/stun_baton/attack(mob/M as mob, mob/user as mob)
 	if ((usr.mutations & CLUMSY) && prob(50))
 		usr << "\red You grab the stunbaton on the wrong side."
 		usr.Weaken(30)
@@ -91,7 +104,7 @@
 		for(var/mob/O in viewers(M))
 			if (O.client)	O.show_message("\red <B>[M] has been stunned with the stun baton by [user]!</B>", 1, "\red You hear someone fall", 2)
 
-/obj/item/weapon/melee/baton/emp_act(severity)
+/obj/item/weapon/melee/stun_baton/emp_act(severity)
 	switch(severity)
 		if(1)
 			src.charges = 0

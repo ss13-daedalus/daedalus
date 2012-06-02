@@ -100,7 +100,7 @@
 									O:update_icon()
 								else
 									O:charge_tick = 0
-							if(istype(O,/obj/item/weapon/melee/baton))
+							if(istype(O,/obj/item/weapon/melee/stun_baton))
 								if(O:charges < 10)
 									O:charges += 1
 							//Service

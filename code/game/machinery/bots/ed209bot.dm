@@ -612,7 +612,7 @@ Auto Patrol: []"},
 		if(src.allowed(perp)) //Corrupt cops cannot exist beep boop
 			return 0
 
-		if((istype(perp.l_hand, /obj/item/weapon/gun) && !istype(perp.l_hand, /obj/item/weapon/gun/projectile/shotgun)) || istype(perp.l_hand, /obj/item/weapon/melee/baton))
+		if((istype(perp.l_hand, /obj/item/weapon/gun) && !istype(perp.l_hand, /obj/item/weapon/gun/projectile/shotgun)) || istype(perp.l_hand, /obj/item/weapon/melee/stun_baton))
 			if(!istype(perp.l_hand, /obj/item/weapon/gun/energy/laser/bluetag) \
 			&& !istype(perp.l_hand, /obj/item/weapon/gun/energy/laser/redtag) \
 			&& !istype(perp.l_hand, /obj/item/weapon/gun/energy/laser/practice))
@@ -697,7 +697,7 @@ Auto Patrol: []"},
 	Sa.created_name = src.name
 	new /obj/item/device/assembly/proximity_sensor(Tsec)
 
-	var/obj/item/weapon/melee/baton/B = new /obj/item/weapon/melee/baton(Tsec)
+	var/obj/item/weapon/melee/stun_baton/B = new /obj/item/weapon/melee/stun_baton(Tsec)
 	B.charges = 0
 
 	if (prob(50))

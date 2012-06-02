@@ -1,5 +1,5 @@
 /obj/item/clothing/suit/armor
-	allowed = list(/obj/item/weapon/gun/energy,/obj/item/weapon/pepper_spray,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/barricade_tape_roll/police)
+	allowed = list(/obj/item/weapon/gun/energy,/obj/item/weapon/pepper_spray,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/stun_baton,/obj/item/weapon/handcuffs,/obj/item/barricade_tape_roll/police)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	flags = FPRINT | TABLEPASS
 	flags_inv = HIDEJUMPSUIT
@@ -86,7 +86,7 @@
 	item_state = "centcom"
 	w_class = 4//bulky item
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
-	allowed = list(/obj/item/weapon/gun/energy,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/tank/emergency_oxygen)
+	allowed = list(/obj/item/weapon/gun/energy,/obj/item/weapon/melee/stun_baton,/obj/item/weapon/handcuffs,/obj/item/weapon/tank/emergency_oxygen)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 /obj/item/clothing/suit/armor/heavy
@@ -127,7 +127,7 @@
 	protective_temperature = 1000
 	flags = FPRINT | TABLEPASS | SUITSPACE
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
-	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/tank/emergency_oxygen)
+	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/stun_baton,/obj/item/weapon/handcuffs,/obj/item/weapon/tank/emergency_oxygen)
 	slowdown = 1
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 0, rad = 0)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT

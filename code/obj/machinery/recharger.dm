@@ -9,7 +9,7 @@ obj/machinery/recharger
 
 	var
 		obj/item/weapon/gun/energy/charging = null
-		obj/item/weapon/melee/baton/charging2 = null
+		obj/item/weapon/melee/stun_baton/charging2 = null
 
 	attackby(obj/item/weapon/G as obj, mob/user as mob)
 		if (istype(G, /obj/item/weapon/gun/energy))
@@ -31,7 +31,7 @@ obj/machinery/recharger
 			G.loc = src
 			src.charging = G
 			use_power = 2
-		else if (istype(G, /obj/item/weapon/melee/baton))
+		else if (istype(G, /obj/item/weapon/melee/stun_baton))
 			if (src.charging || src.charging2)
 				return
 			user.drop_item()
