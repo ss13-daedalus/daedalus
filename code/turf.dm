@@ -55,3 +55,5 @@ turf
 					air_master.high_pressure_delta += src
 				pressure_difference = connection_difference
 				pressure_direction = connection_direction
+
+	proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)

@@ -1,6 +1,4 @@
 turf
-	proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
-
 	simulated
 		hotspot_expose(exposed_temperature, exposed_volume, soh)
 			var/datum/gas_mixture/air_contents = return_air()
