@@ -316,7 +316,7 @@ steam.start() -- spawns the effect
 	return
 
 
-/obj/effect/effect/bad_smoke/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/effect/effect/bad_smoke/can_pass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
 	if(istype(mover, /obj/item/projectile/beam))
 		var/obj/item/projectile/beam/B = mover
@@ -1032,7 +1032,7 @@ steam.start() -- spawns the effect
 		else
 			user << "\blue You hit the metal foam to no effect."
 
-	CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
+	can_pass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
 		if(air_group) return 0
 		return !density
 

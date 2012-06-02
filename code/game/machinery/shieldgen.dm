@@ -383,7 +383,7 @@
 
 		..()
 
-	CanPass(atom/movable/mover, turf/target, height, air_group)
+	can_pass(atom/movable/mover, turf/target, height, air_group)
 		if(!height || air_group) return 0
 		else return ..()
 
@@ -487,7 +487,7 @@
 
 
 
-/obj/machinery/shieldwall/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/machinery/shieldwall/can_pass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
 
 	if(istype(mover) && mover.checkpass(PASSGLASS))

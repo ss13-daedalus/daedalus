@@ -90,7 +90,7 @@
 //border_only fire doors are special when it comes to air groups
 /obj/machinery/door/firedoor/border_only
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	can_pass(atom/movable/mover, turf/target, height=0, air_group=0)
 		if(air_group)
 			var/direction = get_dir(src,target)
 			return (dir != direction)

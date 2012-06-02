@@ -476,7 +476,7 @@
 			H.vent_gas(loc)
 			del(H)
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	can_pass(atom/movable/mover, turf/target, height=0, air_group=0)
 		if (istype(mover,/obj/item) && mover.throwing)
 			var/obj/item/I = mover
 			if(istype(I, /obj/item/weapon/dummy) || istype(I, /obj/item/projectile))

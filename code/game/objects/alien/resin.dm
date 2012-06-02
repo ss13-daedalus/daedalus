@@ -154,7 +154,7 @@
 				O.show_message(text("\red An alien larva bursts from the resin wall!"), 1, text("\red You hear a high, alien screech nearby!"), 2)*/
 	return
 
-/obj/effect/alien/resin/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/effect/alien/resin/can_pass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group) return 0
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return !opacity

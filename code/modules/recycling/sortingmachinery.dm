@@ -380,7 +380,7 @@
 		update()
 		return
 
-	CanPass(atom/A, turf/T)
+	can_pass(atom/A, turf/T)
 		if(istype(A, /mob/living)) // You Shall Not Pass!
 			var/mob/living/M = A
 			HasEntered(M)

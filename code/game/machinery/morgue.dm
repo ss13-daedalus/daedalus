@@ -99,7 +99,7 @@
 		del(src.connected)
 	return
 
-/obj/structure/m_tray/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/structure/m_tray/can_pass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if (istype(mover, /obj/item/weapon/dummy))
 		return 1
 	else
@@ -292,7 +292,7 @@
 				playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 	return
 
-/obj/structure/c_tray/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/structure/c_tray/can_pass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if (istype(mover, /obj/item/weapon/dummy))
 		return 1
 	else

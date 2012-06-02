@@ -915,7 +915,7 @@
 							If you're trying to click an item in the north-east of your mob, the above section of code will first check if tehre's a tile to the north or you and to the east of you
 							These two tiles are Step_1 and Step_2. After this, a new dummy object is created on your location. It then tries to move to Step_1, If it succeeds, objects on the turf you're on and
 							the turf that Step_1 is are checked for items which have the ON_BORDER flag set. These are itmes which limit you on only one tile border. Windows, for the most part.
-							CheckExit() and CanPass() are use to determine this. The dummy object is then moved back to your location and it tries to move to Step_2. Same checks are performed here.
+							CheckExit() and can_pass() are use to determine this. The dummy object is then moved back to your location and it tries to move to Step_2. Same checks are performed here.
 							If at least one of the two checks succeeds, it means you can reach the item and ok is set to 1.
 					*/
 			else
