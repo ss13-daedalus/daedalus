@@ -4642,7 +4642,7 @@
 "bLn" = (/obj/machinery/hologram/holopad,/turf/simulated/floor{icon_state = "dark"},/area/medical/surgery)
 "bLo" = (/obj/structure/stool/bed/chair{dir = 4},/turf/simulated/floor{icon_state = "dark"},/area/medical/surgery)
 "bLp" = (/obj/structure/grille,/obj/machinery/door/poddoor{density = 0; icon_state = "pdoor0"; id = "Observation Shutters"; name = "Observation Shutters"; opacity = 0},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/machinery/atmospherics/pipe/simple/supply/hidden,/turf/simulated/floor/plating,/area/medical/surgery)
-"bLq" = (/obj/structure/table,/obj/item/weapon/surgicaldrill,/turf/simulated/floor{icon_state = "white"},/area/medical/surgery)
+"bLq" = (/obj/structure/table,/obj/item/weapon/surgical_drill,/turf/simulated/floor{icon_state = "white"},/area/medical/surgery)
 "bLr" = (/obj/machinery/optable{id = "medbay"},/turf/simulated/floor{icon_state = "white"},/area/medical/surgery)
 "bLs" = (/obj/machinery/atmospherics/unary/vent_scrubber{dir = 1; on = 1; scrub_N2O = 1; scrub_Toxins = 0},/turf/simulated/floor{icon_state = "white"},/area/medical/surgery)
 "bLt" = (/obj/structure/table,/obj/item/weapon/surgical_tool/bonegel,/obj/item/weapon/surgical_tool/bonesetter,/turf/simulated/floor{icon_state = "white"},/area/medical/surgery)

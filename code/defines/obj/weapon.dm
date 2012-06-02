@@ -1467,7 +1467,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 	w_class = 1.0
 	origin_tech = "materials=1;biotech=1"
 
-/obj/item/weapon/surgicaldrill
+/obj/item/weapon/surgical_drill
 	name = "surgical drill"
 	desc = "You can drill using this item. You dig?"
 	icon = 'icons/obj/surgery.dmi'
