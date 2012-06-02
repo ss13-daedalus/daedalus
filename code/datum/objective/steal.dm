@@ -82,8 +82,8 @@ datum/objective/steal
 
 
 	handtele
-		steal_target = /obj/item/weapon/hand_tele
-		explanation_text = "Steal a hand teleporter."
+		steal_target = /obj/item/weapon/handheld_teleporter
+		explanation_text = "Steal a handheld teleporter."
 		weight = 20
 
 		get_points(var/job)

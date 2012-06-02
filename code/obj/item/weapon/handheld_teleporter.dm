@@ -1,6 +1,19 @@
 /// HAND TELE
 
-/obj/item/weapon/hand_tele/attack_self(mob/user as mob)
+/obj/item/weapon/handheld_teleporter
+	name = "hand tele"
+	desc = "A portable item using blue-space technology."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "hand_tele"
+	item_state = "electronic"
+	throwforce = 5
+	w_class = 2.0
+	throw_speed = 3
+	throw_range = 5
+	m_amt = 10000
+	origin_tech = "magnets=1;bluespace=3"
+
+/obj/item/weapon/handheld_teleporter/attack_self(mob/user as mob)
 	var/turf/current_location = get_turf(user)//What turf is the user on?
 	if(!current_location||current_location.z==2||current_location.z>=7)//If turf was not found or they're on z level 2 or >7 which does not currently exist.
 		user << "The [src] is malfunctioning."

@@ -811,19 +811,6 @@
 	item_state = "gift"
 	w_class = 4.0
 
-/obj/item/weapon/hand_tele
-	name = "hand tele"
-	desc = "A portable item using blue-space technology."
-	icon = 'icons/obj/device.dmi'
-	icon_state = "hand_tele"
-	item_state = "electronic"
-	throwforce = 5
-	w_class = 2.0
-	throw_speed = 3
-	throw_range = 5
-	m_amt = 10000
-	origin_tech = "magnets=1;bluespace=3"
-
 /obj/item/weapon/handcuffs
 	name = "handcuffs"
 	desc = "Use this to keep prisoners in line."
