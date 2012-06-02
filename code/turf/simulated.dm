@@ -1,22 +1,5 @@
 turf
 	simulated
-		proc
-			consider_pressure_difference_space(connection_difference)
-				for(var/direction in cardinal)
-					if(direction&group_border)
-						if(istype(get_step(src,direction),/turf/space))
-							if(!pressure_difference)
-								air_master.high_pressure_delta += src
-							pressure_direction = direction
-							pressure_difference = connection_difference
-
-
-							return 1
-
-
-turf
-	simulated
-
 		var/current_graphic = null
 
 		var/tmp
@@ -37,6 +20,18 @@ turf
 			temperature_archived //USED ONLY FOR SOLIDS
 			being_superconductive = 0
 
+		proc
+			consider_pressure_difference_space(connection_difference)
+				for(var/direction in cardinal)
+					if(direction&group_border)
+						if(istype(get_step(src,direction),/turf/space))
+							if(!pressure_difference)
+								air_master.high_pressure_delta += src
+							pressure_direction = direction
+							pressure_difference = connection_difference
+
+
+							return 1
 
 		proc
 			process_cell()
