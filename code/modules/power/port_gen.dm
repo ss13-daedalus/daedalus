@@ -76,9 +76,9 @@
 		component_parts += new /obj/item/weapon/cable_coil(src)
 		component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
 		component_parts += new board_path(src)
-		RefreshParts()
+		refresh_parts()
 
-	RefreshParts()
+	refresh_parts()
 		var/temp_rating = 0
 		var/temp_reliability = 0
 		for(var/obj/item/weapon/stock_parts/SP in component_parts)

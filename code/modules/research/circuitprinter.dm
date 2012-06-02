@@ -22,9 +22,9 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 		component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 		component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)
 		component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)
-		RefreshParts()
+		refresh_parts()
 
-	RefreshParts()
+	refresh_parts()
 		var/T = 0
 		for(var/obj/item/weapon/reagent_containers/glass/G in component_parts)
 			T += G.reagents.maximum_volume

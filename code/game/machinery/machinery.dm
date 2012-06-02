@@ -74,7 +74,7 @@ Class Procs:
       Called by the area that contains the object when ever that area under goes a
       power state change (area runs out of power, or area channel is turned off).
 
-   RefreshParts()               'game/machinery/machine.dm'
+   refresh_parts()               'game/machinery/machine.dm'
       Called to refresh the variables in the machine that are contributed to by parts
       contained in the component_parts list. (example: glass and material amounts for
       the autolathe)
@@ -216,7 +216,7 @@ Class Procs:
 	src.add_fingerprint(user)
 	return 0
 
-/obj/machinery/proc/RefreshParts() //Placeholder proc for machines that are built using frames.
+/obj/machinery/proc/refresh_parts() //Placeholder proc for machines that are built using frames.
 	return
 	return 0
 

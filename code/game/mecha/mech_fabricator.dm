@@ -141,7 +141,7 @@
 		component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 		component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
 		component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
-		RefreshParts()
+		refresh_parts()
 
 	//	part_sets["Cyborg Upgrade Modules"] = typesof(/obj/item/borg/upgrade/) - /obj/item/borg/upgrade/  // Eh.  This does it dymaically, but to support having the items referenced otherwhere in the code but not being constructable, going to do it manaully.
 

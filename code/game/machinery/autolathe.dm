@@ -336,7 +336,7 @@ var/global/list/autolathe_recipes_hidden = list( \
 		return
 
 
-	RefreshParts()
+	refresh_parts()
 		..()
 		var/tot_rating = 0
 		for(var/obj/item/weapon/stock_parts/matter_bin/MB in component_parts)
@@ -354,7 +354,7 @@ var/global/list/autolathe_recipes_hidden = list( \
 		component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 		component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 		component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
-		RefreshParts()
+		refresh_parts()
 
 		src.L = autolathe_recipes
 		src.LL = autolathe_recipes_hidden

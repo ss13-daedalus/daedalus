@@ -19,9 +19,9 @@ Note: Must be placed within 3 tiles of the R&D Console
 		component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 		component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 		component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
-		RefreshParts()
+		refresh_parts()
 
-	RefreshParts()
+	refresh_parts()
 		var/T = 0
 		for(var/obj/item/weapon/stock_parts/S in src)
 			T += S.rating * 0.1

@@ -34,12 +34,12 @@ Note: Must be placed west/left of and R&D console to function.
 		component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 		component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)
 		component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)
-		RefreshParts()
+		refresh_parts()
 
 	proc/TotalMaterials() //returns the total of all the stored materials. Makes code neater.
 		return m_amount + g_amount + gold_amount + silver_amount + phoron_amount + uranium_amount + diamond_amount + clown_amount
 
-	RefreshParts()
+	refresh_parts()
 		var/T = 0
 		for(var/obj/item/weapon/reagent_containers/glass/G in component_parts)
 			T += G.reagents.maximum_volume

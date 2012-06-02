@@ -122,7 +122,7 @@
 							circuit.loc = new_machine
 						else
 							circuit.loc = null
-						new_machine.RefreshParts()
+						new_machine.refresh_parts()
 						del(src)
 
 				if(istype(P, /obj/item/weapon))

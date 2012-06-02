@@ -22,10 +22,10 @@
 		component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 		component_parts += new /obj/item/weapon/cable_coil(src)
 		component_parts += new /obj/item/weapon/cable_coil(src)
-		RefreshParts()
+		refresh_parts()
 		src.initialize(); //Agouri
 
-	RefreshParts()
+	refresh_parts()
 		var/tot_rating = 0
 		for(var/obj/item/weapon/stock_parts/SP in src)
 			tot_rating += SP.rating

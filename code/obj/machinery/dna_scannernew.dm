@@ -9,7 +9,7 @@
 	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
 	component_parts += new /obj/item/weapon/cable_coil(src)
 	component_parts += new /obj/item/weapon/cable_coil(src)
-	RefreshParts()
+	refresh_parts()
 
 /obj/machinery/dna_scannernew/allow_drop()
 	return 0
