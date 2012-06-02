@@ -67,7 +67,6 @@
 				C.d1 = 0
 				C.d2 = direction
 				C.icon_state = "[C.d1]-[C.d2]"
-				C.power_switch = src
 
 				var/datum/powernet/PN = new()
 				PN.number = powernets.len + 1
