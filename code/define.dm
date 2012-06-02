@@ -506,5 +506,10 @@ var/const/maximum_age = 65
 
 #define SOLAR_GEN_RATE 1500
 
+#define APC_WIRE_IDSCAN 1
+#define APC_WIRE_MAIN_POWER1 2
+#define APC_WIRE_MAIN_POWER2 3
+#define APC_WIRE_AI_CONTROL 4
+
 // End the stupid preprocessor macro tricks.
 #endif
