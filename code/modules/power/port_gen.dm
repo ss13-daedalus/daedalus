@@ -23,7 +23,7 @@
 		use_fuel() //Placeholder for fuel use.
 			return
 
-		handleInactive()
+		handle_inactive()
 			return
 
 	process()
@@ -41,7 +41,7 @@
 		else
 			active = 0
 			icon_state = initial(icon_state)
-			handleInactive()
+			handle_inactive()
 
 	attack_hand(mob/user as mob)
 		if(..())
@@ -132,7 +132,7 @@
 			del(src)
 		return
 
-	handleInactive()
+	handle_inactive()
 		heat -= 2
 		if (heat < 0)
 			heat = 0
