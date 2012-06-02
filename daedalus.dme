@@ -858,6 +858,7 @@
 #include "code\obj\item\weapon\chemical_sprayer.dm"
 #include "code\obj\item\weapon\cigarette_butt.dm"
 #include "code\obj\item\weapon\cigarette_pack.dm"
+#include "code\obj\item\weapon\circuit_board.dm"
 #include "code\obj\item\weapon\circular_saw.dm"
 #include "code\obj\item\weapon\cleaner.dm"
 #include "code\obj\item\weapon\cure_implanter.dm"
