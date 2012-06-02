@@ -1,10 +1,15 @@
-release: CFLAGS:=-O3 -flto
-release: LDFLAGS:=-O3 -flto
+CXXFLAGS:=-m32 -fPIC
+LDFLAGS:=-m32 -shared -Wl,--version-script=dmsqlite.x
+
+
+release: CXXFLAGS+= -O3
+release: LDFLAGS+= -O3
 release: all
 	strip dmsqlite.so
 
-debug: CFLAGS:=-g -Wall -ansi -pedantic
+debug: CXXFLAGS+= -g -Wall -ansi -pedantic
 debug: all
+
 
 all: dmsqlite.so
 
@@ -12,8 +17,8 @@ clean:
 	rm -f dmsqlite.o dmsqlite.so
 
 dmsqlite.so: dmsqlite.o
-	g++ ${LDFLAGS} -m32 -shared -o dmsqlite.so dmsqlite.o -lsqlite3
+	g++ ${LDFLAGS} -o dmsqlite.so dmsqlite.o -lsqlite3
 
 dmsqlite.o: dmsqlite.cpp
-	g++ ${CFLAGS} -m32 -fPIC -c dmsqlite.cpp
+	g++ ${CXXFLAGS} -c dmsqlite.cpp
 

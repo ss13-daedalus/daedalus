@@ -33,10 +33,10 @@
 typedef std::set<void *> pointer_set_t;
 
 // The set of all handles to open database files
-pointer_set_t dbconn_set;
+static pointer_set_t dbconn_set;
 
 // The set of all handles to prepared SQL statements
-pointer_set_t stmt_set;
+static pointer_set_t stmt_set;
 
 // A placeholder for the last result string returned to the BYOND server
 // by one of the dm_db_xxx() methods. This ensures the returned char pointer
