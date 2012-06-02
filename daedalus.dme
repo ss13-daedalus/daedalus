@@ -963,7 +963,6 @@
 #include "code\WorkInProgress\Ported\Abi79\uplinks.dm"
 #include "code\WorkInProgress\Tastyfish\Eliza.dm"
 #include "code\WorkInProgress\Tastyfish\Eliza_Data.dm"
-#include "code\WorkInProgress\Tastyfish\mainspipe.dm"
 #include "code\WorkInProgress\Tastyfish\paiLiza.dm"
 #include "code\WorkInProgress\Tastyfish\Parser.dm"
 #include "code\WorkInProgress\Tastyfish\wallmount_frame.dm"
