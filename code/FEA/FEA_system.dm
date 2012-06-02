@@ -53,9 +53,6 @@ Important Procedures
 
 */
 
-atom/proc/can_pass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
-	return (!density || !height || air_group)
-
 turf
 	can_pass(atom/movable/mover, turf/target, height=1.5,air_group=0)
 		if(!target) return 0

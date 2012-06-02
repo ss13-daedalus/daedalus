@@ -12,6 +12,9 @@
 /atom/proc/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	return null
 
+atom/proc/can_pass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
+	return (!density || !height || air_group)
+
 // **** Note in 40.93.4, split into obj/mob/turf point verbs, no area
 
 /atom/verb/point()
