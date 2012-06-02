@@ -1,15 +1,3 @@
-atom/movable/var/pressure_resistance = 20
-atom/movable/var/last_forced_movement = 0
-
-atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
-	if(last_forced_movement >= air_master.current_cycle)
-		return 0
-	else if(!anchored)
-		if(pressure_difference > pressure_resistance)
-			last_forced_movement = air_master.current_cycle
-			spawn step(src, direction)
-		return 1
-
 turf
 	assume_air(datum/gas_mixture/giver) //use this for machines to adjust air
 		del(giver)
