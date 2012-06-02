@@ -121,17 +121,6 @@
 
 //copypasta from alarm code, changed to work with this without derping hard
 //---START COPYPASTA----
-#define AALARM_MODE_SCRUBBING    1
-#define AALARM_MODE_VENTING      2 //makes draught
-#define AALARM_MODE_PANIC        3 //constantly sucks all air
-#define AALARM_MODE_REPLACEMENT  4 //sucks off all air, then refill and swithes to scrubbing
-#define AALARM_MODE_OFF          5
-
-#define AALARM_SCREEN_MAIN    1
-#define AALARM_SCREEN_VENT    2
-#define AALARM_SCREEN_SCRUB   3
-#define AALARM_SCREEN_MODE    4
-#define AALARM_SCREEN_SENSORS 5
 
 /obj/machinery/computer/atmoscontrol/proc/return_controls()
 	var/output = ""//"<B>[alarm_zone] Air [name]</B><HR>"
