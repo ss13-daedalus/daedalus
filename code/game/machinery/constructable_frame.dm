@@ -205,7 +205,7 @@ to destroy them and players will be able to make replacements.
 
 /obj/item/weapon/circuit_board/pacman
 	name = "Circuit Board (PACMAN-type Generator)"
-	build_path = "/obj/machinery/power/port_gen/pacman"
+	build_path = "/obj/machinery/power/portable_generator/pacman"
 	board_type = "machine"
 	origin_tech = "programming=3:powerstorage=3;phorontech=3;engineering=3"
 	frame_desc = "Requires 1 Matter Bin, 1 Micro-Laser, 2 Pieces of Cable, and 1 Capacitor."
@@ -217,17 +217,17 @@ to destroy them and players will be able to make replacements.
 
 /obj/item/weapon/circuit_board/pacman/super
 	name = "Circuit Board (SUPERPACMAN-type Generator)"
-	build_path = "/obj/machinery/power/port_gen/pacman/super"
+	build_path = "/obj/machinery/power/portable_generator/pacman/super"
 	origin_tech = "programming=3;powerstorage=4;engineering=4"
 
 /obj/item/weapon/circuit_board/pacman/mrs
 	name = "Circuit Board (MRSPACMAN-type Generator)"
-	build_path = "/obj/machinery/power/port_gen/pacman/mrs"
+	build_path = "/obj/machinery/power/portable_generator/pacman/mrs"
 	origin_tech = "programming=3;powerstorage=5;engineering=5"
 
 /obj/item/weapon/circuit_board/pacman2
 	name = "Circuit Board (PACMANII-type Generator)"
-	build_path = "/obj/machinery/power/port_gen/pacman2"
+	build_path = "/obj/machinery/power/portable_generator/pacman2"
 	board_type = "machine"
 	origin_tech = "programming=3:powerstorage=4;phorontech=3;engineering=3"
 	frame_desc = "Requires 1 Matter Bin, 1 Micro-Laser, 2 Pieces of Cable, and 1 Capacitor."

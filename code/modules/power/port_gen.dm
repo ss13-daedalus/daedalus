@@ -1,5 +1,5 @@
 //Baseline portable generator. Has all the default handling. Not intended to be used on it's own (since it generates unlimited power).
-/obj/machinery/power/port_gen
+/obj/machinery/power/portable_generator
 	name = "Portable Generator"
 	desc = "A portable generator for emergency backup power"
 	icon = 'icons/obj/power.dmi'
@@ -56,7 +56,7 @@
 		else
 			usr << "\blue The generator is off."
 
-/obj/machinery/power/port_gen/pacman
+/obj/machinery/power/portable_generator/pacman
 	name = "P.A.C.M.A.N.-type Portable Generator"
 	var
 		sheets = 0
@@ -208,7 +208,7 @@
 			if (get_dist(src, user) > 1 )
 				if (!istype(user, /mob/living/silicon/ai))
 					user.machine = null
-					user << browse(null, "window=port_gen")
+					user << browse(null, "window=portable_generator")
 					return
 
 			user.machine = src
@@ -224,7 +224,7 @@
 			dat += text("Power output: <A href='?src=\ref[src];action=lower_power'>-</A> [power_gen * power_output] <A href='?src=\ref[src];action=higher_power'>+</A><br>")
 			dat += text("Heat: [heat]<br>")
 			dat += "<br><A href='?src=\ref[src];action=close'>Close</A>"
-			user << browse("[dat]", "window=port_gen")
+			user << browse("[dat]", "window=portable_generator")
 
 	Topic(href, href_list)
 		if(..())
@@ -251,10 +251,10 @@
 					power_output++
 					src.updateUsrDialog()
 			if (href_list["action"] == "close")
-				usr << browse(null, "window=port_gen")
+				usr << browse(null, "window=portable_generator")
 				usr.machine = null
 
-/obj/machinery/power/port_gen/pacman/super
+/obj/machinery/power/portable_generator/pacman/super
 	name = "S.U.P.E.R.P.A.C.M.A.N.-type Portable Generator"
 	icon_state = "portgen1"
 	sheet_path = /obj/item/stack/sheet/uranium
@@ -264,7 +264,7 @@
 	overheat()
 		explosion(src.loc, 3, 3, 3, -1)
 
-/obj/machinery/power/port_gen/pacman/mrs
+/obj/machinery/power/portable_generator/pacman/mrs
 	name = "M.R.S.P.A.C.M.A.N.-type Portable Generator"
 	icon_state = "portgen2"
 	sheet_path = /obj/item/stack/sheet/diamond
