@@ -850,7 +850,7 @@
 #include "code\obj\item\toy\crayon.dm"
 #include "code\obj\item\weapon\ai_module.dm"
 #include "code\obj\item\weapon\autopsy_scanner.dm"
-#include "code\obj\item\weapon\boneinjector.dm"
+#include "code\obj\item\weapon\bone_injector.dm"
 #include "code\obj\item\weapon\camera.dm"
 #include "code\obj\item\weapon\camera_film.dm"
 #include "code\obj\item\weapon\cartridge.dm"

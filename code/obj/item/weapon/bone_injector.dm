@@ -2,7 +2,7 @@
 //BONE INJECTOR//
 /////////////////
 
-/obj/item/weapon/boneinjector
+/obj/item/weapon/bone_injector
 	name = "Bone-repairing Nanites Injector"
 	desc = "This injects the person with nanites that repair bones."
 	icon = 'icons/obj/items.dmi'
@@ -12,10 +12,10 @@
 	w_class = 1.0
 	var/uses = 5
 
-/obj/item/weapon/boneinjector/attack_paw(mob/user as mob)
+/obj/item/weapon/bone_injector/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-/obj/item/weapon/boneinjector/proc/inject(mob/M as mob)
+/obj/item/weapon/bone_injector/proc/inject(mob/M as mob)
 	if(istype(M,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 		for(var/name in H.organs)
@@ -42,7 +42,7 @@
 			del(src)
 	return uses
 
-/obj/item/weapon/boneinjector/attack(mob/M as mob, mob/user as mob)
+/obj/item/weapon/bone_injector/attack(mob/M as mob, mob/user as mob)
 	if (!istype(M, /mob))
 		return
 	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
