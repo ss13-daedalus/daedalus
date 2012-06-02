@@ -53,8 +53,6 @@ Important Procedures
 
 */
 
-var/kill_air = 0
-
 atom/proc/CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
 	return (!density || !height || air_group)
 
