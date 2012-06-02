@@ -1,5 +1,5 @@
 //I still dont think this should be a closet but whatever
-/obj/structure/closet/fireaxecabinet
+/obj/structure/closet/fire_axe_cabinet
 	name = "Fire Axe Cabinet"
 	desc = "There is small label that reads \"For Emergency use only\" along with details for safe use of the axe. As if."
 	var/obj/item/weapon/fire_axe/fire_axe = new/obj/item/weapon/fire_axe
