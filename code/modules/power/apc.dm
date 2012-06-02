@@ -55,7 +55,7 @@
 	var/crit = 0
 	var/eventoff = 0
 
-/proc/RandomAPCWires()
+/proc/randomize_apc_wires()
 	//to make this not randomize the wires, just set index to 1 and increment it in the flag for loop (after doing everything else).
 	var/list/apcwires = list(0, 0, 0, 0)
 	APCIndexToFlag = list(0, 0, 0, 0)
