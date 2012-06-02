@@ -19,7 +19,7 @@ KNIFE
 // FORK
 
 /obj/item/weapon/kitchen/utensil/fork/attack(mob/living/M as mob, mob/living/carbon/user as mob)
-	if(istype(M,/mob/living/carbon) || istype(M,/mob/living/simple_animal/livestock))
+	if(istype(M,/mob/living/carbon))
 		if (bite)
 			if(M == user)
 				user.visible_message( \
