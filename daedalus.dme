@@ -164,7 +164,6 @@
 #include "code\defines\procs\statistics.dm"
 #include "code\defines\procs\syndicate_name.dm"
 #include "code\defines\procs\time_stamp.dm"
-#include "code\FEA\FEA_group_helpers.dm"
 #include "code\FEA\FEA_system.dm"
 #include "code\game\hud.dm"
 #include "code\game\landmarks.dm"
