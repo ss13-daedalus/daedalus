@@ -147,7 +147,7 @@
 		"/obj/item/weapon/gun/energy",
 		"/obj/item/weapon/gun/projectile",
 		"/obj/item/weapon/melee/stun_baton",
-		"/obj/item/weapon/melee/classic_baton",
+		"/obj/item/weapon/melee/billy_club",
 		"/obj/item/weapon/camera_test",
 		"/obj/item/weapon/cigarette_pack",
 		"/obj/item/weapon/zippo",

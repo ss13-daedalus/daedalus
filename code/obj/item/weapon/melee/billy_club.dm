@@ -1,8 +1,15 @@
 // So-called 'Classic Baton'
 
-// TODO: Rename to billy_club
+/obj/item/weapon/melee/billy_club
+	name = "billy club"
+	desc = "A wooden truncheon for beating criminal scum."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "baton"
+	item_state = "classic_baton"
+	flags = FPRINT | ONBELT | TABLEPASS
+	force = 10
 
-/obj/item/weapon/melee/classic_baton/attack(mob/M as mob, mob/living/user as mob)
+/obj/item/weapon/melee/billy_club/attack(mob/M as mob, mob/living/user as mob)
 	if ((user.mutations & CLUMSY) && prob(50))
 		user << "\red You club yourself over the head."
 		user.Weaken(3 * force)
