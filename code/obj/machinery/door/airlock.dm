@@ -378,7 +378,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 		else if (istype(C, /obj/item/weapon/pai_cable))	// -- TLE
 			var/obj/item/weapon/pai_cable/cable = C
 			cable.plugin(src, user)
-		else if (istype(C, /obj/item/weapon/crowbar) || istype(C, /obj/item/weapon/fireaxe) )
+		else if (istype(C, /obj/item/weapon/crowbar) || istype(C, /obj/item/weapon/fire_axe) )
 			var/beingcrowbarred = null
 			if(istype(C, /obj/item/weapon/crowbar) )
 				beingcrowbarred = 1 //derp, Agouri
@@ -415,8 +415,8 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 				user << "\blue The airlock's bolts prevent it from being pried open."
 			if ((src.density) && (!( src.welded ) && !( src.operating ) && ((!src.arePowerSystemsOn()) || (stat & NOPOWER)) && !( src.locked )))
 
-				if(beingcrowbarred == 0) //being fireaxe'd
-					var/obj/item/weapon/fireaxe/F = C
+				if(beingcrowbarred == 0) //being fire_axe'd
+					var/obj/item/weapon/fire_axe/F = C
 					if(F.wielded == 1)
 						spawn( 0 )
 							src.operating = 1
@@ -453,7 +453,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 			else
 				if ((!src.density) && (!( src.welded ) && !( src.operating ) && !( src.locked )))
 					if(beingcrowbarred == 0)
-						var/obj/item/weapon/fireaxe/F = C
+						var/obj/item/weapon/fire_axe/F = C
 						if(F.wielded == 1)
 							spawn( 0 )
 								src.operating = 1

@@ -2,7 +2,7 @@
 /obj/structure/closet/fireaxecabinet
 	name = "Fire Axe Cabinet"
 	desc = "There is small label that reads \"For Emergency use only\" along with details for safe use of the axe. As if."
-	var/obj/item/weapon/fireaxe/fireaxe = new/obj/item/weapon/fireaxe
+	var/obj/item/weapon/fire_axe/fire_axe = new/obj/item/weapon/fire_axe
 	icon_state = "fireaxe1000"
 	icon_closed = "fireaxe1000"
 	icon_opened = "fireaxe1100"
@@ -18,7 +18,7 @@
 		//..() //That's very useful, Erro
 
 		var/hasaxe = 0       //gonna come in handy later~
-		if(fireaxe)
+		if(fire_axe)
 			hasaxe = 1
 
 		if (isrobot(usr) || src.locked)
@@ -35,7 +35,7 @@
 				if(src.smashed || src.localopened)
 					if(localopened)
 						localopened = 0
-						icon_state = text("fireaxe[][][][]closing",hasaxe,src.localopened,src.hitstaken,src.smashed)
+						icon_state = text("fire_axe[][][][]closing",hasaxe,src.localopened,src.hitstaken,src.smashed)
 						spawn(10) update_icon()
 					return
 				else
@@ -51,12 +51,12 @@
 						src.localopened = 1
 				update_icon()
 			return
-		if (istype(O, /obj/item/weapon/fireaxe) && src.localopened)
-			if(!fireaxe)
+		if (istype(O, /obj/item/weapon/fire_axe) && src.localopened)
+			if(!fire_axe)
 				if(O.wielded)
 					user << "\red Unwield the axe first."
 					return
-				fireaxe = O
+				fire_axe = O
 				user.drop_item(O)
 				src.contents += O
 				user << "\blue You place the fire axe back in the [src.name]."
@@ -103,16 +103,16 @@
 	attack_hand(mob/user as mob)
 
 		var/hasaxe = 0
-		if(fireaxe)
+		if(fire_axe)
 			hasaxe = 1
 
 		if(src.locked)
 			user <<"\red The cabinet won't budge!"
 			return
 		if(localopened)
-			if(fireaxe)
-				user.put_in_hand(fireaxe)
-				fireaxe = null
+			if(fire_axe)
+				user.put_in_hand(fire_axe)
+				fire_axe = null
 				user << "\blue You take the fire axe from the [name]."
 				src.add_fingerprint(user)
 				update_icon()
@@ -159,9 +159,9 @@
 			return
 
 		if (localopened)
-			if(fireaxe)
-				usr.put_in_hand(fireaxe)
-				fireaxe = null
+			if(fire_axe)
+				usr.put_in_hand(fire_axe)
+				fire_axe = null
 				usr << "\blue You take the Fire axe from the [name]."
 			else
 				usr << "\blue The [src.name] is empty."
@@ -187,7 +187,7 @@
 
 	update_icon() //Template: fireaxe[has fireaxe][is opened][hits taken][is smashed]. If you want the opening or closing animations, add "opening" or "closing" right after the numbers
 		var/hasaxe = 0
-		if(fireaxe)
+		if(fire_axe)
 			hasaxe = 1
 		icon_state = text("fireaxe[][][][]",hasaxe,src.localopened,src.hitstaken,src.smashed)
 

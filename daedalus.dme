@@ -867,7 +867,7 @@
 #include "code\obj\item\weapon\dummy.dm"
 #include "code\obj\item\weapon\fingerprint_card.dm"
 #include "code\obj\item\weapon\fingerprint_card_holder.dm"
-#include "code\obj\item\weapon\fireaxe.dm"
+#include "code\obj\item\weapon\fire_axe.dm"
 #include "code\obj\item\weapon\folder.dm"
 #include "code\obj\item\weapon\lighter.dm"
 #include "code\obj\item\weapon\match.dm"

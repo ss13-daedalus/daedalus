@@ -38,7 +38,7 @@
 				update_icon()
 				return
 
-		if (istype(C, /obj/item/weapon/crowbar) || (istype(C,/obj/item/weapon/fireaxe) && C.wielded == 1))
+		if (istype(C, /obj/item/weapon/crowbar) || (istype(C,/obj/item/weapon/fire_axe) && C.wielded == 1))
 			if(blocked || operating)	return
 			if(src.density)
 				spawn(0)
