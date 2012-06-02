@@ -41,6 +41,7 @@
 #include "code\datum\event.dm"
 #include "code\datum\events.dm"
 #include "code\datum\game_mode.dm"
+#include "code\datum\gas.dm"
 #include "code\datum\global_iterator.dm"
 #include "code\datum\hSB.dm"
 #include "code\datum\intercept_text.dm"
