@@ -9,6 +9,9 @@
 /atom/proc/Bumped(AM as mob|obj)
 	return
 
+/atom/proc/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	return null
+
 // **** Note in 40.93.4, split into obj/mob/turf point verbs, no area
 
 /atom/verb/point()
