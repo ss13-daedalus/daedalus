@@ -23,6 +23,7 @@
 #include "code\obj.dm"
 #include "code\proc.dm"
 #include "code\stylesheet.dm"
+#include "code\turf.dm"
 #include "code\world.dm"
 #include "code\area\ai_monitored.dm"
 #include "code\atom\movable.dm"
