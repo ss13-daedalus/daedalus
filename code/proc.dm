@@ -2508,39 +2508,45 @@ proc
 // before; a single, global implementation seemed reasonable.
 // It also makes use of rgb_to_integer(), above.
 //
-// There is a bit of optimization here: most of the time reagents
-// will not be getting mixed, so we save a function call to rgb()
-// by defaulting to an 'unmixed' state, in which case we can use
-// the raw RGB values of the single reagent.
+// This implementation has been optimized and bugfixed quite a bit
+// from the original copy-and-paste; it treats the (typical)
+// single-reagent case as a special case, immediately grabbing the
+// proper RGB value, and otherwise equally mixes the colours of the
+// reagents.  The original implementation gave more and more weight
+// to reagents further and further down the list due to a naive
+// implementation.
 
 /proc/get_reagent_color_mix(var/list/reagent_list)
 
-	var/curr_color[3]
-	var/new_color[3]
-	var/final_color = FALSE
-	var/need_final_mix = FALSE
+	var/final_color
 
-	for(var/datum/reagent/re in reagent_list)
-		if(!final_color)
+	// Special, typical case: If only one reagent, return immediately.
+	if(length(reagent_list) == 1)
 
-			// First colour.  No mixing yet.
-			curr_color = rgb_to_integer(re.color)
-			final_color = re.color
+		var/datum/reagent/only_reagent = reagent_list[1]
 
-		else
+		final_color = only_reagent.color
 
-			// More than one colour.  Mix.
+	else
+
+		// All right, we have multiple reagents.  Each reagent should
+		// contribute equally to the colour mix, so we'll use the length
+		// of the list to determine that factor, and then loop through,
+		// adding the fractional RGB values together to come up with the
+		// end values.
+
+		var/contributing_factor = 1.0 / length(reagent_list)
+		var/curr_color = list(0.0, 0.0, 0.0)
+		var/new_color[3]
+
+		for(var/datum/reagent/re in reagent_list)
+
 			new_color = rgb_to_integer(re.color)
 
-			curr_color[1] = (curr_color[1]+new_color[1])/2
-			curr_color[2] = (curr_color[2]+new_color[2])/2
-			curr_color[3] = (curr_color[3]+new_color[3])/2
+			curr_color[1] += new_color[1] * contributing_factor
+			curr_color[2] += new_color[2] * contributing_factor
+			curr_color[3] += new_color[3] * contributing_factor
 
-			// We don't assign final_color here; we'll just do it once
-			// at the end.  Note that we need to do so.
-			need_final_mix = TRUE
-
-	if(need_final_mix)
 		final_color = rgb(curr_color[1], curr_color[2], curr_color[3])
 
 	return final_color
