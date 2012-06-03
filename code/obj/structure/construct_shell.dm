@@ -9,8 +9,3 @@
 /obj/structure/construct_shell/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/device/soulstone))
 		O.transfer_soul("CONSTRUCT",src,user)
-
-
-////////////////////////////Proc for moving soul in and out off stone//////////////////////////////////////
-
-
