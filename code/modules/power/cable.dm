@@ -34,7 +34,7 @@
 		NC.updateicon()
 
 		NC.mergeConnectedNetworks(NC.d2)
-		NC.mergeConnectedNetworksOnTurf()
+		NC.merge_connected_networks_on_turf()
 		if(netnum == 0 && NC.netnum == 0)
 			var/datum/powernet/PN = new()
 
@@ -50,7 +50,7 @@
 			var/datum/powernet/PN = powernets[netnum]
 			powernet = PN
 			PN.nodes += src
-		NC.mergeConnectedNetworksOnTurf()
+		NC.merge_connected_networks_on_turf()
 
 		coil.use(1)
 		if (NC.shock(user, 50))
@@ -322,7 +322,7 @@
 		PN.cables += C
 
 		C.mergeConnectedNetworks(C.d2)
-		C.mergeConnectedNetworksOnTurf()
+		C.merge_connected_networks_on_turf()
 
 
 		use(1)
@@ -384,7 +384,7 @@
 			var/datum/powernet/PN = powernets[C.netnum]
 			PN.cables += NC
 			NC.mergeConnectedNetworks(NC.d2)
-			NC.mergeConnectedNetworksOnTurf()
+			NC.merge_connected_networks_on_turf()
 			use(1)
 			if (NC.shock(user, 50))
 				if (prob(50)) //fail
@@ -422,7 +422,7 @@
 
 		C.mergeConnectedNetworks(C.d1)
 		C.mergeConnectedNetworks(C.d2)
-		C.mergeConnectedNetworksOnTurf()
+		C.merge_connected_networks_on_turf()
 
 		use(1)
 		if (C.shock(user, 50))
@@ -463,7 +463,7 @@
 
 				PN.merge_powernets(TPN)
 
-/obj/structure/cable/proc/mergeConnectedNetworksOnTurf()
+/obj/structure/cable/proc/merge_connected_networks_on_turf()
 
 
 	for(var/obj/structure/cable/C in loc)
