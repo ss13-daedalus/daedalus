@@ -315,9 +315,9 @@
 
 /datum/supply_packs/lightbulbs
 	name = "Replacement lights"
-	contains = list("/obj/item/weapon/storage/lightbox/mixed",
-					"/obj/item/weapon/storage/lightbox/mixed",
-					"/obj/item/weapon/storage/lightbox/mixed")
+	contains = list("/obj/item/weapon/storage/lamp_box/mixed",
+					"/obj/item/weapon/storage/lamp_box/mixed",
+					"/obj/item/weapon/storage/lamp_box/mixed")
 	cost = 5
 	containertype = "/obj/structure/closet/crate"
 	containername = "Replacement lights"
