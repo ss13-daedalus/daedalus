@@ -2521,7 +2521,7 @@ proc
 	var/final_color
 
 	// Special, typical case: If only one reagent, return immediately.
-	if(length(reagent_list) == 1)
+	if(reagent_list.len == 1)
 
 		var/datum/reagent/only_reagent = reagent_list[1]
 
@@ -2535,7 +2535,7 @@ proc
 		// adding the fractional RGB values together to come up with the
 		// end values.
 
-		var/contributing_factor = 1.0 / length(reagent_list)
+		var/contributing_factor = 1.0 / reagent_list.len
 		var/curr_color = list(0.0, 0.0, 0.0)
 		var/new_color[3]
 
