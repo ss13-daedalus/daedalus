@@ -1,9 +1,9 @@
 /datum/event/electrical_storm
 	var
-		list/obj/machinery/light_fixture/Lights = list( )
-		list/obj/machinery/light_fixture/APCs = list( )
-		list/obj/machinery/light_fixture/Doors = list( )
-		list/obj/machinery/light_fixture/Comms = list( )
+		list/Lights = list()
+		list/APCs = list()
+		list/Doors = list()
+		list/Comms = list()
 
 	Announce()
 //		command_alert("The station is flying through an electrical storm.  Radio communications may be disrupted", "Anomaly Alert")
