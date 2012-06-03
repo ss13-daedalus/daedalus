@@ -1,7 +1,6 @@
 // the SMES
 // stores power
 
-#define SMESMAXOUTPUT 200000
 
 /obj/machinery/power/smes
 	name = "power storage unit"
@@ -275,7 +274,7 @@
 					if(-4)
 						output = 0
 					if(4)
-						output = SMESMAXOUTPUT		//30000
+						output = SMES_MAX_OUTPUT		//30000
 
 					if(1)
 						d = 100
@@ -291,7 +290,7 @@
 						d = -10000
 
 				output += d
-				output = max(0, min(SMESMAXOUTPUT, output))	// clamp to range
+				output = max(0, min(SMES_MAX_OUTPUT, output))	// clamp to range
 
 
 			src.updateUsrDialog()

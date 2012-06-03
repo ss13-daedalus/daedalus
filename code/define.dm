@@ -512,6 +512,7 @@ var/const/maximum_age = 65
 #define APC_WIRE_AI_CONTROL 4
 
 #define SMES_MAX_CHARGE_LEVEL 200000
+#define SMES_MAX_OUTPUT 200000
 
 // End the stupid preprocessor macro tricks.
 #endif
