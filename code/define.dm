@@ -2,6 +2,11 @@
 #ifndef __DEFINE_DM
 #define __DEFINE_DM
 
+// Would it surprise you that no one ever got around to defining TRUE and
+// FALSE as permanent defines?  No, no it shouldn't.
+#define TRUE 1
+#define FALSE 0
+
 #define PI 3.1415
 
 #define R_IDEAL_GAS_EQUATION	8.31 //kPa*L/(K*mol)
