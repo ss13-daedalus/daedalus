@@ -857,6 +857,7 @@
 #include "code\obj\item\weapon\hand_labeler.dm"
 #include "code\obj\item\weapon\handheld_teleporter.dm"
 #include "code\obj\item\weapon\label.dm"
+#include "code\obj\item\weapon\lamp.dm"
 #include "code\obj\item\weapon\lighter.dm"
 #include "code\obj\item\weapon\locator.dm"
 #include "code\obj\item\weapon\match.dm"
