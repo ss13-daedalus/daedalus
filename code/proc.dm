@@ -2499,6 +2499,49 @@ proc
 		((hi2 >= 65 ? hi2-55 : hi2-48)<<4) | (lo2 >= 65 ? lo2-55 : lo2-48),
 		((hi3 >= 65 ? hi3-55 : hi3-48)<<4) | (lo3 >= 65 ? lo3-55 : lo3-48))
 
+// get_reagent_color_mix() takes a list of reagents and returns an
+// rgb tuple representing the mixture of the colours in those
+// reagents.  This code was cut-and-pasted all over the place
+// before; a single, global implementation seemed reasonable.
+// It also makes use of GetColors(), above.
+//
+// There is a bit of optimization here: most of the time reagents
+// will not be getting mixed, so we save a function call to rgb()
+// by defaulting to an 'unmixed' state, in which case we can use
+// the raw RGB values of the single reagent.
+
+/proc/get_reagent_color_mix(var/list/reagent_list)
+
+	var/curr_color[3]
+	var/new_color[3]
+	var/final_color = FALSE
+	var/need_final_mix = FALSE
+
+	for(var/datum/reagent/re in reagent_list)
+		if(!final_color)
+
+			// First colour.  No mixing yet.
+			curr_color = GetColors(re.color)
+			final_color = re.color
+
+		else
+
+			// More than one colour.  Mix.
+			new_color = GetColors(re.color)
+
+			curr_color[1] = (curr_color[1]+new_color[1])/2
+			curr_color[2] = (curr_color[2]+new_color[2])/2
+			curr_color[3] = (curr_color[3]+new_color[3])/2
+
+			// We don't assign final_color here; we'll just do it once
+			// at the end.  Note that we need to do so.
+			need_final_mix = TRUE
+
+	if(need_final_mix)
+		final_color = rgb(curr_color[1], curr_color[2], curr_color[3])
+
+	return final_color
+
 /proc/randomize_apc_wires()
 	var/list/apcwires = list(0, 0, 0, 0)
 	APCIndexToFlag = list(0, 0, 0, 0)
