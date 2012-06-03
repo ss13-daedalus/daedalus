@@ -952,7 +952,7 @@
 #include "code\obj\item\mecha_parts\mecha_equipment\weapon.dm"
 #include "code\obj\item\projectile.dm"
 #include "code\obj\structure\cable.dm"
-#include "code\obj\structure\constructshell.dm"
+#include "code\obj\structure\construct_shell.dm"
 #include "code\obj\structure\filing_cabinet.dm"
 #include "code\obj\structure\light_fixture_frame.dm"
 #include "code\obj\structure\closet\fire_axe_cabinet.dm"

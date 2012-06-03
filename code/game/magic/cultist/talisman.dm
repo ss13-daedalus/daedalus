@@ -109,7 +109,7 @@
 				if("soulstone")
 					new /obj/item/device/soulstone(get_turf(usr))
 				if("construct")
-					new /obj/structure/constructshell(get_turf(usr))
+					new /obj/structure/construct_shell(get_turf(usr))
 			src.uses--
 			supply()
 		return

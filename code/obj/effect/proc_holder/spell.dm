@@ -989,7 +989,7 @@ Also, you never added distance checking after target is selected. I've went ahea
 	invocation_type = "none"
 	range = 0
 
-	summon_type = list("/obj/structure/constructshell")
+	summon_type = list("/obj/structure/construct_shell")
 
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/creature

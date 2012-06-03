@@ -60,7 +60,7 @@
 						T << "Your soul has been recaptured by the soul stone, its arcane energies are reknitting your ethereal form"
 						U << "\blue <b>Capture successful!</b>: \black [T.name]'s has been recaptured and stored within the soul stone."
 		if("CONSTRUCT")
-			var/obj/structure/constructshell/T = target
+			var/obj/structure/construct_shell/T = target
 			var/obj/item/device/soulstone/C = src
 			var/mob/living/simple_animal/shade/A = locate() in C
 			if(A)
