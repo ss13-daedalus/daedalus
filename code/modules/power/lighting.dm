@@ -3,12 +3,6 @@
 // consists of light fixtures (/obj/machinery/light) and light tube/bulb items (/obj/item/weapon/light)
 
 
-// status values shared between lighting fixtures and items
-#define LIGHT_OK 0
-#define LIGHT_EMPTY 1
-#define LIGHT_BROKEN 2
-#define LIGHT_BURNED 3
-
 // the standard tube light fixture
 
 /obj/machinery/light
@@ -375,8 +369,6 @@
 
 // timed process
 // use power
-
-#define LIGHTING_POWER_FACTOR 20		//20W per unit luminosity
 
 /obj/machinery/light/process()
 	return

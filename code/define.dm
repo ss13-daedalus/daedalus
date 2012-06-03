@@ -515,5 +515,12 @@ var/const/maximum_age = 65
 #define SMES_MAX_OUTPUT 200000
 #define SMES_RATE 0.05         // rate of internal charge to external power
 
+// status values shared between lighting fixtures and items
+#define LIGHT_OK 0
+#define LIGHT_EMPTY 1
+#define LIGHT_BROKEN 2
+#define LIGHT_BURNED 3
+#define LIGHTING_POWER_FACTOR 20    //20W per unit luminosity
+
 // End the stupid preprocessor macro tricks.
 #endif
