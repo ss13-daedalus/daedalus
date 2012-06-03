@@ -33,7 +33,7 @@
 		NC.add_fingerprint()
 		NC.updateicon()
 
-		NC.mergeConnectedNetworks(NC.d2)
+		NC.merge_connected_networks(NC.d2)
 		NC.merge_connected_networks_on_turf()
 		if(netnum == 0 && NC.netnum == 0)
 			var/datum/powernet/PN = new()
@@ -321,7 +321,7 @@
 		C.netnum = PN.number
 		PN.cables += C
 
-		C.mergeConnectedNetworks(C.d2)
+		C.merge_connected_networks(C.d2)
 		C.merge_connected_networks_on_turf()
 
 
@@ -383,7 +383,7 @@
 			NC.netnum = C.netnum
 			var/datum/powernet/PN = powernets[C.netnum]
 			PN.cables += NC
-			NC.mergeConnectedNetworks(NC.d2)
+			NC.merge_connected_networks(NC.d2)
 			NC.merge_connected_networks_on_turf()
 			use(1)
 			if (NC.shock(user, 50))
@@ -420,8 +420,8 @@
 		C.updateicon()
 
 
-		C.mergeConnectedNetworks(C.d1)
-		C.mergeConnectedNetworks(C.d2)
+		C.merge_connected_networks(C.d1)
+		C.merge_connected_networks(C.d2)
 		C.merge_connected_networks_on_turf()
 
 		use(1)
@@ -432,7 +432,7 @@
 
 		return
 
-/obj/structure/cable/proc/mergeConnectedNetworks(var/direction)
+/obj/structure/cable/proc/merge_connected_networks(var/direction)
 	var/turf/TB
 	if((d1 == direction || d2 == direction) != 1)
 		return

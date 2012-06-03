@@ -1298,7 +1298,7 @@
 			powernets += PN
 			NC.netnum = PN.number
 		PN.cables += NC
-		NC.mergeConnectedNetworks(NC.d2)
+		NC.merge_connected_networks(NC.d2)
 		//NC.mergeConnectedNetworksOnTurf()
 		last_piece = NC
 		return 1
