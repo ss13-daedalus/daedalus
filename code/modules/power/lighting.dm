@@ -1,4 +1,4 @@
-/obj/structure/light_frame
+/obj/structure/light_fixture_frame
 	name = "Light Fixture Frame"
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-empty"
@@ -9,15 +9,15 @@
 	var/wired = 0
 	m_amt = 1000
 
-/obj/structure/light_frame/small
+/obj/structure/light_fixture_frame/small
 	light_type = /obj/machinery/light_fixture/small
 	icon_state = "bulb-empty"
 
-/obj/structure/light_frame/lamp
+/obj/structure/light_fixture_frame/lamp
 	light_type = /obj/machinery/light_fixture/lamp
 	icon_state = "lamp-empty"
 
-/obj/structure/light_frame/attackby(obj/item/W, mob/user)
+/obj/structure/light_fixture_frame/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/wrench) && !anchored)
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 		var/turf/T = get_turf(user)
@@ -57,7 +57,7 @@
 	else
 		..()
 
-/obj/structure/light_frame/verb/rotate()
+/obj/structure/light_fixture_frame/verb/rotate()
 	set name = "Rotate Light"
 	set category = "Object"
 	set src in oview(1)

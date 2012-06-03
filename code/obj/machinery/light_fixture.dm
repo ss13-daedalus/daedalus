@@ -200,7 +200,7 @@
 			sleep(40)
 			if(get_turf(user) == T)
 				usr << "\blue You cut the light's wiring."
-				var/obj/structure/light_frame/F = new(loc)
+				var/obj/structure/light_fixture_frame/F = new(loc)
 				F.anchored = 1
 				F.name = "Secured Light Fixture Frame"
 				F.dir = dir
