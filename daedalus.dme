@@ -836,6 +836,7 @@
 #include "code\obj\item\weapon\ai_module.dm"
 #include "code\obj\item\weapon\autopsy_scanner.dm"
 #include "code\obj\item\weapon\bone_injector.dm"
+#include "code\obj\item\weapon\cable_coil.dm"
 #include "code\obj\item\weapon\camera.dm"
 #include "code\obj\item\weapon\camera_film.dm"
 #include "code\obj\item\weapon\cartridge.dm"
