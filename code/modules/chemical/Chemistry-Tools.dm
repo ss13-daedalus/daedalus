@@ -1127,25 +1127,8 @@
 				if(10)	overlay.icon_state = "10"
 				if(15)	overlay.icon_state = "15"
 
-			var/list/rgbcolor = list(0,0,0)
-			var/finalcolor
-			for(var/datum/reagent/re in reagents.reagent_list) // natural color mixing bullshit/algorithm
-				if(!finalcolor)
-					rgbcolor = GetColors(re.color)
-					finalcolor = re.color
-				else
-					var/newcolor[3]
-					var/prergbcolor[3]
-					prergbcolor = rgbcolor
-					newcolor = GetColors(re.color)
+			overlay.icon += get_reagent_color_mix(reagents.reagent_list)
 
-					rgbcolor[1] = (prergbcolor[1]+newcolor[1])/2
-					rgbcolor[2] = (prergbcolor[2]+newcolor[2])/2
-					rgbcolor[3] = (prergbcolor[3]+newcolor[3])/2
-
-					finalcolor = rgb(rgbcolor[1], rgbcolor[2], rgbcolor[3])
-
-			overlay.icon += finalcolor
 			if(!istype(src.loc, /turf))	overlay.layer = 30
 			overlays += overlay
 
@@ -1909,29 +1892,8 @@
 				if(80 to 90)	overlay.icon_state = "80"
 				if(91 to 100)	overlay.icon_state = "100"
 
-			var/list/rgbcolor = list(0,0,0)
-			var/finalcolor
-			for(var/datum/reagent/re in reagents.reagent_list) // natural color mixing bullshit/algorithm
-				if(!finalcolor)
-					rgbcolor = GetColors(re.color)
-					finalcolor = re.color
-				else
-					var/newcolor[3]
-					var/prergbcolor[3]
-					prergbcolor = rgbcolor
-					newcolor = GetColors(re.color)
+			overlay.icon += get_reagent_color_mix(reagents.reagent_list)
 
-					rgbcolor[1] = (prergbcolor[1]+newcolor[1])/2
-					rgbcolor[2] = (prergbcolor[2]+newcolor[2])/2
-					rgbcolor[3] = (prergbcolor[3]+newcolor[3])/2
-
-					finalcolor = rgb(rgbcolor[1], rgbcolor[2], rgbcolor[3])
-					// This isn't a perfect color mixing system, the more reagents that are inside,
-					// the darker it gets until it becomes absolutely pitch black! I dunno, maybe
-					// that's pretty realistic? I don't do a whole lot of color-mixing anyway.
-					// If you add brighter colors to it it'll eventually get lighter, though.
-
-			overlay.icon += finalcolor
 			if(user || !istype(src.loc, /turf))
 				overlay.layer = 30
 			overlays += overlay
@@ -1988,29 +1950,8 @@
 				if(80 to 90)	overlay.icon_state = "80"
 				if(91 to 100)	overlay.icon_state = "100"
 
-			var/list/rgbcolor = list(0,0,0)
-			var/finalcolor
-			for(var/datum/reagent/re in reagents.reagent_list) // natural color mixing bullshit/algorithm
-				if(!finalcolor)
-					rgbcolor = GetColors(re.color)
-					finalcolor = re.color
-				else
-					var/newcolor[3]
-					var/prergbcolor[3]
-					prergbcolor = rgbcolor
-					newcolor = GetColors(re.color)
+			overlay.icon += get_reagent_color_mix(reagents.reagent_list)
 
-					rgbcolor[1] = (prergbcolor[1]+newcolor[1])/2
-					rgbcolor[2] = (prergbcolor[2]+newcolor[2])/2
-					rgbcolor[3] = (prergbcolor[3]+newcolor[3])/2
-
-					finalcolor = rgb(rgbcolor[1], rgbcolor[2], rgbcolor[3])
-					// This isn't a perfect color mixing system, the more reagents that are inside,
-					// the darker it gets until it becomes absolutely pitch black! I dunno, maybe
-					// that's pretty realistic? I don't do a whole lot of color-mixing anyway.
-					// If you add brighter colors to it it'll eventually get lighter, though.
-
-			overlay.icon += finalcolor
 			if(user || !istype(src.loc, /turf))
 				overlay.layer = 30
 			overlays += overlay

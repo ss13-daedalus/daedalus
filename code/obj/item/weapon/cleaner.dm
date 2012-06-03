@@ -46,32 +46,10 @@
 	D.create_reagents(5)
 	src.reagents.trans_to(D, 5)
 
-	var/list/rgbcolor = list(0,0,0)
-	var/finalcolor
-	for(var/datum/reagent/re in D.reagents.reagent_list) // natural color mixing bullshit/algorithm
-		if(!finalcolor)
-			rgbcolor = GetColors(re.color)
-			finalcolor = re.color
-		else
-			var/newcolor[3]
-			var/prergbcolor[3]
-			prergbcolor = rgbcolor
-			newcolor = GetColors(re.color)
-
-			rgbcolor[1] = (prergbcolor[1]+newcolor[1])/2
-			rgbcolor[2] = (prergbcolor[2]+newcolor[2])/2
-			rgbcolor[3] = (prergbcolor[3]+newcolor[3])/2
-
-			finalcolor = rgb(rgbcolor[1], rgbcolor[2], rgbcolor[3])
-			// This isn't a perfect color mixing system, the more reagents that are inside,
-			// the darker it gets until it becomes absolutely pitch black! I dunno, maybe
-			// that's pretty realistic? I don't do a whole lot of color-mixing anyway.
-			// If you add brighter colors to it it'll eventually get lighter, though.
-
 	D.name = "chemicals"
 	D.icon = 'icons/obj/chempuff.dmi'
 
-	D.icon += finalcolor
+	D.icon += get_reagent_color_mix(D.reagents.reagent_list)
 
 	playsound(src.loc, 'sound/effects/spray2.ogg', 50, 1, -6)
 

@@ -40,25 +40,7 @@
 		D.create_reagents(5)
 		src.reagents.trans_to(D, 5)
 
-		var/rgbcolor[3]
-		var/finalcolor
-		for(var/datum/reagent/re in D.reagents.reagent_list)
-			if(!finalcolor)
-				rgbcolor = GetColors(re.color)
-				finalcolor = re.color
-			else
-				var/newcolor[3]
-				var/prergbcolor[3]
-				prergbcolor = rgbcolor
-				newcolor = GetColors(re.color)
-
-				rgbcolor[1] = (prergbcolor[1]+newcolor[1])/2
-				rgbcolor[2] = (prergbcolor[2]+newcolor[2])/2
-				rgbcolor[3] = (prergbcolor[3]+newcolor[3])/2
-
-				finalcolor = rgb(rgbcolor[1], rgbcolor[2], rgbcolor[3])
-
-		D.icon += finalcolor
+		D.icon += get_reagent_color_mix(D.reagents.reagent_list)
 
 		Sprays[i] = D
 

@@ -462,27 +462,7 @@ steam.start() -- spawns the effect
 	start()
 		var/i = 0
 
-		// Calculate the smokes' color
-		var/list/rgbcolor = list(0,0,0)
-		var/finalcolor
-		for(var/datum/reagent/re in chemholder.reagents.reagent_list)
-			if(!finalcolor)
-				rgbcolor = GetColors(re.color)
-				finalcolor = re.color
-			else
-				var/newcolor[3]
-				var/prergbcolor[3]
-				prergbcolor = rgbcolor
-				newcolor = GetColors(re.color)
-
-				rgbcolor[1] = (prergbcolor[1]+newcolor[1])/2
-				rgbcolor[2] = (prergbcolor[2]+newcolor[2])/2
-				rgbcolor[3] = (prergbcolor[3]+newcolor[3])/2
-
-				finalcolor = rgb(rgbcolor[1], rgbcolor[2], rgbcolor[3])
-
-		if(finalcolor)
-			finalcolor = rgb(rgbcolor[1], rgbcolor[2], rgbcolor[3]) // slightly darker color
+		var/finalcolor = get_reagent_color_mix(chemholder.reagents.reagent_list)
 
 		for(i=0, i<src.number, i++)
 			if(src.total_smoke > 20)
