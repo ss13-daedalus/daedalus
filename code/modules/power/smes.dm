@@ -61,9 +61,6 @@
 	proc/chargedisplay()
 		return round(5.5*charge/capacity)
 
-#define SMESRATE 0.05			// rate of internal charge to external power
-
-
 	process()
 
 		if(stat & BROKEN)	return
@@ -79,9 +76,9 @@
 			if(charging)
 				if(excess >= 0)		// if there's power available, try to charge
 
-					var/load = min((capacity-charge)/SMESRATE, chargelevel)		// charge at set rate, limited to spare capacity
+					var/load = min((capacity-charge)/SMES_RATE, chargelevel)		// charge at set rate, limited to spare capacity
 
-					charge += load * SMESRATE	// increase the charge
+					charge += load * SMES_RATE	// increase the charge
 
 					add_load(load)		// add the load to the terminal side network
 
@@ -103,9 +100,9 @@
 					chargecount = 0
 
 		if(online)		// if outputting
-			lastout = min( charge/SMESRATE, output)		//limit output to that stored
+			lastout = min( charge/SMES_RATE, output)		//limit output to that stored
 
-			charge -= lastout*SMESRATE		// reduce the storage (may be recovered in /restore() if excessive)
+			charge -= lastout*SMES_RATE		// reduce the storage (may be recovered in /restore() if excessive)
 
 			add_avail(lastout)				// add output to powernet (smes side)
 
@@ -138,13 +135,13 @@
 
 		excess = min(lastout, excess)				// clamp it to how much was actually output by this SMES last ptick
 
-		excess = min((capacity-charge)/SMESRATE, excess)	// for safety, also limit recharge by space capacity of SMES (shouldn't happen)
+		excess = min((capacity-charge)/SMES_RATE, excess)	// for safety, also limit recharge by space capacity of SMES (shouldn't happen)
 
 		// now recharge this amount
 
 		var/clev = chargedisplay()
 
-		charge += excess * SMESRATE
+		charge += excess * SMES_RATE
 		powernet.netexcess -= excess		// remove the excess from the powernet, so later SMESes don't try to use it
 
 		loaddemand = lastout-excess
