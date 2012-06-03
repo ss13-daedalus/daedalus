@@ -451,7 +451,7 @@ var/linenums = 0
 				U.buildlinks()
 				//Foreach goto(170)
 			defer_powernet_rebuild = 0
-			makepowernets()
+			make_powernets()
 
 		else
 			//if ((src.gas.temperature > (300+T0C) && src.gas.plasma == 1600000.0))
@@ -471,7 +471,7 @@ var/linenums = 0
 					U.buildlinks()
 					//Foreach goto(498)
 				defer_powernet_rebuild = 0
-				makepowernets()
+				make_powernets()
 
 		//src.master = null
 		//SN src = null
@@ -524,7 +524,7 @@ var/linenums = 0
 		//Foreach goto(961)
 	//src.master = null
 	defer_powernet_rebuild = 0
-	makepowernets()
+	make_powernets()
 
 	//SN src = null
 	del(src)

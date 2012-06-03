@@ -37,7 +37,7 @@ world
 	LoadBansjob()
 	src.update_status()
 
-	makepowernets()
+	make_powernets()
 
 	sun = new /datum/sun()
 

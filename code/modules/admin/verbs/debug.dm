@@ -464,9 +464,9 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 /client/proc/cmd_debug_make_powernets()
 	set category = "Debug"
 	set name = "Make Powernets"
-	makepowernets()
-	log_admin("[key_name(src)] has remade the powernet. makepowernets() called.")
-	message_admins("[key_name_admin(src)] has remade the powernets. makepowernets() called.", 0)
+	make_powernets()
+	log_admin("[key_name(src)] has remade the powernet. make_powernets() called.")
+	message_admins("[key_name_admin(src)] has remade the powernets. make_powernets() called.", 0)
 
 /client/proc/cmd_debug_tog_aliens()
 	set category = "Server"

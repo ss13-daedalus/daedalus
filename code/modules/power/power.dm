@@ -59,7 +59,7 @@
 
 // rebuild all power networks from scratch
 
-/proc/makepowernets()
+/proc/make_powernets()
 
 	var/netcount = 0
 	powernets = list()
@@ -410,7 +410,7 @@
 	var/obj/structure/cable/C = T.get_cable_node()
 	if (!C || !C.netnum)
 		return
-	makepowernets() //TODO: find fast way
+	make_powernets() //TODO: find fast way
 
 /obj/machinery/power/proc/disconnect_from_network()
 	//TODO: dunno how to do that
