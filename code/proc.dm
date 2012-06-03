@@ -2485,8 +2485,11 @@ proc
 			else if(ay>=ax<<1) return d&3 // keep north/south (1 and 2)
 		return d
 
+// BYOND provides a built-in proc, rgb(), that takes three integers and
+// turns them into an HTML-style RGB string.  It does not provide the
+// reverse, because...? rgb_to_integer(), below, implements that.
 
-/proc/GetColors(hex)
+/proc/rgb_to_integer(hex)
 	hex = uppertext(hex)
 	var
 		hi1 = text2ascii(hex, 2)
@@ -2503,7 +2506,7 @@ proc
 // rgb tuple representing the mixture of the colours in those
 // reagents.  This code was cut-and-pasted all over the place
 // before; a single, global implementation seemed reasonable.
-// It also makes use of GetColors(), above.
+// It also makes use of rgb_to_integer(), above.
 //
 // There is a bit of optimization here: most of the time reagents
 // will not be getting mixed, so we save a function call to rgb()
@@ -2521,13 +2524,13 @@ proc
 		if(!final_color)
 
 			// First colour.  No mixing yet.
-			curr_color = GetColors(re.color)
+			curr_color = rgb_to_integer(re.color)
 			final_color = re.color
 
 		else
 
 			// More than one colour.  Mix.
-			new_color = GetColors(re.color)
+			new_color = rgb_to_integer(re.color)
 
 			curr_color[1] = (curr_color[1]+new_color[1])/2
 			curr_color[2] = (curr_color[2]+new_color[2])/2
