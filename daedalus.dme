@@ -90,7 +90,7 @@
 #include "code\datum\disease\xeno_transformation.dm"
 #include "code\datum\event\alieninfestation.dm"
 #include "code\datum\event\appendicitis.dm"
-#include "code\datum\event\electricalstorm.dm"
+#include "code\datum\event\electrical_storm.dm"
 #include "code\datum\event\ion_storm.dm"
 #include "code\datum\event\miniblob.dm"
 #include "code\datum\event\power_offline.dm"

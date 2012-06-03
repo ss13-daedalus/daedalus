@@ -1927,7 +1927,7 @@ var/global/BSACooldown = 0
 					Force_Event(/datum/event/prisonbreak)
 				if("electric")
 					message_admins("[key_name_admin(usr)] has triggered an electrical storm", 1)
-					Force_Event(/datum/event/electricalstorm)
+					Force_Event(/datum/event/electrical_storm)
 				if("lightsout")
 					//feedback_inc("admin_secrets_fun_used",1)
 					//feedback_add_details("admin_secrets_fun_used","LO")

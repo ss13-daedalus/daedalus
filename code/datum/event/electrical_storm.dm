@@ -1,4 +1,4 @@
-/datum/event/electricalstorm
+/datum/event/electrical_storm
 	var
 		list/obj/machinery/light_fixture/Lights = list( )
 		list/obj/machinery/light_fixture/APCs = list( )
