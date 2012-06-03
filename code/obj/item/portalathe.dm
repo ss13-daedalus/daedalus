@@ -9,9 +9,9 @@
 			return
 		if(!istype(target))
 			return
-		if(!istype(target, /obj/machinery/light))
+		if(!istype(target, /obj/machinery/light_fixture))
 			return
-		var/obj/machinery/light/L = target
+		var/obj/machinery/light_fixture/L = target
 		if(L.status > 1) //Burned or broke
 			L.status = 0
 			L.on = 1

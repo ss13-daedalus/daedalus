@@ -1,6 +1,6 @@
 // the light item
 // can be tube or bulb subtypes
-// will fit into empty /obj/machinery/light of the corresponding type
+// will fit into empty /obj/machinery/light_fixture of the corresponding type
 
 /obj/item/weapon/light
 	icon = 'icons/obj/lighting.dmi'
@@ -127,7 +127,7 @@
 // now only shatter if the intent was harm
 
 /obj/item/weapon/light/afterattack(atom/target, mob/user)
-	if(istype(target, /obj/machinery/light))
+	if(istype(target, /obj/machinery/light_fixture))
 		return
 	if(user.a_intent != "hurt")
 		return
@@ -186,16 +186,16 @@
 	desc = "A lighting fixture frame."
 	anchored = 0
 	layer = 5
-	var/light_type = /obj/machinery/light
+	var/light_type = /obj/machinery/light_fixture
 	var/wired = 0
 	m_amt = 1000
 
 /obj/structure/light_frame/small
-	light_type = /obj/machinery/light/small
+	light_type = /obj/machinery/light_fixture/small
 	icon_state = "bulb-empty"
 
 /obj/structure/light_frame/lamp
-	light_type = /obj/machinery/light/lamp
+	light_type = /obj/machinery/light_fixture/lamp
 	icon_state = "lamp-empty"
 
 /obj/structure/light_frame/attackby(obj/item/W, mob/user)
@@ -225,7 +225,7 @@
 			var/obj/item/weapon/cable_coil/C = W
 			C.use(1)
 			usr << "\blue You wire the light fixture."
-			var/obj/machinery/light/L = new light_type(loc)
+			var/obj/machinery/light_fixture/L = new light_type(loc)
 			L.dir = dir
 			L.status = LIGHT_EMPTY
 			L.update()

@@ -1517,7 +1517,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /*
 /area/proc/update_lights()
 	var/new_power = 0
-	for(var/obj/machinery/light/L in src.contents)
+	for(var/obj/machinery/light_fixture/L in src.contents)
 		if(L.on)
 			new_power += (L.luminosity * 20)
 	lighting_power_usage = new_power

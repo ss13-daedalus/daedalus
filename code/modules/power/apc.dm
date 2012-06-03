@@ -1168,7 +1168,7 @@
 		cell.use(20);
 		spawn(0)
 			for(var/area/A in area.related)
-				for(var/obj/machinery/light/L in A)
+				for(var/obj/machinery/light_fixture/L in A)
 					L.on = 1
 					L.broken()
 					sleep(1)

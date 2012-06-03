@@ -1,14 +1,14 @@
 /datum/event/electricalstorm
 	var
-		list/obj/machinery/light/Lights = list( )
-		list/obj/machinery/light/APCs = list( )
-		list/obj/machinery/light/Doors = list( )
-		list/obj/machinery/light/Comms = list( )
+		list/obj/machinery/light_fixture/Lights = list( )
+		list/obj/machinery/light_fixture/APCs = list( )
+		list/obj/machinery/light_fixture/Doors = list( )
+		list/obj/machinery/light_fixture/Comms = list( )
 
 	Announce()
 //		command_alert("The station is flying through an electrical storm.  Radio communications may be disrupted", "Anomaly Alert")
 
-		for(var/obj/machinery/light/Light in world)
+		for(var/obj/machinery/light_fixture/Light in world)
 			if(Light.z == 1 && Light.status != 0)
 				Lights += Light
 
@@ -43,7 +43,7 @@
 
 	proc
 		BlowLight() //Blow out a light fixture
-			var/obj/machinery/light/Light = null
+			var/obj/machinery/light_fixture/Light = null
 			var/failed_attempts = 0
 			while (Light == null || Light.status != 0)
 				Light = pick(Lights)

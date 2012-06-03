@@ -1,11 +1,11 @@
 // The lighting system
 //
-// consists of light fixtures (/obj/machinery/light) and light tube/bulb items (/obj/item/weapon/light)
+// consists of light fixtures (/obj/machinery/light_fixture) and light tube/bulb items (/obj/item/weapon/light)
 
 
 // the standard tube light fixture
 
-/obj/machinery/light
+/obj/machinery/light_fixture
 	name = "light fixture"
 	icon = 'icons/obj/lighting.dmi'
 	var/base_state = "tube"		// base description and icon_state
@@ -31,7 +31,7 @@
 
 // the smaller bulb light fixture
 
-/obj/machinery/light/small
+/obj/machinery/light_fixture/small
 	icon_state = "bulb1"
 	base_state = "bulb"
 	fitting = "bulb"
@@ -39,17 +39,17 @@
 	desc = "A small lighting fixture."
 	light_type = /obj/item/weapon/light/bulb
 
-/obj/machinery/light/small/spot
+/obj/machinery/light_fixture/small/spot
 	brightness = 5
 
-/obj/machinery/light/spot
+/obj/machinery/light_fixture/spot
 	name = "spotlight"
 	fitting = "large tube"
 	light_type = /obj/item/weapon/light/tube/large
 	brightness = 15
 
 // the desk lamp
-/obj/machinery/light/lamp
+/obj/machinery/light_fixture/lamp
 	name = "desk lamp"
 	icon_state = "lamp1"
 	base_state = "lamp"
@@ -60,14 +60,14 @@
 	var/switchon = 0		// independent switching for lamps - not controlled by area lightswitch
 
 // green-shaded desk lamp
-/obj/machinery/light/lamp/green
+/obj/machinery/light_fixture/lamp/green
 	icon_state = "green1"
 	base_state = "green"
 	desc = "A green-shaded desk lamp"
 
 
 // create a new lighting fixture
-/obj/machinery/light/New()
+/obj/machinery/light_fixture/New()
 	..()
 
 	spawn(2)
@@ -87,7 +87,7 @@
 		spawn(1)
 			update()
 
-/obj/machinery/light/Del()
+/obj/machinery/light_fixture/Del()
 	var/area/A = get_area(src)
 	if(A)
 		on = 0
@@ -96,7 +96,7 @@
 
 
 // update the icon_state and luminosity of the light depending on its state
-/obj/machinery/light/proc/update()
+/obj/machinery/light_fixture/proc/update()
 
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
@@ -142,12 +142,12 @@
 
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
-/obj/machinery/light/proc/seton(var/s)
+/obj/machinery/light_fixture/proc/seton(var/s)
 	on = (s && status == LIGHT_OK)
 	update()
 
 // examine verb
-/obj/machinery/light/examine()
+/obj/machinery/light_fixture/examine()
 	set src in oview(1)
 	if(usr && !usr.stat)
 		switch(status)
@@ -164,7 +164,7 @@
 
 // attack with item - insert light (if right type), otherwise try to break the light
 
-/obj/machinery/light/attackby(obj/item/W, mob/user)
+/obj/machinery/light_fixture/attackby(obj/item/W, mob/user)
 
 	// attempt to insert light
 	if(istype(W, /obj/item/weapon/light))
@@ -246,18 +246,18 @@
 
 // returns whether this light has power
 // true if area has power and lightswitch is on
-/obj/machinery/light/proc/has_power()
+/obj/machinery/light_fixture/proc/has_power()
 	var/area/A = src.loc.loc
 	return A.master.lightswitch && A.master.power_light
 
 
 // ai attack - do nothing
 
-/obj/machinery/light/attack_ai(mob/user)
+/obj/machinery/light_fixture/attack_ai(mob/user)
 	return
 
 // Aliens smash the bulb but do not get electrocuted./N
-/obj/machinery/light/attack_alien(mob/living/carbon/alien/humanoid/user)//So larva don't go breaking light bulbs.
+/obj/machinery/light_fixture/attack_alien(mob/living/carbon/alien/humanoid/user)//So larva don't go breaking light bulbs.
 	if(status == LIGHT_EMPTY||status == LIGHT_BROKEN)
 		user << "\green That object is useless to you."
 		return
@@ -269,7 +269,7 @@
 // attack with hand - remove tube/bulb
 // if hands aren't protected and the light is on, burn the player
 
-/obj/machinery/light/attack_hand(mob/user)
+/obj/machinery/light_fixture/attack_hand(mob/user)
 
 	add_fingerprint(user)
 
@@ -330,7 +330,7 @@
 
 // break the light and make sparks if was on
 
-/obj/machinery/light/proc/broken(var/skip_sound_and_sparks = 0)
+/obj/machinery/light_fixture/proc/broken(var/skip_sound_and_sparks = 0)
 	if(status == LIGHT_EMPTY)
 		return
 
@@ -347,7 +347,7 @@
 // explosion effect
 // destroy the whole light fixture or just shatter it
 
-/obj/machinery/light/ex_act(severity)
+/obj/machinery/light_fixture/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			del(src)
@@ -362,7 +362,7 @@
 
 //blob effect
 
-/obj/machinery/light/blob_act()
+/obj/machinery/light_fixture/blob_act()
 	if(prob(75))
 		broken()
 
@@ -370,13 +370,13 @@
 // timed process
 // use power
 
-/obj/machinery/light/process()
+/obj/machinery/light_fixture/process()
 	return
 //	if(on)
 //		use_power(luminosity * LIGHTING_POWER_FACTOR, LIGHT)
 
 // called when area power state changes
-/obj/machinery/light/power_change()
+/obj/machinery/light_fixture/power_change()
 	spawn(10)
 		var/area/A = src.loc.loc
 		A = A.master
@@ -384,13 +384,13 @@
 
 // called when on fire
 
-/obj/machinery/light/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/machinery/light_fixture/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(prob(max(0, exposed_temperature - 673)))   //0% at <400C, 100% at >500C
 		broken()
 
 // explode the light
 
-/obj/machinery/light/proc/explode()
+/obj/machinery/light_fixture/proc/explode()
 	var/turf/T = get_turf(src.loc)
 	spawn(0)
 		broken()	// break it first to give a warning
@@ -408,7 +408,7 @@
 // if attack with hand, only "grab" attacks are an attempt to remove bulb
 // otherwise, switch the lamp on/off
 
-/obj/machinery/light/lamp/attack_hand(mob/user)
+/obj/machinery/light_fixture/lamp/attack_hand(mob/user)
 
 	if(user.a_intent == "grab")
 		..()	// do standard hand attack
@@ -421,7 +421,7 @@
 // called when area power state changes
 // override since lamp does not use area lightswitch
 
-/obj/machinery/light/lamp/power_change()
+/obj/machinery/light_fixture/lamp/power_change()
 	spawn(rand(0,15))
 		var/area/A = src.loc.loc
 		A = A.master
@@ -430,6 +430,6 @@
 // returns whether this lamp has power
 // true if area has power and lamp switch is on
 
-/obj/machinery/light/lamp/has_power()
+/obj/machinery/light_fixture/lamp/has_power()
 	var/area/A = src.loc.loc
 	return switchon && A.master.power_light
