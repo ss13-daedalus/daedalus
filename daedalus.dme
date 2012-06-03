@@ -702,7 +702,6 @@
 #include "code\modules\mob\simple_animal\constructs.dm"
 #include "code\modules\power\apc.dm"
 #include "code\modules\power\cable.dm"
-#include "code\modules\power\generator.dm"
 #include "code\modules\power\gravitygenerator.dm"
 #include "code\modules\power\lighting.dm"
 #include "code\modules\power\power.dm"
