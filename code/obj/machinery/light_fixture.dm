@@ -1,6 +1,6 @@
 // The lighting system
 //
-// consists of light fixtures (/obj/machinery/light_fixture) and light tube/bulb items (/obj/item/weapon/light)
+// consists of light fixtures (/obj/machinery/light_fixture) and light tube/bulb items (/obj/item/weapon/lamp)
 
 
 // the standard tube light fixture
@@ -22,7 +22,7 @@
 	var/brightness = 8			// luminosity when on, also used in power calculation
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 
-	var/light_type = /obj/item/weapon/light/tube		// the type of light item
+	var/light_type = /obj/item/weapon/lamp/tube		// the type of light item
 	var/fitting = "tube"
 	var/switchcount = 0			// count of number of times switched on/off
 								// this is used to calc the probability the light burns out
@@ -37,7 +37,7 @@
 	fitting = "bulb"
 	brightness = 3
 	desc = "A small lighting fixture."
-	light_type = /obj/item/weapon/light/bulb
+	light_type = /obj/item/weapon/lamp/bulb
 
 /obj/machinery/light_fixture/small/spot
 	brightness = 5
@@ -45,7 +45,7 @@
 /obj/machinery/light_fixture/spot
 	name = "spotlight"
 	fitting = "large tube"
-	light_type = /obj/item/weapon/light/tube/large
+	light_type = /obj/item/weapon/lamp/tube/large
 	brightness = 15
 
 // the desk lamp
@@ -56,7 +56,7 @@
 	fitting = "bulb"
 	brightness = 7
 	desc = "A desk lamp"
-	light_type = /obj/item/weapon/light/bulb
+	light_type = /obj/item/weapon/lamp/bulb
 	var/switchon = 0		// independent switching for lamps - not controlled by area lightswitch
 
 // green-shaded desk lamp
@@ -167,13 +167,13 @@
 /obj/machinery/light_fixture/attackby(obj/item/W, mob/user)
 
 	// attempt to insert light
-	if(istype(W, /obj/item/weapon/light))
+	if(istype(W, /obj/item/weapon/lamp))
 		if(status != LIGHT_EMPTY)
 			user << "There is a [fitting] already inserted."
 			return
 		else
 			src.add_fingerprint(user)
-			var/obj/item/weapon/light/L = W
+			var/obj/item/weapon/lamp/L = W
 			if(istype(L, light_type))
 				status = L.status
 				user << "You insert the [L.name]."
@@ -305,7 +305,7 @@
 			return				// if burned, don't remove the light
 
 	// create a light tube/bulb item and put it in the user's hand
-	var/obj/item/weapon/light/L = new light_type()
+	var/obj/item/weapon/lamp/L = new light_type()
 	L.status = status
 	L.rigged = rigged
 	L.brightness = src.brightness

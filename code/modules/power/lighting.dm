@@ -2,7 +2,7 @@
 // can be tube or bulb subtypes
 // will fit into empty /obj/machinery/light_fixture of the corresponding type
 
-/obj/item/weapon/light
+/obj/item/weapon/lamp
 	icon = 'icons/obj/lighting.dmi'
 	flags = FPRINT | TABLEPASS
 	force = 2
@@ -16,7 +16,7 @@
 	var/brightness = 2 //how much light it gives off
 	var/repair_state = 0
 
-/obj/item/weapon/light/tube
+/obj/item/weapon/lamp/tube
 	name = "light tube"
 	desc = "A replacement light tube."
 	icon_state = "ltube"
@@ -30,7 +30,7 @@
 		name = "large light tube"
 		brightness = 15
 
-/obj/item/weapon/light/bulb
+/obj/item/weapon/lamp/bulb
 	name = "light bulb"
 	desc = "A replacement light bulb."
 	icon_state = "lbulb"
@@ -40,7 +40,7 @@
 	brightness = 5
 
 // update the icon state and description of the light
-/obj/item/weapon/light
+/obj/item/weapon/lamp
 	proc/update()
 		switch(status)
 			if(LIGHT_OK)
@@ -60,7 +60,7 @@
 					desc += " It has had new wires put in."
 
 
-/obj/item/weapon/light/New()
+/obj/item/weapon/lamp/New()
 	..()
 	switch(name)
 		if("light tube")
@@ -74,7 +74,7 @@
 // if a syringe, can inject phoron to make it explode
 // also repairing them with wire and screwdriver
 // and glass if it's broken
-/obj/item/weapon/light/attackby(var/obj/item/I, var/mob/user)
+/obj/item/weapon/lamp/attackby(var/obj/item/I, var/mob/user)
 
 	if(istype(I, /obj/item/weapon/reagent_containers/syringe))
 		var/obj/item/weapon/reagent_containers/syringe/S = I
@@ -126,7 +126,7 @@
 // shatter light, unless it was an attempt to put it in a light socket
 // now only shatter if the intent was harm
 
-/obj/item/weapon/light/afterattack(atom/target, mob/user)
+/obj/item/weapon/lamp/afterattack(atom/target, mob/user)
 	if(istype(target, /obj/machinery/light_fixture))
 		return
 	if(user.a_intent != "hurt")
@@ -151,13 +151,13 @@
 	item_state = "syringe_kit"
 	foldable = /obj/item/stack/sheet/cardboard //BubbleWrap
 	storage_slots=21
-	can_hold = list("/obj/item/weapon/light/tube", "/obj/item/weapon/light/bulb")
+	can_hold = list("/obj/item/weapon/lamp/tube", "/obj/item/weapon/lamp/bulb")
 	max_combined_w_class = 21
 
 /obj/item/weapon/storage/lightbox/bulbs/New()
 	..()
 	for(var/i = 0; i < 21; i++)
-		new /obj/item/weapon/light/bulb(src)
+		new /obj/item/weapon/lamp/bulb(src)
 
 /obj/item/weapon/storage/lightbox/tubes
 	name = "replacement tubes"
@@ -166,7 +166,7 @@
 /obj/item/weapon/storage/lightbox/tubes/New()
 	..()
 	for(var/i = 0; i < 21; i++)
-		new /obj/item/weapon/light/tube(src)
+		new /obj/item/weapon/lamp/tube(src)
 
 /obj/item/weapon/storage/lightbox/mixed
 	name = "replacement lights"
@@ -175,9 +175,9 @@
 /obj/item/weapon/storage/lightbox/mixed/New()
 	..()
 	for(var/i = 0; i < 14; i++)
-		new /obj/item/weapon/light/tube(src)
+		new /obj/item/weapon/lamp/tube(src)
 	for(var/i = 0; i < 7; i++)
-		new /obj/item/weapon/light/bulb(src)
+		new /obj/item/weapon/lamp/bulb(src)
 
 /obj/structure/light_frame
 	name = "Light Fixture Frame"

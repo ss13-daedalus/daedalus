@@ -1197,7 +1197,7 @@ turf/simulated/floor/return_siding_icon_state()
 	if(!C || !user)
 		return 0
 
-	if(istype(C,/obj/item/weapon/light/bulb)) //only for light tiles
+	if(istype(C,/obj/item/weapon/lamp/bulb)) //only for light tiles
 		if(is_light_floor())
 			var/obj/item/stack/tile/light/T = floor_tile
 			if(T.state)
