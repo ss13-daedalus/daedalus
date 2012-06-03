@@ -26,7 +26,7 @@
 
 		var/obj/structure/cable/NC = new(T)
 
-		NC.cableColor(coil.color)
+		NC.color_cable(coil.color)
 
 		NC.d1 = 0
 		NC.d2 = dirn
@@ -308,7 +308,7 @@
 
 		var/obj/structure/cable/C = new(F)
 
-		C.cableColor(color)
+		C.color_cable(color)
 
 		C.d1 = 0
 		C.d2 = dirn
@@ -373,7 +373,7 @@
 					return
 
 			var/obj/structure/cable/NC = new(U)
-			NC.cableColor(color)
+			NC.color_cable(color)
 
 			NC.d1 = 0
 			NC.d2 = fdirn
@@ -411,7 +411,7 @@
 				return
 
 
-		C.cableColor(color)
+		C.color_cable(color)
 
 		C.d1 = nd1
 		C.d2 = nd2
@@ -524,7 +524,7 @@
 
 		PN.merge_powernets(TPN)
 
-obj/structure/cable/proc/cableColor(var/colorC)
+obj/structure/cable/proc/color_cable(var/colorC)
 	var/color_n = "red"
 	if(colorC)
 		color_n = colorC
