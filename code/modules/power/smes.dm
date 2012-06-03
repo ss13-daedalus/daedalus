@@ -1,7 +1,6 @@
 // the SMES
 // stores power
 
-#define SMESMAXCHARGELEVEL 200000
 #define SMESMAXOUTPUT 200000
 
 /obj/machinery/power/smes
@@ -249,7 +248,7 @@
 					if(-4)
 						chargelevel = 0
 					if(4)
-						chargelevel = SMESMAXCHARGELEVEL		//30000
+						chargelevel = SMES_MAX_CHARGE_LEVEL		//30000
 
 					if(1)
 						d = 100
@@ -265,7 +264,7 @@
 						d = -10000
 
 				chargelevel += d
-				chargelevel = max(0, min(SMESMAXCHARGELEVEL, chargelevel))	// clamp to range
+				chargelevel = max(0, min(SMES_MAX_CHARGE_LEVEL, chargelevel))	// clamp to range
 
 			else if( href_list["output"] )
 
