@@ -89,7 +89,6 @@ SQLite
 		// behavior if the string happens to have an embedded quote (').
 		// Returns null if an error occurs.
 		Quote(str)
-			//return call(_native_lib, "dm_db_quote")(str)
 			str = call(_native_lib, "dm_db_quote")(str)
 			if(str == null)
 				_log_error()

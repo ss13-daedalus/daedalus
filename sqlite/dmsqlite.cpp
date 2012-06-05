@@ -17,9 +17,6 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 //
 
-// TODO DELETE ME
-#include <iostream>
-
 #include <sstream>
 #include <string>
 #include <set>
@@ -173,10 +170,7 @@ extern "C" const char *dm_db_close(int argc, char *argv[])
 		stmt = sqlite3_next_stmt(dbconn, stmt);
 
 		// Finalize can only return previous statment error so ignore it here
-		// TODO: Check returns here?
-		if(sqlite3_finalize(prev) != SQLITE_OK) {
-			std::cerr << "FINALIZE ERROR" << std::endl;
-		}
+		sqlite3_finalize(prev);
 
 		// Remove prepared statement handle from set of valid pointers
 		stmt_set.erase(prev);
@@ -476,7 +470,7 @@ extern "C" const char *dm_db_quote(int argc, char *argv[])
 {
 	// Check for usage: a single filename argument is required
 	if(argc < 1) {
-		error_string = "Database or query handle argument is required";
+		error_string = "String argument is required";
 		return NULL;
 	}
 

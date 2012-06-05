@@ -1,0 +1,44 @@
+# Download the latest Mingw32/64 toolchain binary from:
+# https://sourceforge.net/projects/mingwbuilds/files/latest/download
+# Extract archive to C:\ and add C:\mingw\bin to path
+#
+# Download the SQLite source code from http://www.sqlite.org/download.html
+# The source code is in the sqlite-amalgamation-*.zip download file
+# Copy sqlite3.c and sqlite3.h into the same directory as dmsqlite.cpp
+#
+# Invoke GNU make with: mingw32-make -f Makefile.mingw32
+#
+# The output dmsqlite.dll file is huge because it statically links in the
+# entire GNU standard C++ library. This is the only way to avoid dependencies
+# on libstdc++-6.dll and libgcc_s_sjlj-1.dll from C:\mingw\bin
+#
+# Statically linking in sqlite3.c also avoids the dependency on sqlite3.dll
+# which would either have to be in the BYOND\bin directory or alongside
+# dmsqlite.dll in the user's "My Documents\BYOND\bin" directory
+
+CXXFLAGS:=-m32
+LDFLAGS:=-m32 -shared -static
+
+
+release: CXXFLAGS+= -O3
+release: LDFLAGS+= -O3
+release: all
+	strip dmsqlite.dll
+
+debug: CXXFLAGS+= -g -Wall -ansi -pedantic
+debug: all
+
+
+all: dmsqlite.dll
+
+clean:
+	del dmsqlite.o dmsqlite.dll
+
+dmsqlite.dll: dmsqlite.o sqlite3.o
+	g++ ${LDFLAGS} -o dmsqlite.dll dmsqlite.def dmsqlite.o sqlite3.o
+
+dmsqlite.o: dmsqlite.cpp
+	g++ ${CXXFLAGS} -c dmsqlite.cpp
+
+sqlite3.o: sqlite3.c
+	gcc ${CXXFLAGS} -c sqlite3.c

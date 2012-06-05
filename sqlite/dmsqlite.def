@@ -1,0 +1,10 @@
+LIBRARY dmsqlite
+EXPORTS
+dm_db_error_msg
+dm_db_finalize
+dm_db_col_names
+dm_db_close
+dm_db_quote
+dm_db_execute
+dm_db_next_row
+dm_db_open
