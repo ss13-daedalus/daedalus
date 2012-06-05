@@ -1076,7 +1076,7 @@ Also, you never added distance checking after target is selected. I've went ahea
 	summon_type = list("/turf/simulated/floor/engine/cult")
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/wall
-	name = "Leser Construction"
+	name = "Lesser Construction"
 	desc = "This spell constructs a cult wall"
 
 	school = "conjuration"
