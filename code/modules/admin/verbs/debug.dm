@@ -593,7 +593,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_if_possible(new /obj/item/clothing/shoes/black(M), M.slot_shoes)
 			M.equip_if_possible(new /obj/item/clothing/head/chefhat(M), M.slot_head)
 
-			M.equip_if_possible(new /obj/item/weapon/kitchen/rollingpin(M), M.slot_r_hand)
+			M.equip_if_possible(new /obj/item/weapon/kitchen/rolling_pin(M), M.slot_r_hand)
 			M.equip_if_possible(new /obj/item/weapon/kitchenknife(M), M.slot_l_hand)
 			M.equip_if_possible(new /obj/item/weapon/kitchenknife(M), M.slot_r_store)
 			M.equip_if_possible(new /obj/item/weapon/kitchenknife(M), M.slot_s_store)

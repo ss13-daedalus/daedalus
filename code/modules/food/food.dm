@@ -1736,7 +1736,7 @@
 
 // Dough + rolling pin = flat dough
 /obj/item/weapon/reagent_containers/food/snacks/dough/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/kitchen/rollingpin))
+	if(istype(W,/obj/item/weapon/kitchen/rolling_pin))
 		var/turf/spawnloc = foodloc(user, src)
 		new /obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough(spawnloc)
 		user << "You flatten the dough."

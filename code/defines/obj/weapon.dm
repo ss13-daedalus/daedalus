@@ -1288,7 +1288,7 @@ eternal248: Found broken and buggy Z-levels 7-12, ended up leading to my discove
 /obj/item/weapon/kitchen
 	icon = 'icons/obj/kitchen.dmi'
 
-/obj/item/weapon/kitchen/rollingpin
+/obj/item/weapon/kitchen/rolling_pin
 	name = "rolling pin"
 	desc = "Used to flatten dough."
 	icon_state = "rolling_pin"

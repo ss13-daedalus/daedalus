@@ -288,7 +288,7 @@
 //	product_amounts = "8;6;3;8;2"
 	product_prices = "1;2;3;1;5"
 	//product_amounts = "8;5;4" Old totals
-	product_hidden = "/obj/item/weapon/kitchen/utensil/spoon;/obj/item/weapon/kitchen/utensil/knife;/obj/item/weapon/kitchen/rollingpin;/obj/item/weapon/butch"
+	product_hidden = "/obj/item/weapon/kitchen/utensil/spoon;/obj/item/weapon/kitchen/utensil/knife;/obj/item/weapon/kitchen/rolling_pin;/obj/item/weapon/butch"
 //	product_hideamt = "2;2;2;2"
 	hidden_prices = "5;5;5;5"
 	points = 15

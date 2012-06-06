@@ -894,7 +894,7 @@
 #include "code\obj\item\weapon\kitchen\utensil.dm"
 #include "code\obj\item\weapon\kitchen\utensil\fork.dm"
 #include "code\obj\item\weapon\kitchen\utensil\knife.dm"
-#include "code\obj\item\weapon\kitchen\utensil\rollingpin.dm"
+#include "code\obj\item\weapon\kitchen\utensil\rolling_pin.dm"
 #include "code\obj\item\weapon\melee\billy_club.dm"
 #include "code\obj\item\weapon\melee\stun_baton.dm"
 #include "code\obj\item\weapon\melee\energy\axe.dm"

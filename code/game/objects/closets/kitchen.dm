@@ -36,7 +36,7 @@
 	new /obj/item/weapon/kitchen/utensil/fork(src)
 	new /obj/item/weapon/kitchen/utensil/knife(src)
 	new /obj/item/weapon/kitchen/utensil/spoon(src)
-	new /obj/item/weapon/kitchen/rollingpin(src)*/
+	new /obj/item/weapon/kitchen/rolling_pin(src)*/
 
 /obj/structure/closet/secure_closet/meat/New()
 	..()
