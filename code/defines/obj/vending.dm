@@ -236,7 +236,7 @@
 	desc = "A plant nutrients vendor"
 	icon_state = "nutri"
 	icon_deny = "nutri-deny"
-	product_paths = "/obj/item/nutrient/ez;/obj/item/nutrient/l4z;/obj/item/nutrient/rh;/obj/item/weapon/pestspray;/obj/item/weapon/reagent_containers/syringe;/obj/item/weapon/plantbag"
+	product_paths = "/obj/item/nutrient/ez;/obj/item/nutrient/l4z;/obj/item/nutrient/rh;/obj/item/weapon/pestspray;/obj/item/weapon/reagent_containers/syringe;/obj/item/weapon/plant_bag"
 //	product_amounts = "35;25;15;20;5;5"
 	product_prices = "1;1;2;2;7;7"
 	product_slogans = "Aren't you glad you don't have to fertilize the natural way?;Now with 50% less stink!;Plants are people too!"

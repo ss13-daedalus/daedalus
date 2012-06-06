@@ -1,6 +1,6 @@
 /**********************Plant Bag**************************/
 
-/obj/item/weapon/plantbag
+/obj/item/weapon/plant_bag
 	icon = 'icons/obj/hydroponics.dmi'
 	icon_state = "plantbag"
 	name = "Plant Bag"
@@ -9,14 +9,14 @@
 	flags = FPRINT | TABLEPASS | ONBELT
 	w_class = 1
 
-/obj/item/weapon/plantbag/attack_self(mob/user as mob)
+/obj/item/weapon/plant_bag/attack_self(mob/user as mob)
 	for (var/obj/item/weapon/reagent_containers/food/snacks/grown/O in contents)
 		contents -= O
 		O.loc = user.loc
 	user << "\blue You empty the plant bag."
 	return
 
-/obj/item/weapon/plantbag/verb/toggle_mode()
+/obj/item/weapon/plant_bag/verb/toggle_mode()
 	set name = "Switch Bagging Method"
 	set category = "Object"
 

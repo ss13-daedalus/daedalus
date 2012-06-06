@@ -54,7 +54,7 @@
 			user.visible_message( \
 				"\blue [user] has added \the [O] to \the [src].", \
 				"\blue You add \the [O] to \the [src].")
-	else if (istype(O, /obj/item/weapon/plantbag))
+	else if (istype(O, /obj/item/weapon/plant_bag))
 		for (var/obj/item/weapon/reagent_containers/food/snacks/grown/G in O.contents)
 			O.contents -= G
 			G.loc = src
