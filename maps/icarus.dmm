@@ -2682,7 +2682,7 @@
 "aZD" = (/turf/simulated/floor{dir = 8; icon_state = "redcorner"},/area/hallway/primary/central)
 "aZE" = (/obj/machinery/alarm{dir = 8; icon_state = "alarm0"; pixel_x = 24},/turf/simulated/floor,/area/hallway/primary/central)
 "aZF" = (/obj/structure/table,/obj/item/weapon/storage/donkpocket_kit{pixel_x = 3; pixel_y = 3},/obj/item/weapon/reagent_containers/glass/beaker{pixel_x = 5},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{dir = 6},/turf/simulated/floor{icon_state = "cafeteria"; dir = 2},/area/crew_quarters/kitchen)
-"aZG" = (/obj/machinery/smartfridge,/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{dir = 4},/turf/simulated/wall,/area/crew_quarters/kitchen)
+"aZG" = (/obj/machinery/smart_fridge,/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{dir = 4},/turf/simulated/wall,/area/crew_quarters/kitchen)
 "aZH" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{dir = 4},/obj/structure/table,/obj/item/weapon/book/manual/chef_recipes,/obj/machinery/light_fixture/small{dir = 1},/turf/simulated/floor{icon_state = "cafeteria"; dir = 2},/area/crew_quarters/kitchen)
 "aZI" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{dir = 4},/turf/simulated/wall,/area/crew_quarters/kitchen)
 "aZJ" = (/obj/structure/table/reinforced,/obj/machinery/door/firedoor/border_only,/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{dir = 4},/obj/machinery/door/poddoor/shutters{density = 0; icon_state = "shutter0"; id = "kitchen"; name = "Kitchen Shutters"; opacity = 0},/turf/simulated/floor{icon_state = "cafeteria"; dir = 2},/area/hallway/primary/starboard)

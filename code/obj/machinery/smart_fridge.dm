@@ -1,6 +1,6 @@
 /* SmartFridge.  Much todo
 */
-/obj/machinery/smartfridge
+/obj/machinery/smart_fridge
 	name = "SmartFridge"
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "smartfridge"
@@ -17,7 +17,7 @@
 	var/isbroken = 0
 
 
-/obj/machinery/smartfridge/power_change()
+/obj/machinery/smart_fridge/power_change()
 	if( powered() )
 		src.ispowered = 1
 		stat &= ~NOPOWER
@@ -35,7 +35,7 @@
 *   Item Adding
 ********************/
 
-/obj/machinery/smartfridge/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/smart_fridge/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(!src.ispowered)
 		user << "\red The [src] is unpowered and useless."
 		return
@@ -71,13 +71,13 @@
 		return 1
 	src.updateUsrDialog()
 
-/obj/machinery/smartfridge/attack_paw(mob/user as mob)
+/obj/machinery/smart_fridge/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/smartfridge/attack_ai(mob/user as mob)
+/obj/machinery/smart_fridge/attack_ai(mob/user as mob)
 	return 0
 
-/obj/machinery/smartfridge/attack_hand(mob/user as mob)
+/obj/machinery/smart_fridge/attack_hand(mob/user as mob)
 	user.machine = src
 	interact(user)
 
@@ -85,7 +85,7 @@
 *   SmartFridge Menu
 ********************/
 
-/obj/machinery/smartfridge/proc/interact(mob/user as mob)
+/obj/machinery/smart_fridge/proc/interact(mob/user as mob)
 	if(!src.ispowered)
 		return
 
@@ -107,7 +107,7 @@
 	onclose(user, "smartfridge")
 	return
 
-/obj/machinery/smartfridge/Topic(href, href_list)
+/obj/machinery/smart_fridge/Topic(href, href_list)
 	if(..())
 		return
 

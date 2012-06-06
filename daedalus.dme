@@ -932,7 +932,7 @@
 #include "code\obj\machinery\recharge_station.dm"
 #include "code\obj\machinery\recharger.dm"
 #include "code\obj\machinery\scan_consolenew.dm"
-#include "code\obj\machinery\smartfridge.dm"
+#include "code\obj\machinery\smart_fridge.dm"
 #include "code\obj\machinery\wish_granter.dm"
 #include "code\obj\machinery\atmospherics\binary.dm"
 #include "code\obj\machinery\atmospherics\pipe.dm"
