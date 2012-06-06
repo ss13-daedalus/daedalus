@@ -249,19 +249,14 @@ var/obj/machinery/blackbox_recorder/blackbox
 
 		round_end_data_gathering() //round_end time logging and some other data processing
 
-		var/user = sqlfdbklogin
-		var/pass = sqlfdbkpass
 		var/db = sqlfdbkdb
-		var/address = sqladdress
-		var/port = sqlport
+		var/SQLite/dbcon = new()
 
-		var/DBConnection/dbcon = new()
-
-		dbcon.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
+		dbcon.Connect(db)
 		if(!dbcon.IsConnected()) return
 		var/round_id
 
-		var/DBQuery/query = dbcon.NewQuery("SELECT MAX(round_id) AS round_id FROM erro_feedback")
+		var/SQLite/Query/query = dbcon.NewQuery("SELECT MAX(roundid) AS round_id FROM erro_feedback")
 		query.Execute()
 		while(query.NextRow())
 			round_id = query.item[1]
@@ -271,8 +266,8 @@ var/obj/machinery/blackbox_recorder/blackbox
 		round_id++
 
 		for(var/datum/feedback_variable/FV in feedback)
-			var/sql = "INSERT INTO erro_feedback VALUES (null, Now(), [round_id], \"[FV.get_variable()]\", [FV.get_value()], \"[FV.get_details()]\")"
-			var/DBQuery/query_insert = dbcon.NewQuery(sql)
+			var/sql = "INSERT INTO erro_feedback (roundid, time, variable, value, details) VALUES ([round_id], datetime('now'), '[FV.get_variable()]', '[FV.get_value()]', '[FV.get_details()]')"
+			var/SQLite/Query/query_insert = dbcon.NewQuery(sql)
 			query_insert.Execute()
 
 		dbcon.Disconnect()

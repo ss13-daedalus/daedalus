@@ -15,6 +15,10 @@
 # Statically linking in sqlite3.c also avoids the dependency on sqlite3.dll
 # which would either have to be in the BYOND\bin directory or alongside
 # dmsqlite.dll in the user's "My Documents\BYOND\bin" directory
+#
+# TODO: This library deadlocks if SQLite multithread support is not disabled
+# with -DSQLITE_THREADSAFE=0. Not sure if this is caused by statically linking
+# in the GCC runtime, or whether it's a bug in the latest Mingw code.
 
 CXXFLAGS:=-m32
 LDFLAGS:=-m32 -shared -static
@@ -32,7 +36,7 @@ debug: all
 all: dmsqlite.dll
 
 clean:
-	del dmsqlite.o dmsqlite.dll
+	del dmsqlite.o dmsqlite.dll sqlite3.o
 
 dmsqlite.dll: dmsqlite.o sqlite3.o
 	g++ ${LDFLAGS} -o dmsqlite.dll dmsqlite.def dmsqlite.o sqlite3.o
@@ -41,4 +45,4 @@ dmsqlite.o: dmsqlite.cpp
 	g++ ${CXXFLAGS} -c dmsqlite.cpp
 
 sqlite3.o: sqlite3.c
-	gcc ${CXXFLAGS} -c sqlite3.c
+	gcc ${CXXFLAGS} -DSQLITE_OS_WIN=1 -DSQLITE_THREADSAFE=0 -c sqlite3.c

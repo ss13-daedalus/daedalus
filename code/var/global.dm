@@ -175,35 +175,14 @@ var/global
 
 	list/paper_blacklist = list("script","frame","iframe","input","button","a","embed","object")
 
-	// MySQL configuration. You can also use the config/dbconfig.txt file.
-
-	sqladdress = "localhost"
-	sqlport = "3306"
-	sqldb = "tgstation"
-	sqllogin = "root"
-	sqlpass = ""
+	// SQLite configuration. You can also use the config/dbconfig.txt file.
+	sqldb = "data/daedalus.db"
 
 	// Feedback gathering sql connection
-
-	sqlfdbkdb = "test"
-	sqlfdbklogin = "root"
-	sqlfdbkpass = ""
+	sqlfdbkdb = "data/daedalus.db"
 
 	sqllogging = 0 // Should we log deaths, population stats, etc?
 
-
-
-	// Forum MySQL configuration (for use with forum account/key authentication)
-	// These are all default values that will load should the forumdbconfig.txt
-	// file fail to read for whatever reason.
-
-/*	forumsqladdress = "localhost"
-	forumsqlport = "3306"
-	forumsqldb = "tgstation"
-	forumsqllogin = "root"
-	forumsqlpass = ""
-	forum_activated_group = "2"
-	forum_authenticated_group = "10"*/
 
 	// For FTP requests. (i.e. downloading runtime logs.)
 	// However it'd be ok to use for accessing attack logs and such too, which are even laggier.

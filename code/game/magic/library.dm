@@ -3,7 +3,7 @@
 //	Library SQL Configuration
 //
 //*******************************
-// Requires Dantom.DB library ( http://www.byond.com/developer/Dantom/DB )
+// Requires dmsqlite.dll
 
 
 /*
@@ -52,8 +52,7 @@
 
 // Run all strings to be used in an SQL query through this proc first to properly escape out injection attempts.
 /proc/sanitizeSQL(var/t as text)
-	var/sanitized_text = dd_replacetext(t, "'", "\\'")
-	sanitized_text = dd_replacetext(sanitized_text, "\"", "\\\"")
+	var/sanitized_text = dd_replacetext(t, "'", "''")
 	return sanitized_text
 
 
@@ -495,8 +494,8 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 			dat += "<A href='?src=\ref[src];search=1'>\[Start Search\]</A><BR>"
 		if(1)
 			if(BOOKS_USE_SQL && config.sql_enabled)
-				var/DBConnection/dbcon = new()
-				dbcon.Connect("dbi:mysql:[sqldb]:[sqladdress]:[sqlport]","[sqllogin]","[sqlpass]")
+				var/SQLite/dbcon = new()
+				dbcon.Connect(sqldb)
 				if(!dbcon.IsConnected())
 					dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font><BR>"
 				else if(!SQLquery)
@@ -505,7 +504,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 					dat += "<table>"
 					dat += "<tr><td>AUTHOR</td><td>TITLE</td><td>CATEGORY</td><td>SS<sup>13</sup>BN</td></tr>"
 
-					var/DBQuery/query = dbcon.NewQuery(SQLquery)
+					var/SQLite/Query/query = dbcon.NewQuery(SQLquery)
 					query.Execute()
 
 					while(query.NextRow())
@@ -655,8 +654,8 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 		if(4)
 			dat += "<h3>External Archive</h3>"
 			if(BOOKS_USE_SQL && config.sql_enabled)
-				var/DBConnection/dbcon = new()
-				dbcon.Connect("dbi:mysql:[sqldb]:[sqladdress]:[sqlport]","[sqllogin]","[sqlpass]")
+				var/SQLite/dbcon = new()
+				dbcon.Connect(sqldb)
 				if(!dbcon.IsConnected())
 					dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font>"
 				else
@@ -664,7 +663,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 					dat += "<table>"
 					dat += "<tr><td>AUTHOR</td><td>TITLE</td><td>CATEGORY</td><td></td></tr>"
 
-					var/DBQuery/query = dbcon.NewQuery("SELECT id, author, title, category FROM library")
+					var/SQLite/Query/query = dbcon.NewQuery("SELECT id, author, title, category FROM library")
 					query.Execute()
 
 					while(query.NextRow())
@@ -817,23 +816,16 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				var/choice = input("Are you certain you wish to upload this title to the Archive?") in list("Confirm", "Abort")
 				if(choice == "Confirm")
 					if(BOOKS_USE_SQL && config.sql_enabled)
-						var/DBConnection/dbcon = new()
-						dbcon.Connect("dbi:mysql:[sqldb]:[sqladdress]:[sqlport]","[sqllogin]","[sqlpass]")
+						var/SQLite/dbcon = new()
+						dbcon.Connect(sqldb)
 						if(!dbcon.IsConnected())
 							alert("Connection to Archive has been severed. Aborting.")
 						else
-							/*
 							var/sqltitle = dbcon.Quote(scanner.cache.name)
 							var/sqlauthor = dbcon.Quote(scanner.cache.author)
 							var/sqlcontent = dbcon.Quote(scanner.cache.dat)
 							var/sqlcategory = dbcon.Quote(upload_category)
-							*/
-							var/sqltitle = dd_replacetext(scanner.cache.name, "'", "''")
-							var/sqlauthor = dd_replacetext(scanner.cache.author, "'", "''")
-							var/sqlcontent = dd_replacetext(scanner.cache.dat, "'", "''")
-							var/sqlcategory = upload_category
-							///proc/dd_replacetext(text, search_string, replacement_string)
-							var/DBQuery/query = dbcon.NewQuery("INSERT INTO library (author, title, content, category) VALUES ('[sqlauthor]', '[sqltitle]', '[sqlcontent]', '[sqlcategory]')")
+							var/SQLite/Query/query = dbcon.NewQuery("INSERT INTO library (author, title, content, category) VALUES ('[sqlauthor]', '[sqltitle]', '[sqlcontent]', '[sqlcategory]')")
 							if(!query.Execute())
 								usr << query.ErrorMsg()
 							else
@@ -875,12 +867,12 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 
 		if(BOOKS_USE_SQL && config.sql_enabled)
 			var/sqlid = href_list["targetid"]
-			var/DBConnection/dbcon = new()
-			dbcon.Connect("dbi:mysql:[sqldb]:[sqladdress]:[sqlport]","[sqllogin]","[sqlpass]")
+			var/SQLite/dbcon = new()
+			dbcon.Connect(sqldb)
 			if(!dbcon.IsConnected())
 				alert("Connection to Archive has been severed. Aborting.")
 			else
-				var/DBQuery/query = dbcon.NewQuery("SELECT * FROM library WHERE id=[sqlid]")
+				var/SQLite/Query/query = dbcon.NewQuery("SELECT * FROM library WHERE id=[sqlid]")
 				query.Execute()
 
 				while(query.NextRow())

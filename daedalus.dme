@@ -156,7 +156,7 @@
 #include "code\defines\procs\captain_announce.dm"
 #include "code\defines\procs\church_name.dm"
 #include "code\defines\procs\command_alert.dm"
-#include "code\defines\procs\dbcore.dm"
+#include "code\sqlite.dm"
 #include "code\defines\procs\gamehelpers.dm"
 #include "code\defines\procs\helpers.dm"
 #include "code\defines\procs\icon_procs.dm"

@@ -122,7 +122,7 @@ SQLite
 		// the error message from the native wrapper library and saves it
 		// in the _error variable for later retrieval by ErrorMsg()
 		_log_error()
-			_error = call(_native_lib, "dm_db_error_msg")()
+			src._error = call(_native_lib, "dm_db_error_msg")()
 
 	// This class encapsulates a single SQL query along with any result data
 	// produced by that query. Instances of this class should be created using the
