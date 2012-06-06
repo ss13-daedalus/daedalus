@@ -91,7 +91,7 @@
 	..()
 	new /obj/item/weapon/melee/stun_baton(src)
 	new /obj/item/weapon/pepper_spray(src)
-	new /obj/item/weapon/flashbang(src)
+	new /obj/item/weapon/flashbang_grenade(src)
 	new /obj/item/weapon/handcuffs(src)
 	new /obj/item/weapon/handcuffs(src)
 	new /obj/item/weapon/handcuffs(src)
@@ -128,7 +128,7 @@
 	item_state = "security"//Could likely use a better one.
 	//storage_slots = 6
 	can_hold = list(
-		"/obj/item/weapon/flashbang",
+		"/obj/item/weapon/flashbang_grenade",
 		"/obj/item/weapon/pepper_spray",
 		"/obj/item/weapon/handcuffs",
 		"/obj/item/device/flash",

@@ -446,7 +446,7 @@
 		new /obj/item/device/flash(src)
 		new /obj/item/weapon/melee/stun_baton(src)
 		new /obj/item/barricade_tape_roll/police(src)
-		new /obj/item/weapon/flashbang(src)
+		new /obj/item/weapon/flashbang_grenade(src)
 		new /obj/item/device/pda/security(src)
 		new /obj/item/clothing/suit/armor/vest(src)
 		new /obj/item/clothing/suit/storage/gearharness(src)

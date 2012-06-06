@@ -221,7 +221,7 @@
 	icon_state = "sec"
 	icon_deny = "sec-deny"
 	req_access_txt = "1"
-	product_paths = "/obj/item/clothing/under/color/red;/obj/item/clothing/under/ftech;/obj/item/clothing/under/det;/obj/item/clothing/suit/storage/det_suit;/obj/item/clothing/head/det_hat;/obj/item/clothing/head/helmet;/obj/item/clothing/suit/armor/vest;/obj/item/clothing/suit/storage/gearharness;/obj/item/weapon/storage/belt/security;/obj/item/device/radio/headset/security;/obj/item/weapon/handcuffs;/obj/item/weapon/flashbang;/obj/item/device/flash;/obj/item/weapon/reagent_containers/food/snacks/donut;/obj/item/weapon/storage/box/evidence"
+	product_paths = "/obj/item/clothing/under/color/red;/obj/item/clothing/under/ftech;/obj/item/clothing/under/det;/obj/item/clothing/suit/storage/det_suit;/obj/item/clothing/head/det_hat;/obj/item/clothing/head/helmet;/obj/item/clothing/suit/armor/vest;/obj/item/clothing/suit/storage/gearharness;/obj/item/weapon/storage/belt/security;/obj/item/device/radio/headset/security;/obj/item/weapon/handcuffs;/obj/item/weapon/flashbang_grenade;/obj/item/device/flash;/obj/item/weapon/reagent_containers/food/snacks/donut;/obj/item/weapon/storage/box/evidence"
 //	product_amounts = "8;4;5;12;6"
 	product_prices = "1;1;1;1;1;3;3;3;2;1;1;3;2;1;2"
 	product_hidden = "/obj/item/clothing/glasses/sunglasses;/obj/item/kitchen/donut_box"

@@ -24,13 +24,13 @@
 
 /obj/item/weapon/storage/flashbang_kit/New()
 
-	new /obj/item/weapon/flashbang(src)
-	new /obj/item/weapon/flashbang(src)
-	new /obj/item/weapon/flashbang(src)
-	new /obj/item/weapon/flashbang(src)
-	new /obj/item/weapon/flashbang(src)
-	new /obj/item/weapon/flashbang(src)
-	new /obj/item/weapon/flashbang(src)
+	new /obj/item/weapon/flashbang_grenade(src)
+	new /obj/item/weapon/flashbang_grenade(src)
+	new /obj/item/weapon/flashbang_grenade(src)
+	new /obj/item/weapon/flashbang_grenade(src)
+	new /obj/item/weapon/flashbang_grenade(src)
+	new /obj/item/weapon/flashbang_grenade(src)
+	new /obj/item/weapon/flashbang_grenade(src)
 	..()
 	return
 

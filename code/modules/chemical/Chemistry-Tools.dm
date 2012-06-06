@@ -411,7 +411,7 @@
 
 	attackby(obj/item/I as obj, mob/user as mob)
 
-		if((istype(I, /obj/item/weapon/chem_grenade)) || (istype(I, /obj/item/weapon/flashbang)) || (istype(I, /obj/item/weapon/smokebomb)) || (istype(I, /obj/item/weapon/mustardbomb)) || (istype(I, /obj/item/weapon/emp_grenade)))
+		if((istype(I, /obj/item/weapon/chem_grenade)) || (istype(I, /obj/item/weapon/flashbang_grenade)) || (istype(I, /obj/item/weapon/smokebomb)) || (istype(I, /obj/item/weapon/mustardbomb)) || (istype(I, /obj/item/weapon/emp_grenade)))
 			if(grenades.len < max_grenades)
 				user.drop_item()
 				I.loc = src
@@ -454,8 +454,8 @@
 				playsound(user.loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
 				spawn(15)
 					F.explode()
-			else if (istype(grenades[1], /obj/item/weapon/flashbang))
-				var/obj/item/weapon/flashbang/F = grenades[1]
+			else if (istype(grenades[1], /obj/item/weapon/flashbang_grenade))
+				var/obj/item/weapon/flashbang_grenade/F = grenades[1]
 				grenades -= F
 				F.loc = user.loc
 				F.throw_at(target, 30, 2)
@@ -510,8 +510,8 @@
 					playsound(user.loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
 					spawn(15)
 						F.explode()
-				else if (istype(grenades[1], /obj/item/weapon/flashbang))
-					var/obj/item/weapon/flashbang/F = grenades[1]
+				else if (istype(grenades[1], /obj/item/weapon/flashbang_grenade))
+					var/obj/item/weapon/flashbang_grenade/F = grenades[1]
 					grenades -= F
 					F.loc = user.loc
 					F.throw_at(target, 30, 2)

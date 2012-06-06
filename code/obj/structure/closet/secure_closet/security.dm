@@ -144,7 +144,7 @@
 		new /obj/item/device/pda/security(src)
 		new /obj/item/device/radio/headset/headset_sec(src)
 		new /obj/item/weapon/storage/belt/security(src)
-		new /obj/item/weapon/flashbang(src)
+		new /obj/item/weapon/flashbang_grenade(src)
 		new /obj/item/weapon/pepper_spray(src)
 		new /obj/item/device/flash(src)
 		new /obj/item/weapon/melee/stun_baton(src)

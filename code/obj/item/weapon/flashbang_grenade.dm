@@ -1,8 +1,8 @@
 
 /****************************Flashbang***********************************************/
-/obj/item/weapon/flashbang
+/obj/item/weapon/flashbang_grenade
 	desc = "It is set to detonate in 3 seconds."
-	name = "flashbang"
+	name = "flashbang grenade"
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "flashbang"
 	w_class = 2.0
@@ -133,13 +133,13 @@
 		if (M.eye_stat >= 20)
 			M << "\red Your eyes start to burn badly!"
 			M.disabilities |= 1
-			if(!banglet && !(istype(src , /obj/item/weapon/flashbang/clusterbang)))
+			if(!banglet && !(istype(src , /obj/item/weapon/flashbang_grenade/clusterbang)))
 				if (prob(M.eye_stat - 20 + 1))
 					M << "\red You can't see anything!"
 					M.disabilities |= 128
 		if (M.ear_damage >= 15)
 			M << "\red Your ears start to ring badly!"
-			if(!banglet && !(istype(src , /obj/item/weapon/flashbang/clusterbang)))
+			if(!banglet && !(istype(src , /obj/item/weapon/flashbang_grenade/clusterbang)))
 				if (prob(M.ear_damage - 10 + 5))
 					M << "\red You can't hear anything!"
 					M.disabilities |= 32
@@ -203,7 +203,7 @@
 			return 0
 		return 1
 
-/obj/item/weapon/flashbang/clusterbang
+/obj/item/weapon/flashbang_grenade/clusterbang
 	desc = "Use of this weapon may constiute a war crime in your area, consult your local captain."
 	name = "Clusterbang"
 	icon = 'icons/obj/grenade.dmi'
@@ -236,7 +236,7 @@
 			walk_towards(src, t, 3)
 		return
 
-/obj/item/weapon/flashbang/clusterbang/proc/arm(mob/user as mob)
+/obj/item/weapon/flashbang_grenade/clusterbang/proc/arm(mob/user as mob)
 
 	//world << "Armed!"
 	var/numspawned = rand(4,8)
@@ -251,7 +251,7 @@
 	for(,numspawned > 0, numspawned--)
 		//world << "Spawned Flashbang!"
 		spawn(0)
-			var/obj/item/weapon/flashbang/F = new /obj/item/weapon/flashbang(src)
+			var/obj/item/weapon/flashbang_grenade/F = new /obj/item/weapon/flashbang_grenade(src)
 			F.loc = src.loc
 			F.icon_state = "flashbang1"
 			playsound(src.loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
@@ -266,7 +266,7 @@
 	for(,again > 0, again--)
 		//world << "Spawned CFlashbang!"
 		spawn(0)
-			var/obj/item/weapon/flashbang/clusterbang/F = new /obj/item/weapon/flashbang/clusterbang(src)
+			var/obj/item/weapon/flashbang_grenade/clusterbang/F = new /obj/item/weapon/flashbang_grenade/clusterbang(src)
 			F.loc = src.loc
 			F.active = 1
 			F.child = 1
