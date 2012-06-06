@@ -1,5 +1,5 @@
 
-/obj/item/weapon/empgrenade
+/obj/item/weapon/emp_grenade
 	desc = "It is set to detonate in 5 seconds."
 	name = "emp grenade"
 	w_class = 2.0

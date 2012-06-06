@@ -36,11 +36,11 @@
 
 /obj/item/weapon/storage/emp_kit/New()
 
-	new /obj/item/weapon/empgrenade(src)
-	new /obj/item/weapon/empgrenade(src)
-	new /obj/item/weapon/empgrenade(src)
-	new /obj/item/weapon/empgrenade(src)
-	new /obj/item/weapon/empgrenade(src)
+	new /obj/item/weapon/emp_grenade(src)
+	new /obj/item/weapon/emp_grenade(src)
+	new /obj/item/weapon/emp_grenade(src)
+	new /obj/item/weapon/emp_grenade(src)
+	new /obj/item/weapon/emp_grenade(src)
 	..()
 	return
 
