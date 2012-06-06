@@ -64,14 +64,6 @@
 	var/def_zone
 	pass_flags = PASSTABLE
 
-/obj/structure/bedsheetbin
-	name = "linen bin"
-	desc = "A bin for containing bedsheets. It looks rather cosy."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "bedbin"
-	var/amount = 23.0
-	anchored = 1.0
-
 /obj/effect/begin
 	name = "begin"
 	icon = 'icons/obj/stationobjs.dmi'

@@ -4835,7 +4835,7 @@
 "bOY" = (/obj/machinery/camera{c_tag = "Delivery Entrance"; dir = 2; network = "Medbay"; pixel_x = 22},/turf/simulated/floor{icon_state = "white"},/area/medical/medbay)
 "bOZ" = (/obj/machinery/light_fixture{dir = 1},/turf/simulated/floor{icon_state = "white"},/area/medical/medbay)
 "bPa" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/plating,/area/medical/surgery)
-"bPb" = (/obj/machinery/light_fixture{dir = 1},/obj/structure/table,/obj/structure/bedsheetbin{pixel_x = 2},/obj/item/clothing/suit/straight_jacket,/turf/simulated/floor{icon_state = "white"},/area/medical/surgery)
+"bPb" = (/obj/machinery/light_fixture{dir = 1},/obj/structure/table,/obj/structure/bedsheet_bin{pixel_x = 2},/obj/item/clothing/suit/straight_jacket,/turf/simulated/floor{icon_state = "white"},/area/medical/surgery)
 "bPc" = (/obj/structure/stool/bed/roller,/turf/simulated/floor{icon_state = "white"},/area/medical/surgery)
 "bPd" = (/obj/structure/stool/bed/roller,/obj/machinery/camera{c_tag = "Surgery Recovery Room"; dir = 2; network = "Medbay"; pixel_x = 22},/turf/simulated/floor{icon_state = "white"},/area/medical/surgery)
 "bPe" = (/obj/machinery/firealarm{pixel_y = 25},/obj/structure/stool/bed/roller,/turf/simulated/floor{icon_state = "white"},/area/medical/surgery)
