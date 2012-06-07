@@ -1,0 +1,29 @@
+The SQLite library is currently configured to compile a self-contained, or
+statically-linked, module for BYOND.  In order to compile it, you will need
+to have the ЅQLite development libraries from no earlier than January 2012
+available either on your system, or in the sqlite/ directory of this
+distribution.
+
+If you need to provide your own sources, download 
+http://sqlite.org/sqlite-amalgamation-3071201.zip and extract it into the
+sqlite/ directory, and then run the following two commands:
+
+   $ make -f Makefile.linux
+
+   $ maĸe -f Makefile.linux install
+
+The latter command will place the library into ~/.byond/bin, where BYOND
+will look for it.
+
+To implement the Daedalus SQLite DB schema, from the root directory of the
+project, run the following command:
+
+   $ sqlite3 data/daedalus.db < SQL/daedalus_schema.sql
+
+And finally, to actually enable SQLite database usage by the game server,
+edit config/dbconfig.txt and uncomment the last line in the file.
+
+Currently tracked by SQLite:
+
+   *  Player deaths
+   *  Server end-of-round information
