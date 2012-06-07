@@ -1,24 +1,38 @@
-CXXFLAGS:=-m32 -fPIC
-LDFLAGS:=-m32 -shared -Wl,--version-script=dmsqlite.x
+CFLAGS += -m32 -fPIC
+LDFLAGS += -m32 -shared -Wl,--version-script=dmsqlite.gld
+
+TARGET += dmsqlite.so
+OBJS += dmsqlite.o
+LIBS +=
 
 
-release: CXXFLAGS+= -O3
-release: LDFLAGS+= -O3
-release: all
-	strip dmsqlite.so
+ifdef STATIC
+OBJS += sqlite3.o
+else
+LIBS += -lsqlite3
+endif
 
-debug: CXXFLAGS+= -g -Wall -ansi -pedantic
-debug: all
+ifdef DEBUG
+CFLAGS += -g -Wall -ansi -pedantic -Wno-long-long
+else
+CFLAGS += -O3 -flto
+LDFLAGS += -O3 -flto
+STRIP += strip ${TARGET}
+endif
 
 
-all: dmsqlite.so
+all: ${TARGET}
 
+.PHONY: clean
 clean:
-	rm -f dmsqlite.o dmsqlite.so
+	rm -f ${TARGET} *.o
 
-dmsqlite.so: dmsqlite.o
-	g++ ${LDFLAGS} -o dmsqlite.so dmsqlite.o -lsqlite3
+${TARGET}: ${OBJS}
+	g++ ${LDFLAGS} -o $@ $+ ${LIBS}
+	${STRIP}
 
-dmsqlite.o: dmsqlite.cpp
-	g++ ${CXXFLAGS} -c dmsqlite.cpp
+.cpp.o:
+	g++ ${CFLAGS} -c $<
 
+.c.o:
+	gcc ${CFLAGS} -c $<
