@@ -752,6 +752,20 @@ datum
 					M.take_organ_damage(min(15, volume * 2))
 
 			reaction_obj(var/obj/O, var/volume)
+				if(istype(O, /obj/effect/blob))
+					var/obj/effect/blob/B = O
+					if(B.weakness == "acid")
+						B.health -= rand(volume*2,volume*3)
+						B.update()
+						O.visible_message("\red \The [O] sizzles violently!")
+					else if(B.strength == "acid")
+						B.health += rand(volume*0.5,volume*1)
+						B.update()
+						O.visible_message("\red <B>\The [O] strengthens!</B>")
+					else
+						B.health -= rand(volume*1,volume*1.5)
+						O.visible_message("\red \The [O] dissolves slightly.")
+					B.update()
 				if((istype(O,/obj/item) || istype(O,/obj/effect/glowshroom)) && prob(10))
 					var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 					I.desc = "Looks like this was \an [O] some time ago."
@@ -818,6 +832,20 @@ datum
 						M.take_organ_damage(min(15, volume * 4))
 
 			reaction_obj(var/obj/O, var/volume)
+				if(istype(O, /obj/effect/blob))
+					var/obj/effect/blob/B = O
+					if(B.weakness == "acid")
+						B.health -= rand(volume*5,volume*6)
+						B.update()
+						O.visible_message("\red \The [O] sizzles violently!")
+					if(B.strength == "acid")
+						B.health += rand(volume*2,volume*3)
+						B.update()
+						O.visible_message("\red <B>\The [O] strengthens!</B>")
+					else
+						B.health -= rand(volume*2,volume*2.5)
+						O.visible_message("\red \The [O] dissolves slightly.")
+					B.update()
 				if((istype(O,/obj/item) || istype(O,/obj/effect/glowshroom)))
 					var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 					I.desc = "Looks like this was \an [O] some time ago."

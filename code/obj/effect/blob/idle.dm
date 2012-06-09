@@ -4,8 +4,10 @@
 	icon_state = "blobidle0"
 
 
-	New(loc, var/h = 10)
+	New(loc, var/h = 10, var/w = "fire", var/s = "brute")
 		src.health = h
+		src.weakness = w
+		src.strength = s
 		src.dir = pick(1,2,4,8)
 		src.update_idle()
 
@@ -24,7 +26,7 @@
 
 
 	Del()		//idle blob that spawns a normal blob when killed.
-		var/obj/effect/blob/B = new /obj/effect/blob( src.loc )
+		var/obj/effect/blob/B = new /obj/effect/blob( src.loc, src.weakness, src.strength )
 		spawn(30)
 			B.Life()
 		..()
