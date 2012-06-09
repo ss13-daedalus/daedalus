@@ -87,11 +87,12 @@
 			blobtype = "Core"
 			blob_cores += src
 			processing_objects.Add(src)
-			weakness = pick("fire", "brute", "cold", "acid", "elec")
-			strength = pick("fire", "brute", "cold", "acid", "elec")
-			//	TODO: Fix the hell out of this
-			if(src.strength == src.weakness) //Yes, they could have the same weakness and strength, but this should reduce the odds.
-				src.strength = pick("fire", "brute", "cold", "acid", "elec")
+
+			// Make a list of potential strengths and weaknesses.
+			var/list/damage_types = list("fire", "brute", "cold", "acid", "elec")
+			weakness = pick(damage_types)
+			damage_types -= weakness
+			strength = pick(damage_types)
 			var/w = src.weakness
 			if(w)
 				if(w == "fire")
