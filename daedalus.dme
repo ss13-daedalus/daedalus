@@ -148,7 +148,6 @@
 #include "code\defines\obj\spawner.dm"
 #include "code\defines\obj\storage.dm"
 #include "code\defines\obj\supplypacks.dm"
-#include "code\defines\obj\toy.dm"
 #include "code\defines\obj\vending.dm"
 #include "code\defines\obj\weapon.dm"
 #include "code\defines\obj\window.dm"
