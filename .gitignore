@@ -1,3 +1,5 @@
+spool/*.fifo
+data/*.db
 *.log
 *.int
 *.rsc
