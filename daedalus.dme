@@ -824,6 +824,7 @@
 #include "code\obj\item\robot_parts\r_arm.dm"
 #include "code\obj\item\robot_parts\l_leg.dm"
 #include "code\obj\item\robot_parts\r_leg.dm"
+#include "code\obj\item\toy.dm"
 #include "code\obj\item\toy\crayon.dm"
 #include "code\obj\item\weapon\a_gift.dm"
 #include "code\obj\item\weapon\ai_module.dm"
