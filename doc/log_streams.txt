@@ -1,0 +1,4 @@
+If you want realtime inormation about happenings on the game server, follow
+the directions outlined in spool/README.  You will then have several named
+pipes into which you will be able to hook, to send events as they happen from
+the server to any process you like, to handle in whatever nammer you like.

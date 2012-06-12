@@ -1,0 +1,26 @@
+What is the spool directory here for?
+
+To allow extraprocess communication, create FIFO objects in this directory,
+named and purposed as follows:
+
+      FIFO Name            Information routed to the file
+      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      access.fifo          Login / Logout notifications
+      admin.fifo           All Admin-level log messages
+      adminhelp.fifo       AdminHelp messages from the server
+      attack.fifo          Any Attack actions on the server
+      prayer.fifo          Pray messages from the server
+
+Any FIFOs not created will be created as files and appended to by the game
+server.  admin.fifo in particular has the potential to grow quite large.
+
+To create all of these FIFOs at once, run the following command in the
+spool/ directory:
+
+   $ mkfifo {access,admin{,help},attack,prayer}.fifo
+
+WARNING:
+Since FIFOs are blocking when both ends are not capped, be certain to have
+your utility handle the case of the FIFOs not being open for writing.  BYOND
+has no idea what a pipe is, so it thinks that it's appending to a file when
+writing to the FIFOs.
