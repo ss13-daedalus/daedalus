@@ -83,7 +83,7 @@ static const char *RSVD_CTRL_CHARS =
 // Reserved characters that may not be used in the pathname to a database
 // file. These have either special meaning to a POSIX shell, or in the
 // case of the colon (:) to Windows and the Mac OSX Finder.
-#define RSVD_FILE_CHARS "\\:;*?\"'`<>|"
+#define RSVD_FILE_CHARS "\\:;*?\"'`<>|{}"
 
 // Helper function to decode the database or statement handle passed as the
 // first or second arguemnts in most dm_db_xxx() methods. The handle is just
