@@ -1,0 +1,52 @@
+CFLAGS := -m32 -MMD -MP
+LDFLAGS := -m32 -bundle --exported_symbols_list dmsqlite.exp
+
+TARGET := dmsqlite.bundle
+OBJS := dmsqlite.o
+LIBS :=
+
+sqlite3.o_CFLAGS := -DSQLITE_THREADSAFE=0 -DSQLITE_OMIT_LOAD_EXTENSION
+
+
+ifdef DYNAMIC
+LIBS += -lsqlite3
+else
+OBJS += sqlite3.o
+endif
+
+ifdef DEBUG
+dmsqlite.o_CFLAGS += -g -Wall -ansi -pedantic -Wno-long-long
+else
+CFLAGS += -O3
+LDFLAGS += -O3
+STRIP := strip ${TARGET}
+endif
+
+
+.PHONY: all clean install
+
+all: ${TARGET}
+
+-include ${OBJS:.o=.d}
+
+clean:
+	rm -f ${TARGET} *.o *.d
+
+install: ${TARGET}
+	install -d ~/.byond/bin
+	install ${TARGET} ~/.byond/bin
+
+${TARGET}: ${OBJS}
+	${CXX} ${LDFLAGS} -o $@ $+ ${LIBS}
+	${STRIP}
+
+.cpp.o:
+	${CXX} ${CFLAGS} ${$@_CFLAGS} -c $<
+
+.c.o:
+	${CC} ${CFLAGS} ${$@_CFLAGS} -c $<
+
+sqlite3.c:
+	@echo Missing SQLite source files. Download and extract >&2
+	@echo the sqlite-amalgamation ZIP file from: >&2
+	@echo http://www.sqlite.org/download.html >&2

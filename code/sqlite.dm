@@ -42,8 +42,10 @@ SQLite
 		if(_native_lib == null)
 			if(world.system_type == MS_WINDOWS)
 				src._native_lib = "dmsqlite.dll"
-			else
+			else if(world.system_type == UNIX)
 				src._native_lib = "dmsqlite.so"
+			else
+				src._native_lib = "dmsqlite.bundle"
 
 		// Set default file name for this SQLite object for use in Connect()
 		src._file_name = file_name
