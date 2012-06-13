@@ -1,11 +1,11 @@
-CFLAGS += -m32 -fPIC
-LDFLAGS += -m32 -shared -Wl,--version-script=dmsqlite.gld
+CFLAGS := -m32 -fPIC -MMD -MP
+LDFLAGS := -m32 -shared -Wl,--version-script=dmsqlite.gld
 
-TARGET += dmsqlite.so
-OBJS += dmsqlite.o
-LIBS +=
+TARGET := dmsqlite.so
+OBJS := dmsqlite.o
+LIBS :=
 
-sqlite3.o_CFLAGS += -DSQLITE_THREADSAFE=0 -DSQLITE_OMIT_LOAD_EXTENSION
+sqlite3.o_CFLAGS := -DSQLITE_THREADSAFE=0 -DSQLITE_OMIT_LOAD_EXTENSION
 
 
 ifdef DYNAMIC
@@ -15,19 +15,22 @@ OBJS += sqlite3.o
 endif
 
 ifdef DEBUG
-CFLAGS += -g -Wall -ansi -pedantic -Wno-long-long
+dmsqlite.o_CFLAGS += -g -Wall -ansi -pedantic -Wno-long-long
 else
 CFLAGS += -O3
 LDFLAGS += -O3
-STRIP += strip ${TARGET}
+STRIP := strip ${TARGET}
 endif
 
 
+.PHONY: all clean install
+
 all: ${TARGET}
 
-.PHONY: clean install
+-include ${OBJS:.o=.d}
+
 clean:
-	rm -f ${TARGET} *.o
+	rm -f ${TARGET} *.o *.d
 
 install: ${TARGET}
 	install -d ~/.byond/bin
@@ -38,7 +41,12 @@ ${TARGET}: ${OBJS}
 	${STRIP}
 
 .cpp.o:
-	${CXX}  ${CFLAGS} ${$@_CFLAGS} -c $<
+	${CXX} ${CFLAGS} ${$@_CFLAGS} -c $<
 
 .c.o:
 	${CC} ${CFLAGS} ${$@_CFLAGS} -c $<
+
+sqlite3.c:
+	@echo Missing SQLite source files. Download and extract >&2
+	@echo the sqlite-amalgamation ZIP file from: >&2
+	@echo http://www.sqlite.org/download.html >&2

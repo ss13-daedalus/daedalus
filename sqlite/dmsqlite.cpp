@@ -23,6 +23,13 @@
 #include <string.h>
 #include "sqlite3.h"
 
+// The strcasecmp() and strncasecmp() functions are specified by POSIX but are
+// not by ANSI C. On Windows, these functions have alternate names.
+#ifdef _WIN32
+#define strcasecmp _stricmp
+#define strncasecmp _strnicmp
+#endif
+
 // Any pointer value returned by this wrapper library is added into one of the
 // pointer_set_t sets. For safety purposes, when that handle is returned by
 // the BYOND script as an argument, it will be checked against the appropriate
@@ -57,6 +64,26 @@ static const char *STMT[] = {
 	"Query handle is required",
 	"Query handle is not valid or is already closed"
 };
+
+// Reserved device names (case-insensitive) under Windows which cannot be used
+// for a normal file, and cannot be used as a pathname component.
+// See the MSDN article "Naming Files, Paths, and Namespaces" for details:
+// http://msdn.microsoft.com/en-us/library/aa365247.aspx
+static const char *RSVD_FILE_NAMES[] = {
+	"CON", "PRN", "AUX", "NUL", "COM1", "COM2", "COM3", "COM4", "COM5",
+	"COM6", "COM7", "COM8", "COM9", "LPT1", "LPT2", "LPT3", "LPT4", "LPT5",
+	"LPT6", "LPT7", "LPT8", "LPT9", NULL
+	// Note that the entire array must be NULL terminated
+};
+
+// ASCII control characters that may not be used in database pathnames
+static const char *RSVD_CTRL_CHARS =
+	"\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0A\x0B\x0C\x0D\x0E\x0F";
+
+// Reserved characters that may not be used in the pathname to a database
+// file. These have either special meaning to a POSIX shell, or in the
+// case of the colon (:) to Windows and the Mac OSX Finder.
+#define RSVD_FILE_CHARS "\\:;*?\"'`<>|"
 
 // Helper function to decode the database or statement handle passed as the
 // first or second arguemnts in most dm_db_xxx() methods. The handle is just
@@ -96,6 +123,115 @@ static void *get_handle(int argc, char *argv[], int argn,
 	return pointer;
 }
 
+// Authorization callback which verifies that a database pathname specified by
+// a BYOND script is safe to use. Only path names within the game directory
+// are allowed (cannot start with / or contain ..). Any characters in the path
+// with special meaning to a POSIX shell or to Windows are also not allowed.
+// These checks are based on "Secure Programming for Linux and Unix HOWTO" by
+// David A. Wheeler. See http://www.dwheeler.com/secure-programs/
+//
+// This function is called manually by dm_db_open() and automatically by
+// SQLite itself when executing the "ATTACH DATABASE" SQL statement.
+//
+// userdata: NULL (not used); 3rd argument in sqlite3_set_authorizer()
+// action: Action to be authorized; only SQLITE_ATTACH checked
+// pathname: The pathname to be validated when action==SQLITE_ATTACH
+// unused: Not used with SQLITE_ATTACH
+// dbname: Name of already open database; not used for verification
+// trigger: The inner-most trigger of view responsible for action; not used
+//
+// Return: SQLITE_OK to allow the action; SQLITE_DENY to cancel the action
+// and return a SQLITE_AUTH error from the SQLite API function. If an action
+// is denied, _error_string is also set to provide a detailed error message.
+static int authorizer(void *userdata, int action, const char* pathname,
+	const char *unused, const char *dbname, const char *trigger)
+{
+	// Any action other than a database attach is always allowed
+	if(action != SQLITE_ATTACH) {
+		return SQLITE_OK;
+	}
+
+	// This should never happen for SQLITE_ATTACH action codes
+	if(pathname == NULL) {
+		error_string = "Internal error: SQLITE_ATTACH with "
+			"NULL pathname";
+		return SQLITE_DENY;
+	}
+
+	size_t length = strlen(pathname);
+
+	// Do not allow any ASCII control characters in the pathname
+	if(strcspn(pathname, RSVD_CTRL_CHARS) != length) {
+		error_string = "Database file path may not contain "
+			"control characters";
+		return SQLITE_DENY;
+	}
+
+	// Do not allow any reserved characters in the pathname
+	if(strcspn(pathname, RSVD_FILE_CHARS) != length) {
+		error_string = "Database file path may not contain "
+			RSVD_FILE_CHARS " characters";
+		return SQLITE_DENY;
+	}
+
+	// Do not allow absolute pathnames that start with a /
+	if(pathname[0] == '/') {
+		error_string = "Database file path may not start with \"/\"";
+		return SQLITE_DENY;
+	}
+
+	// Split string along the / path separator for individual filename checks.
+	// The name variable always points to the beginning of the next path
+	// component (i.e. directory or filename) in the string, or points to the
+	// terminating NULL character if the entire string has been searched.
+	const char *name = pathname;
+	while(*name) {
+		// If / not found in string, then use remaining length of the string
+		const char *next = strchr(name, '/');
+		if(next == NULL) {
+			next = pathname + length;
+		}
+
+		// Check for .. directory names that could escape the game directory
+		if(strncmp(name, "..", next - name) == 0) {
+			error_string = "Database file path may not contain .. parent "
+				"directory";
+			return SQLITE_DENY;
+		}
+
+		// POSIX command may treat a file that starts with - as option name
+		if(*name == '-') {
+			error_string = "Database file path may not start file with \"-\"";
+			return SQLITE_DENY;
+		}
+
+		// Files starting with . are "hidden" in POSIX and need "ls -a" to list
+		if(*name == '.') {
+			error_string = "Database file path may not start file with \".\"";
+			return SQLITE_DENY;
+		}
+
+		// Check for any of the case-insensitive reserved names Windows has
+		for(int i = 0; RSVD_FILE_NAMES[i]; i++) {
+			if(strncasecmp(name, RSVD_FILE_NAMES[i], next - name) == 0) {
+				error_string = "Database file path may not use "
+					"CON, PRN, AUX, NUL, COMn, LPTn";
+				return SQLITE_DENY;
+			}
+		}
+
+		// Skip over the / separator to match the next component, unless this
+		// was the last path component and next points to the terminating NULL.
+		name = next;
+		if(*name) {
+			name++;
+		}
+	}
+
+	// The filename must be ok if it passed all the above checks
+	return SQLITE_OK;
+}
+
 // Return a human readable message with a description of the error if the last
 // call to one of the dm_db_xxx() functions failed and in turn returned NULL.
 // If the last call to the library succeeded, then this function returns NULL
@@ -126,11 +262,26 @@ extern "C" const char *dm_db_open(int argc, char *argv[])
 		return NULL;
 	}
 
+	// Check if the database filename is valid
+	int rc = authorizer(NULL, SQLITE_ATTACH, argv[0], NULL, NULL, NULL);
+	if(rc != SQLITE_OK) {
+		// error_string already set by authorizer() on error
+		return NULL;
+	}
+
 	// Attempt to open a SQLite database and check for library errors
 	sqlite3 *dbconn;
-	int rc = sqlite3_open(argv[0], &dbconn);
+	rc = sqlite3_open(argv[0], &dbconn);
 
 	// If database cannot be opened, save error message and close handle
+	if(rc != SQLITE_OK) {
+		error_string = sqlite3_errmsg(dbconn);
+		sqlite3_close(dbconn);
+		return NULL;
+	}
+
+	// Setup authorizer to verify "ATTACH DATABASE" statements
+	rc = sqlite3_set_authorizer(dbconn, authorizer, NULL);
 	if(rc != SQLITE_OK) {
 		error_string = sqlite3_errmsg(dbconn);
 		sqlite3_close(dbconn);
@@ -223,8 +374,12 @@ extern "C" const char *dm_db_execute(int argc, char *argv[])
 	sqlite3_stmt *stmt;
 	int rc = sqlite3_prepare_v2(dbconn, argv[1], -1, &stmt, NULL);
 	if(rc != SQLITE_OK) {
+		// error string already set by authorizer() on error
+		if(rc != SQLITE_AUTH) {
+			error_string = sqlite3_errmsg(dbconn);
+		}
+
 		// The stmt is set to NULL on error so no need to finalize here
-		error_string = sqlite3_errmsg(dbconn);
 		return NULL;
 	}
 
