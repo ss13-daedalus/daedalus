@@ -62,6 +62,9 @@
 	var/forbid_singulo_possession = 0
 	var/useircbot = 0
 
+   // FIFO pipe definitions
+	var/fifo_adminhelp = null
+
 	//game_options.txt configs
 
 	var/health_threshold_crit = 0
@@ -301,6 +304,9 @@
 
 				if("appeal_address")
 					config.appeal_address = value
+
+				if("fifo_adminhelp")
+					config.fifo_adminhelp = value
 
 				else
 					diary << "Unknown setting in configuration: '[name]'"
