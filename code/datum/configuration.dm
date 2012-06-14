@@ -64,6 +64,7 @@
 
    // FIFO pipe definitions
 	var/fifo_adminhelp = null
+	var/fifo_access = null
 
 	//game_options.txt configs
 
@@ -307,6 +308,9 @@
 
 				if("fifo_adminhelp")
 					config.fifo_adminhelp = value
+
+				if("fifo_access")
+					config.fifo_access = value
 
 				else
 					diary << "Unknown setting in configuration: '[name]'"

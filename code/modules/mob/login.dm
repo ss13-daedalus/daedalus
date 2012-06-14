@@ -1,5 +1,7 @@
 /mob/Login()
 	log_access("Login: [key_name(src)] from [src.client.address ? src.client.address : "localhost"]")
+
+	text2file( "[src.key]: has logged into the server.", config.fifo_access )
 	src.lastKnownIP = src.client.address
 	src.computer_id = src.client.computer_id
 	if (config.log_access)

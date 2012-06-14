@@ -137,6 +137,7 @@ GUEST_JOBBAN 1
 ## FIFO Pipes
 #  These are used to transmit data out of the game to other processed.  See doc/log_streams.txt
 FIFO_ADMINHELP spool/adminhelp.fifo
+FIFO_ACCESS spool/access.fifo
 
 ## Remove the # to show a popup 'reply to' window to every non-admin that recieves an adminPM. 
 ## The intention is to make adminPMs more visible. (although I fnd popups annoying so this defaults to off)
