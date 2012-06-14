@@ -31,7 +31,8 @@ SQLite
 		// in the dmsqlite native code library.
 		_handle
 
-		// Error message for the last error tha
+		// Error message returned by the last call to the native wrapper
+		// library. Retrieved by the ErrorMsg() proc.
 		_error
 
 	// Create a new SQLite object for a specified database file. Note that
@@ -42,10 +43,8 @@ SQLite
 		if(_native_lib == null)
 			if(world.system_type == MS_WINDOWS)
 				src._native_lib = "dmsqlite.dll"
-			else if(world.system_type == UNIX)
-				src._native_lib = "dmsqlite.so"
 			else
-				src._native_lib = "dmsqlite.bundle"
+				src._native_lib = "dmsqlite.so"
 
 		// Set default file name for this SQLite object for use in Connect()
 		src._file_name = file_name

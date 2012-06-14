@@ -1,7 +1,7 @@
 CFLAGS := -m32 -MMD -MP
-LDFLAGS := -m32 -bundle --exported_symbols_list dmsqlite.exp
+LDFLAGS := -m32 -bundle --exported_symbols_list=dmsqlite.exp
 
-TARGET := dmsqlite.bundle
+TARGET := dmsqlite.so
 OBJS := dmsqlite.o
 LIBS :=
 
@@ -19,7 +19,7 @@ dmsqlite.o_CFLAGS += -g -Wall -ansi -pedantic -Wno-long-long
 else
 CFLAGS += -O3
 LDFLAGS += -O3
-STRIP := strip ${TARGET}
+STRIP := strip -u -r -s dmsqlite.exp ${TARGET}
 endif
 
 
