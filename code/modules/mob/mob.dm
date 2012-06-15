@@ -822,10 +822,13 @@
 	if(ticker && ticker.mode && ticker.mode.name =="sandbox")
 		mob.CanBuild()
 
+	text2file( "[src.key]: has logged into the server.", config.fifo_access )
+
 /client/Del()
 	spawn(0)
 		if(holder)
 			del(holder)
+	text2file( "[src.key]: has logged out of the server.", config.fifo_access )
 	return ..()
 
 /mob/proc/can_use_hands()
