@@ -8,7 +8,7 @@
 #  the criteria given.
 
 if [[ 0 -eq $# ]]; then
-   echo -e "Usage:\t$0 $HAYSTACK"
+   echo -e "Usage:\t$0 \$HAYSTACK"
    exit 1
 fi
 
