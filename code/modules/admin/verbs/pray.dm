@@ -20,14 +20,14 @@
 	//feedback_add_details("admin_verb","PR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	//log_admin("HELP: [key_name(src)]: [msg]")
 
-	text2file( "Prayer from [src.key]: [msg]", config.fifo_prayer )
+	text2fifo( "Prayer from [src.key]: [msg]", config.fifo_prayer )
 
 /proc/Centcomm_announce(var/text , var/mob/Sender)
 
 	var/msg = copytext(sanitize(text), 1, MAX_MESSAGE_LEN)
 
 //	log_admin("[key_name(Sender)] sent a message to Centcomm!  The message was [msg]")  // Handled somewhere else
-	text2file( "Urgent message to CentComm from [Sender.key]: [msg]", config.fifo_prayer )
+	text2fifo( "Urgent message to CentComm from [Sender.key]: [msg]", config.fifo_prayer )
 
 	for (var/mob/M in world)
 		if (M.client && M.client.holder)
@@ -39,7 +39,7 @@
 
 //	log_admin("[key_name(Sender)] sent a message to the Syndicate!  The message was [msg]")  // Handled somewhere else
 
-	text2file( "Urgent message to Syndicate HQ from [Sender.key]: [msg]", config.fifo_prayer )
+	text2fifo( "Urgent message to Syndicate HQ from [Sender.key]: [msg]", config.fifo_prayer )
 
 	for (var/mob/M in world)
 		if (M.client && M.client.holder)

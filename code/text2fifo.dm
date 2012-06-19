@@ -14,8 +14,8 @@
 // If the BYOND project is compiled in DEBUG mode, then an error
 // will call CRASH() and display both a stack trace and the error 
 // message to world.log.
-/proc/text2fifo(file_name, message)
-	var/error = call("dmfifo.so", "dm_text2fifo")(file_name, message)
+/proc/text2fifo(message, file_name)
+	var/error = call("dmfifo.so", "dm_text2fifo")(message, file_name)
 	if(error)
 #ifdef DEBUG
 		. = 0

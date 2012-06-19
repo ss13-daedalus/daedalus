@@ -31,22 +31,24 @@
 // to be discarded because the FIFO has no readers.
 //
 // argc: Number of arguments passed in by BYOND script
-// argv[0]: The filename of the FIFO file; must already exist
-// argv[1]: The text message to be sent
+// argv[0]: The text message to be sent
+// argv[1]: The filename of the FIFO file; must already exist
 //
 // Return: NULL on success or an error message on failure.
-const char *dm_text2fifo(int argc, char *argv[])
+const char *dm_text2fifo(int argc, const char *argv[])
 {
 	// Check for usage: a filename and text message argument is required
 	if(argc < 2) {
-		return "File path and text message arguments required";
+		return "Text message and file path arguments required";
 	}
 
 	// BYOND always passes in a non NULL pointer for the arguments
-	int length = strlen(argv[1]);
+	const char *message = argv[0];
+	const char *file_path = argv[1];
+	int length = strlen(message);
 
 	// Do not allow absolute pathnames that start with a /
-	if(argv[0][0] == '/') {
+	if(file_path[0] == '/') {
 		return "File path may not start with \"/\"";
 	}
 
@@ -54,12 +56,12 @@ const char *dm_text2fifo(int argc, char *argv[])
 	// The name variable always points to the beginning of the next path
 	// component (i.e. directory or filename) in the string, or points to the
 	// terminating NULL character if the entire string has been searched.
-	const char *name = argv[0];
+	const char *name = file_path;
 	while(*name) {
 		// If / not found in string, then use remaining length of the string
 		const char *next = strchr(name, '/');
 		if(next == NULL) {
-			next = argv[0] + length;
+			next = file_path + strlen(file_path);
 		}
 
 		// Check for .. directory names that could escape the game directory
@@ -76,14 +78,14 @@ const char *dm_text2fifo(int argc, char *argv[])
 	}
 
 	// Open file for non-blocking write mode, but only if it already exists
-	int fd = open(argv[0], O_WRONLY | O_NONBLOCK);
+	int fd = open(file_path, O_WRONLY | O_NONBLOCK);
 	if(fd == -1) {
 		return strerror(errno);
 	}
 
 	// Attempt writing the supplied text message string to the FIFO (without
 	// writing the terminating NULL).
-	int rc = write(fd, argv[1], length);
+	int rc = write(fd, message, length);
 	if(rc == -1) {
 		close(fd);
 		return strerror(errno);
