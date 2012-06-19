@@ -1,1 +1,1 @@
-{ global: dm_fifo_write; local: *; };
+{ global: dm_text2fifo; local: *; };
