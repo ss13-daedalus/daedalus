@@ -193,7 +193,7 @@ static int authorizer(void *userdata, int action, const char* pathname,
 		}
 
 		// Check for .. directory names that could escape the game directory
-		if(strncmp(name, "..", next - name) == 0) {
+		if(strncmp(name, "..", next - name) == 0 && next - name >= 2) {
 			error_string = "Database file path may not contain .. parent "
 				"directory";
 			return SQLITE_DENY;
@@ -201,22 +201,24 @@ static int authorizer(void *userdata, int action, const char* pathname,
 
 		// POSIX command may treat a file that starts with - as option name
 		if(*name == '-') {
-			error_string = "Database file path may not start file with \"-\"";
+			error_string = "Database file path may not start file name with \"-\"";
 			return SQLITE_DENY;
 		}
 
 		// Files starting with . are "hidden" in POSIX and need "ls -a" to list
 		if(*name == '.') {
-			error_string = "Database file path may not start file with \".\"";
+			error_string = "Database file path may not start file name with \".\"";
 			return SQLITE_DENY;
 		}
 
 		// Check for any of the case-insensitive reserved names Windows has
 		for(int i = 0; RSVD_FILE_NAMES[i]; i++) {
-			if(strncasecmp(name, RSVD_FILE_NAMES[i], next - name) == 0) {
-				error_string = "Database file path may not use "
-					"CON, PRN, AUX, NUL, COMn, LPTn";
-				return SQLITE_DENY;
+			if(next - name == strlen(RSVD_FILE_NAMES[i])) {
+				if(strncasecmp(name, RSVD_FILE_NAMES[i], next - name) == 0) {
+					error_string = "Database file path may not use "
+						"CON, PRN, AUX, NUL, COMn, LPTn";
+					return SQLITE_DENY;
+				}
 			}
 		}
 

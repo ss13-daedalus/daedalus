@@ -65,7 +65,7 @@ const char *dm_text2fifo(int argc, const char *argv[])
 		}
 
 		// Check for .. directory names that could escape the game directory
-		if(strncmp(name, "..", next - name) == 0) {
+		if(strncmp(name, "..", next - name) == 0 && next - name >= 2) {
 			return "File path may not contain .. parent directory";
 		}
 
