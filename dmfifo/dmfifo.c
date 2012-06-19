@@ -35,7 +35,7 @@
 // argv[1]: The text message to be sent
 //
 // Return: NULL on success or an error message on failure.
-const char *dm_fifo_write(int argc, char *argv[])
+const char *dm_text2fifo(int argc, char *argv[])
 {
 	// Check for usage: a filename and text message argument is required
 	if(argc < 2) {
