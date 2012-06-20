@@ -1,5 +1,8 @@
 spool/*.fifo
 data/*.db
+dmfifo/*.d
+dmfifo/*.o
+dmfifo/*.so
 *.log
 *.int
 *.rsc
