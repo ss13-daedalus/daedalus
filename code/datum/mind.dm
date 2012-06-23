@@ -734,7 +734,20 @@ datum/mind
 						current.verbs -= /client/proc/interhack
 						current.verbs -= /client/proc/reactivate_camera
 
-						current:laws = new /datum/ai_laws/nanotrasen
+						//	Starter laws to choose from.  Add duplicates to weight a
+						//	given lawset more heavily.
+						var/law_pool = list()
+
+						law_pool |= new /datum/ai_laws/asimov
+						law_pool |= new /datum/ai_laws/corporate
+						law_pool |= new /datum/ai_laws/corporate
+						law_pool |= new /datum/ai_laws/nanotrasen
+						law_pool |= new /datum/ai_laws/nanotrasimov
+						law_pool |= new /datum/ai_laws/nanotrasimov
+						law_pool |= new /datum/ai_laws/ocp
+
+						current:laws = pick( law_pool )
+
 						del(current:malf_picker)
 						current:show_laws()
 						current.icon_state = "ai"

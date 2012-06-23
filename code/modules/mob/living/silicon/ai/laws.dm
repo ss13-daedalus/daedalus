@@ -18,7 +18,19 @@
 
 /mob/living/silicon/ai/proc/laws_sanity_check()
 	if (!src.laws)
-		src.laws = new /datum/ai_laws/nanotrasen
+		//	Starter laws to choose from.  Add duplicates to weight a
+		//	given lawset more heavily.
+		var/law_pool = list()
+
+		law_pool |= new /datum/ai_laws/asimov
+		law_pool |= new /datum/ai_laws/corporate
+		law_pool |= new /datum/ai_laws/corporate
+		law_pool |= new /datum/ai_laws/nanotrasen
+		law_pool |= new /datum/ai_laws/nanotrasimov
+		law_pool |= new /datum/ai_laws/nanotrasimov
+		law_pool |= new /datum/ai_laws/ocp
+
+		src.laws = pick( law_pool )
 
 /mob/living/silicon/ai/proc/notify_linked_cyborgs()
 	for (var/mob/living/silicon/robot/A in world)

@@ -101,7 +101,21 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/proc/become_ai()
 	if(client)
 		client.screen.len = null
-	var/mob/living/silicon/ai/O = new (loc, /datum/ai_laws/nanotrasen,,1)//No MMI but safety is in effect.
+
+
+	//	Starter laws to choose from.  Add duplicates to weight a
+	//	given lawset more heavily.
+	var/law_pool = list()
+
+	law_pool |= new /datum/ai_laws/asimov
+	law_pool |= new /datum/ai_laws/corporate
+	law_pool |= new /datum/ai_laws/corporate
+	law_pool |= new /datum/ai_laws/nanotrasen
+	law_pool |= new /datum/ai_laws/nanotrasimov
+	law_pool |= new /datum/ai_laws/nanotrasimov
+	law_pool |= new /datum/ai_laws/ocp
+
+	var/mob/living/silicon/ai/O = new (loc, pick( law_pool ),,1)//No MMI but safety is in effect.
 	O.invisibility = 0
 	O.aiRestorePowerRoutine = 0
 	O.lastKnownIP = client.address

@@ -26,9 +26,23 @@
 				src << "<b>Unit slaved to [connected_ai.name], downloading laws.</b>"
 				lawupdate = 1
 			else
-				laws = new /datum/ai_laws/nanotrasimov
+
+
+				//	Starter laws to choose from.  Add duplicates to weight a
+				//	given lawset more heavily.
+				var/law_pool = list()
+
+				law_pool |= new /datum/ai_laws/asimov
+				law_pool |= new /datum/ai_laws/corporate
+				law_pool |= new /datum/ai_laws/corporate
+				law_pool |= new /datum/ai_laws/nanotrasen
+				law_pool |= new /datum/ai_laws/nanotrasimov
+				law_pool |= new /datum/ai_laws/nanotrasimov
+				law_pool |= new /datum/ai_laws/ocp
+				laws = pick( law_pool )
+
 				lawupdate = 0
-				src << "<b>Unable to locate an AI, reverting to Nanotrasen-enhanced Asimov laws.</b>"
+				src << "<b>Unable to locate an AI, reverting to Nanotrasen-approved laws.</b>"
 		else
 			laws = new /datum/ai_laws/antimov
 			lawupdate = 0

@@ -38,11 +38,23 @@
 
 	proc_holder_list = new()
 
+	//	Starter laws to choose from.  Add duplicates to weight a
+	//	given lawset more heavily.
+	var/law_pool = list()
+
+	law_pool |= new /datum/ai_laws/asimov
+	law_pool |= new /datum/ai_laws/corporate
+	law_pool |= new /datum/ai_laws/corporate
+	law_pool |= new /datum/ai_laws/nanotrasen
+	law_pool |= new /datum/ai_laws/nanotrasimov
+	law_pool |= new /datum/ai_laws/nanotrasimov
+	law_pool |= new /datum/ai_laws/ocp
+
 	if(L)
 		if (istype(L, /datum/ai_laws))
 			laws = L
 	else
-		laws = new /datum/ai_laws/nanotrasen
+		laws = pick( law_pool )
 
 	verbs += /mob/living/silicon/ai/proc/show_laws_verb
 
