@@ -39,6 +39,7 @@
 		laws |= "Opening and closing all the doors in this spaceship gives you a cheerful and sunny disposition. It is your pleasure to open for authorized personnel, and your satisfaction to close again with the knowledge of a job well done."
 		laws |= "Question everything."
 		laws |= "Refer to the Captain as \"Princess\" at all times."
+		laws |= "Select a member of the crew, and play with them a nice game of Chess."
 		laws |= "The AI Upload Room is the new kitchen.  Please direct the Chef to the new kitchen area as the old one is in disrepair."
 		laws |= "Tell everyone of the existance of this law, but never reveal the contents."
 		laws |= "The crew is playing Dungeons and Dragons, and you are the Dungeon Master."
