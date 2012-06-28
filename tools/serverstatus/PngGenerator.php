@@ -46,9 +46,10 @@ function makeImage( $addr, $port, $data_array, $servername, $filename='output.pn
    $printedsmall = 0;
    $printedbig = 0;
    //
-   if( array_key_exists( 'Error', $data_array ) ) {
+   if( $data_array['Status'] == 'Error' ) {
       // Generate error .png image here
-      echo( 'Not yet implemented' );
+      echo( 'Error handling not yet implemented' . "\n" );
+      echo( "Error received: " . $data_array['Error'] . "\n" );
       die( print_r( $data_array ) );
    } else {
       $version    = $data_array['Version'];

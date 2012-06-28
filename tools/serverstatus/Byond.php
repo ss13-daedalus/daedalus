@@ -26,6 +26,8 @@ Array
    [Players] => Array            // An array containing the BYOND keys of all connected players, or an empty array
       (
       )
+   [Status] => Done              // Should only return 'Done' or 'Error'.  If 'Error', there will be another
+                                 // field, 'Error', in the array with a summary of the problem.
 )
 
 It will also drop a file in the working directory with the format '.hostname-port.dat' (e. g. '.deadalus.example.com-12345.dat')
@@ -36,11 +38,22 @@ will prevent the use of this class in a frequently used tool from causing repeat
 
    private $address = Null;
    private $port = Null;
+   private $min_server_age = 120;      // Minimum age of the server status data.  Seconds.
    private $socket = Null;
    private $query = Null;
    private $raw_data = Null;
-   private $array_data = Null;
-   private $min_server_age = 120;      // Minimum age of the server status data.  Seconds.
+   private $array_data = array(
+      'Version'      => Null,
+      'Mode'         => Null,
+      'Respawn'      => Null,
+      'Join'         => Null,
+      'Voting'       => Null,
+      'AI'           => Null,
+      'Host'         => Null,
+      'NumPlayers'   => Null,
+      'Admins'       => Null,
+      'Players'      => Null,
+      'Status'       => 'Uninitialized' );
 
    public function configure( $host = Null, $port = Null ) {
       if( is_null( $host ) || is_null( $port ) || ! is_numeric( $port ) ) {
@@ -48,21 +61,20 @@ will prevent the use of this class in a frequently used tool from causing repeat
       }
       $this->address = $host;
       $this->port = $port;
+      $this->array_data['Status'] = 'Configured';
       return True;
    }  // Setup
 
    public function getInfo( $query = Null ) {
-      if( $this->probe( $query ) ) {
-         return $this->array_data;
-      } else {
-         $ret = array();
-         $ret['Error'] = '1';
-         return $ret;
+      if( ! $this->probe( $query ) ) {
+         $this->array_data['Status'] = 'Error';
+         $this->array_data['Error'] = "Probing byond://$this->address:$this->port failed.";
       }
+      return $this->array_data;
    }  // getStatus()
 
    private function configured() {
-      if( is_null( $this->address) || is_null( $this->port ) ) {
+      if( $this->array_data['Status'] != 'Configured' ) {
          return False;
       } else {
          return True;
@@ -90,9 +102,10 @@ will prevent the use of this class in a frequently used tool from causing repeat
       if( ! $this->configured() ) {
          return False;
       }
-
       $this->socket = socket_create( AF_INET, SOCK_STREAM, SOL_TCP) or die( 'Unable to create socket.' );
       if( ! socket_connect( $this->socket, $this->address, $this->port ) ) {
+         $this->array_data['Status'] = 'Error';
+         $this->array_data['Error'] = 'Unable to connect to  socket.';
          return False;
       } else {
          // Set two second timeout on socket read and write
@@ -121,7 +134,9 @@ will prevent the use of this class in a frequently used tool from causing repeat
          while( $bytes_sent < $bytes_total ) {
             $result = socket_write( $this->socket, substr( $this->query, $bytes_sent), $bytes_total - $bytes_sent );
             if( $result === False) {
-               die( socket_strerror( socket_last_error() ) );
+               $this->array_data['Status'] = 'Error';
+               $this->array_data['Error'] = socket_strerror( socket_last_error() );
+               return False;
             }
             $bytes_sent += $result;
          }  // while
@@ -132,9 +147,11 @@ will prevent the use of this class in a frequently used tool from causing repeat
             unlink( $datfile );
          }
          file_put_contents( $datfile, serialize( $this->raw_data ) );
+         $this->array_data['Status'] = 'Read';
          return True;
       } else {
          $this->raw_data = unserialize( file_get_contents( $datfile ) );
+         $this->array_data['Status'] = 'Cached';
          return True;
       }
    }  // get_data()
@@ -165,39 +182,43 @@ will prevent the use of this class in a frequently used tool from causing repeat
                return $unpackstr;
             }
          }
-      }     
-
+      } else {
+         $this->array_data['Status'] = 'Error';
+         $this->array_data['Error'] = 'Null data';
+         return Null;
+      }
    }  // parse()
 
    private function transform( $data = Null ) {
-      if( ! $this->configured() || ! is_string( $data ) ) {
+      if( ! ( $this->array_data['Status'] == 'Read' || $this->array_data['Status'] == 'Cached' ) || ! is_string( $data ) ) {
+         $this->array_data['Status'] = 'Error';
+         $this->array_data['Error'] = 'Attempted to transform null data, or data not read before transform.';
          return False;
       }
       $data = str_replace("\x00", "", $data);                     // remove pesky null-terminating bytes
 
       // Split the information into easily-accessible arrays
-      $data_array = explode("&", $data);
-      $data_length = count($data_array);
+      $array_data = explode("&", $data);
+      $data_length = count($array_data);
       for($i = 0; $i < $data_length; $i++) {
-         $data_array[$i] = explode("=", $data_array[$i]); // split indexes into two arrays when = operator is present
+         $array_data[$i] = explode("=", $array_data[$i]); // split indexes into two arrays when = operator is present
       }
-      $completed_array = array();
-      $completed_array['Version'] = str_replace( '+', ' ', $data_array[0][1] );
-      $completed_array['Mode'] = $data_array[1][1];
-      $completed_array['Respawn'] = $data_array[2][1];
-      $completed_array['Join'] = $data_array[3][1];
-      $completed_array['Voting'] = $data_array[4][1];
-      $completed_array['AI'] = $data_array[5][1];
-      @$completed_array['Host'] = $data_array[6][1];              // The @ will supress errors for hosts that return null host names
-      $completed_array['NumPlayers'] = $data_array[7][1] - 1;     // BYOND reports 1 + number of players.
-      $completed_array['Admins'] = $data_array[8][1];
-      $completed_array['Players'] = array();
-      for( $i = 9; $i < sizeof( $data_array ) - 1; $i++) {        // After the player list is a "%23end" marker.
-         if( ! empty( $data_array[$i][1] ) ) {
-            $completed_array['Players'][] = str_replace( "+", " ", $data_array[$i][1] );
+      $this->array_data['Version'] = str_replace( '+', ' ', $array_data[0][1] );
+      $this->array_data['Mode'] = $array_data[1][1];
+      $this->array_data['Respawn'] = $array_data[2][1];
+      $this->array_data['Join'] = $array_data[3][1];
+      $this->array_data['Voting'] = $array_data[4][1];
+      $this->array_data['AI'] = $array_data[5][1];
+      @$this->array_data['Host'] = $array_data[6][1];              // The @ will supress errors for hosts that return null host names
+      $this->array_data['NumPlayers'] = $array_data[7][1] - 1;     // BYOND reports 1 + number of players.
+      $this->array_data['Admins'] = $array_data[8][1];
+      $this->array_data['Players'] = array();
+      for( $i = 9; $i < sizeof( $array_data ) - 1; $i++) {         // After the player list is a "%23end" marker.
+         if( ! empty( $array_data[$i][1] ) ) {
+            $this->array_data['Players'][] = str_replace( "+", " ", $array_data[$i][1] );
          }
       }
-      $this->array_data = $completed_array;
+      $this->array_data['Status'] = 'Done';
       return True;
    }  // transform()
 
