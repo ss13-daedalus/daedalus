@@ -167,7 +167,7 @@ Array
       $completed_array['Join'] = $data_array[3][1];
       $completed_array['Voting'] = $data_array[4][1];
       $completed_array['AI'] = $data_array[5][1];
-      $completed_array['Host'] = $data_array[6][1];
+      @$completed_array['Host'] = $data_array[6][1];              // The @ will supress errors for hosts that return null host names
       $completed_array['NumPlayers'] = $data_array[7][1] - 1;     // BYOND reports 1 + number of players.
       $completed_array['Admins'] = $data_array[8][1];
       $completed_array['Players'] = array();
