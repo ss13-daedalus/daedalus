@@ -11,7 +11,7 @@ $server->configure( 'deadalus.exmaple.com', 12345 );
 print_r( $server->getInfo( 'status' ) );
 
 The above code will output something much like the following:
-  
+
 Array
 (
    [Version] => Daedalus         // The 'version' of the codebase as reported ot the BYOND Hub
@@ -27,6 +27,11 @@ Array
       (
       )
 )
+
+It will also drop a file in the working directory with the format '.hostname-port.dat' (e. g. '.deadalus.example.com-12345.dat')
+which containes serialize()d data which is used if the file is less than the defined min_server_age number of seconds old.  This
+will prevent the use of this class in a frequently used tool from causing repeated calls to the server in a short span of time.
+
  */
 
    private $address = Null;
@@ -35,6 +40,7 @@ Array
    private $query = Null;
    private $raw_data = Null;
    private $array_data = Null;
+   private $min_server_age = 120;      // Minimum age of the server status data.  Seconds.
 
    public function configure( $host = Null, $port = Null ) {
       if( is_null( $host ) || is_null( $port ) || ! is_numeric( $port ) ) {
@@ -102,20 +108,30 @@ Array
       if( ! $this->configured() ) {
          return False;
       }
-      $this->connect();
-      $bytes_total = strlen( $this->query );
-      $bytes_sent = 0;
-      while( $bytes_sent < $bytes_total ) {
-         $result = socket_write( $this->socket, substr( $this->query, $bytes_sent), $bytes_total - $bytes_sent );
-         if( $result === False) {
-            die( socket_strerror( socket_last_error() ) );
+      $datfile = '.' . $this->address . '-' . $this->port . '.dat';
+      if( ! file_exists( $datfile ) || ( time() - filemtime( $datfile ) >= 120 ) ) {
+         $this->connect();
+         $bytes_total = strlen( $this->query );
+         $bytes_sent = 0;
+         while( $bytes_sent < $bytes_total ) {
+            $result = socket_write( $this->socket, substr( $this->query, $bytes_sent), $bytes_total - $bytes_sent );
+            if( $result === False) {
+               die( socket_strerror( socket_last_error() ) );
+            }
+            $bytes_sent += $result;
+         }  // while
+         $result = socket_read( $this->socket, 10000, PHP_BINARY_READ);
+         $this->disconnect();
+         $this->raw_data = $result;
+         if( file_exists( $datfile ) ) {
+            unlink( $datfile );
          }
-         $bytes_sent += $result;
-      }  // while
-      $result = socket_read( $this->socket, 10000, PHP_BINARY_READ);
-      $this->disconnect();
-      $this->raw_data = $result;
-      return True;
+         file_put_contents( $datfile, serialize( $this->raw_data ) );
+         return True;
+      } else {
+         $this->raw_data = unserialize( file_get_contents( $datfile ) );
+         return True;
+      }
    }  // get_data()
 
    private function parse( $data ) {
