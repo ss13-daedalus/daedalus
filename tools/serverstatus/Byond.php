@@ -52,8 +52,13 @@ will prevent the use of this class in a frequently used tool from causing repeat
    }  // Setup
 
    public function getInfo( $query = Null ) {
-      $this->probe( $query );
-      return $this->array_data;
+      if( $this->probe( $query ) ) {
+         return $this->array_data;
+      } else {
+         $ret = array();
+         $ret['Error'] = '1';
+         return $ret;
+      }
    }  // getStatus()
 
    private function configured() {
@@ -70,7 +75,7 @@ will prevent the use of this class in a frequently used tool from causing repeat
       }
       $this->query = $this->assemble_query( $query );
       $this->get_data();
-      $this->transform( $this->parse( $this->raw_data ) );
+      return $this->transform( $this->parse( $this->raw_data ) );
    }  // probe()
 
    private function assemble_query( $query_string = '?status' ) {
