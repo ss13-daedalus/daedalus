@@ -7,7 +7,7 @@ require_once( 'PngGenerator.php' );
 $image_filename   = 'output.png';      // The default of PngGenerator
 $background_image = 'bg.png';          // The default of PngGenerator.  If you want to set this, you must set $image_filename
 $servername = "My Daedalus Server";    // Appears on the PNG image as the name of your server.
-$max_image_age = 120                   // Images less than this many seconds old are cached.
+$max_image_age = 120;                  // Images less than this many seconds old are cached.
 // Connection Sertings
 $addr = "daedalus.example.com";
 $port = 12345;
