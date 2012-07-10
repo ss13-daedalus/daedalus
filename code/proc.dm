@@ -2660,3 +2660,48 @@ proc/Ellipsis(original_msg, chance = 50)
 proc/Stagger(mob/M,d) //Technically not a filter, but it relates to drunkenness.
 	step(M, pick(d,turn(d,90),turn(d,-90)))
 
+// Hallucination procs
+/proc/fake_attack(var/mob/target)
+	var/list/possible_clones = new/list()
+	var/mob/living/carbon/human/clone = null
+	var/clone_weapon = null
+
+	for(var/mob/living/carbon/human/H in world)
+		if(H.stat || H.lying) continue
+		possible_clones += H
+
+	if(!possible_clones.len) return
+	clone = pick(possible_clones)
+	//var/obj/fake_attacker/F = new/obj/fake_attacker(outside_range(target))
+	var/obj/fake_attacker/F = new/obj/fake_attacker(target.loc)
+	if(clone.l_hand)
+		if(!(locate(clone.l_hand) in non_fakeattack_weapons))
+			clone_weapon = clone.l_hand.name
+			F.weap = clone.l_hand
+	else if (clone.r_hand)
+		if(!(locate(clone.r_hand) in non_fakeattack_weapons))
+			clone_weapon = clone.r_hand.name
+			F.weap = clone.r_hand
+
+	F.name = clone.name
+	F.my_target = target
+	F.weapon_name = clone_weapon
+	target.hallucinations += F
+
+
+	F.left = image(clone,dir = WEST)
+	F.right = image(clone,dir = EAST)
+	F.up = image(clone,dir = NORTH)
+	F.down = image(clone,dir = SOUTH)
+
+	F.updateimage()
+
+/proc/fake_blood(var/mob/target)
+	var/obj/effect/overlay/O = new/obj/effect/overlay(target.loc)
+	O.name = "blood"
+	var/image/I = image('icons/effects/blood.dmi',O,"floor[rand(1,7)]",O.dir,1)
+	target << I
+	spawn(300)
+		del(O)
+	return
+
