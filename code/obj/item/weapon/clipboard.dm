@@ -21,7 +21,7 @@
 							<A href='?src=\ref[];remove=\ref[]'>Remove</A><BR></td>",\
 							src, P, P.name, src, P, src, P)
 		dat += "</tr>"
-	dat += </table>
+	dat += "</table>"
 	user << browse(dat, "window=clipboard")
 	onclose(user, "clipboard")
 	return
