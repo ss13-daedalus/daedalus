@@ -70,10 +70,10 @@
 			var/obj/item/I = locate(href_list["rname"])
 			if(( I && I.loc == src ))
 				if( istype( I, /obj/item/weapon/paper ) )
-					/var/obj.item/weapon/paper/P = I
+					var/obj/item/weapon/paper/P = I
 					P.rename()
 				if( istype( I, /obj/item/weapon/photo ) )
-					/var/obj/item/photo/P = I
+					var/obj/item/photo/P = I
 					P.rename()
 			src.add_fingerprint( usr )
 		if (href_list["write"])
