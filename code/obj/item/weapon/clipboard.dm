@@ -73,7 +73,7 @@
 					var/obj/item/weapon/paper/P = I
 					P.rename()
 				if( istype( I, /obj/item/weapon/photo ) )
-					var/obj/item/photo/P = I
+					var/obj/item/weapon/photo/P = I
 					P.rename()
 			src.add_fingerprint( usr )
 		if (href_list["write"])
