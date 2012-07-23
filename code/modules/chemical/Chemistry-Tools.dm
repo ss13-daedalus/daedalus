@@ -2851,15 +2851,6 @@
 		..()
 		reagents.add_reagent("anti_toxin", 50)
 
-/obj/item/weapon/reagent_containers/pill/antitox/tajaran
-	name = "peacebody plant powder"
-	desc = "A powder ingested to rid the body of poisons."
-	icon = 'icons/obj/food.dmi'
-	icon_state = "nettlesoup"
-	New()
-		..()
-		reagents.add_reagent("anti_toxin", 100)
-
 /obj/item/weapon/reagent_containers/pill/tox
 	name = "Toxins pill"
 	desc = "Highly toxic."

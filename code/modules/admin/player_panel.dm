@@ -24,8 +24,6 @@
 				dat += "<td>Alien</td>"
 			else if(islarva(M))
 				dat += "<td>Alien larva</td>"
-			else if(istajaran(M))
-				dat += "<td>Tajaran</td>"
 			else if(ishuman(M))
 				dat += "<td>[M.job]</td>"
 			else if(ismetroid(M))

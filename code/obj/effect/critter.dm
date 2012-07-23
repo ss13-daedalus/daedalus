@@ -415,11 +415,6 @@ Contains the procs that control attacking critters
 					O.show_message("\red <B>[user] has slashed at [src]!</B>", 1)
 				playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1, -1)
 
-			else if(user.type == /mob/living/carbon/human/tajaran)
-				for(var/mob/O in viewers(src, null))
-					O.show_message("\red <B>[user] has slashed at [src]!</B>", 1)
-				playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1, -1)
-
 			else
 				for(var/mob/O in viewers(src, null))
 					O.show_message("\red <B>[user] has bit [src]!</B>", 1)

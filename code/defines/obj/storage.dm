@@ -514,11 +514,6 @@
 	desc = "Holds the word of religion."
 	icon_state ="bible"
 
-/obj/item/weapon/storage/bible/tajaran
-	name = "The Holy Book of S'rendarr"
-	desc = "Holds the word of religion."
-	icon_state ="koran"
-
 /obj/item/weapon/storage/mousetraps
 	name = "box of Pest-B-Gon Mousetraps"
 	desc = "<B><FONT=red>WARNING:</FONT></B> <I>Keep out of reach of children</I>."

@@ -6,16 +6,6 @@
 	new /obj/item/weapon/spacecash(src)
 	new /obj/item/weapon/spacecash(src)
 
-/obj/item/weapon/storage/bible/tajaran/New()
-	..()
-	new /obj/item/stack/medical/bruise_pack/tajaran(src)
-	new /obj/item/stack/medical/bruise_pack/tajaran(src)
-	new /obj/item/stack/medical/ointment/tajaran(src)
-	new /obj/item/stack/medical/ointment/tajaran(src)
-	new /obj/item/weapon/reagent_containers/pill/antitox/tajaran(src)
-	new /obj/item/weapon/reagent_containers/pill/antitox/tajaran(src)
-	new /obj/item/clothing/suit/monk(src)
-
 /obj/item/weapon/storage/bible/afterattack(atom/A, mob/user as mob)
 //	if (istype(A, /turf/simulated/floor))
 //		user << "\blue You hit the floor with the bible."

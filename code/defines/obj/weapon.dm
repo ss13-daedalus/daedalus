@@ -459,14 +459,6 @@
 	heal_brute = 1
 	origin_tech = "biotech=1"
 
-/obj/item/stack/medical/bruise_pack/tajaran
-	name = "\improper S'rendarr's Hand leaf"
-	singular_name = "S'rendarr's Hand leaf"
-	desc = "A soft leaf that is rubbed on bruises."
-	icon = 'icons/obj/harvest.dmi'
-	icon_state = "cabbage"
-	heal_brute = 1
-
 /obj/item/stack/medical/ointment
 	name = "ointment"
 	desc = "Used to treat those nasty burns."
@@ -475,14 +467,6 @@
 	icon_state = "ointment"
 	heal_burn = 1
 	origin_tech = "biotech=1"
-
-/obj/item/stack/medical/ointment/tajaran
-	name = "\improper Messa's Tear leaf"
-	singular_name = "Messa's Tear leaf"
-	desc = "A cold leaf that is rubbed on burns."
-	icon = 'icons/obj/harvest.dmi'
-	icon_state = "ambrosiavulgaris"
-	heal_burn = 1
 
 /obj/item/stack/medical/advanced/bruise_pack
 	name = "advanced trauma kit"
