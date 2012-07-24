@@ -451,6 +451,10 @@
 	set name = "Respawn"
 	set category = "OOC"
 
+	// If we're not actually in a game, no reason to respawn.
+	if ((!ticker) || (!ticker.mode))
+		usr << "\blue Respawn is disabled."
+		return
 	if (!( abandon_allowed ))
 		usr << "\blue Respawn is disabled."
 		return
