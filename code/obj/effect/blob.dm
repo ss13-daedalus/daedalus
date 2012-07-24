@@ -57,7 +57,7 @@
 			location.DblClick()
 		return ..()
 
-	can_pass(atom/movable/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 		if((air_group && blobtype != "Shield") || (height==0))	return 1
 		if(istype(mover) && mover.checkpass(PASSBLOB))	return 1
 		if(istype(mover, /obj/effect/decal) || istype(mover, /obj/effect/effect/chem_smoke)) return 1

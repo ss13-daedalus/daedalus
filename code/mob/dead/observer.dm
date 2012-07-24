@@ -39,7 +39,7 @@
 			verbs += /mob/dead/observer/proc/reenter_corpse
 		return
 
-/mob/dead/observer/can_pass(atom/movable/mover, turf/target, height=0, air_group=0)
+/mob/dead/observer/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	return 1
 /*
 Transfer_mind is there to check if mob is being deleted/not going to have a body.

@@ -294,7 +294,7 @@ var/global
 		/mob/living/silicon/ai/proc/ai_hologram_change,
 		/mob/living/silicon/ai/proc/ai_roster,
 	)
-	
+
 //Few global vars to track the blob
 var
 	list/blobs = list()
@@ -306,7 +306,7 @@ var
 	list/powers = typesof(/obj/effect/proc_holder/power) //needed for the badmin verb for now
 	list/obj/effect/proc_holder/power/powerinstances = list()
 
-	
+
 	hsboxspawn = 1
 	list
 		hrefs = list(
@@ -475,7 +475,3 @@ When I already created about 4 new objectives, this doesn't seem terribly import
 	datum/event/ActiveEvent = null
 	datum/event/LongTermEvent = null
 	is_ninjad_yet = 0
-
-	kill_air = 0
-
-	datum/controller/air_system/air_master

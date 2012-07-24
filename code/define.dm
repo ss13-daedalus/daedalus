@@ -136,7 +136,7 @@
 
 #define OPENCONTAINER	4096	// is an open container for chemistry purposes
 
-#define ONESIZEFITSALL	8192	// can be worn by fatties (or children? ugh)
+#define PLASMAGUARD 8192		//Does not get contaminated by plasma.
 
 #define	NOREACT	16384 //Reagents dont' react inside this container.
 
@@ -504,7 +504,7 @@ var/const/maximum_age = 65
 #define SPECIFIC_HEAT_AIR     20
 #define SPECIFIC_HEAT_CDO     30
 #define HEAT_CAPACITY_CALCULATION(oxygen,carbon_dioxide,nitrogen,toxins) \
-	(carbon_dioxide*SPECIFIC_HEAT_CDO + (oxygen+nitrogen)*SPECIFIC_HEAT_AIR + toxins*SPECIFIC_HEAT_TOXIN) 
+	(carbon_dioxide*SPECIFIC_HEAT_CDO + (oxygen+nitrogen)*SPECIFIC_HEAT_AIR + toxins*SPECIFIC_HEAT_TOXIN)
 
 #define MINIMUM_HEAT_CAPACITY 0.0003
 #define QUANTIZE(variable)    (round(variable,0.0001))

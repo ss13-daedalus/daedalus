@@ -61,19 +61,19 @@
 	//Next, check objects to block entry that are on the border
 	for(var/obj/border_obstacle in src)
 		if(border_obstacle.flags & ON_BORDER)
-			if(!border_obstacle.can_pass(mover, mover.loc, 1, 0) && (forget != border_obstacle))
+			if(!border_obstacle.CanPass(mover, mover.loc, 1, 0) && (forget != border_obstacle))
 				mover.Bump(border_obstacle, 1)
 				return 0
 
 	//Then, check the turf itself
-	if (!src.can_pass(mover, src))
+	if (!src.CanPass(mover, src))
 		mover.Bump(src, 1)
 		return 0
 
 	//Finally, check objects/mobs to block entry that are not on the border
 	for(var/atom/movable/obstacle in src)
 		if(obstacle.flags & ~ON_BORDER)
-			if(!obstacle.can_pass(mover, mover.loc, 1, 0) && (forget != obstacle))
+			if(!obstacle.CanPass(mover, mover.loc, 1, 0) && (forget != obstacle))
 				mover.Bump(obstacle, 1)
 				return 0
 	return 1 //Nothing found to block so return success!
@@ -912,7 +912,7 @@ var/list/plating_icons = list("plating","platingdmg1","platingdmg2","platingdmg3
 	else
 		icon_regular_floor = icon_state
 
-//turf/simulated/floor/can_pass(atom/movable/mover, turf/target, height=0, air_group=0)
+//turf/simulated/floor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 //	if ((istype(mover, /obj/machinery/vehicle) && !(src.burnt)))
 //		if (!( locate(/obj/machinery/mass_driver, src) ))
 //			return 0

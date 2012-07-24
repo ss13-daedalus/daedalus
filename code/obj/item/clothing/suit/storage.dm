@@ -4,7 +4,7 @@
 	icon_state = "gearharness"
 	item_state = "gearharness"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	flags = FPRINT | TABLEPASS | ONESIZEFITSALL
+	flags = FPRINT | TABLEPASS
 	allowed = list(/obj/item/weapon/gun/energy,/obj/item/weapon/pepper_spray,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/stun_baton,/obj/item/weapon/handcuffs,/obj/item/barricade_tape_roll/police)
 	flags_inv = 0
 
@@ -14,7 +14,7 @@
 	icon_state = "armourrigvest"
 	item_state = "armourrigvest"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	flags = FPRINT | TABLEPASS | ONESIZEFITSALL
+	flags = FPRINT | TABLEPASS
 	allowed = list(/obj/item/weapon/gun/energy,/obj/item/weapon/pepper_spray,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/stun_baton,/obj/item/weapon/handcuffs,/obj/item/barricade_tape_roll/police)
 	armor = list(melee = 50, bullet = 15, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
 
@@ -40,7 +40,7 @@
 	icon_state = "invisible"
 	item_state = "invisible"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	flags = FPRINT | TABLEPASS | ONESIZEFITSALL
+	flags = FPRINT | TABLEPASS
 	allowed = list(/obj/item/weapon/gun/energy,/obj/item/weapon/pepper_spray,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/stun_baton,/obj/item/weapon/handcuffs,/obj/item/barricade_tape_roll/police)
 	armor = list(melee = 50, bullet = 15, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
 	flags_inv = 0

@@ -30,11 +30,11 @@ Important variables:
 		This stores all data for.
 		If you modify, make sure to update the archived_cycle to prevent race conditions and maintain symmetry
 
-	atom/can_pass(atom/movable/mover, turf/target, height, air_group)
+	atom/CanPass(atom/movable/mover, turf/target, height, air_group)
 		returns 1 for allow pass and 0 for deny pass
 		Turfs automatically call this for all objects/mobs in its turf.
-		This is called both as source.can_pass(target, height, air_group)
-			and  target.can_pass(source, height, air_group)
+		This is called both as source.CanPass(target, height, air_group)
+			and  target.CanPass(source, height, air_group)
 
 		Cases for the parameters
 		1. This is called with args (mover, location, height>0, air_group=0) for normal objects.
@@ -152,7 +152,7 @@ datum
 						test.length_space_border = 0
 						for(var/direction in cardinal)
 							var/turf/T = get_step(test,direction)
-							if(T && !members.Find(T) && test.can_pass(null, T, null,1))
+							if(T && !members.Find(T) && test.CanPass(null, T, null,1))
 								if(istype(T,/turf/simulated) && !T:parent)
 									possible_members += T
 									members += T
@@ -204,7 +204,7 @@ datum
 					for(var/obj/movable/floor/test in possible_members)
 						for(var/direction in list(NORTH, SOUTH, EAST, WEST))
 							var/turf/T = get_step(test.loc,direction)
-							if(T && test.loc.can_pass(null, T, null, 1))
+							if(T && test.loc.CanPass(null, T, null, 1))
 								var/obj/movable/floor/O = locate(/obj/movable/floor) in T
 								if(istype(O) && !O.parent)
 									if(!members.Find(O))
