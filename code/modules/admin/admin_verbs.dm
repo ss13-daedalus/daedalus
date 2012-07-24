@@ -243,7 +243,6 @@
 			verbs += /client/proc/check_words
 			verbs += /client/proc/drop_bomb
 			verbs += /client/proc/cmd_admin_grantfullaccess
-			verbs += /client/proc/kill_airgroup
 			verbs += /client/proc/cmd_admin_drop_everything
 			verbs += /client/proc/make_sound
 			verbs += /client/proc/play_local_sound
@@ -273,7 +272,6 @@
 			verbs += /client/proc/Force_Event_admin
 			verbs += /client/proc/radioalert
 			verbs += /client/proc/CarbonCopy
-			verbs += /client/proc/jump_to_dead_group
 			verbs += /client/proc/show_disconnected_pipes
 		else	return
 
@@ -441,11 +439,9 @@
 	//verbs -= /obj/admins/proc/unprison 								--Merged with player panel
 	//verbs -= /client/proc/cmd_switch_radio							--removed because tcommsat is staying
 	verbs -= /client/proc/togglebuildmodeself
-	verbs -= /client/proc/kill_airgroup
 	verbs -= /client/proc/admin_deny_shuttle
 	verbs -= /client/proc/cmd_admin_christmas
 	verbs -= /client/proc/editappear
-	verbs -= /client/proc/jump_to_dead_group
 	verbs -= /client/proc/playernotes
 	verbs -= /obj/admins/proc/show_skills
 	verbs -= /client/proc/enable_mapping_debug

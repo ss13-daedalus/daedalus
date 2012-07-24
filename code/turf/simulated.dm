@@ -174,7 +174,7 @@ turf
 			air_check_directions = 0
 
 			for(var/direction in cardinal)
-				if(can_pass(null, get_step(src,direction), 0, 0))
+				if(CanPass(null, get_step(src,direction), 0, 0))
 					air_check_directions |= direction
 
 			if(parent)
@@ -544,13 +544,13 @@ turf
 	var/turf/simulated/floor/west = get_step(src,WEST)
 
 	//Clear those we do not have access to
-	if(!can_pass(null, north, null, 1) || !istype(north))
+	if(!CanPass(null, north, null, 1) || !istype(north))
 		north = null
-	if(!can_pass(null, south, null, 1) || !istype(south))
+	if(!CanPass(null, south, null, 1) || !istype(south))
 		south = null
-	if(!can_pass(null, east, null, 1) || !istype(east))
+	if(!CanPass(null, east, null, 1) || !istype(east))
 		east = null
-	if(!can_pass(null, west, null, 1) || !istype(west))
+	if(!CanPass(null, west, null, 1) || !istype(west))
 		west = null
 
 	var/new_group_possible = 0

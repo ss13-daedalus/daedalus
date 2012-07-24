@@ -1,5 +1,5 @@
 /atom/movable
-	var/pressure_resistance = 20
+//	var/pressure_resistance = 20
 	var/last_forced_movement = 0
 
 /atom/movable/Bump(var/atom/A as mob|obj|turf|area, yes)

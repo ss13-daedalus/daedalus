@@ -90,7 +90,7 @@
 //border_only fire doors are special when it comes to air groups
 /obj/machinery/door/firedoor/border_only
 
-	can_pass(atom/movable/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 		if(air_group)
 			var/direction = get_dir(src,target)
 			return (dir != direction)
@@ -109,18 +109,6 @@
 		var/turf/simulated/source = loc
 		var/turf/simulated/destination = get_step(source,dir)
 
-		if(need_rebuild)
-			if(istype(source)) //Rebuild/update nearby group geometry
-				if(source.parent)
-					air_master.groups_to_rebuild += source.parent
-				else
-					air_master.tiles_to_update += source
-			if(istype(destination))
-				if(destination.parent)
-					air_master.groups_to_rebuild += destination.parent
-				else
-					air_master.tiles_to_update += destination
-		else
-			if(istype(source)) air_master.tiles_to_update += source
-			if(istype(destination)) air_master.tiles_to_update += destination
+		if(istype(source)) air_master.tiles_to_update += source
+		if(istype(destination)) air_master.tiles_to_update += destination
 		return 1

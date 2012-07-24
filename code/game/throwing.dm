@@ -107,7 +107,7 @@
 				src.throw_impact(A)
 				src.throwing = 0
 			if(isobj(A))
-				if(A.density && !A.can_pass(src,target))	// **TODO: Better behaviour for windows
+				if(A.density && !A.CanPass(src,target))	// **TODO: Better behaviour for windows
 												// which are dense, but shouldn't always stop movement
 					src.throw_impact(A)
 					src.throwing = 0

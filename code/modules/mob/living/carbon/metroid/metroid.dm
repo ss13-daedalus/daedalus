@@ -703,7 +703,7 @@ mob/living/carbon/metroid/var/temperature_resistance = T0C+75
 							check_1 = 0
 				for(var/obj/border_obstacle in get_turf(A))
 					if((border_obstacle.flags & ON_BORDER) && (src != border_obstacle))
-						if(!border_obstacle.can_pass(D, D.loc, 1, 0))
+						if(!border_obstacle.CanPass(D, D.loc, 1, 0))
 							check_1 = 0
 
 			D.loc = src.loc
@@ -716,7 +716,7 @@ mob/living/carbon/metroid/var/temperature_resistance = T0C+75
 							check_2 = 0
 				for(var/obj/border_obstacle in get_turf(A))
 					if((border_obstacle.flags & ON_BORDER) && (src != border_obstacle))
-						if(!border_obstacle.can_pass(D, D.loc, 1, 0))
+						if(!border_obstacle.CanPass(D, D.loc, 1, 0))
 							check_2 = 0
 			if(check_1 || check_2)
 				ok = 1
@@ -735,7 +735,7 @@ mob/living/carbon/metroid/var/temperature_resistance = T0C+75
 			//Next, check objects to block entry that are on the border
 			for(var/obj/border_obstacle in get_turf(A))
 				if((border_obstacle.flags & ON_BORDER) && (A != border_obstacle))
-					if(!border_obstacle.can_pass(D, D.loc, 1, 0))
+					if(!border_obstacle.CanPass(D, D.loc, 1, 0))
 						ok = 0
 
 	del(D)

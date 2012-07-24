@@ -33,7 +33,7 @@
 	density = 0
 	del(src)
 
-/obj/structure/window/can_pass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/structure/window/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return 1
 	if (src.dir == SOUTHWEST || src.dir == SOUTHEAST || src.dir == NORTHWEST || src.dir == NORTHEAST)
@@ -347,20 +347,8 @@
 	var/turf/simulated/source = loc
 	var/turf/simulated/target = get_step(source,dir)
 
-	if(need_rebuild)
-		if(istype(source)) //Rebuild/update nearby group geometry
-			if(source.parent)
-				air_master.groups_to_rebuild += source.parent
-			else
-				air_master.tiles_to_update += source
-		if(istype(target))
-			if(target.parent)
-				air_master.groups_to_rebuild += target.parent
-			else
-				air_master.tiles_to_update += target
-	else
-		if(istype(source)) air_master.tiles_to_update += source
-		if(istype(target)) air_master.tiles_to_update += target
+	if(istype(source)) air_master.tiles_to_update += source
+	if(istype(target)) air_master.tiles_to_update += target
 
 	return 1
 

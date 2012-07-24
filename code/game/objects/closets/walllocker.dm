@@ -87,7 +87,7 @@
 /obj/structure/closet/walllocker/alter_health()
 	return get_turf(src)
 
-/obj/structure/closet/walllocker/can_pass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/structure/closet/walllocker/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
 
 	return src.opened
