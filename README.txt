@@ -15,8 +15,8 @@ irc.freenode.net.  (You can, of course, report bugs and send pull
 requests via the standard Github interfaces.)
 
   Baystation 12: http://baystation12.net
- /tg/station 13: http://nanotrasen.com
-Goon Station 13: http://ss13.donglabs.com
+ /tg/station 13: http://www.ss13.eu
+Goon Station 13: http://wiki.ss13.co
           BYOND: http://www.byond.com
 
 The code contained herein is released under the GPLv3.  Other content
