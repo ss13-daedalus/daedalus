@@ -93,8 +93,6 @@ datum/controller/game_controller
 
 		var/start_time = world.timeofday
 
-		air_master.process()
-
 		tension_master.process()
 
 		sleep(1)

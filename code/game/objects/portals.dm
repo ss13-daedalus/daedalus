@@ -45,7 +45,7 @@
 
 	New()
 
-	can_pass(atom/A, turf/T)
+	CanPass(atom/A, turf/T)
 		if(istype(A, /mob) || istype(A, /obj)) // You Shall Not Pass!
 			teleport(A)
 		return 1
@@ -75,5 +75,5 @@
 		Bumped(atom/M as mob|obj)
 			return
 
-		can_pass(atom/A, turf/T)
+		CanPass(atom/A, turf/T)
 			return 1

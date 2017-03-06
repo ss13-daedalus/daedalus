@@ -45,7 +45,7 @@ var/list/supply_groups = new()
 	anchored = 1
 	layer = 4
 
-/obj/structure/plasticflaps/can_pass(atom/A, turf/T)
+/obj/structure/plasticflaps/CanPass(atom/A, turf/T)
 	if(istype(A) && A.checkpass(PASSGLASS))
 		return prob(60)
 	else if(istype(A, /mob/living)) // You Shall Not Pass!

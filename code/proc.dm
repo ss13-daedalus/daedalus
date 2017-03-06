@@ -1,4 +1,4 @@
-/* 
+/*
 This file is for procs that have to be global for some reason or another
 (for example, they are called by various other modules without prior
 instantiation of related objects).
@@ -1414,7 +1414,7 @@ proc/spawn_room(var/atom/start_loc,var/x_size,var/y_size,var/wall,var/floor , va
 	//Next, check objects to block entry that are on the border
 	for(var/obj/border_obstacle in targetturf)
 		if((border_obstacle.flags & ON_BORDER) && (target != border_obstacle))
-			if(!border_obstacle.can_pass(D, srcturf, 1, 0))
+			if(!border_obstacle.CanPass(D, srcturf, 1, 0))
 				del D
 				return 0
 

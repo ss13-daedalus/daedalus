@@ -316,7 +316,7 @@ steam.start() -- spawns the effect
 	return
 
 
-/obj/effect/effect/bad_smoke/can_pass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/effect/effect/bad_smoke/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
 	if(istype(mover, /obj/item/projectile/beam))
 		var/obj/item/projectile/beam/B = mover
@@ -1013,7 +1013,7 @@ steam.start() -- spawns the effect
 		else
 			user << "\blue You hit the metal foam to no effect."
 
-	can_pass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
+	CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
 		if(air_group) return 0
 		return !density
 
@@ -1029,38 +1029,12 @@ steam.start() -- spawns the effect
 		var/turf/simulated/east = get_step(source,EAST)
 		var/turf/simulated/west = get_step(source,WEST)
 
-		if(need_rebuild)
-			if(istype(source)) //Rebuild/update nearby group geometry
-				if(source.parent)
-					air_master.groups_to_rebuild += source.parent
-				else
-					air_master.tiles_to_update += source
-			if(istype(north))
-				if(north.parent)
-					air_master.groups_to_rebuild += north.parent
-				else
-					air_master.tiles_to_update += north
-			if(istype(south))
-				if(south.parent)
-					air_master.groups_to_rebuild += south.parent
-				else
-					air_master.tiles_to_update += south
-			if(istype(east))
-				if(east.parent)
-					air_master.groups_to_rebuild += east.parent
-				else
-					air_master.tiles_to_update += east
-			if(istype(west))
-				if(west.parent)
-					air_master.groups_to_rebuild += west.parent
-				else
-					air_master.tiles_to_update += west
-		else
-			if(istype(source)) air_master.tiles_to_update += source
-			if(istype(north)) air_master.tiles_to_update += north
-			if(istype(south)) air_master.tiles_to_update += south
-			if(istype(east)) air_master.tiles_to_update += east
-			if(istype(west)) air_master.tiles_to_update += west
+
+		if(istype(source)) air_master.tiles_to_update += source
+		if(istype(north)) air_master.tiles_to_update += north
+		if(istype(south)) air_master.tiles_to_update += south
+		if(istype(east)) air_master.tiles_to_update += east
+		if(istype(west)) air_master.tiles_to_update += west
 
 		return 1
 
